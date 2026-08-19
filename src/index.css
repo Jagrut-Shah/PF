@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --elava-ivory: #F7F5F0;
+  --elava-charcoal: #171717;
+  --elava-stone: #77736B;
+  --elava-border: #E6E2DA;
+  --elava-gold: #CFA838;
+
+  --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@theme {
+  --color-elava-ivory: var(--elava-ivory);
+  --color-elava-charcoal: var(--elava-charcoal);
+  --color-elava-stone: var(--elava-stone);
+  --color-elava-border: var(--elava-border);
+  --color-elava-gold: var(--elava-gold);
+
+  --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--elava-ivory);
+  color: var(--elava-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom editorial typography utility classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Micro-interaction & transitions */
+.nav-link-transition {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
