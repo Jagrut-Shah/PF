@@ -22,24 +22,14 @@ export const reviews = [
     city: "Mumbai"
   },
   {
-    id: "rev-noir-2",
-    productSlug: "noir",
-    productName: "NOIR",
-    gender: "men",
+    id: "rev-velvet-1",
+    productSlug: "velvet",
+    productName: "VELVET",
+    gender: "women",
     rating: 5,
-    text: "Deep, elegant and surprisingly versatile. NOIR has become my everyday signature.",
-    customer: "Dev K.",
+    text: "Soft, elegant and long-lasting. I receive compliments every time I wear it.",
+    customer: "Priya R.",
     city: "Delhi"
-  },
-  {
-    id: "rev-noir-3",
-    productSlug: "noir",
-    productName: "NOIR",
-    gender: "men",
-    rating: 5,
-    text: "Subtle yet magnetic. Perfect for client meetings and quiet evening dinners.",
-    customer: "Vikram T.",
-    city: "Pune"
   },
   {
     id: "rev-oudx-1",
@@ -52,16 +42,6 @@ export const reviews = [
     city: "Bangalore"
   },
   {
-    id: "rev-oudx-2",
-    productSlug: "oud-x",
-    productName: "OUD X",
-    gender: "men",
-    rating: 5,
-    text: "OUD X is exactly what I wanted for evenings. Rich without being overwhelming.",
-    customer: "Sahil B.",
-    city: "Hyderabad"
-  },
-  {
     id: "rev-ember-1",
     productSlug: "ember",
     productName: "EMBER",
@@ -72,33 +52,33 @@ export const reviews = [
     city: "Delhi"
   },
   {
-    id: "rev-ember-2",
-    productSlug: "ember",
-    productName: "EMBER",
-    gender: "men",
-    rating: 5,
-    text: "Spiced orange and dark woods — an undeniable evening favorite.",
-    customer: "Kabir N.",
-    city: "Jaipur"
-  },
-  {
-    id: "rev-eclipse-1",
-    productSlug: "eclipse",
-    productName: "ECLIPSE",
-    gender: "men",
-    rating: 5,
-    text: "Fresh, mysterious, and modern. Great balance between citrus and woods.",
-    customer: "Nikhil G.",
-    city: "Chandigarh"
-  },
-  {
-    id: "rev-velvet-1",
-    productSlug: "velvet",
-    productName: "VELVET",
+    id: "rev-aura-1",
+    productSlug: "aura",
+    productName: "AURA",
     gender: "women",
     rating: 5,
-    text: "Soft, elegant and long-lasting. I receive compliments every time I wear it.",
-    customer: "Priya R.",
+    text: "Radiant and sensual. AURA stands out in any crowd without trying.",
+    customer: "Natasha S.",
+    city: "Mumbai"
+  },
+  {
+    id: "rev-sable-1",
+    productSlug: "sable",
+    productName: "SABLE",
+    gender: "unisex",
+    rating: 5,
+    text: "Subtle luxury at its finest. Clean, woody, and extraordinarily refined.",
+    customer: "Arjun V.",
+    city: "Mumbai"
+  },
+  {
+    id: "rev-noir-2",
+    productSlug: "noir",
+    productName: "NOIR",
+    gender: "men",
+    rating: 5,
+    text: "Deep, elegant and surprisingly versatile. NOIR has become my everyday signature.",
+    customer: "Dev K.",
     city: "Delhi"
   },
   {
@@ -112,14 +92,14 @@ export const reviews = [
     city: "Mumbai"
   },
   {
-    id: "rev-velvet-3",
-    productSlug: "velvet",
-    productName: "VELVET",
-    gender: "women",
+    id: "rev-oudx-2",
+    productSlug: "oud-x",
+    productName: "OUD X",
+    gender: "men",
     rating: 5,
-    text: "My absolute favorite for dates. Warm floral warmth that lasts hours.",
-    customer: "Meera H.",
-    city: "Kolkata"
+    text: "OUD X is exactly what I wanted for evenings. Rich without being overwhelming.",
+    customer: "Sahil B.",
+    city: "Hyderabad"
   },
   {
     id: "rev-muse-1",
@@ -132,34 +112,24 @@ export const reviews = [
     city: "Bengaluru"
   },
   {
-    id: "rev-muse-2",
-    productSlug: "muse",
-    productName: "MUSE",
-    gender: "women",
+    id: "rev-eclipse-1",
+    productSlug: "eclipse",
+    productName: "ECLIPSE",
+    gender: "men",
     rating: 5,
-    text: "Gentle and captivating. Perfect signature scent for spring.",
-    customer: "Sneha K.",
-    city: "Chennai"
+    text: "Fresh, mysterious, and modern. Great balance between citrus and woods.",
+    customer: "Nikhil G.",
+    city: "Chandigarh"
   },
   {
-    id: "rev-aura-1",
-    productSlug: "aura",
-    productName: "AURA",
-    gender: "women",
+    id: "rev-amber01-1",
+    productSlug: "amber-01",
+    productName: "AMBER 01",
+    gender: "unisex",
     rating: 5,
-    text: "Radiant and sensual. AURA stands out in any crowd without trying.",
-    customer: "Natasha S.",
-    city: "Mumbai"
-  },
-  {
-    id: "rev-aura-2",
-    productSlug: "aura",
-    productName: "AURA",
-    gender: "women",
-    rating: 5,
-    text: "Luminous floral notes with a warm amber base. Pure luxury.",
-    customer: "Ishita M.",
-    city: "Ahmedabad"
+    text: "Golden amber perfection. Rich, warm, and comforting.",
+    customer: "Maya L.",
+    city: "Bangalore"
   },
   {
     id: "rev-afterglow-1",
@@ -172,26 +142,6 @@ export const reviews = [
     city: "Goa"
   },
   {
-    id: "rev-sable-1",
-    productSlug: "sable",
-    productName: "SABLE",
-    gender: "unisex",
-    rating: 5,
-    text: "Subtle luxury at its finest. Clean, woody, and extraordinarily refined.",
-    customer: "Arjun V.",
-    city: "Mumbai"
-  },
-  {
-    id: "rev-sable-2",
-    productSlug: "sable",
-    productName: "SABLE",
-    gender: "unisex",
-    rating: 5,
-    text: "Sophisticated minimalism. Everyone asks what perfume I am wearing.",
-    customer: "Tanvi M.",
-    city: "Gurgaon"
-  },
-  {
     id: "rev-elan-1",
     productSlug: "elan",
     productName: "ELAN",
@@ -200,16 +150,6 @@ export const reviews = [
     text: "Polished and crisp. ELAN is my go-to office signature.",
     customer: "Siddharth D.",
     city: "Noida"
-  },
-  {
-    id: "rev-amber01-1",
-    productSlug: "amber-01",
-    productName: "AMBER 01",
-    gender: "unisex",
-    rating: 5,
-    text: "Golden amber perfection. Rich, warm, and comforting.",
-    customer: "Maya L.",
-    city: "Bangalore"
   },
   {
     id: "rev-vert-1",

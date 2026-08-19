@@ -7,7 +7,7 @@ import products from '../data/products';
 import reviews, { reviewAggregate } from '../data/reviews';
 
 function StarRating({ rating = 5 }) {
-  const fullStars = Math.floor(rating);
+  const fullStars = Math.round(rating);
   return (
     <div className="flex items-center gap-0.5" aria-label={`Rating: ${rating} out of 5 stars`}>
       {[...Array(5)].map((_, i) => (
@@ -41,15 +41,19 @@ export default function ReviewsPage() {
   const filteredReviews = useMemo(() => {
     let result = reviews;
 
-    // Product specific filter
+    // 1. Product specific filter takes priority
     if (currentProduct) {
       return result.filter((r) => r.productSlug === currentProduct.slug);
     }
 
-    // Gender filter for overall page
+    // 2. Gender filter using product metadata
     if (activeGender !== 'ALL') {
       const targetGender = activeGender.toLowerCase();
-      result = result.filter((r) => r.gender === targetGender);
+      result = result.filter((r) => {
+        const p = products.find((prod) => prod.slug === r.productSlug || prod.id === r.productId);
+        const prodGender = p ? p.gender : r.gender;
+        return prodGender === targetGender;
+      });
     }
 
     return result;
@@ -95,13 +99,13 @@ export default function ReviewsPage() {
         ogType="website"
       />
 
-      <MainContainer className="py-8 sm:py-10 md:py-14">
-        {/* 1. PAGE HERO */}
-        <section className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-14">
+      <MainContainer className="py-8 sm:py-10 md:py-12">
+        {/* 1. PAGE HERO (Tighter spacing before subsection) */}
+        <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#171717] leading-tight mb-2">
             {heroTitle}
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#77736B] tracking-wide mb-6 font-normal">
+          <p className="font-sans text-xs sm:text-sm text-[#77736B] tracking-wide mb-5 font-normal">
             "{heroSubtitle}"
           </p>
 
