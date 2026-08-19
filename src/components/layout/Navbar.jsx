@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
+import NavbarSearch from './NavbarSearch';
 import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 
 /**
@@ -28,7 +29,6 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
 
   // Close mobile menu and search on route change
@@ -59,7 +59,7 @@ export default function Navbar() {
   const whatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent("Hello ÉLAVA, I'd like to explore your collection.")}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-elava-ivory border-b border-elava-border transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full bg-elava-ivory border-b border-elava-border transition-colors duration-200 relative">
       <MainContainer>
         <div className="h-[62px] sm:h-[68px] md:h-[80px] flex items-center justify-between">
           
@@ -67,7 +67,10 @@ export default function Navbar() {
           <div className="flex items-center md:hidden w-12">
             <button
               type="button"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              onClick={() => {
+                setIsSearchOpen(false);
+                setIsMobileMenuOpen((prev) => !prev);
+              }}
               className="p-2 -ml-2 text-elava-charcoal hover:text-elava-stone transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-charcoal"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
@@ -123,7 +126,10 @@ export default function Navbar() {
             {/* Search Trigger */}
             <button
               type="button"
-              onClick={() => setIsSearchOpen((prev) => !prev)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsSearchOpen((prev) => !prev);
+              }}
               className="p-2 text-elava-charcoal hover:text-elava-stone transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-charcoal"
               aria-label="Search collection"
             >
@@ -144,35 +150,8 @@ export default function Navbar() {
 
         </div>
 
-        {/* SEARCH BAR (Quiet In-Navbar Drawer) */}
-        {isSearchOpen && (
-          <div className="py-3 border-t border-elava-border/60 animate-fadeIn">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="relative flex items-center max-w-lg mx-auto"
-            >
-              <Search className="w-4 h-4 stroke-[1.5] text-elava-stone absolute left-3 pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search perfumes, notes, or moods..."
-                className="w-full pl-9 pr-8 py-2 bg-transparent border-b border-elava-stone/40 text-xs sm:text-sm font-sans tracking-wide text-elava-charcoal placeholder:text-elava-stone/70 focus:outline-none focus:border-elava-charcoal transition-colors duration-200"
-                autoFocus
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2 text-elava-stone hover:text-elava-charcoal p-1 text-xs"
-                  aria-label="Clear search"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </form>
-          </div>
-        )}
+        {/* SEARCH OVERLAY */}
+        <NavbarSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
         {/* MOBILE NAVIGATION DRAWER */}
         {isMobileMenuOpen && (
