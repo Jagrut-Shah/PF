@@ -55,20 +55,6 @@ export const occasions = [
     hoverBgClass: "hover:bg-[#ECE5EF]",
     image: "/images/occasions/party.png",
     alt: "Realistic silver mirrored disco ball"
-  },
-  {
-    id: "bestsellers",
-    slug: "bestsellers",
-    title: "BESTSELLERS",
-    name: "Bestsellers",
-    description: "Most loved.",
-    route: "/category/bestsellers",
-    dotColor: "#CFA838",
-    bgClass: "bg-[#F5F0E6]",
-    hoverBgClass: "hover:bg-[#EFE8DC]",
-    image: "/images/occasions/bestsellers.png",
-    alt: "Sculptural champagne gold luxury trophy",
-    visualClass: "w-[66px] h-[66px] lg:w-[78px] lg:h-[78px]"
   }
 ];
 

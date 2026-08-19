@@ -36,8 +36,8 @@ export default function ShopByOccasion() {
           ))}
         </div>
 
-        {/* Desktop 5-Column Grid */}
-        <div className="hidden md:grid gap-3" style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}>
+        {/* Desktop 4-Column Grid */}
+        <div className="hidden md:grid grid-cols-4 gap-4">
           {occasions.map((occasion) => (
             <OccasionCard key={occasion.id} occasion={occasion} />
           ))}
