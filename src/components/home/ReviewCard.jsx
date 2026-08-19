@@ -4,12 +4,21 @@ import products from '../../data/products';
 
 /**
  * ReviewCard Component
- * Displays a single review: stars → quote (with subtle bg quotation mark) → customer · city | product.
+ * Displays a single review: stars → text (with subtle bg quotation mark) → customer · city | product.
  * Uses h-full + flex-col so all cards in a CSS grid row share identical height.
  */
 export default function ReviewCard({ review }) {
-  const product = products.find((p) => p.id === review.productId);
-  const productName = product ? product.name : '';
+  if (!review) return null;
+
+  const text = review.text || review.quote || '';
+  const customer = review.customer || review.customerName || '';
+  const city = review.city || review.location || '';
+
+  const matchedProduct = products.find(
+    (p) => p.slug === review.productSlug || p.id === review.productId
+  );
+  const productName = review.productName || (matchedProduct ? matchedProduct.name : '');
+  const rating = review.rating || 5;
 
   return (
     <div
@@ -27,20 +36,30 @@ export default function ReviewCard({ review }) {
       {/* ★★★★★ */}
       <div className="mb-2.5 flex gap-0.5">
         {Array.from({ length: 5 }, (_, i) => (
-          <Star key={i} size={15} className="text-elava-gold fill-current" aria-hidden="true" />
+          <Star
+            key={i}
+            size={15}
+            className={`fill-current ${
+              i < Math.floor(rating) ? 'text-elava-gold' : 'text-[#DCD8CF]'
+            }`}
+            aria-hidden="true"
+          />
         ))}
       </div>
 
       {/* Quote — main content, grows to fill available height */}
       <p className="font-serif text-[15px] sm:text-[16px] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words">
-        {`"${review.quote}"`}
+        "{text}"
       </p>
 
       {/* Metadata row: Customer · City on left, PRODUCT on right */}
       <div className="flex justify-between items-end gap-2 text-[10.5px] sm:text-[11.5px] text-elava-stone tracking-wide">
-        <span className="font-sans">{`${review.customerName} · ${review.location}`}</span>
+        <span className="font-sans">
+          {customer} {city ? `· ${city}` : ''}
+        </span>
         <span className="font-sans uppercase tracking-[0.1em]">{productName}</span>
       </div>
     </div>
   );
 }
+
