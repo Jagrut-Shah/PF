@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ShieldCheck, Truck, Plus, Minus, Lock } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
+import SEO from '../components/common/SEO';
 import products from '../data/products';
 import createWhatsAppOrderUrl from '../utils/whatsapp';
 
@@ -17,14 +18,50 @@ function WhatsAppIcon({ className = "w-5 h-5" }) {
 }
 
 /**
- * Star Rating Display
+ * Breadcrumb component for ProductDetails
+ */
+function Breadcrumb({ product }) {
+  if (!product) return null;
+
+  const genderPath = `/category/${product.gender}`;
+  const genderLabel = product.gender ? product.gender.toUpperCase() : 'ALL';
+
+  return (
+    <nav aria-label="Breadcrumb" className="mb-4 sm:mb-6">
+      <ol className="flex items-center space-x-2 font-sans text-xs text-[#77736B]">
+        <li>
+          <Link to="/" className="hover:text-[#171717] transition-colors">
+            HOME
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li>
+          <Link to={genderPath} className="hover:text-[#171717] transition-colors font-medium">
+            {genderLabel}
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li className="text-[#171717] font-semibold uppercase tracking-wider" aria-current="page">
+          {product.name}
+        </li>
+      </ol>
+    </nav>
+  );
+}
+
+/**
+ * Star Rating component
  */
 function Stars({ rating = 5 }) {
-  const full = Math.round(rating);
+  const fullStars = Math.floor(rating);
   return (
-    <div className="flex items-center gap-0.5 text-[#CFA838]" aria-label={`${rating} out of 5 stars`}>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} className={`inline-block text-sm ${i < full ? 'text-[#CFA838]' : 'text-[#DCD8CF]'}`}>
+    <div className="flex items-center gap-0.5" aria-label={`Rating: ${rating} out of 5 stars`}>
+      {[...Array(5)].map((_, i) => (
+        <span
+          key={i}
+          className={`text-xs ${i < fullStars ? 'text-[#CFA838]' : 'text-gray-300'}`}
+          aria-hidden="true"
+        >
           ★
         </span>
       ))}
@@ -33,38 +70,20 @@ function Stars({ rating = 5 }) {
 }
 
 /**
- * Dynamic Breadcrumb Component
- */
-function Breadcrumb({ product }) {
-  const genderLabel = product.gender === 'men' ? 'Men' : product.gender === 'women' ? 'Women' : 'Unisex';
-  const categoryPath = `/category/${product.gender}`;
-
-  return (
-    <nav className="font-sans text-[12.5px] text-[#77736B] mb-4 sm:mb-6 flex items-center gap-2 tracking-wide" aria-label="Breadcrumb">
-      <Link to="/" className="hover:text-elava-charcoal transition-colors">Home</Link>
-      <span className="text-[#C5C0B6]">/</span>
-      <Link to={categoryPath} className="hover:text-elava-charcoal transition-colors">{genderLabel}</Link>
-      <span className="text-[#C5C0B6]">/</span>
-      <span className="text-elava-charcoal font-medium">{product.name}</span>
-    </nav>
-  );
-}
-
-/**
  * Format notes helper
  */
-function formatNotes(notesString) {
-  if (!notesString) return '';
-  return notesString.split('·').map(s => s.trim()).join(', ');
+function formatNotes(notesArray) {
+  if (!notesArray) return '';
+  if (Array.isArray(notesArray)) return notesArray.join(' · ');
+  return notesArray;
 }
 
 export default function ProductDetails() {
   const { productSlug } = useParams();
-  const product = products.find((p) => p.slug === productSlug);
 
-  // Mobile Accordion state
+  // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
-    about: false,
+    about: true,
     notes: false,
     reviews: false,
     delivery: false,
@@ -77,16 +96,25 @@ export default function ProductDetails() {
     }));
   };
 
+  // Find product by slug
+  const product = products.find((p) => p.slug === productSlug);
+
+  // If product not found
   if (!product) {
     return (
       <MainContainer className="py-16 text-center">
-        <h2 className="font-serif text-3xl text-elava-charcoal mb-4">Fragrance Not Found</h2>
-        <p className="font-sans text-sm text-elava-stone mb-6">
-          The requested fragrance could not be located in our collection.
+        <SEO
+          title="Product Not Found | ÉLAVA"
+          description="The requested fragrance signature could not be found."
+          canonicalPath="/product"
+        />
+        <h1 className="font-serif text-3xl font-normal text-[#171717] mb-4">Product Not Found</h1>
+        <p className="font-sans text-sm text-[#77736B] mb-6">
+          The fragrance signature you are looking for does not exist or has been moved.
         </p>
         <Link
           to="/"
-          className="inline-block bg-elava-charcoal text-white px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-black transition-colors"
+          className="inline-block bg-[#171717] text-white px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-black transition-colors"
         >
           Return to Homepage
         </Link>
@@ -108,8 +136,42 @@ export default function ProductDetails() {
     city: 'Mumbai',
   };
 
+  // Dynamic Product Page SEO Title: NAME — Scent Identity | ÉLAVA
+  const pageTitle = `${product.name} — ${product.scentIdentity} | ÉLAVA`;
+  const pageCanonical = `/product/${product.slug}`;
+
+  // JSON-LD Product Schema
+  const productJsonLd = {
+    '@context': 'https://schema.org/',
+    '@type': 'Product',
+    name: `ÉLAVA ${product.name}`,
+    image: product.image,
+    description: product.description,
+    brand: {
+      '@type': 'Brand',
+      name: 'ÉLAVA',
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: product.price,
+      itemCondition: 'https://schema.org/NewCondition',
+      availability: 'https://schema.org/InStock',
+    },
+  };
+
   return (
     <MainContainer className="py-6 sm:py-8">
+      {/* Dynamic SEO & JSON-LD Structured Data */}
+      <SEO
+        title={pageTitle}
+        description={product.description}
+        canonicalPath={pageCanonical}
+        ogType="product"
+        ogImage={product.image}
+        jsonLd={productJsonLd}
+      />
+
       {/* 1. Breadcrumb */}
       <Breadcrumb product={product} />
 
@@ -122,7 +184,7 @@ export default function ProductDetails() {
           <div className="bg-[#FAF7F2] p-2 sm:p-3 md:p-4 rounded-2xl border border-[#EFEAE2] flex justify-center items-center">
             <img
               src={product.image}
-              alt={product.name}
+              alt={`ÉLAVA ${product.name} Eau de Parfum bottle`}
               className="w-full max-w-[560px] max-h-[480px] h-auto object-contain drop-shadow-xs select-none"
             />
           </div>

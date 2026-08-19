@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import MainContainer from '../components/ui/MainContainer';
 import ProductCard from '../components/home/ProductCard';
 import SectionHeading from '../components/ui/SectionHeading';
+import SEO from '../components/common/SEO';
 import products from '../data/products';
 
 const GENDER_CATEGORIES = ['men', 'women', 'unisex'];
@@ -10,14 +11,54 @@ const OCCASION_CATEGORIES = ['date-night', 'everyday', 'office', 'party'];
 const VALID_SLUGS = [...GENDER_CATEGORIES, ...OCCASION_CATEGORIES, 'bestsellers'];
 
 const CATEGORY_CONFIG = {
-  men: { title: 'MEN', subtitle: 'Fragrances crafted for him.' },
-  women: { title: 'WOMEN', subtitle: 'Fragrances crafted for her.' },
-  unisex: { title: 'UNISEX', subtitle: 'Fragrances for every expression.' },
-  bestsellers: { title: 'BESTSELLERS', subtitle: 'Our most loved fragrances.' },
-  'date-night': { title: 'DATE NIGHT', subtitle: 'Fragrances for nights worth remembering.' },
-  everyday: { title: 'EVERYDAY', subtitle: 'Your signature scent, every day.' },
-  office: { title: 'OFFICE', subtitle: 'Clean. Sharp. Effortless.' },
-  party: { title: 'PARTY', subtitle: 'Walk in. Get noticed.' },
+  men: {
+    title: 'MEN',
+    subtitle: 'Fragrances crafted for him.',
+    seoTitle: "Men's Fragrances | ÉLAVA",
+    seoDescription: "Explore ÉLAVA's premium artisanal fragrances crafted for him.",
+  },
+  women: {
+    title: 'WOMEN',
+    subtitle: 'Fragrances crafted for her.',
+    seoTitle: "Women's Fragrances | ÉLAVA",
+    seoDescription: "Explore ÉLAVA's elegant artisanal fragrances crafted for her.",
+  },
+  unisex: {
+    title: 'UNISEX',
+    subtitle: 'Fragrances for every expression.',
+    seoTitle: 'Unisex Fragrances | ÉLAVA',
+    seoDescription: "Explore ÉLAVA's distinctive unisex fragrances for every expression.",
+  },
+  bestsellers: {
+    title: 'BESTSELLERS',
+    subtitle: 'Our most loved fragrances.',
+    seoTitle: 'Bestseller Fragrances | ÉLAVA',
+    seoDescription: "Discover ÉLAVA's most coveted and bestselling signature perfumes.",
+  },
+  'date-night': {
+    title: 'DATE NIGHT',
+    subtitle: 'Fragrances for nights worth remembering.',
+    seoTitle: 'Date Night Fragrances | ÉLAVA',
+    seoDescription: "Discover ÉLAVA's seductive date night fragrances for evenings worth remembering.",
+  },
+  everyday: {
+    title: 'EVERYDAY',
+    subtitle: 'Your signature scent, every day.',
+    seoTitle: 'Everyday Fragrances | ÉLAVA',
+    seoDescription: "Discover ÉLAVA's refined everyday signature scents for effortless wear.",
+  },
+  office: {
+    title: 'OFFICE',
+    subtitle: 'Clean. Sharp. Effortless.',
+    seoTitle: 'Office Fragrances | ÉLAVA',
+    seoDescription: "Discover ÉLAVA's clean, sharp, and polished fragrances for work.",
+  },
+  party: {
+    title: 'PARTY',
+    subtitle: 'Walk in. Get noticed.',
+    seoTitle: 'Party Fragrances | ÉLAVA',
+    seoDescription: "Discover ÉLAVA's bold and magnetic party fragrances made to get noticed.",
+  },
 };
 
 export default function CategoryPage() {
@@ -45,6 +86,11 @@ export default function CategoryPage() {
   if (!isSupportedSlug) {
     return (
       <MainContainer className="py-16 text-center">
+        <SEO
+          title="Collection Not Found | ÉLAVA"
+          description="The requested fragrance collection does not exist."
+          canonicalPath={`/category/${categorySlug || ''}`}
+        />
         <h1 className="font-serif text-3xl font-normal uppercase tracking-wider text-elava-charcoal mb-3">
           Collection Not Found
         </h1>
@@ -64,12 +110,22 @@ export default function CategoryPage() {
   const config = CATEGORY_CONFIG[categorySlug] || {
     title: categorySlug.toUpperCase(),
     subtitle: '',
+    seoTitle: `${categorySlug.toUpperCase()} | ÉLAVA`,
+    seoDescription: `Explore ÉLAVA ${categorySlug} luxury fragrance collection.`,
   };
 
   return (
     <MainContainer className="py-8 md:py-12">
+      {/* Category SEO */}
+      <SEO
+        title={config.seoTitle}
+        description={config.seoDescription}
+        canonicalPath={`/category/${categorySlug}`}
+        ogType="website"
+      />
+
       {/* Dynamic Section Header */}
-      <SectionHeading title={config.title} subtitle={config.subtitle} />
+      <SectionHeading as="h1" title={config.title} subtitle={config.subtitle} />
 
       {/* Empty State */}
       {filteredProducts.length === 0 ? (
