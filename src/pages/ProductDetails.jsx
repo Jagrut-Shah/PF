@@ -468,7 +468,7 @@ export default function ProductDetails() {
               {openAccordions.reviews && (
                 <div className="px-4 pb-4 border-t border-[#ECE7DE] pt-3">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Stars rating={product.rating} />
+                    <StarRating rating={product.rating} size={14} />
                   </div>
                   <blockquote className="font-serif text-base italic text-[#171717] leading-relaxed mb-2">
                     "{productReview.text}"
@@ -478,10 +478,10 @@ export default function ProductDetails() {
                   </div>
                   <div className="mt-3">
                     <Link
-                      to="/reviews"
-                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors"
+                      to={`/reviews?product=${product.slug}`}
+                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors inline-flex items-center gap-1.5"
                     >
-                      VIEW ALL REVIEWS →
+                      VIEW MORE REVIEWS <span aria-hidden>→</span>
                     </Link>
                   </div>
                 </div>
