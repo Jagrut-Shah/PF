@@ -80,9 +80,9 @@ export default function WhatPeopleSay() {
           <Link
             to="/reviews"
             className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-[0.08em] text-elava-charcoal hover:text-[#2C1F14] transition-colors duration-200"
-            aria-label="View all reviews"
+            aria-label="View more reviews"
           >
-            VIEW ALL REVIEWS
+            VIEW MORE REVIEWS
             <ArrowRight className="w-3 h-3 stroke-[1.5]" aria-hidden="true" />
           </Link>
         </div>

@@ -202,10 +202,10 @@ export default function ProductDetails() {
                 {productReview.customer} · {productReview.city}
               </span>
               <Link
-                to="/reviews"
+                to={`/reviews?product=${product.slug}`}
                 className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors inline-flex items-center gap-1.5"
               >
-                VIEW ALL REVIEWS <span aria-hidden>→</span>
+                VIEW MORE REVIEWS <span aria-hidden>→</span>
               </Link>
             </div>
           </div>
