@@ -40,6 +40,11 @@ export const products = [
       top: "Bergamot · Black Pepper",
       heart: "Lavender · Geranium · Violet Leaf",
       base: "Vetiver · Amber · Musk"
+    },
+    review: {
+      text: "Exceptional longevity and depth. Truly feels niche and bespoke.",
+      customer: "Aarav S.",
+      city: "Mumbai"
     }
   },
   {
@@ -62,6 +67,11 @@ export const products = [
       top: "Saffron · Bergamot",
       heart: "Oud · Rose · Leather",
       base: "Amber · Sandalwood · Musk"
+    },
+    review: {
+      text: "Rich, confident and incredibly smooth. OUD X has become my go-to evening fragrance.",
+      customer: "Karan M.",
+      city: "Bangalore"
     }
   },
   {
@@ -84,6 +94,11 @@ export const products = [
       top: "Blood Orange · Black Pepper",
       heart: "Cinnamon · Clove · Cedar",
       base: "Tonka · Amberwood · Patchouli"
+    },
+    review: {
+      text: "Warm, bold and surprisingly refined. It has exactly the presence I wanted for evenings.",
+      customer: "Rohan P.",
+      city: "Delhi"
     }
   },
   {
@@ -106,6 +121,11 @@ export const products = [
       top: "Bergamot · Mandarin · Green Tea",
       heart: "Cedar · Violet Leaf · Sage",
       base: "Vetiver · Musk · Soft Woods"
+    },
+    review: {
+      text: "Clean, subtle, and sophisticated for daily office wear. The dry-down is fantastic.",
+      customer: "Vikram N.",
+      city: "Pune"
     }
   },
   {
@@ -128,6 +148,11 @@ export const products = [
       top: "Raspberry · Pink Pepper",
       heart: "Rose · Peony · Jasmine",
       base: "Vanilla · Amber · Sandalwood"
+    },
+    review: {
+      text: "Soft, elegant and long-lasting. I receive compliments every time I wear it.",
+      customer: "Priya R.",
+      city: "Delhi"
     }
   },
   {
@@ -150,6 +175,11 @@ export const products = [
       top: "Pear · Bergamot",
       heart: "Jasmine · Orange Blossom · Freesia",
       base: "White Musk · Cedar · Cashmere Wood"
+    },
+    review: {
+      text: "A fresh and luminous floral that feels effortless. Ideal for daytime elegance.",
+      customer: "Ananya K.",
+      city: "Hyderabad"
     }
   },
   {
@@ -172,6 +202,11 @@ export const products = [
       top: "Mandarin · Pear · Neroli",
       heart: "White Rose · Jasmine · Lily",
       base: "Musk · Vanilla · Blonde Woods"
+    },
+    review: {
+      text: "Bright, airy, and delicately sweet. A captivating signature scent for special occasions.",
+      customer: "Meera D.",
+      city: "Kolkata"
     }
   },
   {
@@ -194,6 +229,11 @@ export const products = [
       top: "Peach · Bergamot",
       heart: "Vanilla Orchid · Rose · Heliotrope",
       base: "Amber · Vanilla · Sandalwood"
+    },
+    review: {
+      text: "Beautifully warm and lingering. It settles into the skin like soft sunset warmth.",
+      customer: "Sneha T.",
+      city: "Chandigarh"
     }
   },
   {
@@ -216,6 +256,11 @@ export const products = [
       top: "Fig Leaf · Bergamot · Green Pepper",
       heart: "Violet Leaf · Cypress · Tea",
       base: "Vetiver · Cedar · Moss"
+    },
+    review: {
+      text: "Crisp green freshness paired with subtle earthiness. Remarkably refreshing and unique.",
+      customer: "Dev R.",
+      city: "Jaipur"
     }
   },
   {
@@ -237,6 +282,11 @@ export const products = [
       top: "Lemon · Juniper · Bergamot",
       heart: "Mineral Accord · Lavender · Neroli",
       base: "Cedar · White Musk · Vetiver"
+    },
+    review: {
+      text: "Clean mineral crispness that feels ultra-modern and sharp. Perfect for work settings.",
+      customer: "Aditya B.",
+      city: "Gurugram"
     }
   },
   {
@@ -259,6 +309,11 @@ export const products = [
       top: "Cardamom · Mandarin",
       heart: "Cinnamon · Amber · Orange Blossom",
       base: "Benzoin · Vanilla · Cedar"
+    },
+    review: {
+      text: "Spiced amber perfection with incredible sillage. Warm, magnetic, and opulent.",
+      customer: "Zain H.",
+      city: "Lucknow"
     }
   },
   {
@@ -281,6 +336,11 @@ export const products = [
       top: "Lime · Basil · Green Apple",
       heart: "Green Tea · Fig · Geranium",
       base: "Cedar · Vetiver · Moss"
+    },
+    review: {
+      text: "Green citrus meeting dry cedarwood—sophisticated, uplifting, and distinctive.",
+      customer: "Kabir V.",
+      city: "Ahmedabad"
     }
   },
   {
@@ -303,6 +363,11 @@ export const products = [
       top: "Bergamot · Black Pepper",
       heart: "Suede · Iris · Saffron",
       base: "Sandalwood · Amber · Musk"
+    },
+    review: {
+      text: "Commanding suede and iris. Smooth, luxurious, and commands attention quietly.",
+      customer: "Siddharth C.",
+      city: "Mumbai"
     }
   },
   {
@@ -325,6 +390,11 @@ export const products = [
       top: "Pear · Mandarin · Lavender",
       heart: "Iris · White Tea · Jasmine",
       base: "Soft Musk · Sandalwood · Cashmere Wood"
+    },
+    review: {
+      text: "Soothing white tea and soft musk. It creates a serene, comforting aura all day.",
+      customer: "Riya M.",
+      city: "Chennai"
     }
   },
   {
@@ -347,6 +417,11 @@ export const products = [
       top: "Bergamot · Lychee",
       heart: "Rose · Tuberose · Jasmine",
       base: "Vanilla · Sandalwood · Musk"
+    },
+    review: {
+      text: "Intimate creamy rose and tuberose. Sensual, modern, and gorgeously composed.",
+      customer: "Tanya S.",
+      city: "Goa"
     }
   },
   {
@@ -369,6 +444,11 @@ export const products = [
       top: "Lemon · Grapefruit · Mandarin",
       heart: "Orange Blossom · Jasmine · Neroli",
       base: "Amber · White Musk · Cedar"
+    },
+    review: {
+      text: "Radiant citrus and white florals that instantly brighten your mood. Pure elegance.",
+      customer: "Nikhil K.",
+      city: "Kochi"
     }
   }
 ];

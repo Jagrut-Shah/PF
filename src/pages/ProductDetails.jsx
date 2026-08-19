@@ -1,181 +1,478 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { MessageSquare } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus, Lock } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import products from '../data/products';
 import createWhatsAppOrderUrl from '../utils/whatsapp';
 
+/**
+ * Official WhatsApp Icon matching brand style
+ */
+function WhatsAppIcon({ className = "w-5 h-5" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm-3.53 3.63c-.19 0-.42.07-.64.31-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 2 .86 2.41.69 2.84.65.43-.04 1.4-.57 1.6-1.13.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28s-1.4-.69-1.62-.77c-.22-.08-.38-.12-.54.12s-.62.77-.76.93c-.14.16-.28.18-.52.06s-1.01-.37-1.92-1.19c-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.48-.39-.41-.54-.42-.14-.01-.3-.01-.46-.01z" />
+    </svg>
+  );
+}
+
+/**
+ * Star Rating Display
+ */
 function Stars({ rating = 5 }) {
   const full = Math.round(rating);
   return (
-    <div className="flex items-center gap-2">
-      <div className="text-elava-gold" aria-hidden>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span key={i} className={`inline-block text-sm ${i < full ? 'text-elava-gold' : 'text-elava-stone'}`}>★</span>
-        ))}
-      </div>
-      <div className="text-sm font-medium text-elava-charcoal">{rating}</div>
+    <div className="flex items-center gap-0.5 text-[#CFA838]" aria-label={`${rating} out of 5 stars`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} className={`inline-block text-sm ${i < full ? 'text-[#CFA838]' : 'text-[#DCD8CF]'}`}>
+          ★
+        </span>
+      ))}
     </div>
   );
 }
 
-function Breadcrumbs({ product }) {
-  const categoryLabel = product.gender === 'men' ? 'Men' : product.gender === 'women' ? 'Women' : 'Unisex';
+/**
+ * Dynamic Breadcrumb Component
+ */
+function Breadcrumb({ product }) {
+  const genderLabel = product.gender === 'men' ? 'Men' : product.gender === 'women' ? 'Women' : 'Unisex';
   const categoryPath = `/category/${product.gender}`;
+
   return (
-    <nav className="text-[13px] text-elava-stone mb-4" aria-label="Breadcrumb">
-      <Link to="/" className="hover:underline">Home</Link>
-      <span className="mx-2">/</span>
-      <Link to={categoryPath} className="hover:underline">{categoryLabel}</Link>
-      <span className="mx-2">/</span>
-      <span className="text-elava-charcoal">{product.name}</span>
+    <nav className="font-sans text-[12.5px] text-[#77736B] mb-4 sm:mb-6 flex items-center gap-2 tracking-wide" aria-label="Breadcrumb">
+      <Link to="/" className="hover:text-elava-charcoal transition-colors">Home</Link>
+      <span className="text-[#C5C0B6]">/</span>
+      <Link to={categoryPath} className="hover:text-elava-charcoal transition-colors">{genderLabel}</Link>
+      <span className="text-[#C5C0B6]">/</span>
+      <span className="text-elava-charcoal font-medium">{product.name}</span>
     </nav>
   );
+}
+
+/**
+ * Format notes helper
+ */
+function formatNotes(notesString) {
+  if (!notesString) return '';
+  return notesString.split('·').map(s => s.trim()).join(', ');
 }
 
 export default function ProductDetails() {
   const { productSlug } = useParams();
   const product = products.find((p) => p.slug === productSlug);
-  const [openAbout, setOpenAbout] = useState(false);
-  const [openNotes, setOpenNotes] = useState(false);
-  const [openReview, setOpenReview] = useState(false);
-  const [openDelivery, setOpenDelivery] = useState(false);
+
+  // Mobile Accordion state
+  const [openAccordions, setOpenAccordions] = useState({
+    about: false,
+    notes: false,
+    reviews: false,
+    delivery: false,
+  });
+
+  const toggleAccordion = (key) => {
+    setOpenAccordions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   if (!product) {
     return (
-      <MainContainer className="py-12">
-        <h2 className="text-2xl font-semibold">Fragrance not found.</h2>
-        <p className="mt-4">
-          <Link to="/" className="text-elava-gold underline">Return to homepage</Link>
+      <MainContainer className="py-16 text-center">
+        <h2 className="font-serif text-3xl text-elava-charcoal mb-4">Fragrance Not Found</h2>
+        <p className="font-sans text-sm text-elava-stone mb-6">
+          The requested fragrance could not be located in our collection.
         </p>
+        <Link
+          to="/"
+          className="inline-block bg-elava-charcoal text-white px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-black transition-colors"
+        >
+          Return to Homepage
+        </Link>
       </MainContainer>
     );
   }
 
-  const whatsappUrl = createWhatsAppOrderUrl({
-    productName: `${product.name} (${product.size || '60 ML'})`,
-    price: product.price
-  });
+  // Gender display label
+  const genderTarget = product.gender === 'men' ? 'For Him' : product.gender === 'women' ? 'For Her' : 'Unisex';
+
+  // Dynamic WhatsApp pre-filled message
+  const waCustomMessage = `Hi, I'd like to order ÉLAVA ${product.name} (${product.size || '60 ML'}) for ₹${product.price?.toLocaleString()}.`;
+  const whatsappUrl = createWhatsAppOrderUrl({ customMessage: waCustomMessage });
+
+  // Product specific review
+  const productReview = product.review || {
+    text: 'Exceptional longevity and depth. Truly feels niche and bespoke.',
+    customer: 'Aarav S.',
+    city: 'Mumbai',
+  };
 
   return (
-    <MainContainer className="py-8">
-      {/* Breadcrumb */}
-      <Breadcrumbs product={product} />
+    <MainContainer className="py-6 sm:py-8">
+      {/* 1. Breadcrumb */}
+      <Breadcrumb product={product} />
 
-      {/* Main product area */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        {/* Left: Image (span 7 on md) */}
-        <div className="md:col-span-7">
-          <div className="bg-[#FBF8F3] p-8 rounded-xl flex justify-center">
-            <img src={product.image} alt={product.name} className="w-full max-w-[640px] h-auto object-contain rounded-lg" />
+      {/* 2. Main Product Area */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
+        
+        {/* LEFT COLUMN: Product Image + Featured Review Card (Desktop) */}
+        <div className="md:col-span-6 lg:col-span-7">
+          {/* Main Product Image Container (Reduced internal padding for larger image presence) */}
+          <div className="bg-[#FAF7F2] p-2 sm:p-3 md:p-4 rounded-2xl border border-[#EFEAE2] flex justify-center items-center">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full max-w-[560px] max-h-[480px] h-auto object-contain drop-shadow-xs select-none"
+            />
+          </div>
+
+          {/* Desktop Featured Review Card (Compact & Proportionate) */}
+          <div className="hidden md:block mt-4 bg-[#FAF7F2]/80 border border-[#ECE7DE] rounded-xl p-4 md:p-5">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Stars rating={product.rating} />
+            </div>
+            <blockquote className="font-serif text-sm lg:text-base italic text-[#171717] leading-snug mb-2.5">
+              "{productReview.text}"
+            </blockquote>
+            <div className="flex items-center justify-between flex-wrap gap-2 pt-2 border-t border-[#EAE5DC]">
+              <span className="font-sans text-xs text-[#77736B]">
+                {productReview.customer} · {productReview.city}
+              </span>
+              <Link
+                to="/reviews"
+                className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors inline-flex items-center gap-1.5"
+              >
+                VIEW ALL REVIEWS <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Right: Details (span 5 on md) */}
-        <div className="md:col-span-5">
+        {/* RIGHT COLUMN: Product Details */}
+        <div className="md:col-span-6 lg:col-span-5 flex flex-col">
+          {/* Bestseller Badge */}
           {product.isBestseller && (
-            <div className="inline-block px-3 py-1 text-[11px] font-semibold bg-amber-100 text-amber-800 rounded-sm mb-3">BESTSELLER</div>
+            <div className="self-start">
+              <span className="bg-[#F5EFE0] text-[#9E6E24] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
+                BESTSELLER
+              </span>
+            </div>
           )}
 
-          <h1 className="font-serif text-3xl md:text-4xl font-medium tracking-[0.04em] uppercase text-elava-charcoal">{product.name}</h1>
-          <div className="mt-2 text-sm text-elava-stone">EAU DE PARFUM · {product.gender === 'men' ? 'FOR HIM' : product.gender === 'women' ? 'FOR HER' : 'UNISEX'}</div>
+          {/* Product Title */}
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] uppercase font-normal tracking-[0.06em] text-[#171717] leading-tight">
+            {product.name}
+          </h1>
 
-          <div className="mt-4 flex items-center gap-4">
+          {/* Product Type + Gender */}
+          <div className="font-sans text-xs sm:text-sm text-[#77736B] tracking-wide font-medium mt-1">
+            Eau de Parfum · {genderTarget}
+          </div>
+
+          {/* Rating + Review Count */}
+          <div className="mt-3 flex items-center gap-2.5">
             <Stars rating={product.rating} />
-            <div className="text-sm text-elava-stone">· {product.reviewCount} reviews</div>
+            <span className="font-sans text-xs font-semibold text-[#171717]">{product.rating}</span>
+            <span className="font-sans text-xs text-[#77736B]">({product.reviewCount} reviews)</span>
           </div>
 
-          <div className="mt-6">
-            <div className="text-2xl font-semibold">₹{product.price.toLocaleString()}</div>
-            <div className="text-sm text-elava-stone">{product.size || '60 ML'}</div>
+          {/* Price & Size */}
+          <div className="mt-4">
+            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#171717] tracking-tight">
+              ₹{product.price?.toLocaleString()}
+            </div>
+            <div className="font-sans text-xs text-[#77736B] font-medium tracking-wider uppercase mt-0.5">
+              {product.size || '60 ML'}
+            </div>
           </div>
 
-          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 w-full mt-6 bg-elava-gold text-[#111] font-semibold px-4 py-3 rounded-md shadow-sm">
-            <MessageSquare className="w-5 h-5" />
-            ORDER ON WHATSAPP
-          </a>
-          <div className="mt-2 text-xs text-elava-stone">We'll confirm your order and delivery details on WhatsApp.</div>
+          {/* Large WhatsApp CTA */}
+          <div className="mt-5">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#181818] hover:bg-[#2A2A2A] text-white rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
+            >
+              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              ORDER ON WHATSAPP
+            </a>
 
-          <hr className="my-6 border-t border-[#E9E4DB]" />
+            {/* Reassurance text */}
+            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#77736B] font-sans">
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#77736B]" />
+              <span>We'll confirm your order and delivery details on WhatsApp.</span>
+            </div>
+          </div>
 
-          {/* Desktop: expanded sections; Mobile: accordions */}
+          {/* Desktop Content Blocks (Tightened Vertical Rhythm) */}
           <div className="hidden md:block">
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[#E6E2DA]" />
+
+            {/* ABOUT THE SCENT */}
             <section>
-              <h3 className="text-lg font-semibold">ABOUT THE SCENT</h3>
-              <p className="mt-3 text-elava-charcoal text-sm">{product.description}</p>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#171717] mb-1.5">
+                ABOUT THE SCENT
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-[#444] leading-relaxed">
+                {product.description}
+              </p>
             </section>
 
-            <hr className="my-6 border-t border-[#E9E4DB]" />
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[#E6E2DA]" />
 
+            {/* FRAGRANCE NOTES */}
             <section>
-              <h4 className="text-sm font-semibold">FRAGRANCE NOTES</h4>
-              <div className="mt-3 grid grid-cols-3 gap-4">
-                <div>
-                  <div className="text-xs text-elava-stone font-medium">TOP NOTES</div>
-                  <div className="mt-1 text-sm">{product.notes?.top}</div>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#171717] mb-2.5">
+                FRAGRANCE NOTES
+              </h2>
+              <div className="grid grid-cols-3 gap-3 lg:gap-4 py-0.5">
+                {/* TOP NOTES */}
+                <div className="flex items-start gap-2.5">
+                  <img
+                    src="/images/notes/top-notes.jpg"
+                    alt="Top notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#FAF7F2] shrink-0 border border-[#ECE7DE] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717] mb-0.5">
+                      TOP NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#555] leading-snug">
+                      {formatNotes(product.notes?.top)}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-elava-stone font-medium">HEART NOTES</div>
-                  <div className="mt-1 text-sm">{product.notes?.heart}</div>
+
+                {/* HEART NOTES */}
+                <div className="flex items-start gap-2.5 border-l border-[#E6E2DA] pl-3 lg:pl-4">
+                  <img
+                    src="/images/notes/heart-notes.jpg"
+                    alt="Heart notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#FAF7F2] shrink-0 border border-[#ECE7DE] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717] mb-0.5">
+                      HEART NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#555] leading-snug">
+                      {formatNotes(product.notes?.heart)}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-elava-stone font-medium">BASE NOTES</div>
-                  <div className="mt-1 text-sm">{product.notes?.base}</div>
+
+                {/* BASE NOTES */}
+                <div className="flex items-start gap-2.5 border-l border-[#E6E2DA] pl-3 lg:pl-4">
+                  <img
+                    src="/images/notes/base-notes.jpg"
+                    alt="Base notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#FAF7F2] shrink-0 border border-[#ECE7DE] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717] mb-0.5">
+                      BASE NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#555] leading-snug">
+                      {formatNotes(product.notes?.base)}
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <hr className="my-6 border-t border-[#E9E4DB]" />
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[#E6E2DA]" />
 
+            {/* DELIVERY & ORDERING */}
             <section>
-              <h4 className="text-sm font-semibold">DELIVERY & ORDERING</h4>
-              <p className="mt-2 text-sm text-elava-stone">We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.</p>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#171717] mb-1.5">
+                DELIVERY & ORDERING
+              </h2>
+              <div className="flex items-start gap-3 text-xs sm:text-sm text-[#555] leading-relaxed">
+                <Truck className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
+                <p>
+                  We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
+                </p>
+              </div>
             </section>
           </div>
 
-          {/* Mobile accordions */}
-          <div className="md:hidden mt-4 space-y-2">
-            <details className="bg-[#FBF8F3] p-3 rounded-md" open={openAbout} onToggle={(e)=>setOpenAbout(e.target.open)}>
-              <summary className="font-semibold">ABOUT THE SCENT</summary>
-              <p className="mt-2 text-sm text-elava-charcoal">{product.description}</p>
-            </details>
+          {/* MOBILE ACCORDIONS */}
+          <div className="md:hidden mt-6 space-y-3">
+            {/* Accordion 1: ABOUT THE SCENT */}
+            <div className="border border-[#E6E2DA] rounded-lg bg-[#FAF7F2] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleAccordion('about')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#171717]"
+                aria-expanded={openAccordions.about}
+              >
+                <span>ABOUT THE SCENT</span>
+                {openAccordions.about ? (
+                  <Minus className="w-4 h-4 text-[#77736B]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#77736B]" />
+                )}
+              </button>
+              {openAccordions.about && (
+                <div className="px-4 pb-4 font-sans text-xs text-[#444] leading-relaxed border-t border-[#ECE7DE] pt-3">
+                  {product.description}
+                </div>
+              )}
+            </div>
 
-            <details className="bg-[#FBF8F3] p-3 rounded-md" open={openNotes} onToggle={(e)=>setOpenNotes(e.target.open)}>
-              <summary className="font-semibold">FRAGRANCE NOTES</summary>
-              <div className="mt-2 text-sm">
-                <div className="text-xs text-elava-stone font-medium">TOP</div>
-                <div className="mt-1">{product.notes?.top}</div>
-                <div className="mt-2 text-xs text-elava-stone font-medium">HEART</div>
-                <div className="mt-1">{product.notes?.heart}</div>
-                <div className="mt-2 text-xs text-elava-stone font-medium">BASE</div>
-                <div className="mt-1">{product.notes?.base}</div>
-              </div>
-            </details>
+            {/* Accordion 2: FRAGRANCE NOTES */}
+            <div className="border border-[#E6E2DA] rounded-lg bg-[#FAF7F2] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleAccordion('notes')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#171717]"
+                aria-expanded={openAccordions.notes}
+              >
+                <span>FRAGRANCE NOTES</span>
+                {openAccordions.notes ? (
+                  <Minus className="w-4 h-4 text-[#77736B]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#77736B]" />
+                )}
+              </button>
+              {openAccordions.notes && (
+                <div className="px-4 pb-4 space-y-3.5 border-t border-[#ECE7DE] pt-3">
+                  {/* Top */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/top-notes.jpg"
+                      alt="Top notes"
+                      className="w-8 h-8 object-contain rounded-full bg-white shrink-0 border border-[#ECE7DE] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717]">
+                        TOP NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#555]">{formatNotes(product.notes?.top)}</div>
+                    </div>
+                  </div>
+                  {/* Heart */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/heart-notes.jpg"
+                      alt="Heart notes"
+                      className="w-8 h-8 object-contain rounded-full bg-white shrink-0 border border-[#ECE7DE] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717]">
+                        HEART NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#555]">{formatNotes(product.notes?.heart)}</div>
+                    </div>
+                  </div>
+                  {/* Base */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/base-notes.jpg"
+                      alt="Base notes"
+                      className="w-8 h-8 object-contain rounded-full bg-white shrink-0 border border-[#ECE7DE] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#171717]">
+                        BASE NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#555]">{formatNotes(product.notes?.base)}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <details className="bg-[#FBF8F3] p-3 rounded-md" open={openReview} onToggle={(e)=>setOpenReview(e.target.open)}>
-              <summary className="font-semibold">WHAT PEOPLE SAY</summary>
-              <div className="mt-2 text-sm">"A beautifully balanced signature—long lasting and refined."<div className="mt-2 text-xs text-elava-stone">Customer · City</div></div>
-            </details>
+            {/* Accordion 3: WHAT PEOPLE SAY */}
+            <div className="border border-[#E6E2DA] rounded-lg bg-[#FAF7F2] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleAccordion('reviews')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#171717]"
+                aria-expanded={openAccordions.reviews}
+              >
+                <span>WHAT PEOPLE SAY</span>
+                {openAccordions.reviews ? (
+                  <Minus className="w-4 h-4 text-[#77736B]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#77736B]" />
+                )}
+              </button>
+              {openAccordions.reviews && (
+                <div className="px-4 pb-4 border-t border-[#ECE7DE] pt-3">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Stars rating={product.rating} />
+                  </div>
+                  <blockquote className="font-serif text-base italic text-[#171717] leading-relaxed mb-2">
+                    "{productReview.text}"
+                  </blockquote>
+                  <div className="font-sans text-xs text-[#77736B]">
+                    {productReview.customer} · {productReview.city}
+                  </div>
+                  <div className="mt-3">
+                    <Link
+                      to="/reviews"
+                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors"
+                    >
+                      VIEW ALL REVIEWS →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <details className="bg-[#FBF8F3] p-3 rounded-md" open={openDelivery} onToggle={(e)=>setOpenDelivery(e.target.open)}>
-              <summary className="font-semibold">DELIVERY & ORDERING</summary>
-              <div className="mt-2 text-sm text-elava-stone">We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.</div>
-            </details>
+            {/* Accordion 4: DELIVERY & ORDERING */}
+            <div className="border border-[#E6E2DA] rounded-lg bg-[#FAF7F2] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleAccordion('delivery')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#171717]"
+                aria-expanded={openAccordions.delivery}
+              >
+                <span>DELIVERY & ORDERING</span>
+                {openAccordions.delivery ? (
+                  <Minus className="w-4 h-4 text-[#77736B]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#77736B]" />
+                )}
+              </button>
+              {openAccordions.delivery && (
+                <div className="px-4 pb-4 font-sans text-xs text-[#555] leading-relaxed border-t border-[#ECE7DE] pt-3 flex items-start gap-2.5">
+                  <Truck className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
+                  <span>
+                    We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Featured review card below main product area */}
-      <div className="mt-8">
-        <div className="bg-[#F3EFE7] border border-[#E5E0D9] rounded-[6px] p-5 text-elava-charcoal">
-          <div className="flex items-center gap-3">
-            <div className="text-elava-gold">★★★★★</div>
-            <div className="text-base font-serif">"Exceptional longevity and depth. Truly feels niche and bespoke."</div>
+          {/* MOBILE TRUST FOOTER BAR */}
+          <div className="md:hidden mt-8 pt-5 border-t border-[#E6E2DA] grid grid-cols-3 gap-2 text-center bg-[#FAF7F2] p-4 rounded-xl">
+            <div className="flex flex-col items-center justify-center">
+              <WhatsAppIcon className="w-4 h-4 text-[#171717] mb-1.5" />
+              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+                Order on WhatsApp
+              </span>
+            </div>
+            <div className="flex flex-col items-center justify-center border-l border-[#ECE7DE]">
+              <ShieldCheck className="w-4 h-4 text-[#171717] mb-1.5" />
+              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+                Authentic Products
+              </span>
+            </div>
+            <div className="flex flex-col items-center justify-center border-l border-[#ECE7DE]">
+              <Lock className="w-4 h-4 text-[#171717] mb-1.5" />
+              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+                Secure & Trusted
+              </span>
+            </div>
           </div>
-          <div className="mt-2 text-sm text-elava-stone">Aarav S. · Mumbai</div>
-          <div className="mt-3">
-            <Link to="/reviews" className="text-elava-gold underline">VIEW ALL REVIEWS →</Link>
-          </div>
+
         </div>
       </div>
     </MainContainer>
