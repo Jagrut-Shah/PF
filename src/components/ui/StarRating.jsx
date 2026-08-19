@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 /**
  * StarRating UI Component
  * Renders fractional partial star fills matching exact numeric ratings
  * (e.g. 4.8 = 4 full stars + 80% 5th star fill).
+ * Uses React useId() to guarantee unique SVG linearGradient IDs across all instances on the page.
  */
 export default function StarRating({
   rating = 5,
@@ -13,13 +14,14 @@ export default function StarRating({
   emptyColor = '#DCD8CF',
 }) {
   const numericRating = Math.max(0, Math.min(5, Number(rating) || 5));
+  const uniquePrefix = useId().replace(/:/g, '');
 
   return (
-    <div className={`flex items-center gap-0.5 ${className}`} aria-label={`Rating: ${numericRating} out of 5 stars`}>
+    <div className={`inline-flex items-center gap-0.5 ${className}`} aria-label={`Rating: ${numericRating} out of 5 stars`}>
       {[0, 1, 2, 3, 4].map((index) => {
         const fillFraction = Math.max(0, Math.min(1, numericRating - index));
         const fillPercent = (fillFraction * 100).toFixed(1);
-        const gradientId = `elava-star-grad-${index}-${fillPercent.replace('.', '-')}`;
+        const gradientId = `star-grad-${uniquePrefix}-${index}`;
 
         return (
           <svg
@@ -27,7 +29,7 @@ export default function StarRating({
             width={size}
             height={size}
             viewBox="0 0 24 24"
-            className="shrink-0"
+            className="shrink-0 block"
             aria-hidden="true"
           >
             <defs>
@@ -46,3 +48,4 @@ export default function StarRating({
     </div>
   );
 }
+
