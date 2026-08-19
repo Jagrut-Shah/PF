@@ -7,6 +7,11 @@ import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import ProductDetails from './pages/ProductDetails';
 import ReviewsPage from './pages/ReviewsPage';
+import FaqPage from './pages/FaqPage';
+import ShippingPage from './pages/ShippingPage';
+import ReturnsPage from './pages/ReturnsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -39,6 +44,11 @@ export default function App() {
           <Route path="/category/:categorySlug" element={<CategoryPage />} />
           <Route path="/product/:productSlug" element={<ProductDetails />} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/returns" element={<ReturnsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
         </Routes>
       </main>
       <Footer />

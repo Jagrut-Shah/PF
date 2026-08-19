@@ -17,9 +17,9 @@ const SHOP = [
   { label: 'Bestsellers', to: '/category/bestsellers' },
 ];
 const HELP = [
-  { label: 'FAQ',      to: '/faq' },
-  { label: 'Shipping', to: '/shipping' },
-  { label: 'Returns',  to: '/returns' },
+  { label: 'FAQ',                 to: '/faq' },
+  { label: 'Shipping & Delivery', to: '/shipping' },
+  { label: 'Returns & Refunds',   to: '/returns' },
 ];
 const waUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent('Hi ÉLAVA, I would like to learn more about your fragrances.')}`;
 
@@ -128,8 +128,8 @@ export default function Footer() {
             <div className="py-4 flex items-center justify-between">
               <p className="font-sans text-[10.5px] text-elava-stone">© {year} ÉLAVA Perfumes. All rights reserved.</p>
               <div className="flex items-center gap-4">
-                <Link to="/privacy" className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Privacy</Link>
-                <Link to="/terms"   className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Terms</Link>
+                <Link to="/privacy" className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Privacy Policy</Link>
+                <Link to="/terms"   className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Terms & Conditions</Link>
               </div>
             </div>
           </MainContainer>
@@ -178,9 +178,9 @@ export default function Footer() {
           <MainContainer>
             <div className="py-3.5 flex flex-wrap items-center gap-x-3 gap-y-1">
               <p className="font-sans text-[10.5px] text-elava-stone">© {year} ÉLAVA Perfumes.</p>
-              <Link to="/privacy" className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Privacy</Link>
+              <Link to="/privacy" className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Privacy Policy</Link>
               <span className="text-elava-stone/40 text-[10px]">·</span>
-              <Link to="/terms"   className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Terms</Link>
+              <Link to="/terms"   className="font-sans text-[10.5px] text-elava-stone hover:text-elava-charcoal transition-colors duration-150">Terms & Conditions</Link>
             </div>
           </MainContainer>
         </div>
