@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
@@ -34,17 +34,8 @@ export default function ReviewCard({ review }) {
       </span>
 
       {/* ★★★★★ */}
-      <div className="mb-2.5 flex gap-0.5">
-        {Array.from({ length: 5 }, (_, i) => (
-          <Star
-            key={i}
-            size={15}
-            className={`fill-current ${
-              i < Math.floor(rating) ? 'text-elava-gold' : 'text-[#DCD8CF]'
-            }`}
-            aria-hidden="true"
-          />
-        ))}
+      <div className="mb-2.5 flex items-center">
+        <StarRating rating={rating} size={15} />
       </div>
 
       {/* Quote — main content, grows to fill available height */}

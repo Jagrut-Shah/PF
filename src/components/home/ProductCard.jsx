@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import StarRating from '../ui/StarRating';
 
 /**
  * ProductCard Component
@@ -57,14 +58,7 @@ export default function ProductCard({ product, className = '' }) {
 
         {/* Ratings & Reviews */}
         <div className="flex items-center gap-1.5 text-[10.5px] sm:text-[12px] text-elava-stone font-light">
-          <div className="flex items-center gap-0.5 text-elava-gold" aria-hidden="true">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="w-3 h-3 fill-elava-gold text-elava-gold"
-              />
-            ))}
-          </div>
+          <StarRating rating={product.rating} size={13} />
           <span className="font-medium text-elava-charcoal">{product.rating}</span>
           <span>·</span>
           <span>{product.reviewCount} reviews</span>

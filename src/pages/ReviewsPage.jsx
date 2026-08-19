@@ -1,25 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
+import StarRating from '../components/ui/StarRating';
 import products from '../data/products';
 import reviews, { reviewAggregate } from '../data/reviews';
-
-function StarRating({ rating = 5 }) {
-  const fullStars = Math.round(rating);
-  return (
-    <div className="flex items-center gap-0.5" aria-label={`Rating: ${rating} out of 5 stars`}>
-      {[...Array(5)].map((_, i) => (
-        <Star
-          key={i}
-          className={`w-3.5 h-3.5 ${i < fullStars ? 'text-[#CFA838] fill-[#CFA838]' : 'text-[#DCD8CF]'}`}
-          aria-hidden="true"
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function ReviewsPage() {
   const [searchParams] = useSearchParams();

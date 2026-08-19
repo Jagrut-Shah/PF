@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ShieldCheck, Truck, Plus, Minus, Lock } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
+import StarRating from '../components/ui/StarRating';
 import products from '../data/products';
 import createWhatsAppOrderUrl from '../utils/whatsapp';
 
@@ -192,7 +193,7 @@ export default function ProductDetails() {
           {/* Desktop Featured Review Card (Compact & Proportionate) */}
           <div className="hidden md:block mt-4 bg-[#FAF7F2]/80 border border-[#ECE7DE] rounded-xl p-4 md:p-5">
             <div className="flex items-center gap-1.5 mb-2">
-              <Stars rating={product.rating} />
+              <StarRating rating={product.rating} size={14} />
             </div>
             <blockquote className="font-serif text-sm lg:text-base italic text-[#171717] leading-snug mb-2.5">
               "{productReview.text}"
@@ -234,7 +235,7 @@ export default function ProductDetails() {
 
           {/* Rating + Review Count */}
           <div className="mt-3 flex items-center gap-2.5">
-            <Stars rating={product.rating} />
+            <StarRating rating={product.rating} size={14} />
             <span className="font-sans text-xs font-semibold text-[#171717]">{product.rating}</span>
             <span className="font-sans text-xs text-[#77736B]">({product.reviewCount} reviews)</span>
           </div>

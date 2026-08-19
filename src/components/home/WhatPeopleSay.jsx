@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import ReviewCard from './ReviewCard';
+import StarRating from '../ui/StarRating';
 import reviews, { reviewAggregate } from '../../data/reviews';
 
 /**
@@ -58,15 +59,11 @@ export default function WhatPeopleSay() {
 
         {/* ── Summary row ──
               Left : ★★★★★  4.8 out of 5 · 500 Total Reviews
-              Right: VIEW ALL REVIEWS ↗  (editorial text link, not a button)  */}
+              Right: VIEW MORE REVIEWS ↗  (editorial text link, not a button)  */}
         <div className="flex flex-col gap-2 pt-3 md:pt-0 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-1.5">
             {/* Gold stars */}
-            <div className="flex gap-0.5" aria-label={`${rating} out of 5 stars`}>
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={14} className="text-elava-gold fill-current" aria-hidden="true" />
-              ))}
-            </div>
+            <StarRating rating={rating} size={14} />
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="font-sans text-[13px] font-semibold text-elava-charcoal">
                 {rating} out of 5
