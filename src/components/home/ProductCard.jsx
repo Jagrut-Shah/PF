@@ -7,13 +7,13 @@ import { Star, ArrowUpRight } from 'lucide-react';
  * Compact, premium rounded product card with centered bottle photography,
  * radiant shiny gold bestseller ribbon, editorial typography, and micro-interactions.
  */
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, className = '' }) {
   if (!product) return null;
 
   return (
     <Link
       to={`/product/${product.slug}`}
-      className="group block w-full select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold"
+      className={`group block w-full select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold ${className}`}
       aria-label={`View ${product.name} perfume`}
     >
       {/* Compact Image Container with Rounded Corners (rounded-xl/2xl) */}
@@ -44,13 +44,13 @@ export default function ProductCard({ product }) {
         </h3>
 
         {/* Scent Identity */}
-        <p className="text-[11px] sm:text-[12px] tracking-wide leading-snug">
+        <p className="text-[10.5px] sm:text-[12px] tracking-wide leading-snug">
           <span className="font-semibold text-elava-gold uppercase">BESTSELLER</span>
           <span className="text-elava-stone font-normal"> · {product.scentIdentity}</span>
         </p>
 
         {/* Ratings & Reviews */}
-        <div className="flex items-center gap-1.5 text-[11px] sm:text-[12px] text-elava-stone font-light">
+        <div className="flex items-center gap-1.5 text-[10.5px] sm:text-[12px] text-elava-stone font-light">
           <div className="flex items-center gap-0.5 text-elava-gold" aria-hidden="true">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -66,7 +66,7 @@ export default function ProductCard({ product }) {
 
         {/* Price & Hover Action Arrow on Same Row */}
         <div className="flex items-center justify-between pt-1 text-elava-charcoal">
-          <span className="font-sans text-[13px] sm:text-[14px] font-semibold tracking-wide">
+          <span className="font-sans text-[12.5px] sm:text-[14px] font-semibold tracking-wide">
             ₹{product.price.toLocaleString()}
           </span>
           <ArrowUpRight

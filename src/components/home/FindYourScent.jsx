@@ -36,7 +36,7 @@ const SCENT_CATEGORIES = [
  */
 export default function FindYourScent() {
   return (
-    <section className="pt-6 sm:pt-8 md:pt-10 pb-6 sm:pb-8 md:pb-10" aria-labelledby="find-your-scent-heading">
+    <section className="pt-5 sm:pt-8 md:pt-10 pb-5 sm:pb-8 md:pb-10" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         {/* Section Heading & Subtitle */}
         <SectionHeading
@@ -46,11 +46,11 @@ export default function FindYourScent() {
         />
 
         {/* 3 Visual Cards Grid / Horizontal Scroll for Mobile */}
-        <div className="flex md:grid md:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-6 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex md:grid md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
           {SCENT_CATEGORIES.map((category) => (
             <div
               key={category.id}
-              className="min-w-[275px] sm:min-w-[310px] md:min-w-0 flex-1 snap-start"
+              className="flex-none w-[33vw] min-w-[110px] max-w-[140px] md:min-w-0 md:max-w-none md:flex-1 snap-start"
             >
               <ScentCategoryCard category={category} />
             </div>

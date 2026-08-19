@@ -61,10 +61,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-elava-ivory border-b border-elava-border transition-colors duration-200">
       <MainContainer>
-        <div className="h-[74px] sm:h-[80px] flex items-center justify-between">
+        <div className="h-[62px] sm:h-[68px] md:h-[80px] flex items-center justify-between">
           
           {/* MOBILE: Hamburger Button (Left) */}
-          <div className="flex items-center md:hidden w-20">
+          <div className="flex items-center md:hidden w-12">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -119,7 +119,7 @@ export default function Navbar() {
           </nav>
 
           {/* ACTIONS: Right (Search & WhatsApp) */}
-          <div className="flex items-center justify-end space-x-3 sm:space-x-5 w-20 md:w-auto">
+          <div className="flex items-center justify-end space-x-2 sm:space-x-4 w-16 md:w-auto">
             {/* Search Trigger */}
             <button
               type="button"

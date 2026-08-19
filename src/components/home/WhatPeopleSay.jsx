@@ -49,7 +49,7 @@ export default function WhatPeopleSay() {
           style={{ scrollbarWidth: 'none' }}
         >
           {displayedReviews.map((review) => (
-            <div key={review.id} className="flex-none w-[85%] snap-start">
+            <div key={review.id} className="flex-none w-[86%] snap-start">
               <ReviewCard review={review} />
             </div>
           ))}
@@ -59,22 +59,22 @@ export default function WhatPeopleSay() {
         {/* ── Summary row ──
               Left : ★★★★★  4.8 out of 5 · 500 Total Reviews
               Right: VIEW ALL REVIEWS ↗  (editorial text link, not a button)  */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
+        <div className="flex flex-col gap-2 pt-3 md:pt-0 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-1.5">
             {/* Gold stars */}
             <div className="flex gap-0.5" aria-label={`${rating} out of 5 stars`}>
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={14} className="text-elava-gold fill-current" aria-hidden="true" />
               ))}
             </div>
-            {/* Rating — slightly more prominent */}
-            <span className="font-sans text-[13px] font-semibold text-elava-charcoal">
-              {rating} out of 5
-            </span>
-            {/* Count — muted */}
-            <span className="font-sans text-[12px] text-elava-stone">
-              · {totalReviews.toLocaleString()} Total Reviews
-            </span>
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="font-sans text-[13px] font-semibold text-elava-charcoal">
+                {rating} out of 5
+              </span>
+              <span className="font-sans text-[12px] text-elava-stone">
+                {totalReviews.toLocaleString()} Total Reviews
+              </span>
+            </div>
           </div>
 
           <Link

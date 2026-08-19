@@ -66,19 +66,17 @@ export default function OccasionCard({ occasion }) {
       {/* ========================================================================= */}
       {/* MOBILE LAYOUT (Displayed on < md, hidden on md:)                          */}
       {/* ========================================================================= */}
-      <div className="md:hidden flex flex-col items-center justify-center h-[84px] sm:h-[90px] px-2 py-2 text-center">
-        {/* Still-Life Visual */}
-        <div className="w-14 h-14 sm:w-[60px] sm:h-[60px] mb-1.5 flex items-center justify-center">
+      <div className="md:hidden flex flex-col items-center justify-center pt-2 pb-1.5 px-1 text-center">
+        <div className="w-[54px] h-[54px] sm:w-[58px] sm:h-[58px] rounded-full border border-[rgba(23,23,23,0.12)] bg-white/40 flex items-center justify-center shadow-[0_1px_0_rgba(23,23,23,0.04)]">
           <img
             src={occasion.image}
             alt={occasion.alt}
-            className="w-full h-full object-contain pointer-events-none select-none"
+            className="w-[32px] h-[32px] sm:w-[34px] sm:h-[34px] object-contain pointer-events-none select-none"
             loading="lazy"
           />
         </div>
 
-        {/* Occasion Title */}
-        <span className="font-sans text-[9px] sm:text-[9.5px] font-medium tracking-[0.10em] text-elava-charcoal uppercase leading-tight line-clamp-2">
+        <span className="mt-2 font-sans text-[8.5px] sm:text-[9px] font-medium tracking-[0.12em] text-elava-charcoal uppercase leading-snug">
           {occasion.title}
         </span>
       </div>

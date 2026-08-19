@@ -24,13 +24,12 @@ export default function ShopByOccasion() {
           </p>
         </div>
 
-        {/* Desktop 5-Card Single Row / Mobile Compact Horizontal Selector */}
-        {/* Mobile Horizontal Scroll */}
-        <div className="flex md:hidden overflow-x-auto scrollbar-none gap-2.5 sm:gap-3 pb-1 -mx-4 px-4 snap-x snap-mandatory">
+        {/* Mobile compact circular selector */}
+        <div className="flex md:hidden overflow-x-auto scrollbar-none gap-3 pb-1 -mx-4 px-4 snap-x snap-mandatory">
           {occasions.map((occasion) => (
             <div
               key={occasion.id}
-              className="flex-1 min-w-[84px] max-w-[100px] snap-start"
+              className="flex-none w-[84px] snap-start"
             >
               <OccasionCard occasion={occasion} />
             </div>
