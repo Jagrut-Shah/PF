@@ -10,8 +10,8 @@ import products from '../../data/products';
  * 4-column desktop / 2-column mobile showcase of top bestselling signatures.
  */
 export default function MostLoved() {
-  // Display the 4 most loved signatures
-  const mostLovedProducts = products.slice(0, 4);
+  // Display only bestsellers (NOIR, OUD X, VELVET, AURA)
+  const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
 
   return (
     <section className="pb-4 sm:pb-5 md:pb-6" aria-labelledby="most-loved-heading">
