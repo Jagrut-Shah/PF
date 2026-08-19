@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
+import ProductDetails from './pages/ProductDetails';
 import ReviewsPage from './pages/ReviewsPage';
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:categorySlug" element={<CategoryPage />} />
-          <Route path="/product/:productSlug" element={<ProductPage />} />
+          <Route path="/product/:productSlug" element={<ProductDetails />} />
           <Route path="/reviews" element={<ReviewsPage />} />
         </Routes>
       </main>

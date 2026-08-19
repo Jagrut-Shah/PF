@@ -13,7 +13,7 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#F3EFE7] border border-[#E5E0D9] rounded-[6px] p-4 sm:p-5 text-elava-charcoal flex flex-col h-full relative overflow-hidden"
+      className="bg-[#F3EFE7] border border-[#E5E0D9] rounded-[6px] p-4 sm:p-5 text-elava-charcoal flex flex-col h-full relative overflow-hidden min-w-0"
       role="figure"
     >
       {/* Subtle oversized opening quotation mark — very low contrast, purely decorative */}
@@ -32,7 +32,7 @@ export default function ReviewCard({ review }) {
       </div>
 
       {/* Quote — main content, grows to fill available height */}
-      <p className="font-serif text-[15px] sm:text-[16px] leading-relaxed mb-4 flex-1 relative z-10">
+      <p className="font-serif text-[15px] sm:text-[16px] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words">
         {`"${review.quote}"`}
       </p>
 

@@ -25,7 +25,7 @@ export default function ShopByOccasion() {
         </div>
 
         {/* Mobile compact circular selector */}
-        <div className="flex md:hidden overflow-x-auto scrollbar-none gap-3 pb-1 -mx-4 px-4 snap-x snap-mandatory">
+        <div className="flex md:hidden w-full overflow-x-auto scrollbar-none gap-3 pb-1 snap-x snap-mandatory">
           {occasions.map((occasion) => (
             <div
               key={occasion.id}

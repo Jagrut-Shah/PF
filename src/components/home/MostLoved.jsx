@@ -43,12 +43,19 @@ export default function MostLoved() {
           </Link>
         </div>
 
-        {/* 4-product horizontal rail on mobile; 4-column grid on desktop */}
-        <div className="flex md:grid md:grid-cols-4 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+        {/* Mobile 2x2 grid — show all four products without horizontal scroll */}
+        <div className="md:hidden grid grid-cols-2 gap-3">
           {mostLovedProducts.map((product) => (
-            <div key={product.id} className="flex-none w-[170px] sm:w-[190px] md:w-auto snap-start">
-              <ProductCard product={product} className="md:w-full" />
+            <div key={product.id} className="min-w-0 w-full">
+              <ProductCard product={product} />
             </div>
+          ))}
+        </div>
+
+        {/* Desktop 4-column grid */}
+        <div className="hidden md:grid md:grid-cols-4 gap-3 min-w-0">
+          {mostLovedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} className="w-full" />
           ))}
         </div>
       </MainContainer>

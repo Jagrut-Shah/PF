@@ -21,23 +21,23 @@ export default function ScentCategoryCard({ category }) {
   return (
     <Link
       to={category.link}
-      className="group relative block w-full h-[149px] sm:h-[170px] md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#151515] focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold"
+      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-elava-ivory border border-elava-border focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold"
       aria-label={`Explore ${category.title} collection`}
     >
       <div className="block md:hidden">
-        <div className="overflow-hidden rounded-xl bg-[#151515]">
+        <div className="overflow-hidden rounded-t-xl bg-[#151515]">
           <img
             src={category.image}
             alt={category.alt}
-            className="w-full h-[120px] object-cover object-center"
+            className="w-full h-[118px] object-cover object-center"
             loading="eager"
           />
         </div>
-        <div className="px-1 pt-2 pb-0.5 text-left">
+        <div className="bg-elava-ivory px-3 pt-2.5 pb-2 text-left">
           <h3 className="font-serif text-[14px] tracking-[0.08em] font-normal text-elava-charcoal uppercase leading-tight">
             {category.title}
           </h3>
-          <div className="mt-1 flex items-center gap-1 text-[9px] font-medium tracking-[0.18em] text-elava-charcoal uppercase">
+          <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium tracking-[0.18em] text-elava-charcoal uppercase">
             <span>EXPLORE</span>
             <span aria-hidden="true">↗</span>
           </div>

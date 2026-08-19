@@ -45,15 +45,19 @@ export default function FindYourScent() {
           subtitle="Find a fragrance for the way you feel."
         />
 
-        {/* 3 Visual Cards Grid / Horizontal Scroll for Mobile */}
-        <div className="flex md:grid md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+        {/* Mobile 3-column grid — all three category cards visible */}
+        <div className="grid grid-cols-3 gap-3 md:hidden">
           {SCENT_CATEGORIES.map((category) => (
-            <div
-              key={category.id}
-              className="flex-none w-[33vw] min-w-[110px] max-w-[140px] md:min-w-0 md:max-w-none md:flex-1 snap-start"
-            >
+            <div key={category.id} className="min-w-0">
               <ScentCategoryCard category={category} />
             </div>
+          ))}
+        </div>
+
+        {/* Desktop 3-card grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6 min-w-0">
+          {SCENT_CATEGORIES.map((category) => (
+            <ScentCategoryCard key={category.id} category={category} />
           ))}
         </div>
       </MainContainer>

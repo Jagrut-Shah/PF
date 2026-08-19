@@ -17,7 +17,7 @@ export default function ProductCard({ product, className = '' }) {
       aria-label={`View ${product.name} perfume`}
     >
       {/* Compact Image Container with Rounded Corners (rounded-xl/2xl) */}
-      <div className="relative aspect-[4/4.5] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#1a1a1a]">
+      <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#1a1a1a] aspect-[4/3.8] md:aspect-[4/4.5]">
         {/* Shiny Radiant Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
@@ -37,16 +37,22 @@ export default function ProductCard({ product, className = '' }) {
       </div>
 
       {/* Metadata Section */}
-      <div className="mt-2.5 sm:mt-3 flex flex-col space-y-1">
+      <div className="mt-2.5 sm:mt-3 flex flex-col space-y-1 min-w-0">
         {/* Product Name */}
-        <h3 className="font-serif text-[15px] sm:text-[16px] md:text-[17px] font-medium tracking-[0.08em] uppercase text-elava-charcoal leading-snug group-hover:text-elava-charcoal transition-colors duration-200">
+        <h3 className="font-serif text-[15px] sm:text-[16px] md:text-[17px] font-medium tracking-[0.08em] uppercase text-elava-charcoal leading-snug group-hover:text-elava-charcoal transition-colors duration-200 min-w-0 break-words">
           {product.name}
         </h3>
 
         {/* Scent Identity */}
-        <p className="text-[10.5px] sm:text-[12px] tracking-wide leading-snug">
-          <span className="font-semibold text-elava-gold uppercase">BESTSELLER</span>
-          <span className="text-elava-stone font-normal"> · {product.scentIdentity}</span>
+        <p className="text-[10.5px] sm:text-[12px] tracking-wide leading-snug min-w-0 break-words">
+          {product.isBestseller ? (
+            <>
+              <span className="font-semibold text-elava-gold uppercase">BESTSELLER</span>
+              <span className="text-elava-stone font-normal"> · {product.scentIdentity}</span>
+            </>
+          ) : (
+            <span className="text-elava-stone font-normal">{product.scentIdentity}</span>
+          )}
         </p>
 
         {/* Ratings & Reviews */}

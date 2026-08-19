@@ -45,11 +45,11 @@ export default function WhatPeopleSay() {
 
         {/* ── Mobile: one card visible at a time, swipeable ── */}
         <div
-          className="flex md:hidden overflow-x-auto snap-x snap-mandatory gap-4 pb-1 -mx-4 px-4"
+          className="flex md:hidden w-full overflow-x-auto snap-x snap-mandatory gap-4 pb-1"
           style={{ scrollbarWidth: 'none' }}
         >
           {displayedReviews.map((review) => (
-            <div key={review.id} className="flex-none w-[86%] snap-start">
+            <div key={review.id} className="flex-none w-[86%] snap-start min-w-0">
               <ReviewCard review={review} />
             </div>
           ))}
