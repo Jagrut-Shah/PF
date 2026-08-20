@@ -5,7 +5,7 @@ import ContactHelpBlock from '../components/common/ContactHelpBlock';
 
 export default function ReturnsPage() {
   return (
-    <div className="w-full bg-[#F7F5F0] min-h-screen">
+    <div className="w-full bg-[#F3EDE3] min-h-screen">
       <SEO
         title="Returns & Refunds | ÉLAVA Perfumes"
         description="Review ÉLAVA policies on damaged items, return requests, order cancellations and refunds."

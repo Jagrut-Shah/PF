@@ -77,7 +77,7 @@ export default function ReviewsPage() {
   const displayReviewCount = currentProduct ? currentProduct.reviewCount : reviewAggregate.totalReviews;
 
   return (
-    <div className="w-full bg-[#F7F5F0] min-h-screen">
+    <div className="w-full bg-[#F3EDE3] min-h-screen">
       <SEO
         title={seoTitle}
         description={seoDescription}

@@ -6,7 +6,7 @@ import DEMO_COMPANY_INFO from '../data/companyInfo';
 
 export default function TermsPage() {
   return (
-    <div className="w-full bg-[#F7F5F0] min-h-screen">
+    <div className="w-full bg-[#F3EDE3] min-h-screen">
       <SEO
         title="Terms & Conditions | ÉLAVA Perfumes"
         description="Read the website terms and conditions for ÉLAVA Perfumes."

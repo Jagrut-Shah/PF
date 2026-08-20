@@ -86,20 +86,20 @@ export default function Navbar() {
           <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
             <Link
               to="/"
-              className="inline-flex items-stretch border border-white/20 rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
+              className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
               aria-label="ÉLAVA Home"
             >
-              {/* Left Panel: Dark background with crisp White ÉLAVA wordmark */}
-              <div className="bg-[#121212] text-white px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-white/15">
-                <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-white uppercase">
+              {/* Left Panel: Deep Emerald Green background with Champagne Gold #C8A45A ÉLAVA wordmark */}
+              <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
+                <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#C8A45A] uppercase">
                   ÉLAVA
                 </span>
               </div>
 
-              {/* Right Panel: Champagne gold background with minimal dark branding element */}
-              <div className="bg-[#CFA838] text-[#121212] px-2 sm:px-2.5 py-1 flex items-center justify-center">
-                <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#121212]">
-                  PARFUMS
+              {/* Right Panel: Deep Wine Red #8B1E1E background with Warm Ivory #F3EDE3 PERFUMES text */}
+              <div className="bg-[#8B1E1E] text-[#F3EDE3] px-2 sm:px-2.5 py-1 flex items-center justify-center">
+                <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#F3EDE3]">
+                  PERFUMES
                 </span>
               </div>
             </Link>

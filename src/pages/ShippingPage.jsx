@@ -5,7 +5,7 @@ import ContactHelpBlock from '../components/common/ContactHelpBlock';
 
 export default function ShippingPage() {
   return (
-    <div className="w-full bg-[#F7F5F0] min-h-screen">
+    <div className="w-full bg-[#F3EDE3] min-h-screen">
       <SEO
         title="Shipping & Delivery | ÉLAVA Perfumes"
         description="Learn how shipping and delivery works for ÉLAVA artisanal fragrances across India."

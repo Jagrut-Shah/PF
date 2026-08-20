@@ -517,7 +517,7 @@ export default function ProductDetails() {
           {/* TRUST FOOTER BAR - VISIBLE ON BOTH DESKTOP AND MOBILE */}
           <div className="mt-8 pt-5 border-t border-[#E6E2DA] grid grid-cols-3 gap-2 text-center bg-[#FAF7F2] p-4 rounded-xl">
             <div className="flex flex-col items-center justify-center">
-              <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366] mb-1.5" />
+              <WhatsAppIcon className="w-4 h-4 text-[#128C7E] fill-[#128C7E] mb-1.5" />
               <span className="font-sans text-[10px] sm:text-[11px] font-semibold text-[#171717] leading-tight">
                 Order on WhatsApp
               </span>
