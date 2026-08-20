@@ -17,9 +17,9 @@ export default function Home() {
         canonicalPath="/"
         ogType="website"
       />
+      <ShopByOccasion />
       <FindYourScent />
       <MostLoved />
-      <ShopByOccasion />
       <WhatPeopleSay />
     </div>
   );

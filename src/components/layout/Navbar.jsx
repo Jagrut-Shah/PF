@@ -23,8 +23,7 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 
 /**
  * ÉLAVA Navbar Component
- * Desktop: Brand Left, Navigation Center, Search & WhatsApp Right
- * Mobile: Hamburger Left, Brand Center, Search & WhatsApp Right
+ * Fully black (#000000) background with two-part boxed ÉLAVA logo.
  */
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,7 +58,7 @@ export default function Navbar() {
   const whatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent("Hello ÉLAVA, I'd like to explore your collection.")}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-elava-ivory border-b border-elava-border transition-colors duration-200 relative">
+    <header className="sticky top-0 z-50 w-full bg-[#000000] border-b border-[#222222] transition-colors duration-200 relative">
       <MainContainer>
         <div className="h-[62px] sm:h-[68px] md:h-[80px] flex items-center justify-between">
           
@@ -71,7 +70,7 @@ export default function Navbar() {
                 setIsSearchOpen(false);
                 setIsMobileMenuOpen((prev) => !prev);
               }}
-              className="p-2 -ml-2 text-elava-charcoal hover:text-elava-stone transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-charcoal"
+              className="p-2 -ml-2 text-white hover:text-[#CFA838] transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -83,19 +82,26 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* BRAND LOGO: Left on Desktop, Center on Mobile */}
+          {/* BRAND LOGO: Two-Part Boxed Wordmark (Left on Desktop, Center on Mobile) */}
           <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
             <Link
               to="/"
-              className="flex flex-col items-center md:items-start group select-none py-1"
+              className="inline-flex items-stretch border border-white/20 rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
               aria-label="ÉLAVA Home"
             >
-              <span className="font-serif text-[22px] sm:text-[24px] tracking-[0.26em] font-normal leading-none text-elava-charcoal">
-                ÉLAVA
-              </span>
-              <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.36em] font-medium leading-none text-elava-stone mt-1 text-center md:text-left">
-                PERFUMES
-              </span>
+              {/* Left Panel: Dark background with crisp White ÉLAVA wordmark */}
+              <div className="bg-[#121212] text-white px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-white/15">
+                <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-white uppercase">
+                  ÉLAVA
+                </span>
+              </div>
+
+              {/* Right Panel: Champagne gold background with minimal dark branding element */}
+              <div className="bg-[#CFA838] text-[#121212] px-2 sm:px-2.5 py-1 flex items-center justify-center">
+                <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#121212]">
+                  PARFUMS
+                </span>
+              </div>
             </Link>
           </div>
 
@@ -109,10 +115,10 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `font-sans text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-medium py-1 relative text-[#171717] ${
+                  `font-sans text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-medium py-1 relative text-white hover:text-[#CFA838] transition-colors duration-200 ${
                     isActive
-                      ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#B89B62]'
-                      : 'after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#B89B62] hover:after:w-full after:transition-all after:duration-250 after:ease-out'
+                      ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#CFA838]'
+                      : 'after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#CFA838] hover:after:w-full after:transition-all after:duration-250 after:ease-out'
                   }`
                 }
               >
@@ -130,7 +136,7 @@ export default function Navbar() {
                 setIsMobileMenuOpen(false);
                 setIsSearchOpen((prev) => !prev);
               }}
-              className="p-2 text-elava-charcoal hover:text-elava-stone transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-charcoal"
+              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
               aria-label="Search collection"
             >
               <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -141,7 +147,7 @@ export default function Navbar() {
               href={whatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-elava-charcoal hover:text-elava-stone transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-charcoal"
+              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
               aria-label="Connect on WhatsApp"
             >
               <WhatsAppIcon className="w-[19px] h-[19px]" />
@@ -155,7 +161,7 @@ export default function Navbar() {
 
         {/* MOBILE NAVIGATION DRAWER */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-elava-border py-6 px-2 bg-elava-ivory animate-fadeIn">
+          <div className="md:hidden border-t border-[#222222] py-6 px-2 bg-[#000000] text-white animate-fadeIn">
             <nav className="flex flex-col space-y-4" aria-label="Mobile Navigation">
               {navLinks.map((link) => (
                 <NavLink
@@ -164,8 +170,8 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `font-sans text-xs uppercase tracking-[0.22em] py-2 px-1 transition-colors duration-200 ${
                       isActive
-                        ? 'text-[#171717] font-semibold border-l-2 border-[#B89B62] pl-3'
-                        : 'text-[#171717] hover:text-[#171717] font-medium'
+                        ? 'text-[#CFA838] font-semibold border-l-2 border-[#CFA838] pl-3'
+                        : 'text-white hover:text-[#CFA838] font-medium'
                     }`
                   }
                 >
@@ -179,3 +185,4 @@ export default function Navbar() {
     </header>
   );
 }
+

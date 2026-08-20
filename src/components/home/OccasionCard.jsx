@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 /**
  * OccasionCard Component
- * Refined editorial luxury catalogue tile featuring transparent photographic still-life objects,
+ * Refined editorial luxury catalogue tile featuring photographic still-life objects,
  * softened luxury paper tints, subtle borders, and a lightweight Lucide arrow.
  */
 export default function OccasionCard({ occasion }) {
@@ -13,46 +13,33 @@ export default function OccasionCard({ occasion }) {
   return (
     <Link
       to={occasion.route}
-      className={`group relative block w-full select-none overflow-hidden rounded-[6px] border border-[rgba(40,40,40,0.08)] ${occasion.bgClass} ${occasion.hoverBgClass} transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold`}
+      className={`group relative flex flex-col justify-between w-full select-none overflow-hidden rounded-[6px] border border-[rgba(40,40,40,0.08)] ${occasion.bgClass} ${occasion.hoverBgClass} transition-colors duration-250 p-3.5 sm:p-4 lg:p-5 h-[135px] sm:h-[145px] md:h-[150px] lg:h-[158px] focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold`}
       aria-label={`Shop perfumes for ${occasion.title}`}
     >
-      {/* ========================================================================= */}
-      {/* DESKTOP LAYOUT (Displayed on md:, hidden on mobile)                       */}
-      {/* ========================================================================= */}
-      <div className="hidden md:flex h-[150px] lg:h-[158px] p-4 lg:p-5 justify-between items-stretch overflow-hidden relative">
-        {/* Left: Accent Dot, Occasion Title, Description, Arrow */}
-        <div className="flex flex-col justify-between flex-1 pr-2 z-10">
-          <div>
-            {/* Dot + Title */}
-            <div className="flex items-center gap-1.5">
-              <span
-                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ backgroundColor: occasion.dotColor }}
-                aria-hidden="true"
-              />
-              <h3 className="font-sans text-[12px] lg:text-[13px] font-medium tracking-[0.12em] text-elava-charcoal uppercase leading-none whitespace-nowrap">
-                {occasion.title}
-              </h3>
-            </div>
-
-            {/* Description */}
-            <p className="font-sans text-[10.5px] lg:text-[11px] text-elava-stone leading-snug mt-1.5 font-normal">
-              {occasion.description}
-            </p>
-          </div>
-
-          {/* Lightweight Lucide Charcoal Arrow */}
-          <div className="pt-0.5">
-            <ArrowRight
-              className="w-3.5 h-3.5 stroke-[1.5] text-elava-charcoal transform transition-colors transition-transform duration-250 ease-out group-hover:translate-x-1"
+      <div className="flex justify-between items-start w-full relative z-10">
+        {/* Left: Accent Dot, Occasion Title, Description */}
+        <div className="flex flex-col pr-1 min-w-0">
+          {/* Dot + Title */}
+          <div className="flex items-center gap-1.5">
+            <span
+              className="w-1.5 h-1.5 rounded-full shrink-0"
+              style={{ backgroundColor: occasion.dotColor }}
               aria-hidden="true"
             />
+            <h3 className="font-sans text-[11px] sm:text-[12px] lg:text-[13px] font-medium tracking-[0.12em] text-elava-charcoal uppercase leading-none truncate">
+              {occasion.title}
+            </h3>
           </div>
+
+          {/* Description */}
+          <p className="font-sans text-[9.5px] sm:text-[10.5px] lg:text-[11px] text-elava-stone leading-snug mt-1 sm:mt-1.5 font-normal">
+            {occasion.description}
+          </p>
         </div>
 
-        {/* Right: Editorial Still-Life Visual (centered, slightly smaller for premium balance) */}
-        <div className="flex items-center justify-center flex-shrink-0">
-          <div className={`${occasion.visualClass ?? 'w-20 h-20 lg:w-[96px] lg:h-[96px]'} flex items-center justify-center transform transition-transform duration-250 ease-out group-hover:scale-105`}>
+        {/* Right: Still Life Visual */}
+        <div className="shrink-0 flex items-center justify-center pl-1">
+          <div className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 flex items-center justify-center transform transition-transform duration-250 ease-out group-hover:scale-105">
             <img
               src={occasion.image}
               alt={occasion.alt}
@@ -63,23 +50,14 @@ export default function OccasionCard({ occasion }) {
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* MOBILE LAYOUT (Displayed on < md, hidden on md:)                          */}
-      {/* ========================================================================= */}
-      <div className="md:hidden flex flex-col items-center justify-center pt-2 pb-1.5 px-1 text-center">
-        <div className="w-[54px] h-[54px] sm:w-[58px] sm:h-[58px] rounded-full border border-[rgba(23,23,23,0.12)] bg-white/40 flex items-center justify-center shadow-[0_1px_0_rgba(23,23,23,0.04)]">
-          <img
-            src={occasion.image}
-            alt={occasion.alt}
-            className="w-[32px] h-[32px] sm:w-[34px] sm:h-[34px] object-contain pointer-events-none select-none"
-            loading="lazy"
-          />
-        </div>
-
-        <span className="mt-2 font-sans text-[8.5px] sm:text-[9px] font-medium tracking-[0.12em] text-elava-charcoal uppercase leading-snug">
-          {occasion.title}
-        </span>
+      {/* Arrow at bottom */}
+      <div className="pt-1 z-10">
+        <ArrowRight
+          className="w-3.5 h-3.5 stroke-[1.5] text-elava-charcoal transform transition-transform duration-250 ease-out group-hover:translate-x-1"
+          aria-hidden="true"
+        />
       </div>
     </Link>
   );
 }
+
