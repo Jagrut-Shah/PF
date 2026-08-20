@@ -12,7 +12,7 @@ import createWhatsAppOrderUrl from '../utils/whatsapp';
  */
 function WhatsAppIcon({ className = "w-5 h-5" }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg className={className} viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm-3.53 3.63c-.19 0-.42.07-.64.31-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 2 .86 2.41.69 2.84.65.43-.04 1.4-.57 1.6-1.13.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28s-1.4-.69-1.62-.77c-.22-.08-.38-.12-.54.12s-.62.77-.76.93c-.14.16-.28.18-.52.06s-1.01-.37-1.92-1.19c-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.48-.39-.41-.54-.42-.14-.01-.3-.01-.46-.01z" />
     </svg>
   );
@@ -258,13 +258,13 @@ export default function ProductDetails() {
               rel="noopener noreferrer"
               className="w-full bg-[#181818] hover:bg-[#2A2A2A] text-white rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
             >
-              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366] fill-[#25D366]" />
               ORDER ON WHATSAPP
             </a>
 
             {/* Reassurance text */}
             <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#77736B] font-sans">
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#77736B]" />
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
               <span>We'll confirm your order and delivery details on WhatsApp.</span>
             </div>
           </div>
@@ -514,23 +514,23 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* MOBILE TRUST FOOTER BAR */}
-          <div className="md:hidden mt-8 pt-5 border-t border-[#E6E2DA] grid grid-cols-3 gap-2 text-center bg-[#FAF7F2] p-4 rounded-xl">
+          {/* TRUST FOOTER BAR - VISIBLE ON BOTH DESKTOP AND MOBILE */}
+          <div className="mt-8 pt-5 border-t border-[#E6E2DA] grid grid-cols-3 gap-2 text-center bg-[#FAF7F2] p-4 rounded-xl">
             <div className="flex flex-col items-center justify-center">
-              <WhatsAppIcon className="w-4 h-4 text-[#171717] mb-1.5" />
-              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366] mb-1.5" />
+              <span className="font-sans text-[10px] sm:text-[11px] font-semibold text-[#171717] leading-tight">
                 Order on WhatsApp
               </span>
             </div>
             <div className="flex flex-col items-center justify-center border-l border-[#ECE7DE]">
-              <ShieldCheck className="w-4 h-4 text-[#171717] mb-1.5" />
-              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+              <ShieldCheck className="w-4 h-4 text-[#16A34A] mb-1.5" />
+              <span className="font-sans text-[10px] sm:text-[11px] font-semibold text-[#171717] leading-tight">
                 Authentic Products
               </span>
             </div>
             <div className="flex flex-col items-center justify-center border-l border-[#ECE7DE]">
-              <Lock className="w-4 h-4 text-[#171717] mb-1.5" />
-              <span className="font-sans text-[10px] font-semibold text-[#171717] leading-tight">
+              <Lock className="w-4 h-4 text-[#2563EB] mb-1.5" />
+              <span className="font-sans text-[10px] sm:text-[11px] font-semibold text-[#171717] leading-tight">
                 Secure & Trusted
               </span>
             </div>
