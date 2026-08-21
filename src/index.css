@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --elava-ivory: #F3EDE3;
-  --elava-charcoal: #171717;
-  --elava-stone: #77736B;
-  --elava-border: #E6E2DA;
-  --elava-gold: #C8A45A;
+  --elava-ivory: #0F4C5C;
+  --elava-charcoal: #F5F1EA;
+  --elava-stone: #B8C4C2;
+  --elava-border: rgba(245, 241, 234, 0.12);
+  --elava-gold: #D4A72C;
   --elava-wine: #8B1E1E;
 
   --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
@@ -24,14 +24,18 @@
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-html, body {
+html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #F3EDE3;
-  color: var(--elava-charcoal);
+  background-color: #0F4C5C !important;
+  color: #F5F1EA;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-elava-ivory {
+  background-color: #0F4C5C !important;
 }
 
 /* Custom editorial typography utility classes */

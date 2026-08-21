@@ -8,45 +8,39 @@ import reviews, { reviewAggregate } from '../../data/reviews';
 
 /**
  * WHAT PEOPLE SAY
- * Editorial testimonial section.
- *
- * Desktop : 3 cards in one horizontal row, equal width & height (CSS grid + h-full on card).
- * Mobile  : single-card horizontal swipe carousel — no dots, no arrows.
- * Summary : aggregate rating + review count (sourced from reviewAggregate) + text link.
+ * Editorial testimonial section with high-contrast text on dark teal (#123C3A) canvas.
  */
 export default function WhatPeopleSay() {
   const displayedReviews = reviews.slice(0, 3);
   const { rating, totalReviews } = reviewAggregate;
 
   return (
-    <section className="pb-4 sm:pb-6 md:pb-8" aria-labelledby="what-people-say-heading">
+    <section className="pb-6 sm:pb-8 md:pb-10" aria-labelledby="what-people-say-heading">
       <MainContainer>
 
         {/* ── Section header ── */}
         <div className="mb-4 sm:mb-5">
           <h2
             id="what-people-say-heading"
-            className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-normal uppercase text-elava-charcoal leading-tight"
+            className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-normal uppercase text-[#F5F1EA] leading-tight"
           >
             WHAT PEOPLE SAY
           </h2>
-          <p className="font-sans text-[13px] sm:text-[14px] text-elava-stone mt-1 font-normal tracking-wide">
+          <p className="font-sans text-[13px] sm:text-[14px] text-[#B8C4C2] mt-1 font-normal tracking-wide">
             Words from our fragrance collective.
           </p>
         </div>
 
-        {/* ── Desktop: exactly 3 cards side-by-side ──
-              CSS grid default is items-stretch → all cells share the tallest height.
-              ReviewCard has h-full + flex-col so content fills that height correctly.  */}
-        <div className="hidden md:grid md:grid-cols-3 gap-4 mb-5">
+        {/* ── Desktop: 3 cards side-by-side ── */}
+        <div className="hidden md:grid md:grid-cols-3 gap-4 mb-6">
           {displayedReviews.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
         </div>
 
-        {/* ── Mobile: one card visible at a time, swipeable ── */}
+        {/* ── Mobile: swipeable carousel ── */}
         <div
-          className="flex md:hidden w-full overflow-x-auto snap-x snap-mandatory gap-4 pb-1"
+          className="flex md:hidden w-full overflow-x-auto snap-x snap-mandatory gap-4 pb-2 mb-4"
           style={{ scrollbarWidth: 'none' }}
         >
           {displayedReviews.map((review) => (
@@ -56,31 +50,28 @@ export default function WhatPeopleSay() {
           ))}
         </div>
 
-
-        {/* ── Summary row ──
-              Left : ★★★★★  4.8 out of 5 · 500 Total Reviews
-              Right: VIEW MORE REVIEWS ↗  (editorial text link, not a button)  */}
-        <div className="flex flex-col gap-2 pt-3 md:pt-0 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-1.5">
-            {/* Gold stars */}
-            <StarRating rating={rating} size={14} />
+        {/* ── Rating Summary row below cards ── */}
+        <div className="flex flex-col gap-3 pt-3 md:pt-2 md:flex-row md:items-center md:justify-between border-t border-white/10 mt-2">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+            {/* Gold stars (#D4A72C) */}
+            <StarRating rating={rating} size={15} starColor="#D4A72C" />
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="font-sans text-[13px] font-semibold text-elava-charcoal">
+              <span className="font-sans text-[13px] font-semibold text-[#F5F1EA]">
                 {rating} out of 5
               </span>
-              <span className="font-sans text-[12px] text-elava-stone">
-                {totalReviews.toLocaleString()} Total Reviews
+              <span className="font-sans text-[12px] text-[#B8C4C2]">
+                · {totalReviews.toLocaleString()} Total Reviews
               </span>
             </div>
           </div>
 
           <Link
             to="/reviews"
-            className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-[0.08em] text-elava-charcoal hover:text-[#2C1F14] transition-colors duration-200"
+            className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-[0.08em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200"
             aria-label="View more reviews"
           >
             VIEW MORE REVIEWS
-            <ArrowRight className="w-3 h-3 stroke-[1.5]" aria-hidden="true" />
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.75]" aria-hidden="true" />
           </Link>
         </div>
 

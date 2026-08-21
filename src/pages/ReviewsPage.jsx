@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
+import ReviewCard from '../components/home/ReviewCard';
 import products from '../data/products';
 import reviews, { reviewAggregate } from '../data/reviews';
 
@@ -77,7 +78,7 @@ export default function ReviewsPage() {
   const displayReviewCount = currentProduct ? currentProduct.reviewCount : reviewAggregate.totalReviews;
 
   return (
-    <div className="w-full bg-[#F3EDE3] min-h-screen">
+    <div className="w-full bg-[#0F4C5C] text-[#F5F1EA] min-h-screen">
       <SEO
         title={seoTitle}
         description={seoDescription}
@@ -86,24 +87,24 @@ export default function ReviewsPage() {
       />
 
       <MainContainer className="py-8 sm:py-10 md:py-12">
-        {/* 1. PAGE HERO (Tighter spacing before subsection) */}
+        {/* 1. PAGE HERO */}
         <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#171717] leading-tight mb-2">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#F5F1EA] leading-tight mb-2">
             {heroTitle}
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#77736B] tracking-wide mb-5 font-normal">
+          <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] tracking-wide mb-5 font-normal">
             "{heroSubtitle}"
           </p>
 
           {/* Rating Display */}
-          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#FAF7F2] border border-[#ECE7DE] rounded-xl">
-            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#171717] tracking-tight mb-1">
-              {displayRating} <span className="text-xl text-[#77736B]">/ 5</span>
+          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl shadow-sm">
+            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F5F1EA] tracking-tight mb-1">
+              {displayRating} <span className="text-xl text-[#B8C4C2]">/ 5</span>
             </div>
             <div className="mb-1.5">
-              <StarRating rating={displayRating} />
+              <StarRating rating={displayRating} starColor="#D4A72C" />
             </div>
-            <div className="font-sans text-xs text-[#77736B] font-medium tracking-wider uppercase">
+            <div className="font-sans text-xs text-[#B8C4C2] font-medium tracking-wider uppercase">
               {displayReviewCount.toLocaleString()} REVIEWS
             </div>
           </div>
@@ -111,13 +112,13 @@ export default function ReviewsPage() {
 
         {/* 2. SUBSECTION & FILTER BAR */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#E6E2DA]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(245,241,234,0.15)]">
             <div>
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#171717]">
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#F5F1EA]">
                 A FEW WORDS FROM OUR COMMUNITY
               </h2>
               {currentProduct && (
-                <p className="font-sans text-xs text-[#77736B] mt-0.5">
+                <p className="font-sans text-xs text-[#B8C4C2] mt-0.5">
                   Filtered by {currentProduct.name}
                 </p>
               )}
@@ -127,7 +128,7 @@ export default function ReviewsPage() {
             {currentProduct ? (
               <Link
                 to="/reviews"
-                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#171717] hover:text-[#CFA838] transition-colors"
+                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors"
               >
                 ← VIEW ALL REVIEWS
               </Link>
@@ -143,8 +144,8 @@ export default function ReviewsPage() {
                     }}
                     className={`px-3 py-1 rounded text-[11px] font-bold tracking-[0.14em] uppercase transition-colors ${
                       activeGender === gender
-                        ? 'bg-[#171717] text-white'
-                        : 'bg-[#FAF7F2] text-[#77736B] hover:text-[#171717] border border-[#ECE7DE]'
+                        ? 'bg-[#F5F1EA] text-[#000000]'
+                        : 'bg-[#0D3B48] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(245,241,234,0.15)]'
                     }`}
                   >
                     {gender}
@@ -155,13 +156,13 @@ export default function ReviewsPage() {
           </div>
         </section>
 
-        {/* 3. REVIEWS GRID */}
+        {/* 3. REVIEWS GRID USING UNIFIED ReviewCard COMPONENT */}
         {visibleReviews.length === 0 ? (
-          <div className="text-center py-12 bg-[#FAF7F2] border border-[#ECE7DE] rounded-xl my-8">
-            <p className="font-sans text-sm text-[#77736B] mb-3">No reviews found for this selection.</p>
+          <div className="text-center py-12 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl my-8">
+            <p className="font-sans text-sm text-[#B8C4C2] mb-3">No reviews found for this selection.</p>
             <Link
               to="/reviews"
-              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#171717] hover:underline"
+              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#F5F1EA] hover:underline"
             >
               Reset Filters →
             </Link>
@@ -169,31 +170,7 @@ export default function ReviewsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-10 md:mb-12">
             {visibleReviews.map((rev) => (
-              <div
-                key={rev.id}
-                className="bg-[#FAF7F2] border border-[#ECE7DE] rounded-xl p-5 md:p-6 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="mb-3">
-                    <StarRating rating={rev.rating} />
-                  </div>
-                  <blockquote className="font-serif text-base lg:text-lg italic text-[#171717] leading-relaxed mb-4">
-                    "{rev.text}"
-                  </blockquote>
-                </div>
-
-                <div className="pt-3 border-t border-[#EAE5DC] flex items-center justify-between gap-2 flex-wrap">
-                  <span className="font-sans text-xs text-[#77736B]">
-                    {rev.customer} · {rev.city}
-                  </span>
-                  <Link
-                    to={`/product/${rev.productSlug}`}
-                    className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#171717] hover:text-[#CFA838] transition-colors"
-                  >
-                    {rev.productName}
-                  </Link>
-                </div>
-              </div>
+              <ReviewCard key={rev.id} review={rev} />
             ))}
           </div>
         )}
@@ -204,7 +181,7 @@ export default function ReviewsPage() {
             <button
               type="button"
               onClick={handleShowMore}
-              className="inline-flex items-center gap-2 bg-[#171717] hover:bg-[#2A2A2A] text-white px-7 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#000000] hover:bg-[#151515] text-white px-7 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 cursor-pointer shadow-sm"
             >
               <span>SHOW MORE REVIEWS</span>
               <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -213,16 +190,16 @@ export default function ReviewsPage() {
         )}
 
         {/* 5. BOTTOM EDITORIAL CTA */}
-        <section className="mt-14 pt-10 border-t border-[#E6E2DA] text-center max-w-xl mx-auto">
-          <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#171717] mb-2">
+        <section className="mt-14 pt-10 border-t border-[rgba(245,241,234,0.15)] text-center max-w-xl mx-auto">
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F5F1EA] mb-2">
             FIND YOUR SIGNATURE
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#77736B] leading-relaxed mb-6">
+          <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] leading-relaxed mb-6">
             Explore the ÉLAVA collection and discover the fragrance that feels like you.
           </p>
           <Link
             to="/category/bestsellers"
-            className="inline-flex items-center gap-2 bg-[#171717] hover:bg-[#2A2A2A] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#000000] hover:bg-[#151515] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-sm"
           >
             <span>EXPLORE COLLECTION</span>
             <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />

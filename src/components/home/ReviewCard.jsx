@@ -1,11 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
  * ReviewCard Component
- * Displays a single review: stars → text (with subtle bg quotation mark) → customer · city | product.
- * Uses h-full + flex-col so all cards in a CSS grid row share identical height.
+ * Harmonized dark petrol surface testimonial card (#0D3B48) matching #0F4C5C brand canvas.
+ * Card Surface: #0D3B48
+ * Border: rgba(245, 241, 234, 0.15)
+ * Quote Text: #F5F1EA
+ * Reviewer Name: #B8C4C2
+ * Product Name: #F5F1EA
+ * Stars: #D4A72C
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -22,35 +28,43 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#F3EFE7] border border-[#E5E0D9] rounded-[6px] p-4 sm:p-5 text-elava-charcoal flex flex-col h-full relative overflow-hidden min-w-0"
+      className="bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl p-5 md:p-6 text-[#F5F1EA] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm"
       role="figure"
     >
-      {/* Subtle oversized opening quotation mark — very low contrast, purely decorative */}
+      {/* Subtle decorative background quotation mark */}
       <span
-        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-elava-charcoal/[0.04] select-none pointer-events-none"
+        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-[#F5F1EA]/[0.06] select-none pointer-events-none"
         aria-hidden="true"
       >
         "
       </span>
 
-      {/* ★★★★★ */}
-      <div className="mb-2.5 flex items-center">
-        <StarRating rating={rating} size={15} />
+      {/* ★★★★★ Stars (#D4A72C) */}
+      <div className="mb-3 flex items-center">
+        <StarRating rating={rating} size={15} starColor="#D4A72C" />
       </div>
 
-      {/* Quote — main content, grows to fill available height */}
-      <p className="font-serif text-[15px] sm:text-[16px] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words">
+      {/* Quote — main content (#F5F1EA) */}
+      <blockquote className="font-serif text-base lg:text-lg italic text-[#F5F1EA] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
-      </p>
+      </blockquote>
 
-      {/* Metadata row: Customer · City on left, PRODUCT on right */}
-      <div className="flex justify-between items-end gap-2 text-[10.5px] sm:text-[11.5px] text-elava-stone tracking-wide">
-        <span className="font-sans">
+      {/* Metadata row: Customer (#B8C4C2) · City on left, PRODUCT (#F5F1EA link) on right */}
+      <div className="pt-3 border-t border-[rgba(245,241,234,0.12)] flex justify-between items-end gap-2 text-xs tracking-wide">
+        <span className="font-sans text-[#B8C4C2] font-medium">
           {customer} {city ? `· ${city}` : ''}
         </span>
-        <span className="font-sans uppercase tracking-[0.1em]">{productName}</span>
+        {matchedProduct ? (
+          <Link
+            to={`/product/${matchedProduct.slug}`}
+            className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F5F1EA] hover:text-[#FFFFFF] font-semibold transition-colors"
+          >
+            {productName}
+          </Link>
+        ) : (
+          <span className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F5F1EA] font-semibold">{productName}</span>
+        )}
       </div>
     </div>
   );
 }
-

@@ -1,6 +1,6 @@
 /**
  * ÉLAVA Occasions Data
- * Soft luxury paper tints and refined realistic editorial still-life assets
+ * Final refined occasion metadata, specific color dots, and hero campaign imagery
  */
 
 export const occasions = [
@@ -9,52 +9,48 @@ export const occasions = [
     slug: "date-night",
     title: "DATE NIGHT",
     name: "Date Night",
-    description: "For nights worth remembering.",
+    description: "Unforgettable nights.",
     route: "/category/date-night",
-    dotColor: "#9E4852",
-    bgClass: "bg-[#F7EFEB]",
-    hoverBgClass: "hover:bg-[#F3E7E2]",
-    image: "/images/occasions/date-night.png",
-    alt: "Fine crystal wine glass with red wine"
+    dotColor: "#8B1E1E",
+    isHero: true,
+    image: "/images/occasions/date-night-hero.jpg",
+    alt: "Cinematic hero campaign photograph for Date Night"
   },
   {
     id: "everyday",
     slug: "everyday",
     title: "EVERYDAY",
     name: "Everyday",
-    description: "Your signature, every day.",
+    description: "Your signature.",
     route: "/category/everyday",
-    dotColor: "#57775E",
-    bgClass: "bg-[#EEF2EC]",
-    hoverBgClass: "hover:bg-[#E7ECE4]",
-    image: "/images/occasions/everyday.png",
-    alt: "Delicate botanical eucalyptus and olive branch"
+    dotColor: "#16A34A",
+    isHero: false,
+    image: "/images/occasions/everyday-color.jpg",
+    alt: "Cinematic color campaign photograph for Everyday"
   },
   {
     id: "office",
     slug: "office",
     title: "OFFICE",
     name: "Office",
-    description: "Clean. Sharp. Effortless.",
+    description: "Clean. Sharp.",
     route: "/category/office",
-    dotColor: "#4B6B85",
-    bgClass: "bg-[#EFF2F5]",
-    hoverBgClass: "hover:bg-[#E6ECF1]",
-    image: "/images/occasions/office.png",
-    alt: "Minimalist leather journal and gold pen"
+    dotColor: "#2563EB",
+    isHero: false,
+    image: "/images/occasions/office-color.jpg",
+    alt: "Cinematic color campaign photograph for Office"
   },
   {
     id: "party",
     slug: "party",
     title: "PARTY",
     name: "Party",
-    description: "Walk in. Get noticed.",
+    description: "Walk in. Stand out.",
     route: "/category/party",
-    dotColor: "#7D5C8A",
-    bgClass: "bg-[#F3EEF5]",
-    hoverBgClass: "hover:bg-[#ECE5EF]",
-    image: "/images/occasions/party.png",
-    alt: "Realistic silver mirrored disco ball"
+    dotColor: "#7C2D5E",
+    isHero: false,
+    image: "/images/occasions/party-color.jpg",
+    alt: "Cinematic color campaign photograph for Party"
   }
 ];
 
