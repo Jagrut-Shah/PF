@@ -20,6 +20,7 @@ const HELP = [
 ];
 
 const waUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent('Hi ÉLAVA, I would like to learn more about your fragrances.')}`;
+const instagramUrl = 'https://instagram.com/elavaperfumes';
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="#25D366" className="w-3.5 h-3.5 shrink-0 fill-[#25D366] text-[#25D366]" aria-hidden="true">
@@ -27,8 +28,16 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const linkCls = 'block font-sans text-[12px] text-[#C8C1B5] hover:text-[#F3EBDD] transition-colors duration-150 leading-none py-1';
-const headingCls = 'font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#F3EBDD] mb-3.5';
+const InstagramIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5 shrink-0" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#E4405F" strokeWidth="2.2" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#E4405F" strokeWidth="2.2" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#E4405F" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>
+);
+
+const linkCls = 'block font-sans text-[12px] text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors duration-150 leading-none py-1';
+const headingCls = 'font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#F5F1EA] mb-3.5';
 
 function Accordion({ title, children }) {
   const [open, setOpen] = useState(false);
@@ -42,8 +51,8 @@ function Accordion({ title, children }) {
       >
         <span className={headingCls.replace('mb-3.5', '')}>{title}</span>
         {open
-          ? <Minus size={13} className="text-[#C8C1B5] shrink-0" aria-hidden="true" />
-          : <Plus  size={13} className="text-[#C8C1B5] shrink-0" aria-hidden="true" />}
+          ? <Minus size={13} className="text-[#B8C4C2] shrink-0" aria-hidden="true" />
+          : <Plus  size={13} className="text-[#B8C4C2] shrink-0" aria-hidden="true" />}
       </button>
       <div className={`overflow-hidden transition-all duration-200 ease-out ${open ? 'max-h-48 pb-3' : 'max-h-0'}`}>
         {children}
@@ -56,7 +65,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#102F38] border-t border-[rgba(243,235,221,0.12)] text-[#F3EBDD]" aria-label="Site footer">
+    <footer className="bg-[#102F38] border-t border-[rgba(243,235,221,0.12)] text-[#F5F1EA]" aria-label="Site footer">
 
       {/* DESKTOP */}
       <div className="hidden md:block">
@@ -82,11 +91,11 @@ export default function Footer() {
                     </span>
                   </div>
                 </Link>
-                <p className="font-sans text-xs text-[#C8C1B5] leading-relaxed mb-4">
+                <p className="font-sans text-xs text-[#B8C4C2] leading-relaxed mb-4">
                   Artisanal Eau de Parfum signatures crafted for memorable presence across India.
                 </p>
               </div>
-              <div className="text-xs font-sans text-[#C8C1B5] space-y-1">
+              <div className="text-xs font-sans text-[#B8C4C2] space-y-1">
                 <p>{DEMO_COMPANY_INFO.formattedAddress}</p>
               </div>
             </div>
@@ -106,17 +115,26 @@ export default function Footer() {
             {/* Customer Care Column */}
             <div className="col-span-3">
               <p className={headingCls}>CUSTOMER CARE</p>
-              <div className="space-y-2 text-xs font-sans text-[#C8C1B5]">
+              <div className="space-y-2 text-xs font-sans text-[#B8C4C2]">
                 <a
                   href={waUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[#F3EBDD] hover:text-[#C5A15A] transition-colors font-semibold"
+                  className="flex items-center gap-2 text-[#F5F1EA] hover:text-[#25D366] transition-colors font-semibold"
                 >
                   <WhatsAppIcon />
-                  <span>WhatsApp Support</span>
+                  <span>Connect on WhatsApp</span>
                 </a>
-                <p className="text-[11px]">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[#F5F1EA] hover:text-[#E4405F] transition-colors font-semibold"
+                >
+                  <InstagramIcon />
+                  <span>Connect on Instagram</span>
+                </a>
+                <p className="text-[11px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
                 <p className="text-[11px]">Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
               </div>
             </div>
@@ -128,10 +146,10 @@ export default function Footer() {
         <div className="border-t border-[rgba(243,235,221,0.12)]">
           <MainContainer>
             <div className="py-4 flex items-center justify-between">
-              <p className="font-sans text-[11px] text-[#C8C1B5]">© {year} ÉLAVA Perfumes. All rights reserved.</p>
+              <p className="font-sans text-[11px] text-[#B8C4C2]">© {year} ÉLAVA Perfumes. All rights reserved.</p>
               <div className="flex items-center gap-4">
-                <Link to="/privacy" className="font-sans text-[11px] text-[#C8C1B5] hover:text-[#F3EBDD] transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="font-sans text-[11px] text-[#C8C1B5] hover:text-[#F3EBDD] transition-colors">Terms & Conditions</Link>
+                <Link to="/privacy" className="font-sans text-[11px] text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="font-sans text-[11px] text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors">Terms & Conditions</Link>
               </div>
             </div>
           </MainContainer>
@@ -161,7 +179,7 @@ export default function Footer() {
                   </span>
                 </div>
               </Link>
-              <p className="font-sans text-[11.5px] text-[#C8C1B5] leading-snug">
+              <p className="font-sans text-[11.5px] text-[#B8C4C2] leading-snug">
                 Artisanal Eau de Parfum signatures crafted for memorable presence.
               </p>
             </div>
@@ -174,11 +192,14 @@ export default function Footer() {
                 <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
               <Accordion title="Customer Care">
-                <div className="space-y-1.5 pt-1 text-xs text-[#C8C1B5]">
-                  <a href={waUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[#F3EBDD] font-semibold">
-                    <WhatsAppIcon /> WhatsApp Support
+                <div className="space-y-2 pt-1 text-xs text-[#B8C4C2]">
+                  <a href={waUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F5F1EA] font-semibold">
+                    <WhatsAppIcon /> Connect on WhatsApp
                   </a>
-                  <p className="text-[11px]">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
+                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F5F1EA] font-semibold">
+                    <InstagramIcon /> Connect on Instagram
+                  </a>
+                  <p className="text-[11px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
                 </div>
               </Accordion>
             </nav>
@@ -190,10 +211,10 @@ export default function Footer() {
         <div className="border-t border-[rgba(243,235,221,0.12)] mt-2">
           <MainContainer>
             <div className="py-3.5 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <p className="font-sans text-[10.5px] text-[#C8C1B5]">© {year} ÉLAVA Perfumes.</p>
-              <Link to="/privacy" className="font-sans text-[10.5px] text-[#C8C1B5] hover:text-[#F3EBDD]">Privacy Policy</Link>
-              <span className="text-[#C8C1B5]/40 text-[10px]">·</span>
-              <Link to="/terms" className="font-sans text-[10.5px] text-[#C8C1B5] hover:text-[#F3EBDD]">Terms & Conditions</Link>
+              <p className="font-sans text-[10.5px] text-[#B8C4C2]">© {year} ÉLAVA Perfumes.</p>
+              <Link to="/privacy" className="font-sans text-[10.5px] text-[#B8C4C2] hover:text-[#F5F1EA]">Privacy Policy</Link>
+              <span className="text-[#B8C4C2]/40 text-[10px]">·</span>
+              <Link to="/terms" className="font-sans text-[10.5px] text-[#B8C4C2] hover:text-[#F5F1EA]">Terms & Conditions</Link>
             </div>
           </MainContainer>
         </div>
