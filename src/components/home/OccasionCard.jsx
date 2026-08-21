@@ -4,8 +4,8 @@ import { ArrowRight } from 'lucide-react';
 
 /**
  * OccasionCard Component
- * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below the image. Date Night has a mobile wine-red animated glowing border.
- * Desktop (>= md): Clean campaign card with overlay text inside and bottom-right arrow, with zero highlighting effect.
+ * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below the image.
+ * Desktop (>= md): Featured Hero Card treatment for Date Night (2-3% scaled, 5px elevated, static 2px wine-red #8B1E1E edge, soft wine-red spotlight depth shadow). Zero animations.
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
@@ -14,40 +14,6 @@ export default function OccasionCard({ occasion }) {
 
   return (
     <div className="relative w-full">
-      {/* ── MOBILE ONLY: Date Night Animated Wine-Red Glowing Border Style ── */}
-      {isDateNight && (
-        <div className="md:hidden">
-          <style>{`
-            @keyframes mobileDateNightBorderGlow {
-              0% {
-                border-color: rgba(139, 30, 30, 0.5);
-                box-shadow: 0 0 6px 1px rgba(139, 30, 30, 0.3);
-              }
-              50% {
-                border-color: rgba(220, 65, 65, 0.95);
-                box-shadow: 0 0 14px 3px rgba(139, 30, 30, 0.65);
-              }
-              100% {
-                border-color: rgba(139, 30, 30, 0.5);
-                box-shadow: 0 0 6px 1px rgba(139, 30, 30, 0.3);
-              }
-            }
-
-            .mobile-date-night-border-animated {
-              animation: mobileDateNightBorderGlow 3s ease-in-out infinite !important;
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-              .mobile-date-night-border-animated {
-                animation: none !important;
-                border-color: #8B1E1E !important;
-                box-shadow: 0 0 8px rgba(139, 30, 30, 0.4) !important;
-              }
-            }
-          `}</style>
-        </div>
-      )}
-
       {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW) ── */}
       <Link
         to={occasion.route}
@@ -56,9 +22,9 @@ export default function OccasionCard({ occasion }) {
       >
         {/* Compact Photographic Image Container */}
         <div
-          className={`relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border transition-all duration-300 group-hover:scale-[1.02] shadow-sm ${
+          className={`relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border transition-transform duration-300 group-hover:scale-[1.02] shadow-sm ${
             isDateNight
-              ? 'mobile-date-night-border-animated border-[#8B1E1E]'
+              ? 'border-[#8B1E1E]/80 shadow-[0_4px_14px_rgba(139,30,30,0.3)]'
               : 'border-white/10'
           }`}
         >
@@ -85,10 +51,14 @@ export default function OccasionCard({ occasion }) {
         </div>
       </Link>
 
-      {/* ── 2. DESKTOP PRESENTATION (>= md: CLEAN CAMPAIGN CARD) ── */}
+      {/* ── 2. DESKTOP PRESENTATION (>= md: HERO CARD FOR DATE NIGHT, CAMPAIGN CARD FOR OTHERS) ── */}
       <Link
         to={occasion.route}
-        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50"
+        className={`hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
+          isDateNight
+            ? 'border-2 border-[#8B1E1E] shadow-[0_16px_40px_rgba(139,30,30,0.35),0_4px_14px_rgba(139,30,30,0.20)] transform scale-[1.025] -translate-y-1.5'
+            : 'border border-white/10'
+        }`}
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Background Photography Layer */}
