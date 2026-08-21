@@ -99,7 +99,7 @@ export default function Footer() {
 
             {/* Help Column */}
             <div className="col-span-3">
-              <p className={headingCls}>HELP & POLICIES</p>
+              <p className={headingCls}>HELP</p>
               <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
             </div>
 
@@ -170,7 +170,7 @@ export default function Footer() {
               <Accordion title="Shop">
                 <ul>{SHOP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
-              <Accordion title="Help & Policies">
+              <Accordion title="Help">
                 <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
               <Accordion title="Customer Care">

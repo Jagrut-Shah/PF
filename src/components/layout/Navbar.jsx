@@ -173,9 +173,9 @@ export default function Navbar() {
             aria-hidden="true"
           />
 
-          {/* Floating Navigation Card/Panel (78vw max 340px, dark petrol #102F38, subtle border) */}
+          {/* Floating Navigation Card/Panel (78vw max 340px, dark petrol #102F38, subtle border, left-aligned) */}
           <aside
-            className="fixed top-3 right-3 bottom-3 w-[78vw] max-w-[340px] bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F3EBDD] transition-transform duration-200 ease-out"
+            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F3EBDD] transition-transform duration-200 ease-out"
             aria-label="Mobile Navigation Panel"
           >
             {/* Panel Header */}

@@ -8,14 +8,6 @@ import MainContainer from '../ui/MainContainer';
  * Short, clear conversion card.
  */
 export default function DiscoverySet() {
-  const scrollToFinder = (e) => {
-    e.preventDefault();
-    const el = document.getElementById('scent-finder');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="py-8 sm:py-10 bg-[#163E49] text-[#F3EBDD]">
       <MainContainer>
@@ -74,14 +66,6 @@ export default function DiscoverySet() {
                   <span>EXPLORE DISCOVERY SET</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </RouterLink>
-
-                <a
-                  href="#scent-finder"
-                  onClick={scrollToFinder}
-                  className="inline-flex items-center gap-2 bg-[#102F38] hover:bg-[#163E49] text-[#F3EBDD] border border-[rgba(243,235,221,0.2)] px-5 py-2.5 rounded-lg font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
-                >
-                  <span>FIND YOUR SIGNATURE SCENT →</span>
-                </a>
               </div>
 
             </div>
