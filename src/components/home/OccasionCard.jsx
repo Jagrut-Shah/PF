@@ -3,32 +3,71 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * Unique typography styling for each occasion title
+ * Render distinct typographic identities for each occasion title
+ *
+ * 1. DATE NIGHT: Modern high-fashion italic with subtle weight contrast between DATE and NIGHT (seductive)
+ * 2. EVERYDAY: Clean geometric sans with compact, effortless tracking (effortless)
+ * 3. OFFICE: Neo-grotesk sans with crisp edges & restrained wider tracking (sharp & structured)
+ * 4. PARTY: Contemporary display sans with bold, energetic proportions (expressive)
  */
-function getOccasionTitleStyle(id) {
-  switch (id) {
+function OccasionTitle({ occasion, isDesktop = false }) {
+  const baseSize = isDesktop ? 'text-[14px] lg:text-[15px]' : 'text-[9.5px] sm:text-[11px]';
+  const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
+
+  switch (occasion.id) {
     case 'date-night':
-      return 'font-sans italic font-extrabold tracking-[0.03em] uppercase text-[#F5F1EA]';
+      return (
+        <h3 className={`leading-none truncate ${baseSize}`} style={shadowStyle}>
+          <span className="font-sans italic font-medium tracking-[0.02em] uppercase text-[#F5F1EA]">DATE </span>
+          <span className="font-sans italic font-black tracking-[0.05em] uppercase text-[#F5F1EA]">NIGHT</span>
+        </h3>
+      );
     case 'everyday':
-      return 'font-sans font-bold tracking-[0.14em] uppercase text-[#F5F1EA]';
+      return (
+        <h3
+          className={`font-sans font-bold tracking-[0.08em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          style={shadowStyle}
+        >
+          EVERYDAY
+        </h3>
+      );
     case 'office':
-      return 'font-sans font-semibold tracking-[0.2em] uppercase text-[#F5F1EA]';
+      return (
+        <h3
+          className={`font-sans font-semibold tracking-[0.24em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          style={shadowStyle}
+        >
+          OFFICE
+        </h3>
+      );
     case 'party':
-      return 'font-sans font-extrabold tracking-[0.1em] uppercase text-[#F5F1EA]';
+      return (
+        <h3
+          className={`font-sans font-black tracking-[0.16em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          style={shadowStyle}
+        >
+          PARTY
+        </h3>
+      );
     default:
-      return 'font-sans font-bold tracking-[0.1em] uppercase text-[#F5F1EA]';
+      return (
+        <h3
+          className={`font-sans font-bold tracking-[0.1em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          style={shadowStyle}
+        >
+          {occasion.title}
+        </h3>
+      );
   }
 }
 
 /**
  * OccasionCard Component
  * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below image.
- * Desktop (>= md): Uniform premium photographic card layout across all 4 occasions (Date Night glow/border removed).
+ * Desktop (>= md): Uniform premium photographic card layout across all 4 occasions (no dots, distinct typography).
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
-
-  const titleClass = getOccasionTitleStyle(occasion.id);
 
   return (
     <div className="relative w-full">
@@ -50,9 +89,7 @@ export default function OccasionCard({ occasion }) {
 
         {/* Occasion Text OUTSIDE & DIRECTLY BELOW Image */}
         <div className="mt-1.5 flex items-center justify-center w-full text-center px-0.5">
-          <h3 className={`text-[9.5px] sm:text-[11px] text-center leading-tight break-words ${titleClass}`}>
-            {occasion.title}
-          </h3>
+          <OccasionTitle occasion={occasion} isDesktop={false} />
         </div>
       </Link>
 
@@ -79,12 +116,7 @@ export default function OccasionCard({ occasion }) {
         <div className="relative z-10 flex items-end justify-between w-full">
           {/* Bottom-Left Editorial Text Block */}
           <div className="flex flex-col min-w-0 pr-3">
-            <h3
-              className={`text-[13.5px] lg:text-[14.5px] leading-none truncate ${titleClass}`}
-              style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
-            >
-              {occasion.title}
-            </h3>
+            <OccasionTitle occasion={occasion} isDesktop={true} />
 
             {/* Subtitle */}
             <p
