@@ -1,24 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --elava-ivory: #0F4C5C;
-  --elava-charcoal: #F5F1EA;
-  --elava-stone: #B8C4C2;
-  --elava-border: rgba(245, 241, 234, 0.12);
-  --elava-gold: #D4A72C;
-  --elava-wine: #8B1E1E;
+  --elava-bg: #163E49;
+  --elava-dark-bg: #102F38;
+  --elava-card-bg: #1C4A55;
+  --elava-text-primary: #F3EBDD;
+  --elava-text-secondary: #C8C1B5;
+  --elava-gold: #C5A15A;
+  --elava-light-gold: #D8BD7A;
+  --elava-burgundy: #7A2929;
+  --elava-warm-light: #F5F0E7;
+  --elava-border: rgba(243, 235, 221, 0.15);
 
   --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @theme {
-  --color-elava-ivory: var(--elava-ivory);
-  --color-elava-charcoal: var(--elava-charcoal);
-  --color-elava-stone: var(--elava-stone);
-  --color-elava-border: var(--elava-border);
-  --color-elava-gold: var(--elava-gold);
-  --color-elava-wine: var(--elava-wine);
+  --color-elava-bg: #163E49;
+  --color-elava-dark-bg: #102F38;
+  --color-elava-card-bg: #1C4A55;
+  --color-elava-text-primary: #F3EBDD;
+  --color-elava-text-secondary: #C8C1B5;
+  --color-elava-gold: #C5A15A;
+  --color-elava-light-gold: #D8BD7A;
+  --color-elava-burgundy: #7A2929;
+  --color-elava-warm-light: #F5F0E7;
+  --color-elava-border: rgba(243, 235, 221, 0.15);
 
   --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -27,15 +35,15 @@
 html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #0F4C5C !important;
-  color: #F5F1EA;
+  background-color: #163E49 !important;
+  color: #F3EBDD;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .bg-elava-ivory {
-  background-color: #0F4C5C !important;
+  background-color: #163E49 !important;
 }
 
 /* Custom editorial typography utility classes */

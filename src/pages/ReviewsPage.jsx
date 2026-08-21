@@ -78,7 +78,7 @@ export default function ReviewsPage() {
   const displayReviewCount = currentProduct ? currentProduct.reviewCount : reviewAggregate.totalReviews;
 
   return (
-    <div className="w-full bg-[#0F4C5C] text-[#F5F1EA] min-h-screen">
+    <div className="w-full bg-[#163E49] text-[#F3EBDD] min-h-screen">
       <SEO
         title={seoTitle}
         description={seoDescription}
@@ -89,36 +89,36 @@ export default function ReviewsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-12">
         {/* 1. PAGE HERO */}
         <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#F5F1EA] leading-tight mb-2">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#F3EBDD] leading-tight mb-2">
             {heroTitle}
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] tracking-wide mb-5 font-normal">
+          <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide mb-5 font-normal">
             "{heroSubtitle}"
           </p>
 
           {/* Rating Display */}
-          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl shadow-sm">
-            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F5F1EA] tracking-tight mb-1">
-              {displayRating} <span className="text-xl text-[#B8C4C2]">/ 5</span>
+          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl shadow-sm">
+            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F3EBDD] tracking-tight mb-1">
+              {displayRating} <span className="text-xl text-[#C8C1B5]">/ 5</span>
             </div>
             <div className="mb-1.5">
-              <StarRating rating={displayRating} starColor="#D4A72C" />
+              <StarRating rating={displayRating} starColor="#C5A15A" />
             </div>
-            <div className="font-sans text-xs text-[#B8C4C2] font-medium tracking-wider uppercase">
-              {displayReviewCount.toLocaleString()} REVIEWS
+            <div className="font-sans text-xs text-[#C5A15A] font-semibold tracking-wider uppercase">
+              {displayReviewCount.toLocaleString()} VERIFIED REVIEWS
             </div>
           </div>
         </section>
 
         {/* 2. SUBSECTION & FILTER BAR */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(245,241,234,0.15)]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(243,235,221,0.15)]">
             <div>
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#F5F1EA]">
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#F3EBDD]">
                 A FEW WORDS FROM OUR COMMUNITY
               </h2>
               {currentProduct && (
-                <p className="font-sans text-xs text-[#B8C4C2] mt-0.5">
+                <p className="font-sans text-xs text-[#C8C1B5] mt-0.5">
                   Filtered by {currentProduct.name}
                 </p>
               )}
@@ -128,7 +128,7 @@ export default function ReviewsPage() {
             {currentProduct ? (
               <Link
                 to="/reviews"
-                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors"
+                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F3EBDD] hover:text-[#C5A15A] transition-colors"
               >
                 ← VIEW ALL REVIEWS
               </Link>
@@ -144,8 +144,8 @@ export default function ReviewsPage() {
                     }}
                     className={`px-3 py-1 rounded text-[11px] font-bold tracking-[0.14em] uppercase transition-colors ${
                       activeGender === gender
-                        ? 'bg-[#F5F1EA] text-[#000000]'
-                        : 'bg-[#0D3B48] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(245,241,234,0.15)]'
+                        ? 'bg-[#7A2929] text-[#F3EBDD]'
+                        : 'bg-[#1C4A55] text-[#C8C1B5] hover:text-[#F3EBDD] border border-[rgba(243,235,221,0.15)]'
                     }`}
                   >
                     {gender}
@@ -158,11 +158,11 @@ export default function ReviewsPage() {
 
         {/* 3. REVIEWS GRID USING UNIFIED ReviewCard COMPONENT */}
         {visibleReviews.length === 0 ? (
-          <div className="text-center py-12 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl my-8">
-            <p className="font-sans text-sm text-[#B8C4C2] mb-3">No reviews found for this selection.</p>
+          <div className="text-center py-12 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl my-8">
+            <p className="font-sans text-sm text-[#C8C1B5] mb-3">No reviews found for this selection.</p>
             <Link
               to="/reviews"
-              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#F5F1EA] hover:underline"
+              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#C5A15A] hover:underline"
             >
               Reset Filters →
             </Link>
@@ -181,7 +181,7 @@ export default function ReviewsPage() {
             <button
               type="button"
               onClick={handleShowMore}
-              className="inline-flex items-center gap-2 bg-[#000000] hover:bg-[#151515] text-white px-7 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-7 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 cursor-pointer shadow-sm"
             >
               <span>SHOW MORE REVIEWS</span>
               <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -190,16 +190,16 @@ export default function ReviewsPage() {
         )}
 
         {/* 5. BOTTOM EDITORIAL CTA */}
-        <section className="mt-14 pt-10 border-t border-[rgba(245,241,234,0.15)] text-center max-w-xl mx-auto">
-          <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F5F1EA] mb-2">
+        <section className="mt-14 pt-10 border-t border-[rgba(243,235,221,0.15)] text-center max-w-xl mx-auto">
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-2">
             FIND YOUR SIGNATURE
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] leading-relaxed mb-6">
+          <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed mb-6">
             Explore the ÉLAVA collection and discover the fragrance that feels like you.
           </p>
           <Link
             to="/category/bestsellers"
-            className="inline-flex items-center gap-2 bg-[#000000] hover:bg-[#151515] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-6 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-sm"
           >
             <span>EXPLORE COLLECTION</span>
             <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />

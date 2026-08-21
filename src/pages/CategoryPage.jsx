@@ -91,15 +91,15 @@ export default function CategoryPage() {
           description="The requested fragrance collection does not exist."
           canonicalPath={`/category/${categorySlug || ''}`}
         />
-        <h1 className="font-serif text-3xl font-normal uppercase tracking-wider text-elava-charcoal mb-3">
+        <h1 className="font-serif text-3xl font-normal uppercase tracking-wider text-[#F3EBDD] mb-3">
           Collection Not Found
         </h1>
-        <p className="font-sans text-sm text-elava-stone mb-6">
+        <p className="font-sans text-sm text-[#C8C1B5] mb-6">
           The requested fragrance collection does not exist.
         </p>
         <Link
           to="/"
-          className="inline-block bg-elava-charcoal text-white px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-black transition-colors"
+          className="inline-block bg-[#7A2929] text-[#F3EBDD] px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-[#8C3232] transition-colors"
         >
           Return to Homepage
         </Link>
@@ -129,11 +129,11 @@ export default function CategoryPage() {
 
       {/* Empty State */}
       {filteredProducts.length === 0 ? (
-        <div className="mt-8 text-center py-12 bg-[#FAF7F2] border border-[#ECE7DE] rounded-xl">
-          <p className="font-sans text-sm text-elava-stone mb-4">No fragrances found in this collection.</p>
+        <div className="mt-8 text-center py-12 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl">
+          <p className="font-sans text-sm text-[#C8C1B5] mb-4">No fragrances found in this collection.</p>
           <Link
             to="/"
-            className="font-sans text-xs uppercase tracking-wider font-semibold text-elava-gold hover:underline"
+            className="font-sans text-xs uppercase tracking-wider font-semibold text-[#C5A15A] hover:underline"
           >
             Return to Homepage →
           </Link>
@@ -149,4 +149,3 @@ export default function CategoryPage() {
     </MainContainer>
   );
 }
-

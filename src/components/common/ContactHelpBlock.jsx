@@ -12,11 +12,11 @@ export default function ContactHelpBlock() {
   const waUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent('Hi ÉLAVA, I have a question regarding my order / product.')}`;
 
   return (
-    <section className="mt-12 pt-10 border-t border-[rgba(245,241,234,0.15)] text-center max-w-xl mx-auto">
-      <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F5F1EA] mb-2">
+    <section className="mt-12 pt-10 border-t border-[rgba(243,235,221,0.15)] text-center max-w-xl mx-auto">
+      <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-2">
         NEED HELP?
       </h2>
-      <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] leading-relaxed mb-6">
+      <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed mb-6">
         Questions about an order, delivery or product? Contact our team through WhatsApp.
       </p>
 
@@ -31,14 +31,14 @@ export default function ContactHelpBlock() {
       </a>
 
       {/* Demo Contact Details */}
-      <div className="mt-8 p-4 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl text-left font-sans text-xs text-[#E5E9E8] space-y-1 shadow-sm">
-        <div className="flex items-center justify-between text-[10px] uppercase font-bold text-[#F5F1EA] tracking-wider mb-1">
+      <div className="mt-8 p-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl text-left font-sans text-xs text-[#F3EBDD] space-y-1 shadow-sm">
+        <div className="flex items-center justify-between text-[10px] uppercase font-bold text-[#F3EBDD] tracking-wider mb-1">
           <span>{DEMO_COMPANY_INFO.brandName}</span>
-          <span className="bg-[#0F4C5C] text-[#B8C4C2] px-1.5 py-0.5 rounded border border-[rgba(245,241,234,0.15)]">DEMO CONTACT</span>
+          <span className="bg-[#163E49] text-[#C8C1B5] px-1.5 py-0.5 rounded border border-[rgba(243,235,221,0.15)]">DEMO CONTACT</span>
         </div>
-        <p className="text-[#F5F1EA] font-medium">{DEMO_COMPANY_INFO.formattedAddress}</p>
-        <p>Customer Care: <a href={`mailto:${DEMO_COMPANY_INFO.supportEmail}`} className="underline text-[#F5F1EA] hover:text-white">{DEMO_COMPANY_INFO.supportEmail}</a> <span className="text-[10px] text-[#B8C4C2]">(DEMO)</span></p>
-        <p className="text-[#B8C4C2]">Support Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
+        <p className="text-[#F3EBDD] font-medium">{DEMO_COMPANY_INFO.formattedAddress}</p>
+        <p>Customer Care: <a href={`mailto:${DEMO_COMPANY_INFO.supportEmail}`} className="underline text-[#F3EBDD] hover:text-[#C5A15A]">{DEMO_COMPANY_INFO.supportEmail}</a> <span className="text-[10px] text-[#C8C1B5]">(DEMO)</span></p>
+        <p className="text-[#C8C1B5]">Support Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
       </div>
     </section>
   );

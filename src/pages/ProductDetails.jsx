@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus, Info, Sparkles, RefreshCw } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -66,20 +66,20 @@ function Breadcrumb({ product }) {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-4 sm:mb-6">
-      <ol className="flex items-center space-x-2 font-sans text-xs text-[#B8C4C2]">
+      <ol className="flex items-center space-x-2 font-sans text-xs text-[#C8C1B5]">
         <li>
-          <Link to="/" className="hover:text-[#F5F1EA] transition-colors">
+          <Link to="/" className="hover:text-[#F3EBDD] transition-colors">
             HOME
           </Link>
         </li>
         <li aria-hidden="true">/</li>
         <li>
-          <Link to={genderPath} className="hover:text-[#F5F1EA] transition-colors font-medium">
+          <Link to={genderPath} className="hover:text-[#F3EBDD] transition-colors font-medium">
             {genderLabel}
           </Link>
         </li>
         <li aria-hidden="true">/</li>
-        <li className="text-[#F5F1EA] font-semibold uppercase tracking-wider" aria-current="page">
+        <li className="text-[#F3EBDD] font-semibold uppercase tracking-wider" aria-current="page">
           {product.name}
         </li>
       </ol>
@@ -103,6 +103,7 @@ export default function ProductDetails() {
   const [openAccordions, setOpenAccordions] = useState({
     about: true,
     notes: false,
+    transparency: false,
     reviews: false,
     delivery: false,
   });
@@ -126,8 +127,8 @@ export default function ProductDetails() {
           description="The requested fragrance signature could not be found."
           canonicalPath="/product"
         />
-        <h1 className="font-serif text-3xl font-normal text-[#F5F1EA] mb-4">Product Not Found</h1>
-        <p className="font-sans text-sm text-[#B8C4C2] mb-6">
+        <h1 className="font-serif text-3xl font-normal text-[#F3EBDD] mb-4">Product Not Found</h1>
+        <p className="font-sans text-sm text-[#C8C1B5] mb-6">
           The fragrance signature you are looking for does not exist or has been moved.
         </p>
         <Link
@@ -154,7 +155,6 @@ export default function ProductDetails() {
     city: 'Mumbai',
   };
 
-  // Dynamic Product Page SEO Title: NAME — Scent Identity | ÉLAVA
   const pageTitle = `${product.name} — ${product.scentIdentity} | ÉLAVA`;
   const pageCanonical = `/product/${product.slug}`;
 
@@ -199,29 +199,29 @@ export default function ProductDetails() {
         {/* LEFT COLUMN: Product Image + Featured Review Card (Desktop) */}
         <div className="md:col-span-6 lg:col-span-7">
           {/* Main Product Image Container */}
-          <div className="bg-[#0D3B48] p-2 sm:p-3 md:p-4 rounded-2xl border border-[rgba(245,241,234,0.15)] flex justify-center items-center">
+          <div className="bg-[#1C4A55] p-4 sm:p-6 md:p-8 rounded-2xl border border-[rgba(243,235,221,0.15)] flex justify-center items-center relative overflow-hidden shadow-lg">
             <img
               src={product.image}
               alt={`ÉLAVA ${product.name} Eau de Parfum bottle`}
-              className="w-full max-w-[560px] max-h-[480px] h-auto object-contain drop-shadow-xs select-none"
+              className="w-full max-w-[520px] max-h-[460px] h-auto object-contain drop-shadow-md select-none"
             />
           </div>
 
-          {/* Desktop Featured Review Card (Harmonized Dark Petrol Surface) */}
-          <div className="hidden md:block mt-4 bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl p-4 md:p-5 text-[#F5F1EA] shadow-sm">
+          {/* Desktop Featured Review Card */}
+          <div className="hidden md:block mt-6 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 text-[#F3EBDD] shadow-sm">
             <div className="flex items-center gap-1.5 mb-2">
-              <StarRating rating={product.rating} size={14} starColor="#D4A72C" />
+              <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
             </div>
-            <blockquote className="font-serif text-sm lg:text-base italic text-[#F5F1EA] leading-snug mb-2.5">
+            <blockquote className="font-serif text-sm lg:text-base italic text-[#F3EBDD] leading-snug mb-2.5">
               "{productReview.text}"
             </blockquote>
-            <div className="flex items-center justify-between flex-wrap gap-2 pt-2 border-t border-[rgba(245,241,234,0.12)]">
-              <span className="font-sans text-xs text-[#B8C4C2]">
+            <div className="flex items-center justify-between flex-wrap gap-2 pt-2 border-t border-[rgba(243,235,221,0.12)]">
+              <span className="font-sans text-xs text-[#C8C1B5]">
                 {productReview.customer} · {productReview.city}
               </span>
               <Link
                 to={`/reviews?product=${product.slug}`}
-                className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-1.5"
+                className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F3EBDD] hover:text-[#C5A15A] transition-colors inline-flex items-center gap-1.5"
               >
                 VIEW MORE REVIEWS <span aria-hidden>→</span>
               </Link>
@@ -233,306 +233,218 @@ export default function ProductDetails() {
         <div className="md:col-span-6 lg:col-span-5 flex flex-col">
           {/* Bestseller Badge */}
           {product.isBestseller && (
-            <div className="self-start">
-              <span className="bg-[#F5EFE0] text-[#9E6E24] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
-                BESTSELLER
+            <div className="self-start mb-2">
+              <span className="bg-[#7A2929] text-[#F3EBDD] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block shadow-xs">
+                BESTSELLER SIGNATURE
               </span>
             </div>
           )}
 
           {/* Product Title */}
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] uppercase font-normal tracking-[0.06em] text-[#F5F1EA] leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] uppercase font-normal tracking-[0.06em] text-[#F3EBDD] leading-tight">
             {product.name}
           </h1>
 
           {/* Product Type + Gender */}
-          <div className="font-sans text-xs sm:text-sm text-[#B8C4C2] tracking-wide font-medium mt-1">
-            Eau de Parfum · {genderTarget}
+          <div className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide font-medium mt-1">
+            Eau de Parfum · {genderTarget} · {product.scentIdentity}
           </div>
 
           {/* Rating + Review Count */}
           <div className="mt-3 flex items-center gap-2.5">
-            <StarRating rating={product.rating} size={14} starColor="#D4A72C" />
-            <span className="font-sans text-xs font-semibold text-[#F5F1EA]">{product.rating}</span>
-            <span className="font-sans text-xs text-[#B8C4C2]">({product.reviewCount} reviews)</span>
+            <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
+            <span className="font-sans text-xs font-semibold text-[#F3EBDD]">{product.rating}</span>
+            <span className="font-sans text-xs text-[#C8C1B5]">({product.reviewCount} verified reviews)</span>
           </div>
 
           {/* Price & Size */}
           <div className="mt-4">
-            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F5F1EA] tracking-tight">
+            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F3EBDD] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
-            <div className="font-sans text-xs text-[#B8C4C2] font-medium tracking-wider uppercase mt-0.5">
-              {product.size || '60 ML'}
+            <div className="font-sans text-xs text-[#C5A15A] font-semibold tracking-wider uppercase mt-0.5">
+              {product.size || '60 ML'} EAU DE PARFUM BOTTLE
             </div>
           </div>
 
-          {/* Large WhatsApp CTA */}
-          <div className="mt-5">
+          {/* WhatsApp Primary Order CTA */}
+          <div className="mt-5 space-y-2">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#000000] hover:bg-[#151515] text-white rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
+              className="w-full bg-[#000000] hover:bg-[#151515] text-white rounded-lg py-3.5 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-md active:scale-[0.99]"
             >
               <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366] fill-[#25D366]" />
               ORDER ON WHATSAPP
             </a>
 
-            {/* Reassurance text */}
-            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
-              <span>We'll confirm your order and delivery details on WhatsApp.</span>
+            {/* Reassurance & Replacement Guarantee */}
+            <div className="p-3 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-lg text-xs text-[#C8C1B5] space-y-1">
+              <div className="flex items-center gap-2 text-[#F3EBDD] font-semibold">
+                <RefreshCw className="w-3.5 h-3.5 text-[#C5A15A] shrink-0" />
+                <span>Damaged or incorrect order? We'll make it right.</span>
+              </div>
+              <p className="text-[11px] text-[#C8C1B5] pl-5">
+                Review our full{' '}
+                <Link to="/returns" className="underline text-[#F3EBDD] hover:text-[#C5A15A]">
+                  Returns & Replacement Policy
+                </Link>.
+              </p>
             </div>
           </div>
 
           {/* Desktop Content Blocks */}
-          <div className="hidden md:block">
-            {/* Divider */}
-            <hr className="my-4 md:my-4.5 border-t border-[rgba(245,241,234,0.15)]" />
-
-            {/* ABOUT THE SCENT */}
-            <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
-                ABOUT THE SCENT
+          <div className="hidden md:block mt-6">
+            {/* 1. ABOUT THE SCENT */}
+            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5 mb-4">
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-2 flex items-center gap-2">
+                <Info className="w-3.5 h-3.5" />
+                <span>WHAT DOES IT SMELL LIKE?</span>
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#E5E9E8] leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-[#F3EBDD] leading-relaxed">
                 {product.description}
               </p>
             </section>
 
-            {/* Divider */}
-            <hr className="my-4 md:my-4.5 border-t border-[rgba(245,241,234,0.15)]" />
-
-            {/* FRAGRANCE NOTES */}
-            <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-2.5">
-                FRAGRANCE NOTES
+            {/* 2. THE SCENT — FRAGRANCE PYRAMID */}
+            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5 mb-4">
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-3 flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>THE SCENT — FRAGRANCE PYRAMID</span>
               </h2>
-              <div className="grid grid-cols-3 gap-3 lg:gap-4 py-0.5">
+
+              <div className="space-y-3">
                 {/* TOP NOTES */}
-                <div className="flex items-start gap-2.5">
-                  <img
-                    src="/images/notes/top-notes.jpg"
-                    alt="Top notes illustration"
-                    className="w-8 h-8 object-contain rounded-full bg-[#0D3B48] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                  />
-                  <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
-                      TOP NOTES
-                    </div>
-                    <div className="font-sans text-xs text-[#E5E9E8] leading-snug">
-                      {formatNotes(product.notes?.top)}
-                    </div>
+                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
+                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
+                    TOP NOTES (First Impression)
+                  </div>
+                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
+                    {formatNotes(product.notes?.top)}
                   </div>
                 </div>
 
                 {/* HEART NOTES */}
-                <div className="flex items-start gap-2.5 border-l border-[rgba(245,241,234,0.15)] pl-3 lg:pl-4">
-                  <img
-                    src="/images/notes/heart-notes.jpg"
-                    alt="Heart notes illustration"
-                    className="w-8 h-8 object-contain rounded-full bg-[#0D3B48] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                  />
-                  <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
-                      HEART NOTES
-                    </div>
-                    <div className="font-sans text-xs text-[#E5E9E8] leading-snug">
-                      {formatNotes(product.notes?.heart)}
-                    </div>
+                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
+                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
+                    HEART NOTES (Core Identity)
+                  </div>
+                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
+                    {formatNotes(product.notes?.heart)}
                   </div>
                 </div>
 
                 {/* BASE NOTES */}
-                <div className="flex items-start gap-2.5 border-l border-[rgba(245,241,234,0.15)] pl-3 lg:pl-4">
-                  <img
-                    src="/images/notes/base-notes.jpg"
-                    alt="Base notes illustration"
-                    className="w-8 h-8 object-contain rounded-full bg-[#0D3B48] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                  />
-                  <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
-                      BASE NOTES
-                    </div>
-                    <div className="font-sans text-xs text-[#E5E9E8] leading-snug">
-                      {formatNotes(product.notes?.base)}
-                    </div>
+                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
+                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
+                    BASE NOTES (Long-lasting Trail)
+                  </div>
+                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
+                    {formatNotes(product.notes?.base)}
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* Divider */}
-            <hr className="my-4 md:my-4.5 border-t border-[rgba(245,241,234,0.15)]" />
-
-            {/* DELIVERY & ORDERING */}
-            <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
-                DELIVERY & ORDERING
+            {/* 3. MANUFACTURING TRANSPARENCY */}
+            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5">
+              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-2.5">
+                MANUFACTURING & TRANSPARENCY
               </h2>
-              <div className="flex items-start gap-3 text-xs sm:text-sm text-[#E5E9E8] leading-relaxed">
-                <Truck className="w-4 h-4 text-[#F5F1EA] shrink-0 mt-0.5" />
-                <p>
-                  We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
-                </p>
+              <div className="grid grid-cols-2 gap-2 text-xs font-sans text-[#C8C1B5]">
+                <div><span className="text-[#F3EBDD] font-medium">Volume:</span> 60 ML</div>
+                <div><span className="text-[#F3EBDD] font-medium">Format:</span> Eau de Parfum</div>
+                <div><span className="text-[#F3EBDD] font-medium">Origin:</span> Made in India</div>
+                <div><span className="text-[#F3EBDD] font-medium">Brand:</span> ÉLAVA Perfumes</div>
               </div>
             </section>
           </div>
 
           {/* MOBILE ACCORDIONS */}
           <div className="md:hidden mt-6 space-y-3">
-            {/* Accordion 1: ABOUT THE SCENT */}
-            <div className="border border-[rgba(245,241,234,0.15)] rounded-lg bg-[#0D3B48] overflow-hidden">
+            {/* Accordion 1: WHAT DOES IT SMELL LIKE? */}
+            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleAccordion('about')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
                 aria-expanded={openAccordions.about}
               >
-                <span>ABOUT THE SCENT</span>
+                <span>WHAT DOES IT SMELL LIKE?</span>
                 {openAccordions.about ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
+                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
+                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
                 )}
               </button>
               {openAccordions.about && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(245,241,234,0.12)] pt-3">
+                <div className="px-4 pb-4 font-sans text-xs text-[#C8C1B5] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3">
                   {product.description}
                 </div>
               )}
             </div>
 
-            {/* Accordion 2: FRAGRANCE NOTES */}
-            <div className="border border-[rgba(245,241,234,0.15)] rounded-lg bg-[#0D3B48] overflow-hidden">
+            {/* Accordion 2: FRAGRANCE PYRAMID */}
+            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
                 onClick={() => toggleAccordion('notes')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
                 aria-expanded={openAccordions.notes}
               >
-                <span>FRAGRANCE NOTES</span>
+                <span>FRAGRANCE PYRAMID</span>
                 {openAccordions.notes ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
+                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
+                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
                 )}
               </button>
               {openAccordions.notes && (
-                <div className="px-4 pb-4 space-y-3.5 border-t border-[rgba(245,241,234,0.12)] pt-3">
-                  {/* Top */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/top-notes.jpg"
-                      alt="Top notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#0F4C5C] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        TOP NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#E5E9E8]">{formatNotes(product.notes?.top)}</div>
-                    </div>
+                <div className="px-4 pb-4 space-y-2 border-t border-[rgba(243,235,221,0.12)] pt-3">
+                  <div className="text-xs">
+                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Top Notes:</span>
+                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.top)}</span>
                   </div>
-                  {/* Heart */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/heart-notes.jpg"
-                      alt="Heart notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#0F4C5C] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        HEART NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#E5E9E8]">{formatNotes(product.notes?.heart)}</div>
-                    </div>
+                  <div className="text-xs">
+                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Heart Notes:</span>
+                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.heart)}</span>
                   </div>
-                  {/* Base */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/base-notes.jpg"
-                      alt="Base notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#0F4C5C] shrink-0 border border-[rgba(245,241,234,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        BASE NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#E5E9E8]">{formatNotes(product.notes?.base)}</div>
-                    </div>
+                  <div className="text-xs">
+                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Base Notes:</span>
+                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.base)}</span>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Accordion 3: WHAT PEOPLE SAY */}
-            <div className="border border-[rgba(245,241,234,0.15)] rounded-lg bg-[#0D3B48] overflow-hidden">
+            {/* Accordion 3: TRANSPARENCY */}
+            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
-                onClick={() => toggleAccordion('reviews')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.reviews}
+                onClick={() => toggleAccordion('transparency')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                aria-expanded={openAccordions.transparency}
               >
-                <span>WHAT PEOPLE SAY</span>
-                {openAccordions.reviews ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
+                <span>MANUFACTURING DETAILS</span>
+                {openAccordions.transparency ? (
+                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
+                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
                 )}
               </button>
-              {openAccordions.reviews && (
-                <div className="px-4 pb-4 border-t border-[rgba(245,241,234,0.12)] pt-3 bg-[#0D3B48] text-[#F5F1EA] rounded-b-lg">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <StarRating rating={product.rating} size={14} starColor="#D4A72C" />
-                  </div>
-                  <blockquote className="font-serif text-base italic text-[#F5F1EA] leading-relaxed mb-2">
-                    "{productReview.text}"
-                  </blockquote>
-                  <div className="font-sans text-xs text-[#B8C4C2]">
-                    {productReview.customer} · {productReview.city}
-                  </div>
-                  <div className="mt-3">
-                    <Link
-                      to={`/reviews?product=${product.slug}`}
-                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-1.5"
-                    >
-                      VIEW MORE REVIEWS <span aria-hidden>→</span>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Accordion 4: DELIVERY & ORDERING */}
-            <div className="border border-[rgba(245,241,234,0.15)] rounded-lg bg-[#0D3B48] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => toggleAccordion('delivery')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.delivery}
-              >
-                <span>DELIVERY & ORDERING</span>
-                {openAccordions.delivery ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
-                ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
-                )}
-              </button>
-              {openAccordions.delivery && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(245,241,234,0.12)] pt-3 flex items-start gap-2.5">
-                  <Truck className="w-4 h-4 text-[#F5F1EA] shrink-0 mt-0.5" />
-                  <span>
-                    We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
-                  </span>
+              {openAccordions.transparency && (
+                <div className="px-4 pb-4 text-xs font-sans text-[#C8C1B5] space-y-1 border-t border-[rgba(243,235,221,0.12)] pt-3">
+                  <p><span className="text-[#F3EBDD]">Size:</span> 60 ML Eau de Parfum</p>
+                  <p><span className="text-[#F3EBDD]">Country of Origin:</span> India</p>
+                  <p><span className="text-[#F3EBDD]">Brand:</span> ÉLAVA Perfumes</p>
                 </div>
               )}
             </div>
           </div>
 
           {/* SINGLE COMBINED TRUST / ORDER BOX — PURE BLACK #000000 */}
-          <div className="mt-8 grid grid-cols-3 gap-2 text-center bg-[#000000] p-4 sm:p-4.5 rounded-xl border border-white/10 shadow-lg">
+          <div className="mt-8 grid grid-cols-3 gap-2 text-center bg-[#000000] p-4 rounded-xl border border-white/10 shadow-lg">
             {/* 1. WhatsApp */}
             <a
               href={whatsappUrl}
@@ -540,33 +452,33 @@ export default function ProductDetails() {
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center group hover:opacity-90 transition-opacity"
             >
-              <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#25D366] fill-[#25D366] mb-1.5" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F5F1EA] leading-tight">
+              <WhatsAppIcon className="w-5 h-5 text-[#25D366] fill-[#25D366] mb-1.5" />
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Order on WhatsApp
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
                 Instant Response
               </span>
             </a>
 
-            {/* 2. Secure & Trusted (Original Blue Padlock Icon, No Keyhole) */}
+            {/* 2. Secure & Trusted */}
             <div className="flex flex-col items-center justify-center">
-              <SecureLockIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F5F1EA] leading-tight">
+              <SecureLockIcon className="w-5 h-5 mb-1.5 shrink-0" />
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Secure & Trusted
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
                 Verified Checkout
               </span>
             </div>
 
-            {/* 3. Authentic Products (Unfilled Green Shield Icon with Green Tick Mark) */}
+            {/* 3. Authentic Products */}
             <div className="flex flex-col items-center justify-center">
-              <AuthTickIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F5F1EA] leading-tight">
+              <AuthTickIcon className="w-5 h-5 mb-1.5 shrink-0" />
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Authentic Products
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
                 100% Guaranteed
               </span>
             </div>
