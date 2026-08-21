@@ -56,7 +56,7 @@ export default function OccasionCard({ occasion }) {
 
       <Link
         to={occasion.route}
-        className={`group relative z-10 flex flex-col justify-end w-full select-none overflow-hidden rounded-[8px] sm:rounded-[10px] transition-all duration-300 p-5 sm:p-5 lg:p-6 h-[148px] sm:h-[156px] md:h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
+        className={`group relative z-10 flex flex-col justify-end w-full select-none overflow-hidden rounded-[8px] sm:rounded-[10px] transition-all duration-300 p-3.5 sm:p-5 lg:p-6 h-[128px] sm:h-[148px] md:h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
           isDateNight ? 'shadow-[0_12px_35px_rgba(0,0,0,0.25)]' : ''
         }`}
         aria-label={`Shop perfumes for ${occasion.title}`}
