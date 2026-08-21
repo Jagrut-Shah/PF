@@ -19,11 +19,6 @@ const HELP = [
   { label: 'Returns & Refunds', to: '/returns' },
 ];
 
-const ELAVA_COMPANY = [
-  { label: 'Privacy Policy', to: '/privacy' },
-  { label: 'Terms & Conditions', to: '/terms' },
-];
-
 const waUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent('Hi ÉLAVA, I would like to learn more about your fragrances.')}`;
 
 const WhatsAppIcon = () => (
@@ -106,7 +101,6 @@ export default function Footer() {
             <div className="col-span-3">
               <p className={headingCls}>HELP & POLICIES</p>
               <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
-              <ul className="mt-2">{ELAVA_COMPANY.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
             </div>
 
             {/* Customer Care Column */}
@@ -130,7 +124,7 @@ export default function Footer() {
           </div>
         </MainContainer>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar — Exactly ONE occurrence of Privacy Policy & Terms & Conditions */}
         <div className="border-t border-[rgba(243,235,221,0.12)]">
           <MainContainer>
             <div className="py-4 flex items-center justify-between">
@@ -178,7 +172,6 @@ export default function Footer() {
               </Accordion>
               <Accordion title="Help & Policies">
                 <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
-                <ul className="mt-1">{ELAVA_COMPANY.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
               <Accordion title="Customer Care">
                 <div className="space-y-1.5 pt-1 text-xs text-[#C8C1B5]">
