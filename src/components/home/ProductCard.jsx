@@ -6,7 +6,7 @@ import StarRating from '../ui/StarRating';
 /**
  * ProductCard Component
  * Modern, Gen-Z high-contrast product card.
- * Strong sans-serif typography, light neutral headers/prices, reserved gold for stars only.
+ * Gold Bestseller ribbon on image and Gold text badge.
  */
 export default function ProductCard({ product, className = '' }) {
   if (!product) return null;
@@ -19,10 +19,10 @@ export default function ProductCard({ product, className = '' }) {
     >
       {/* Compact Image Container with Rounded Corners */}
       <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#102F38] border border-[rgba(243,235,221,0.15)] aspect-[4/3.8] md:aspect-[4/4.5]">
-        {/* Subtle Burgundy Bestseller Corner Ribbon */}
+        {/* Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
-            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#7A2929] text-[#F5F1EA] text-[7.5px] font-bold tracking-[0.16em] py-0.5 text-center -rotate-45 uppercase shadow-sm">
+            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C5A15A] text-[#102F38] text-[7.5px] font-extrabold tracking-[0.16em] py-0.5 text-center -rotate-45 uppercase shadow-sm">
               BESTSELLER
             </div>
           </div>
@@ -44,11 +44,11 @@ export default function ProductCard({ product, className = '' }) {
           {product.name}
         </h3>
 
-        {/* Scent Identity */}
+        {/* Scent Identity & Gold BESTSELLER Tag */}
         <p className="font-sans text-[10.5px] sm:text-[11.5px] tracking-wide leading-snug min-w-0 break-words text-[#B8C4C2]">
           {product.isBestseller ? (
             <>
-              <span className="font-semibold text-[#F5F1EA] uppercase">BESTSELLER</span>
+              <span className="font-bold text-[#C5A15A] uppercase">BESTSELLER</span>
               <span> · {product.scentIdentity}</span>
             </>
           ) : (

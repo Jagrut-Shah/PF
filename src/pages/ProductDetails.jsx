@@ -234,7 +234,7 @@ export default function ProductDetails() {
           {/* Bestseller Badge */}
           {product.isBestseller && (
             <div className="self-start">
-              <span className="bg-[#7A2929] text-[#F5F1EA] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
+              <span className="bg-[#C5A15A] text-[#102F38] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-extrabold uppercase rounded-sm inline-block mb-2 shadow-xs">
                 BESTSELLER
               </span>
             </div>

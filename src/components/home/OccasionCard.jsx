@@ -22,31 +22,24 @@ function getOccasionTitleStyle(id) {
 
 /**
  * OccasionCard Component
- * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below image (DOT REMOVED).
- * Desktop (>= md): Featured Hero Card treatment for Date Night with Modern Gen-Z Sans-Serif Typography.
+ * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below image.
+ * Desktop (>= md): Uniform premium photographic card layout across all 4 occasions (Date Night glow/border removed).
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
 
-  const isDateNight = occasion.id === 'date-night' || Boolean(occasion.isHero);
   const titleClass = getOccasionTitleStyle(occasion.id);
 
   return (
     <div className="relative w-full">
-      {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW, DOT REMOVED) ── */}
+      {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW) ── */}
       <Link
         to={occasion.route}
         className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Compact Photographic Image Container */}
-        <div
-          className={`relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border transition-transform duration-300 group-hover:scale-[1.02] shadow-sm ${
-            isDateNight
-              ? 'border-[#8B1E1E]/80 shadow-[0_4px_14px_rgba(139,30,30,0.3)]'
-              : 'border-white/10'
-          }`}
-        >
+        <div className="relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border border-white/10 transition-transform duration-300 group-hover:scale-[1.02] shadow-sm">
           <img
             src={occasion.image}
             alt={occasion.alt}
@@ -55,7 +48,7 @@ export default function OccasionCard({ occasion }) {
           />
         </div>
 
-        {/* Occasion Text OUTSIDE & DIRECTLY BELOW Image (No Dot) */}
+        {/* Occasion Text OUTSIDE & DIRECTLY BELOW Image */}
         <div className="mt-1.5 flex items-center justify-center w-full text-center px-0.5">
           <h3 className={`text-[9.5px] sm:text-[11px] text-center leading-tight break-words ${titleClass}`}>
             {occasion.title}
@@ -63,14 +56,10 @@ export default function OccasionCard({ occasion }) {
         </div>
       </Link>
 
-      {/* ── 2. DESKTOP PRESENTATION (>= md: HERO CARD FOR DATE NIGHT, CAMPAIGN CARD FOR OTHERS, DOT REMOVED) ── */}
+      {/* ── 2. DESKTOP PRESENTATION (>= md: UNIFORM CAMPAIGN CARDS FOR ALL 4 OCCASIONS) ── */}
       <Link
         to={occasion.route}
-        className={`hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
-          isDateNight
-            ? 'border-2 border-[#8B1E1E] shadow-[0_16px_40px_rgba(139,30,30,0.35),0_4px_14px_rgba(139,30,30,0.20)] transform scale-[1.025] -translate-y-1.5'
-            : 'border border-white/10'
-        }`}
+        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-white/10 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Background Photography Layer */}
@@ -88,7 +77,7 @@ export default function OccasionCard({ occasion }) {
 
         {/* Bottom Content Layer */}
         <div className="relative z-10 flex items-end justify-between w-full">
-          {/* Bottom-Left Editorial Text Block (No Dot) */}
+          {/* Bottom-Left Editorial Text Block */}
           <div className="flex flex-col min-w-0 pr-3">
             <h3
               className={`text-[13.5px] lg:text-[14.5px] leading-none truncate ${titleClass}`}

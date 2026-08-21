@@ -18,8 +18,8 @@ import BrandStory from '../components/home/BrandStory';
  * 1. NAVBAR (App Layout)
  * 2. SHOP BY OCCASION (Date Night, Everyday, Office, Party)
  * 3. FIND YOUR SIGNATURE SCENT CTA (Compact Banner)
- * 4. MOST LOVED
- * 5. FIND YOUR SCENT
+ * 4. FIND YOUR SCENT (Categories / Gender Selection)
+ * 5. MOST LOVED (Bestsellers)
  * 6. TRUST STRIP (Secure Payments, COD, Tracked Delivery, Support)
  * 7. TRY BEFORE YOU BUY (Discovery / Sample Set)
  * 8. FIND YOUR SIGNATURE SCENT (Full Finder)
@@ -30,7 +30,7 @@ import BrandStory from '../components/home/BrandStory';
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#163E49] text-[#F3EBDD]">
+    <div className="w-full bg-[#163E49] text-[#F5F1EA]">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."
@@ -44,11 +44,11 @@ export default function Home() {
       {/* 2. FIND YOUR SIGNATURE SCENT CTA (Compact Banner) */}
       <SignatureCtaBanner />
 
-      {/* 3. MOST LOVED (BESTSELLERS) */}
-      <MostLoved />
-
-      {/* 4. FIND YOUR SCENT */}
+      {/* 3. FIND YOUR SCENT (GENDER/CATEGORIES FIRST) */}
       <FindYourScent />
+
+      {/* 4. MOST LOVED (BESTSELLERS) */}
+      <MostLoved />
 
       {/* 5. TRUST STRIP */}
       <TrustStrip />
