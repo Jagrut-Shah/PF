@@ -6,7 +6,7 @@ import NavbarSearch from './NavbarSearch';
 import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 
 /**
- * Official WhatsApp Brand Outline Icon matching reference image
+ * Official WhatsApp Brand Outline Icon
  */
 function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
   return (
@@ -21,10 +21,6 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
   );
 }
 
-/**
- * ÉLAVA Navbar Component
- * Fully black (#000000) background with two-part boxed ÉLAVA logo.
- */
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -49,6 +45,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { label: 'HOME', path: '/' },
     { label: 'MEN', path: '/category/men' },
     { label: 'WOMEN', path: '/category/women' },
     { label: 'UNISEX', path: '/category/unisex' },
@@ -70,7 +67,7 @@ export default function Navbar() {
                 setIsSearchOpen(false);
                 setIsMobileMenuOpen((prev) => !prev);
               }}
-              className="p-2 -ml-2 text-white hover:text-[#CFA838] transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
+              className="p-2 -ml-2 text-white hover:text-[#CFA838] transition-colors duration-200 focus:outline-none"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -82,21 +79,18 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* BRAND LOGO: Two-Part Boxed Wordmark (Left on Desktop, Center on Mobile) */}
+          {/* BRAND LOGO: Two-Part Boxed Wordmark */}
           <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
             <Link
               to="/"
               className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
               aria-label="ÉLAVA Home"
             >
-              {/* Left Panel: Deep Emerald Green background with Champagne Gold #C8A45A ÉLAVA wordmark */}
               <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
                 <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#C8A45A] uppercase">
                   ÉLAVA
                 </span>
               </div>
-
-              {/* Right Panel: Deep Wine Red #8B1E1E background with Warm Ivory #F3EDE3 PERFUMES text */}
               <div className="bg-[#8B1E1E] text-[#F3EDE3] px-2 sm:px-2.5 py-1 flex items-center justify-center">
                 <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#F3EDE3]">
                   PERFUMES
@@ -105,26 +99,32 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* DESKTOP NAVIGATION: Center */}
+          {/* DESKTOP NAVIGATION: Center (HOME, MEN, WOMEN, UNISEX, BESTSELLERS) */}
           <nav
-            className="hidden md:flex items-center justify-center space-x-8 lg:space-x-12"
+            className="hidden md:flex items-center justify-center space-x-6 lg:space-x-10"
             aria-label="Primary Navigation"
           >
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  `font-sans text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-medium py-1 relative text-white hover:text-[#CFA838] transition-colors duration-200 ${
-                    isActive
-                      ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#CFA838]'
-                      : 'after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#CFA838] hover:after:w-full after:transition-all after:duration-250 after:ease-out'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.path === '/'
+                ? location.pathname === '/'
+                : location.pathname === link.path;
+
+              return (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  className={
+                    `font-sans text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-medium py-1 relative text-white hover:text-[#CFA838] transition-colors duration-200 ${
+                      isActive
+                        ? 'text-[#CFA838] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#CFA838]'
+                        : 'after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#CFA838] hover:after:w-full after:transition-all after:duration-250 after:ease-out'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* ACTIONS: Right (Search & WhatsApp) */}
@@ -136,7 +136,7 @@ export default function Navbar() {
                 setIsMobileMenuOpen(false);
                 setIsSearchOpen((prev) => !prev);
               }}
-              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
+              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none"
               aria-label="Search collection"
             >
               <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -147,7 +147,7 @@ export default function Navbar() {
               href={whatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#CFA838]"
+              className="p-2 text-white hover:text-[#CFA838] transition-colors duration-250 focus:outline-none"
               aria-label="Connect on WhatsApp"
             >
               <WhatsAppIcon className="w-[19px] h-[19px]" />
@@ -159,30 +159,92 @@ export default function Navbar() {
         {/* SEARCH OVERLAY */}
         <NavbarSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
-        {/* MOBILE NAVIGATION DRAWER */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-[#222222] py-6 px-2 bg-[#000000] text-white animate-fadeIn">
-            <nav className="flex flex-col space-y-4" aria-label="Mobile Navigation">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `font-sans text-xs uppercase tracking-[0.22em] py-2 px-1 transition-colors duration-200 ${
-                      isActive
-                        ? 'text-[#CFA838] font-semibold border-l-2 border-[#CFA838] pl-3'
-                        : 'text-white hover:text-[#CFA838] font-medium'
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-          </div>
-        )}
       </MainContainer>
+
+      {/* COMPACT FLOATING MOBILE MENU PANEL (NOT full-screen black) */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden">
+          {/* Subtle translucent dark backdrop so the underlying website remains visible */}
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-200"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Floating Navigation Card/Panel (78% width, dark petrol #102F38, subtle border) */}
+          <aside
+            className="fixed top-3 right-3 bottom-3 w-[78%] max-w-[320px] bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F3EBDD] transition-transform duration-200 ease-out"
+            aria-label="Mobile Navigation Panel"
+          >
+            {/* Panel Header */}
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-[rgba(243,235,221,0.15)] mb-4">
+                <span className="font-serif text-sm tracking-[0.2em] font-medium text-[#C5A15A] uppercase">
+                  ÉLAVA NAVIGATION
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-1 text-[#C8C1B5] hover:text-[#F3EBDD] transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Mobile Navigation Links */}
+              <nav className="flex flex-col space-y-2">
+                {navLinks.map((link) => {
+                  const isActive = link.path === '/'
+                    ? location.pathname === '/'
+                    : location.pathname === link.path;
+
+                  return (
+                    <NavLink
+                      key={link.path}
+                      to={link.path}
+                      className={
+                        `font-sans text-xs uppercase tracking-[0.2em] py-2.5 px-3 rounded-lg transition-colors ${
+                          isActive
+                            ? 'bg-[#1C4A55] text-[#C5A15A] font-bold border-l-2 border-[#C5A15A]'
+                            : 'text-[#F3EBDD] hover:bg-[#1C4A55]/60 hover:text-[#C5A15A] font-medium'
+                        }`
+                      }
+                    >
+                      {link.label}
+                    </NavLink>
+                  );
+                })}
+              </nav>
+            </div>
+
+            {/* Panel Quick Actions Footer */}
+            <div className="pt-4 border-t border-[rgba(243,235,221,0.15)] space-y-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsSearchOpen(true);
+                }}
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#1C4A55] text-xs font-sans font-semibold uppercase tracking-wider text-[#F3EBDD] hover:text-[#C5A15A] transition-colors"
+              >
+                <Search className="w-4 h-4 text-[#C5A15A]" />
+                <span>SEARCH COLLECTION</span>
+              </button>
+
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#7A2929] text-xs font-sans font-bold uppercase tracking-wider text-[#F3EBDD] hover:bg-[#8C3232] transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>WHATSAPP SUPPORT</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      )}
     </header>
   );
 }
-

@@ -1,82 +1,93 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Check } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * DiscoverySet Component ("TRY BEFORE YOU BUY")
+ * DiscoverySet Component ("TRY BEFORE YOU BUY — ÉLAVA DISCOVERY SET")
+ * Short, clear conversion card.
  */
 export default function DiscoverySet() {
-  return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#102F38] text-[#F3EBDD] border-y border-[rgba(243,235,221,0.12)]">
-      <MainContainer>
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 md:p-12 relative overflow-hidden shadow-xl">
-          {/* Subtle Decorative Background Element */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A15A]/[0.04] rounded-full blur-3xl pointer-events-none" />
+  const scrollToFinder = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('scent-finder');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            {/* Left Column: Image / Visual Showcase */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-[rgba(243,235,221,0.15)] shadow-lg bg-[#163E49]">
+  return (
+    <section className="py-8 sm:py-10 bg-[#163E49] text-[#F3EBDD]">
+      <MainContainer>
+        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-5 sm:p-7 md:p-8 shadow-lg relative overflow-hidden">
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            
+            {/* Left Column: Compact Visual */}
+            <div className="md:col-span-5 lg:col-span-4">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden border border-[rgba(243,235,221,0.15)] bg-[#102F38] shadow-sm">
                 <img
                   src="/images/products/row-1-column-1.png"
-                  alt="ÉLAVA Discovery Set Collection"
+                  alt="ÉLAVA Discovery Set"
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3 bg-[#7A2929] text-[#F3EBDD] text-[10px] font-bold tracking-[0.16em] uppercase px-3 py-1 rounded shadow-xs">
-                  DISCOVERY EXPERIENCE
+                <div className="absolute top-2.5 left-2.5 bg-[#7A2929] text-[#F3EBDD] text-[9.5px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5 rounded shadow-xs">
+                  TRY BEFORE YOU BUY
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Information & Conversion CTAs */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#163E49] border border-[rgba(243,235,221,0.15)] text-xs font-sans tracking-[0.16em] uppercase text-[#C5A15A]">
+            {/* Right Column: Clear Information & Direct CTAs */}
+            <div className="md:col-span-7 lg:col-span-8 space-y-3">
+              <div className="inline-flex items-center gap-1.5 text-xs font-sans tracking-[0.16em] uppercase text-[#C5A15A] font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>TRY BEFORE YOU COMMIT</span>
+                <span>ÉLAVA DISCOVERY SET</span>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] leading-tight">
-                FIND YOUR SIGNATURE <span className="italic text-[#C5A15A]">BEFORE THE FULL BOTTLE</span>
+              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-normal uppercase tracking-[0.04em] text-[#F3EBDD] leading-tight">
+                SAMPLE ÉLAVA FRAGRANCES <span className="italic text-[#C5A15A]">AT HOME</span>
               </h2>
 
-              <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
-                Not sure which scent suits you best? Experience ÉLAVA's handcrafted Eau de Parfum signatures at home before picking your full 60 ML bottle.
+              <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed max-w-xl">
+                Experience our handcrafted 60 ML Eau de Parfum collection before choosing your full-size signature bottle.
               </p>
 
-              <div className="space-y-2 pt-2">
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#F3EBDD]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5A15A] shrink-0" />
-                  <span>Curated 60 ML Eau de Parfum collection across Men, Women & Unisex</span>
+              {/* What You Receive Bullet Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs text-[#F3EBDD]">
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-[#C5A15A] shrink-0" />
+                  <span>Curated Eau de Parfum samples</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#F3EBDD]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5A15A] shrink-0" />
-                  <span>Detailed scent profiles with Top, Heart & Base fragrance notes</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#F3EBDD]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5A15A] shrink-0" />
-                  <span>Tracked delivery & direct WhatsApp consultation for recommendations</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-[#C5A15A] shrink-0" />
+                  <span>Top, Heart & Base note breakdown</span>
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              {/* CTAs */}
+              <div className="pt-3 flex flex-wrap items-center gap-3">
                 <RouterLink
                   to="/category/bestsellers"
-                  className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-6 py-3 rounded-lg font-sans text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-5 py-2.5 rounded-lg font-sans text-xs font-bold uppercase tracking-[0.14em] transition-colors shadow-xs"
                 >
-                  <span>EXPLORE BESTSELLERS</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>EXPLORE DISCOVERY SET</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </RouterLink>
-                <RouterLink
-                  to="/category/unisex"
-                  className="inline-flex items-center gap-2 bg-[#163E49] hover:bg-[#205260] text-[#F3EBDD] border border-[rgba(243,235,221,0.2)] px-6 py-3 rounded-lg font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
+
+                <a
+                  href="#scent-finder"
+                  onClick={scrollToFinder}
+                  className="inline-flex items-center gap-2 bg-[#102F38] hover:bg-[#163E49] text-[#F3EBDD] border border-[rgba(243,235,221,0.2)] px-5 py-2.5 rounded-lg font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
                 >
-                  <span>VIEW ALL SIGNATURES</span>
-                </RouterLink>
+                  <span>FIND YOUR SIGNATURE SCENT →</span>
+                </a>
               </div>
+
             </div>
+
           </div>
+
         </div>
       </MainContainer>
     </section>

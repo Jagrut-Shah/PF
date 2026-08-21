@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
+import { Sparkles, RotateCcw, ArrowRight } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import products from '../../data/products';
 
@@ -27,26 +27,29 @@ export default function ScentQuiz() {
   const displayProducts = matchedProducts.length > 0 ? matchedProducts.slice(0, 3) : products.slice(0, 3);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#163E49] text-[#F3EBDD]">
+    <section id="scent-finder" className="py-10 sm:py-14 bg-[#163E49] text-[#F3EBDD] scroll-mt-20">
       <MainContainer>
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+          
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#163E49] border border-[rgba(243,235,221,0.15)] text-xs font-sans tracking-[0.16em] uppercase text-[#C5A15A] mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-xs font-sans tracking-[0.16em] uppercase text-[#C5A15A] mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>INTERACTIVE PERFUME FINDER</span>
+              <span>PERFUMES FINDER</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-2">
+            
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-2">
               FIND YOUR SIGNATURE SCENT
             </h2>
+            
             <p className="font-sans text-xs sm:text-sm text-[#C8C1B5]">
-              Select your preferences to discover fragrances matched to your character.
+              Select your preferences below to discover fragrances crafted for your character.
             </p>
           </div>
 
           {/* Interactive Filters Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
             {/* Step 1: Preferred Fragrance */}
-            <div className="bg-[#163E49] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
+            <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
               <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#C5A15A] mb-3">
                 1. Preferred Fragrance Profile
               </label>
@@ -69,7 +72,7 @@ export default function ScentQuiz() {
             </div>
 
             {/* Step 2: Occasion */}
-            <div className="bg-[#163E49] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
+            <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
               <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#C5A15A] mb-3">
                 2. Primary Occasion
               </label>
@@ -92,7 +95,7 @@ export default function ScentQuiz() {
             </div>
 
             {/* Step 3: Intensity */}
-            <div className="bg-[#163E49] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
+            <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
               <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#C5A15A] mb-3">
                 3. Desired Strength
               </label>
@@ -119,7 +122,7 @@ export default function ScentQuiz() {
           <div className="border-t border-[rgba(243,235,221,0.12)] pt-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-serif text-lg text-[#F3EBDD] font-normal uppercase tracking-wide">
-                RECOMMENDED MATCHES ({displayProducts.length})
+                RECOMMENDED SIGNATURE MATCHES ({displayProducts.length})
               </h3>
               <button
                 type="button"
@@ -140,12 +143,12 @@ export default function ScentQuiz() {
                 <Link
                   key={p.id}
                   to={`/product/${p.slug}`}
-                  className="group bg-[#163E49] border border-[rgba(243,235,221,0.15)] rounded-xl p-3.5 flex items-center gap-3.5 hover:border-[#C5A15A] transition-colors"
+                  className="group bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl p-3.5 flex items-center gap-3.5 hover:border-[#C5A15A] transition-colors"
                 >
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="w-14 h-14 object-cover rounded-lg shrink-0 bg-[#102F38]"
+                    className="w-14 h-14 object-cover rounded-lg shrink-0 bg-[#163E49]"
                   />
                   <div className="min-w-0 flex-1">
                     <h4 className="font-serif text-sm font-semibold uppercase text-[#F3EBDD] group-hover:text-[#C5A15A] transition-colors truncate">
