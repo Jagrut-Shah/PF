@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 /**
  * OccasionCard Component
  * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below the image. All 4 fit simultaneously in 1 row.
- * Desktop (>= md): 100% UNCHANGED campaign card with overlay text inside, Date Night spotlight aura, and bottom-right arrow.
+ * Desktop (>= md): Clean campaign card with overlay text inside and bottom-right arrow.
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
@@ -14,45 +14,6 @@ export default function OccasionCard({ occasion }) {
 
   return (
     <div className="relative w-full">
-      {/* ── DESKTOP ONLY: Date Night Soft Wine-Red Spotlight Aura (Positioned BEHIND Desktop Card) ── */}
-      {isDateNight && (
-        <div className="hidden md:block">
-          <style>{`
-            @keyframes dateNightAuraBreathe {
-              0% {
-                box-shadow: 0 0 28px 8px rgba(139, 30, 30, 0.18), 0 10px 30px rgba(0,0,0,0.22);
-                opacity: 0.75;
-              }
-              100% {
-                box-shadow: 0 0 52px 18px rgba(139, 30, 30, 0.40), 0 14px 42px rgba(0,0,0,0.32);
-                opacity: 1;
-              }
-            }
-
-            .date-night-aura-backdrop {
-              position: absolute;
-              inset: -8px;
-              border-radius: 16px;
-              background: radial-gradient(circle at 50% 50%, rgba(139, 30, 30, 0.45) 0%, rgba(139, 30, 30, 0.18) 70%, transparent 100%);
-              filter: blur(16px);
-              pointer-events: none;
-              z-index: 0;
-              animation: dateNightAuraBreathe 4s ease-in-out infinite alternate !important;
-              will-change: box-shadow, opacity;
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-              .date-night-aura-backdrop {
-                animation: none !important;
-                box-shadow: 0 0 38px 12px rgba(139, 30, 30, 0.30) !important;
-                opacity: 0.9 !important;
-              }
-            }
-          `}</style>
-          <div className="date-night-aura-backdrop" aria-hidden="true" />
-        </div>
-      )}
-
       {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW) ── */}
       <Link
         to={occasion.route}
@@ -90,12 +51,10 @@ export default function OccasionCard({ occasion }) {
         </div>
       </Link>
 
-      {/* ── 2. DESKTOP PRESENTATION (>= md: 100% UNCHANGED ORIGINAL CARD) ── */}
+      {/* ── 2. DESKTOP PRESENTATION (>= md: CLEAN CAMPAIGN CARD) ── */}
       <Link
         to={occasion.route}
-        className={`hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
-          isDateNight ? 'shadow-[0_12px_35px_rgba(0,0,0,0.25)]' : ''
-        }`}
+        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Background Photography Layer */}
