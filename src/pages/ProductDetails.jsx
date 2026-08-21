@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus, Info, Sparkles, RefreshCw } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -103,7 +103,6 @@ export default function ProductDetails() {
   const [openAccordions, setOpenAccordions] = useState({
     about: true,
     notes: false,
-    transparency: false,
     reviews: false,
     delivery: false,
   });
@@ -155,6 +154,7 @@ export default function ProductDetails() {
     city: 'Mumbai',
   };
 
+  // Dynamic Product Page SEO Title
   const pageTitle = `${product.name} — ${product.scentIdentity} | ÉLAVA`;
   const pageCanonical = `/product/${product.slug}`;
 
@@ -199,16 +199,16 @@ export default function ProductDetails() {
         {/* LEFT COLUMN: Product Image + Featured Review Card (Desktop) */}
         <div className="md:col-span-6 lg:col-span-7">
           {/* Main Product Image Container */}
-          <div className="bg-[#1C4A55] p-4 sm:p-6 md:p-8 rounded-2xl border border-[rgba(243,235,221,0.15)] flex justify-center items-center relative overflow-hidden shadow-lg">
+          <div className="bg-[#1C4A55] p-2 sm:p-3 md:p-4 rounded-2xl border border-[rgba(243,235,221,0.15)] flex justify-center items-center">
             <img
               src={product.image}
               alt={`ÉLAVA ${product.name} Eau de Parfum bottle`}
-              className="w-full max-w-[520px] max-h-[460px] h-auto object-contain drop-shadow-md select-none"
+              className="w-full max-w-[560px] max-h-[480px] h-auto object-contain drop-shadow-xs select-none"
             />
           </div>
 
           {/* Desktop Featured Review Card */}
-          <div className="hidden md:block mt-6 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 text-[#F3EBDD] shadow-sm">
+          <div className="hidden md:block mt-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4 md:p-5 text-[#F3EBDD] shadow-sm">
             <div className="flex items-center gap-1.5 mb-2">
               <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
             </div>
@@ -233,9 +233,9 @@ export default function ProductDetails() {
         <div className="md:col-span-6 lg:col-span-5 flex flex-col">
           {/* Bestseller Badge */}
           {product.isBestseller && (
-            <div className="self-start mb-2">
-              <span className="bg-[#7A2929] text-[#F3EBDD] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block shadow-xs">
-                BESTSELLER SIGNATURE
+            <div className="self-start">
+              <span className="bg-[#7A2929] text-[#F3EBDD] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
+                BESTSELLER
               </span>
             </div>
           )}
@@ -247,14 +247,14 @@ export default function ProductDetails() {
 
           {/* Product Type + Gender */}
           <div className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide font-medium mt-1">
-            Eau de Parfum · {genderTarget} · {product.scentIdentity}
+            Eau de Parfum · {genderTarget}
           </div>
 
           {/* Rating + Review Count */}
           <div className="mt-3 flex items-center gap-2.5">
             <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
             <span className="font-sans text-xs font-semibold text-[#F3EBDD]">{product.rating}</span>
-            <span className="font-sans text-xs text-[#C8C1B5]">({product.reviewCount} verified reviews)</span>
+            <span className="font-sans text-xs text-[#C8C1B5]">({product.reviewCount} reviews)</span>
           </div>
 
           {/* Price & Size */}
@@ -262,108 +262,127 @@ export default function ProductDetails() {
             <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F3EBDD] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
-            <div className="font-sans text-xs text-[#C5A15A] font-semibold tracking-wider uppercase mt-0.5">
-              {product.size || '60 ML'} EAU DE PARFUM BOTTLE
+            <div className="font-sans text-xs text-[#C8C1B5] font-medium tracking-wider uppercase mt-0.5">
+              {product.size || '60 ML'}
             </div>
           </div>
 
-          {/* WhatsApp Primary Order CTA */}
-          <div className="mt-5 space-y-2">
+          {/* Large WhatsApp CTA */}
+          <div className="mt-5">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#000000] hover:bg-[#151515] text-white rounded-lg py-3.5 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-md active:scale-[0.99]"
+              className="w-full bg-[#000000] hover:bg-[#151515] text-white rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
             >
               <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366] fill-[#25D366]" />
               ORDER ON WHATSAPP
             </a>
 
-            {/* Reassurance & Replacement Guarantee */}
-            <div className="p-3 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-lg text-xs text-[#C8C1B5] space-y-1">
-              <div className="flex items-center gap-2 text-[#F3EBDD] font-semibold">
-                <RefreshCw className="w-3.5 h-3.5 text-[#C5A15A] shrink-0" />
-                <span>Damaged or incorrect order? We'll make it right.</span>
-              </div>
-              <p className="text-[11px] text-[#C8C1B5] pl-5">
-                Review our full{' '}
-                <Link to="/returns" className="underline text-[#F3EBDD] hover:text-[#C5A15A]">
-                  Returns & Replacement Policy
-                </Link>.
-              </p>
+            {/* Reassurance text */}
+            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#C8C1B5] font-sans">
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
+              <span>We'll confirm your order and delivery details on WhatsApp.</span>
             </div>
           </div>
 
           {/* Desktop Content Blocks */}
-          <div className="hidden md:block mt-6">
-            {/* 1. ABOUT THE SCENT */}
-            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5 mb-4">
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-2 flex items-center gap-2">
-                <Info className="w-3.5 h-3.5" />
-                <span>WHAT DOES IT SMELL LIKE?</span>
+          <div className="hidden md:block">
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
+
+            {/* ABOUT THE SCENT */}
+            <section>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-1.5">
+                ABOUT THE SCENT
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#F3EBDD] leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
                 {product.description}
               </p>
             </section>
 
-            {/* 2. THE SCENT — FRAGRANCE PYRAMID */}
-            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5 mb-4">
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-3 flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>THE SCENT — FRAGRANCE PYRAMID</span>
-              </h2>
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
 
-              <div className="space-y-3">
+            {/* FRAGRANCE NOTES */}
+            <section>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-2.5">
+                FRAGRANCE NOTES
+              </h2>
+              <div className="grid grid-cols-3 gap-3 lg:gap-4 py-0.5">
                 {/* TOP NOTES */}
-                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
-                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
-                    TOP NOTES (First Impression)
-                  </div>
-                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
-                    {formatNotes(product.notes?.top)}
+                <div className="flex items-start gap-2.5">
+                  <img
+                    src="/images/notes/top-notes.jpg"
+                    alt="Top notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                      TOP NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                      {formatNotes(product.notes?.top)}
+                    </div>
                   </div>
                 </div>
 
                 {/* HEART NOTES */}
-                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
-                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
-                    HEART NOTES (Core Identity)
-                  </div>
-                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
-                    {formatNotes(product.notes?.heart)}
+                <div className="flex items-start gap-2.5 border-l border-[rgba(243,235,221,0.15)] pl-3 lg:pl-4">
+                  <img
+                    src="/images/notes/heart-notes.jpg"
+                    alt="Heart notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                      HEART NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                      {formatNotes(product.notes?.heart)}
+                    </div>
                   </div>
                 </div>
 
                 {/* BASE NOTES */}
-                <div className="bg-[#163E49] p-3 rounded-lg border border-[rgba(243,235,221,0.12)]">
-                  <div className="font-sans text-[10px] font-bold tracking-[0.16em] uppercase text-[#C5A15A]">
-                    BASE NOTES (Long-lasting Trail)
-                  </div>
-                  <div className="font-sans text-xs text-[#F3EBDD] font-medium mt-0.5">
-                    {formatNotes(product.notes?.base)}
+                <div className="flex items-start gap-2.5 border-l border-[rgba(243,235,221,0.15)] pl-3 lg:pl-4">
+                  <img
+                    src="/images/notes/base-notes.jpg"
+                    alt="Base notes illustration"
+                    className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                  />
+                  <div>
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                      BASE NOTES
+                    </div>
+                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                      {formatNotes(product.notes?.base)}
+                    </div>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* 3. MANUFACTURING TRANSPARENCY */}
-            <section className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4.5">
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-2.5">
-                MANUFACTURING & TRANSPARENCY
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
+
+            {/* DELIVERY & ORDERING */}
+            <section>
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-1.5">
+                DELIVERY & ORDERING
               </h2>
-              <div className="grid grid-cols-2 gap-2 text-xs font-sans text-[#C8C1B5]">
-                <div><span className="text-[#F3EBDD] font-medium">Volume:</span> 60 ML</div>
-                <div><span className="text-[#F3EBDD] font-medium">Format:</span> Eau de Parfum</div>
-                <div><span className="text-[#F3EBDD] font-medium">Origin:</span> Made in India</div>
-                <div><span className="text-[#F3EBDD] font-medium">Brand:</span> ÉLAVA Perfumes</div>
+              <div className="flex items-start gap-3 text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
+                <Truck className="w-4 h-4 text-[#F3EBDD] shrink-0 mt-0.5" />
+                <p>
+                  We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
+                </p>
               </div>
             </section>
           </div>
 
           {/* MOBILE ACCORDIONS */}
           <div className="md:hidden mt-6 space-y-3">
-            {/* Accordion 1: WHAT DOES IT SMELL LIKE? */}
+            {/* Accordion 1: ABOUT THE SCENT */}
             <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
@@ -371,7 +390,7 @@ export default function ProductDetails() {
                 className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
                 aria-expanded={openAccordions.about}
               >
-                <span>WHAT DOES IT SMELL LIKE?</span>
+                <span>ABOUT THE SCENT</span>
                 {openAccordions.about ? (
                   <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
@@ -385,7 +404,7 @@ export default function ProductDetails() {
               )}
             </div>
 
-            {/* Accordion 2: FRAGRANCE PYRAMID */}
+            {/* Accordion 2: FRAGRANCE NOTES */}
             <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
@@ -393,7 +412,7 @@ export default function ProductDetails() {
                 className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
                 aria-expanded={openAccordions.notes}
               >
-                <span>FRAGRANCE PYRAMID</span>
+                <span>FRAGRANCE NOTES</span>
                 {openAccordions.notes ? (
                   <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
@@ -401,50 +420,119 @@ export default function ProductDetails() {
                 )}
               </button>
               {openAccordions.notes && (
-                <div className="px-4 pb-4 space-y-2 border-t border-[rgba(243,235,221,0.12)] pt-3">
-                  <div className="text-xs">
-                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Top Notes:</span>
-                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.top)}</span>
+                <div className="px-4 pb-4 space-y-3.5 border-t border-[rgba(243,235,221,0.12)] pt-3">
+                  {/* Top */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/top-notes.jpg"
+                      alt="Top notes"
+                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                        TOP NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.top)}</div>
+                    </div>
                   </div>
-                  <div className="text-xs">
-                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Heart Notes:</span>
-                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.heart)}</span>
+                  {/* Heart */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/heart-notes.jpg"
+                      alt="Heart notes"
+                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                        HEART NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.heart)}</div>
+                    </div>
                   </div>
-                  <div className="text-xs">
-                    <span className="text-[#C5A15A] font-bold block uppercase text-[10px] tracking-wider">Base Notes:</span>
-                    <span className="text-[#F3EBDD]">{formatNotes(product.notes?.base)}</span>
+                  {/* Base */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/notes/base-notes.jpg"
+                      alt="Base notes"
+                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
+                    />
+                    <div>
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                        BASE NOTES
+                      </div>
+                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.base)}</div>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Accordion 3: TRANSPARENCY */}
+            {/* Accordion 3: WHAT PEOPLE SAY */}
             <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
-                onClick={() => toggleAccordion('transparency')}
+                onClick={() => toggleAccordion('reviews')}
                 className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
-                aria-expanded={openAccordions.transparency}
+                aria-expanded={openAccordions.reviews}
               >
-                <span>MANUFACTURING DETAILS</span>
-                {openAccordions.transparency ? (
+                <span>WHAT PEOPLE SAY</span>
+                {openAccordions.reviews ? (
                   <Minus className="w-4 h-4 text-[#C8C1B5]" />
                 ) : (
                   <Plus className="w-4 h-4 text-[#C8C1B5]" />
                 )}
               </button>
-              {openAccordions.transparency && (
-                <div className="px-4 pb-4 text-xs font-sans text-[#C8C1B5] space-y-1 border-t border-[rgba(243,235,221,0.12)] pt-3">
-                  <p><span className="text-[#F3EBDD]">Size:</span> 60 ML Eau de Parfum</p>
-                  <p><span className="text-[#F3EBDD]">Country of Origin:</span> India</p>
-                  <p><span className="text-[#F3EBDD]">Brand:</span> ÉLAVA Perfumes</p>
+              {openAccordions.reviews && (
+                <div className="px-4 pb-4 border-t border-[rgba(243,235,221,0.12)] pt-3 bg-[#1C4A55] text-[#F3EBDD] rounded-b-lg">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
+                  </div>
+                  <blockquote className="font-serif text-base italic text-[#F3EBDD] leading-relaxed mb-2">
+                    "{productReview.text}"
+                  </blockquote>
+                  <div className="font-sans text-xs text-[#C8C1B5]">
+                    {productReview.customer} · {productReview.city}
+                  </div>
+                  <div className="mt-3">
+                    <Link
+                      to={`/reviews?product=${product.slug}`}
+                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F3EBDD] hover:text-[#C5A15A] transition-colors inline-flex items-center gap-1.5"
+                    >
+                      VIEW MORE REVIEWS <span aria-hidden>→</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Accordion 4: DELIVERY & ORDERING */}
+            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleAccordion('delivery')}
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                aria-expanded={openAccordions.delivery}
+              >
+                <span>DELIVERY & ORDERING</span>
+                {openAccordions.delivery ? (
+                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
+                )}
+              </button>
+              {openAccordions.delivery && (
+                <div className="px-4 pb-4 font-sans text-xs text-[#C8C1B5] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 flex items-start gap-2.5">
+                  <Truck className="w-4 h-4 text-[#F3EBDD] shrink-0 mt-0.5" />
+                  <span>
+                    We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
+                  </span>
                 </div>
               )}
             </div>
           </div>
 
           {/* SINGLE COMBINED TRUST / ORDER BOX — PURE BLACK #000000 */}
-          <div className="mt-8 grid grid-cols-3 gap-2 text-center bg-[#000000] p-4 rounded-xl border border-white/10 shadow-lg">
+          <div className="mt-8 grid grid-cols-3 gap-2 text-center bg-[#000000] p-4 sm:p-4.5 rounded-xl border border-white/10 shadow-lg">
             {/* 1. WhatsApp */}
             <a
               href={whatsappUrl}
@@ -452,7 +540,7 @@ export default function ProductDetails() {
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center group hover:opacity-90 transition-opacity"
             >
-              <WhatsAppIcon className="w-5 h-5 text-[#25D366] fill-[#25D366] mb-1.5" />
+              <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#25D366] fill-[#25D366] mb-1.5" />
               <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Order on WhatsApp
               </span>
@@ -461,9 +549,9 @@ export default function ProductDetails() {
               </span>
             </a>
 
-            {/* 2. Secure & Trusted */}
+            {/* 2. Secure & Trusted (Original Blue Padlock Icon, No Keyhole) */}
             <div className="flex flex-col items-center justify-center">
-              <SecureLockIcon className="w-5 h-5 mb-1.5 shrink-0" />
+              <SecureLockIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
               <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Secure & Trusted
               </span>
@@ -472,9 +560,9 @@ export default function ProductDetails() {
               </span>
             </div>
 
-            {/* 3. Authentic Products */}
+            {/* 3. Authentic Products (Unfilled Green Shield Icon with Green Tick Mark) */}
             <div className="flex flex-col items-center justify-center">
-              <AuthTickIcon className="w-5 h-5 mb-1.5 shrink-0" />
+              <AuthTickIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
               <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
                 Authentic Products
               </span>
