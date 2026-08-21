@@ -21,23 +21,23 @@ export default function MostLoved() {
           <div>
             <h2
               id="most-loved-heading"
-              className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-normal uppercase text-elava-charcoal leading-tight"
+              className="font-sans text-[22px] sm:text-[26px] md:text-[28px] tracking-[0.06em] font-bold uppercase text-[#F5F1EA] leading-tight"
             >
               MOST LOVED
             </h2>
-            <p className="font-sans text-[13px] sm:text-[14px] text-elava-stone mt-1 sm:mt-1.5 font-normal tracking-wide">
+            <p className="font-sans text-[13px] sm:text-[14px] text-[#B8C4C2] mt-1 font-normal tracking-wide">
               Our most coveted signatures.
             </p>
           </div>
 
           <Link
             to="/category/bestsellers"
-            className="group inline-flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-medium tracking-[0.16em] uppercase text-elava-charcoal hover:text-[#2C1F14] transition-colors duration-200 self-start sm:self-end pb-0.5"
+            className="group inline-flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-bold tracking-[0.16em] uppercase text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 self-start sm:self-end pb-0.5"
             aria-label="View all bestsellers"
           >
             <span>VIEW ALL BESTSELLERS</span>
             <ArrowRight
-              className="w-3.5 h-3.5 stroke-[1.5] transform transition-transform duration-200 group-hover:translate-x-1"
+              className="w-3.5 h-3.5 stroke-[1.75] transform transition-transform duration-200 group-hover:translate-x-1"
               aria-hidden="true"
             />
           </Link>

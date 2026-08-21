@@ -4,39 +4,39 @@
   --elava-bg: #163E49;
   --elava-dark-bg: #102F38;
   --elava-card-bg: #1C4A55;
-  --elava-text-primary: #F3EBDD;
-  --elava-text-secondary: #C8C1B5;
+  --elava-text-heading: #F5F1EA;
+  --elava-text-primary: #E5E9E8;
+  --elava-text-secondary: #B8C4C2;
+  --elava-text-muted: #91A3A1;
   --elava-gold: #C5A15A;
-  --elava-light-gold: #D8BD7A;
   --elava-burgundy: #7A2929;
-  --elava-warm-light: #F5F0E7;
   --elava-border: rgba(243, 235, 221, 0.15);
 
   --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Manrope", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @theme {
   --color-elava-bg: #163E49;
   --color-elava-dark-bg: #102F38;
   --color-elava-card-bg: #1C4A55;
-  --color-elava-text-primary: #F3EBDD;
-  --color-elava-text-secondary: #C8C1B5;
+  --color-elava-text-heading: #F5F1EA;
+  --color-elava-text-primary: #E5E9E8;
+  --color-elava-text-secondary: #B8C4C2;
+  --color-elava-text-muted: #91A3A1;
   --color-elava-gold: #C5A15A;
-  --color-elava-light-gold: #D8BD7A;
   --color-elava-burgundy: #7A2929;
-  --color-elava-warm-light: #F5F0E7;
   --color-elava-border: rgba(243, 235, 221, 0.15);
 
   --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Manrope", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html, body, #root, main {
   margin: 0;
   padding: 0;
   background-color: #163E49 !important;
-  color: #F3EBDD;
+  color: #E5E9E8;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,7 +46,7 @@ html, body, #root, main {
   background-color: #163E49 !important;
 }
 
-/* Custom editorial typography utility classes */
+/* Custom editorial & modern typography utility classes */
 .font-serif {
   font-family: var(--font-serif);
 }

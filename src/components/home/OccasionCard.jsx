@@ -3,18 +3,37 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
+ * Unique typography styling for each occasion title
+ */
+function getOccasionTitleStyle(id) {
+  switch (id) {
+    case 'date-night':
+      return 'font-sans italic font-extrabold tracking-[0.03em] uppercase text-[#F5F1EA]';
+    case 'everyday':
+      return 'font-sans font-bold tracking-[0.14em] uppercase text-[#F5F1EA]';
+    case 'office':
+      return 'font-sans font-semibold tracking-[0.2em] uppercase text-[#F5F1EA]';
+    case 'party':
+      return 'font-sans font-extrabold tracking-[0.1em] uppercase text-[#F5F1EA]';
+    default:
+      return 'font-sans font-bold tracking-[0.1em] uppercase text-[#F5F1EA]';
+  }
+}
+
+/**
  * OccasionCard Component
- * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below the image.
- * Desktop (>= md): Featured Hero Card treatment for Date Night with Modern Gen-Z Sans-Serif Typography (Plus Jakarta Sans).
+ * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below image (DOT REMOVED).
+ * Desktop (>= md): Featured Hero Card treatment for Date Night with Modern Gen-Z Sans-Serif Typography.
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
 
   const isDateNight = occasion.id === 'date-night' || Boolean(occasion.isHero);
+  const titleClass = getOccasionTitleStyle(occasion.id);
 
   return (
     <div className="relative w-full">
-      {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW) ── */}
+      {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW, DOT REMOVED) ── */}
       <Link
         to={occasion.route}
         className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none"
@@ -36,22 +55,15 @@ export default function OccasionCard({ occasion }) {
           />
         </div>
 
-        {/* Occasion Text OUTSIDE & DIRECTLY BELOW Image */}
-        <div className="mt-1.5 flex items-center justify-center gap-1 w-full text-center px-0.5">
-          <span
-            className="w-[4.5px] h-[4.5px] sm:w-[5.5px] sm:h-[5.5px] rounded-full shrink-0 shadow-xs"
-            style={{ backgroundColor: occasion.dotColor }}
-            aria-hidden="true"
-          />
-          <h3
-            className="font-sans text-[9.5px] sm:text-[11px] font-semibold tracking-[0.02em] uppercase text-[#F5F1EA] text-center leading-tight break-words"
-          >
+        {/* Occasion Text OUTSIDE & DIRECTLY BELOW Image (No Dot) */}
+        <div className="mt-1.5 flex items-center justify-center w-full text-center px-0.5">
+          <h3 className={`text-[9.5px] sm:text-[11px] text-center leading-tight break-words ${titleClass}`}>
             {occasion.title}
           </h3>
         </div>
       </Link>
 
-      {/* ── 2. DESKTOP PRESENTATION (>= md: HERO CARD FOR DATE NIGHT, CAMPAIGN CARD FOR OTHERS) ── */}
+      {/* ── 2. DESKTOP PRESENTATION (>= md: HERO CARD FOR DATE NIGHT, CAMPAIGN CARD FOR OTHERS, DOT REMOVED) ── */}
       <Link
         to={occasion.route}
         className={`hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50 ${
@@ -76,26 +88,18 @@ export default function OccasionCard({ occasion }) {
 
         {/* Bottom Content Layer */}
         <div className="relative z-10 flex items-end justify-between w-full">
-          {/* Bottom-Left Editorial Text Block */}
+          {/* Bottom-Left Editorial Text Block (No Dot) */}
           <div className="flex flex-col min-w-0 pr-3">
-            {/* Dot + Title */}
-            <div className="flex items-center gap-2">
-              <span
-                className="w-[7px] h-[7px] rounded-full shrink-0 shadow-sm"
-                style={{ backgroundColor: occasion.dotColor }}
-                aria-hidden="true"
-              />
-              <h3
-                className="font-sans text-[13.5px] lg:text-[14.5px] font-semibold tracking-[0.02em] uppercase leading-none truncate text-[#F5F1EA]"
-                style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
-              >
-                {occasion.title}
-              </h3>
-            </div>
+            <h3
+              className={`text-[13.5px] lg:text-[14.5px] leading-none truncate ${titleClass}`}
+              style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
+            >
+              {occasion.title}
+            </h3>
 
             {/* Subtitle */}
             <p
-              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#F5F1EA]/90"
+              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#E5E9E8]/90"
               style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
             >
               {occasion.description}

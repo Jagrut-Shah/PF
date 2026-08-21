@@ -66,20 +66,20 @@ function Breadcrumb({ product }) {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-4 sm:mb-6">
-      <ol className="flex items-center space-x-2 font-sans text-xs text-[#C8C1B5]">
+      <ol className="flex items-center space-x-2 font-sans text-xs text-[#B8C4C2]">
         <li>
-          <Link to="/" className="hover:text-[#F3EBDD] transition-colors">
+          <Link to="/" className="hover:text-[#F5F1EA] transition-colors">
             HOME
           </Link>
         </li>
         <li aria-hidden="true">/</li>
         <li>
-          <Link to={genderPath} className="hover:text-[#F3EBDD] transition-colors font-medium">
+          <Link to={genderPath} className="hover:text-[#F5F1EA] transition-colors font-medium">
             {genderLabel}
           </Link>
         </li>
         <li aria-hidden="true">/</li>
-        <li className="text-[#F3EBDD] font-semibold uppercase tracking-wider" aria-current="page">
+        <li className="text-[#F5F1EA] font-semibold uppercase tracking-wider" aria-current="page">
           {product.name}
         </li>
       </ol>
@@ -126,8 +126,8 @@ export default function ProductDetails() {
           description="The requested fragrance signature could not be found."
           canonicalPath="/product"
         />
-        <h1 className="font-serif text-3xl font-normal text-[#F3EBDD] mb-4">Product Not Found</h1>
-        <p className="font-sans text-sm text-[#C8C1B5] mb-6">
+        <h1 className="font-sans text-3xl font-bold text-[#F5F1EA] mb-4">Product Not Found</h1>
+        <p className="font-sans text-sm text-[#B8C4C2] mb-6">
           The fragrance signature you are looking for does not exist or has been moved.
         </p>
         <Link
@@ -208,20 +208,20 @@ export default function ProductDetails() {
           </div>
 
           {/* Desktop Featured Review Card */}
-          <div className="hidden md:block mt-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4 md:p-5 text-[#F3EBDD] shadow-sm">
+          <div className="hidden md:block mt-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-4 md:p-5 text-[#F5F1EA] shadow-sm">
             <div className="flex items-center gap-1.5 mb-2">
               <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
             </div>
-            <blockquote className="font-serif text-sm lg:text-base italic text-[#F3EBDD] leading-snug mb-2.5">
+            <blockquote className="font-sans text-sm lg:text-base italic text-[#E5E9E8] leading-snug mb-2.5">
               "{productReview.text}"
             </blockquote>
             <div className="flex items-center justify-between flex-wrap gap-2 pt-2 border-t border-[rgba(243,235,221,0.12)]">
-              <span className="font-sans text-xs text-[#C8C1B5]">
+              <span className="font-sans text-xs text-[#B8C4C2]">
                 {productReview.customer} · {productReview.city}
               </span>
               <Link
                 to={`/reviews?product=${product.slug}`}
-                className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F3EBDD] hover:text-[#C5A15A] transition-colors inline-flex items-center gap-1.5"
+                className="font-sans text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-1.5"
               >
                 VIEW MORE REVIEWS <span aria-hidden>→</span>
               </Link>
@@ -234,35 +234,35 @@ export default function ProductDetails() {
           {/* Bestseller Badge */}
           {product.isBestseller && (
             <div className="self-start">
-              <span className="bg-[#7A2929] text-[#F3EBDD] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
+              <span className="bg-[#7A2929] text-[#F5F1EA] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm inline-block mb-2">
                 BESTSELLER
               </span>
             </div>
           )}
 
           {/* Product Title */}
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] uppercase font-normal tracking-[0.06em] text-[#F3EBDD] leading-tight">
+          <h1 className="font-sans text-3xl sm:text-4xl lg:text-[44px] uppercase font-bold tracking-[0.04em] text-[#F5F1EA] leading-tight">
             {product.name}
           </h1>
 
           {/* Product Type + Gender */}
-          <div className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide font-medium mt-1">
+          <div className="font-sans text-xs sm:text-sm text-[#B8C4C2] tracking-wide font-medium mt-1">
             Eau de Parfum · {genderTarget}
           </div>
 
           {/* Rating + Review Count */}
           <div className="mt-3 flex items-center gap-2.5">
             <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
-            <span className="font-sans text-xs font-semibold text-[#F3EBDD]">{product.rating}</span>
-            <span className="font-sans text-xs text-[#C8C1B5]">({product.reviewCount} reviews)</span>
+            <span className="font-sans text-xs font-semibold text-[#F5F1EA]">{product.rating}</span>
+            <span className="font-sans text-xs text-[#B8C4C2]">({product.reviewCount} reviews)</span>
           </div>
 
           {/* Price & Size */}
           <div className="mt-4">
-            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F3EBDD] tracking-tight">
+            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F5F1EA] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
-            <div className="font-sans text-xs text-[#C8C1B5] font-medium tracking-wider uppercase mt-0.5">
+            <div className="font-sans text-xs text-[#B8C4C2] font-medium tracking-wider uppercase mt-0.5">
               {product.size || '60 ML'}
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function ProductDetails() {
             </a>
 
             {/* Reassurance text */}
-            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#C8C1B5] font-sans">
+            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
               <span>We'll confirm your order and delivery details on WhatsApp.</span>
             </div>
@@ -293,10 +293,10 @@ export default function ProductDetails() {
 
             {/* ABOUT THE SCENT */}
             <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-1.5">
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
                 ABOUT THE SCENT
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-[#E5E9E8] leading-relaxed">
                 {product.description}
               </p>
             </section>
@@ -306,7 +306,7 @@ export default function ProductDetails() {
 
             {/* FRAGRANCE NOTES */}
             <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-2.5">
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-2.5">
                 FRAGRANCE NOTES
               </h2>
               <div className="grid grid-cols-3 gap-3 lg:gap-4 py-0.5">
@@ -318,10 +318,10 @@ export default function ProductDetails() {
                     className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                   />
                   <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
                       TOP NOTES
                     </div>
-                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                    <div className="font-sans text-xs text-[#B8C4C2] leading-snug">
                       {formatNotes(product.notes?.top)}
                     </div>
                   </div>
@@ -335,10 +335,10 @@ export default function ProductDetails() {
                     className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                   />
                   <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
                       HEART NOTES
                     </div>
-                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                    <div className="font-sans text-xs text-[#B8C4C2] leading-snug">
                       {formatNotes(product.notes?.heart)}
                     </div>
                   </div>
@@ -352,10 +352,10 @@ export default function ProductDetails() {
                     className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                   />
                   <div>
-                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD] mb-0.5">
+                    <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA] mb-0.5">
                       BASE NOTES
                     </div>
-                    <div className="font-sans text-xs text-[#C8C1B5] leading-snug">
+                    <div className="font-sans text-xs text-[#B8C4C2] leading-snug">
                       {formatNotes(product.notes?.base)}
                     </div>
                   </div>
@@ -368,11 +368,11 @@ export default function ProductDetails() {
 
             {/* DELIVERY & ORDERING */}
             <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3EBDD] mb-1.5">
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
                 DELIVERY & ORDERING
               </h2>
-              <div className="flex items-start gap-3 text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
-                <Truck className="w-4 h-4 text-[#F3EBDD] shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 text-xs sm:text-sm text-[#E5E9E8] leading-relaxed">
+                <Truck className="w-4 h-4 text-[#F5F1EA] shrink-0 mt-0.5" />
                 <p>
                   We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
                 </p>
@@ -387,18 +387,18 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => toggleAccordion('about')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
                 aria-expanded={openAccordions.about}
               >
                 <span>ABOUT THE SCENT</span>
                 {openAccordions.about ? (
-                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
                 )}
               </button>
               {openAccordions.about && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#C8C1B5] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3">
+                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3">
                   {product.description}
                 </div>
               )}
@@ -409,14 +409,14 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => toggleAccordion('notes')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
                 aria-expanded={openAccordions.notes}
               >
                 <span>FRAGRANCE NOTES</span>
                 {openAccordions.notes ? (
-                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
                 )}
               </button>
               {openAccordions.notes && (
@@ -429,10 +429,10 @@ export default function ProductDetails() {
                       className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                     />
                     <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
                         TOP NOTES
                       </div>
-                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.top)}</div>
+                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.top)}</div>
                     </div>
                   </div>
                   {/* Heart */}
@@ -443,10 +443,10 @@ export default function ProductDetails() {
                       className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                     />
                     <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
                         HEART NOTES
                       </div>
-                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.heart)}</div>
+                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.heart)}</div>
                     </div>
                   </div>
                   {/* Base */}
@@ -457,10 +457,10 @@ export default function ProductDetails() {
                       className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
                     />
                     <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F3EBDD]">
+                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
                         BASE NOTES
                       </div>
-                      <div className="font-sans text-xs text-[#C8C1B5]">{formatNotes(product.notes?.base)}</div>
+                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.base)}</div>
                     </div>
                   </div>
                 </div>
@@ -472,31 +472,31 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => toggleAccordion('reviews')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
                 aria-expanded={openAccordions.reviews}
               >
                 <span>WHAT PEOPLE SAY</span>
                 {openAccordions.reviews ? (
-                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
                 )}
               </button>
               {openAccordions.reviews && (
-                <div className="px-4 pb-4 border-t border-[rgba(243,235,221,0.12)] pt-3 bg-[#1C4A55] text-[#F3EBDD] rounded-b-lg">
+                <div className="px-4 pb-4 border-t border-[rgba(243,235,221,0.12)] pt-3 bg-[#1C4A55] text-[#F5F1EA] rounded-b-lg">
                   <div className="flex items-center gap-1.5 mb-2">
                     <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
                   </div>
-                  <blockquote className="font-serif text-base italic text-[#F3EBDD] leading-relaxed mb-2">
+                  <blockquote className="font-sans text-base italic text-[#E5E9E8] leading-relaxed mb-2">
                     "{productReview.text}"
                   </blockquote>
-                  <div className="font-sans text-xs text-[#C8C1B5]">
+                  <div className="font-sans text-xs text-[#B8C4C2]">
                     {productReview.customer} · {productReview.city}
                   </div>
                   <div className="mt-3">
                     <Link
                       to={`/reviews?product=${product.slug}`}
-                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F3EBDD] hover:text-[#C5A15A] transition-colors inline-flex items-center gap-1.5"
+                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-1.5"
                     >
                       VIEW MORE REVIEWS <span aria-hidden>→</span>
                     </Link>
@@ -510,19 +510,19 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => toggleAccordion('delivery')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F3EBDD]"
+                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
                 aria-expanded={openAccordions.delivery}
               >
                 <span>DELIVERY & ORDERING</span>
                 {openAccordions.delivery ? (
-                  <Minus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
                 ) : (
-                  <Plus className="w-4 h-4 text-[#C8C1B5]" />
+                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
                 )}
               </button>
               {openAccordions.delivery && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#C8C1B5] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 flex items-start gap-2.5">
-                  <Truck className="w-4 h-4 text-[#F3EBDD] shrink-0 mt-0.5" />
+                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 flex items-start gap-2.5">
+                  <Truck className="w-4 h-4 text-[#F5F1EA] shrink-0 mt-0.5" />
                   <span>
                     We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
                   </span>
@@ -541,32 +541,32 @@ export default function ProductDetails() {
               className="flex flex-col items-center justify-center group hover:opacity-90 transition-opacity"
             >
               <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#25D366] fill-[#25D366] mb-1.5" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-bold text-[#F5F1EA] leading-tight">
                 Order on WhatsApp
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
                 Instant Response
               </span>
             </a>
 
-            {/* 2. Secure & Trusted (Original Blue Padlock Icon, No Keyhole) */}
+            {/* 2. Secure & Trusted */}
             <div className="flex flex-col items-center justify-center">
               <SecureLockIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-bold text-[#F5F1EA] leading-tight">
                 Secure & Trusted
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
                 Verified Checkout
               </span>
             </div>
 
-            {/* 3. Authentic Products (Unfilled Green Shield Icon with Green Tick Mark) */}
+            {/* 3. Authentic Products */}
             <div className="flex flex-col items-center justify-center">
               <AuthTickIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 mb-1.5 shrink-0" />
-              <span className="font-sans text-[10px] sm:text-[11.5px] font-semibold text-[#F3EBDD] leading-tight">
+              <span className="font-sans text-[10px] sm:text-[11.5px] font-bold text-[#F5F1EA] leading-tight">
                 Authentic Products
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] text-[#C8C1B5] mt-0.5">
+              <span className="font-sans text-[9px] sm:text-[10px] text-[#B8C4C2] mt-0.5">
                 100% Guaranteed
               </span>
             </div>
