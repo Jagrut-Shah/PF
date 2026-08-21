@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 /**
  * OccasionCard Component
  * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below the image.
- * Desktop (>= md): Featured Hero Card treatment for Date Night (2-3% scaled, 5px elevated, static 2px wine-red #8B1E1E edge, soft wine-red spotlight depth shadow). Zero animations.
+ * Desktop (>= md): Featured Hero Card treatment for Date Night with Modern Gen-Z Sans-Serif Typography (Plus Jakarta Sans).
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
@@ -44,7 +44,7 @@ export default function OccasionCard({ occasion }) {
             aria-hidden="true"
           />
           <h3
-            className="font-sans text-[9.5px] sm:text-[11px] font-bold tracking-[0.04em] uppercase text-[#F5F1EA] text-center leading-tight break-words"
+            className="font-sans text-[9.5px] sm:text-[11px] font-semibold tracking-[0.02em] uppercase text-[#F5F1EA] text-center leading-tight break-words"
           >
             {occasion.title}
           </h3>
@@ -86,8 +86,8 @@ export default function OccasionCard({ occasion }) {
                 aria-hidden="true"
               />
               <h3
-                className="font-sans text-[13px] lg:text-[13.5px] font-semibold tracking-[0.12em] uppercase leading-none truncate"
-                style={{ color: '#FFFFFF', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
+                className="font-sans text-[13.5px] lg:text-[14.5px] font-semibold tracking-[0.02em] uppercase leading-none truncate text-[#F5F1EA]"
+                style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
               >
                 {occasion.title}
               </h3>
@@ -95,8 +95,8 @@ export default function OccasionCard({ occasion }) {
 
             {/* Subtitle */}
             <p
-              className="font-sans text-[13px] lg:text-[13.5px] leading-snug mt-1 font-normal tracking-wide truncate"
-              style={{ color: '#FFFFFF', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
+              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#F5F1EA]/90"
+              style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
             >
               {occasion.description}
             </p>
