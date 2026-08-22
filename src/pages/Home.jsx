@@ -3,6 +3,7 @@ import SEO from '../components/common/SEO';
 import ShopByOccasion from '../components/home/ShopByOccasion';
 import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
 import MostLoved from '../components/home/MostLoved';
+import GiftSection from '../components/home/GiftSection';
 import FindYourScent from '../components/home/FindYourScent';
 import TrustStrip from '../components/home/TrustStrip';
 import DiscoverySet from '../components/home/DiscoverySet';
@@ -49,6 +50,9 @@ export default function Home() {
 
       {/* 4. MOST LOVED (BESTSELLERS) */}
       <MostLoved />
+
+      {/* 5. FIND THE PERFECT GIFT (GIFTING SECTION) */}
+      <GiftSection />
 
       {/* 5. TRUST STRIP */}
       <TrustStrip />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X, Gift } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -12,6 +12,8 @@ import {
   updateCartItemQuantity,
   removeCartItem,
   getCartTotals,
+  getCartGiftOptions,
+  updateCartGiftOptions,
   createCartWhatsAppOrderUrl,
 } from '../utils/cart';
 
@@ -111,6 +113,12 @@ export default function ProductDetails() {
   const [addedToCart, setAddedToCart] = useState(false);
   const [showCartDrawer, setShowCartDrawer] = useState(false);
   const [cartItems, setCartItems] = useState(getCart());
+  const [cartGiftOpts, setCartGiftOpts] = useState(getCartGiftOptions());
+
+  // Optional Product Page Gifting State
+  const [isGift, setIsGift] = useState(false);
+  const [giftPackaging, setGiftPackaging] = useState(false);
+  const [giftMessage, setGiftMessage] = useState('');
 
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
@@ -139,10 +147,11 @@ export default function ProductDetails() {
     }
   }, [product]);
 
-  // Synchronize cart items with localStorage events across navigations
+  // Synchronize cart items and gift options with localStorage events across navigations
   useEffect(() => {
     const syncCart = () => {
       setCartItems(getCart());
+      setCartGiftOpts(getCartGiftOptions());
     };
 
     syncCart();
@@ -161,9 +170,14 @@ export default function ProductDetails() {
     if (e) e.preventDefault();
     if (!product) return;
 
+    const giftDetails = isGift
+      ? { isGift: true, giftPackaging: Boolean(giftPackaging), giftMessage: giftMessage.trim() }
+      : null;
+
     // 1. Add product item with selected variant to shared multi-product cart
-    const updatedCart = addToCartItem(product, selectedSize);
+    const updatedCart = addToCartItem(product, selectedSize, giftDetails);
     setCartItems(updatedCart);
+    setCartGiftOpts(getCartGiftOptions());
 
     // 2. Trigger feedback and show cart confirmation drawer
     setAddedToCart(true);
@@ -172,6 +186,22 @@ export default function ProductDetails() {
     setTimeout(() => {
       setAddedToCart(false);
     }, 2500);
+  };
+
+  // Cart Drawer Gift Handlers
+  const handleCartGiftToggle = (checked) => {
+    const updated = updateCartGiftOptions({ isGift: checked });
+    setCartGiftOpts(updated);
+  };
+
+  const handleCartGiftPackagingToggle = (checked) => {
+    const updated = updateCartGiftOptions({ giftPackaging: checked });
+    setCartGiftOpts(updated);
+  };
+
+  const handleCartGiftMessageChange = (val) => {
+    const updated = updateCartGiftOptions({ giftMessage: val });
+    setCartGiftOpts(updated);
   };
 
   // Sticky Add to Cart viewport visibility observer
@@ -393,6 +423,53 @@ export default function ProductDetails() {
             <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
               <span>We'll confirm your order and delivery details on WhatsApp.</span>
+            </div>
+
+            {/* OPTIONAL GIFT OPTION BOX */}
+            <div className="mt-3.5 p-3 sm:p-3.5 bg-[#1C4A55]/70 border border-[rgba(243,235,221,0.18)] rounded-lg text-xs space-y-2">
+              <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F5F1EA]">
+                <input
+                  type="checkbox"
+                  checked={isGift}
+                  onChange={(e) => setIsGift(e.target.checked)}
+                  className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                  id="product-gift-checkbox"
+                />
+                <span className="flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
+                  <span>Gifting this?</span>
+                  <span className="text-[#B8C4C2] font-normal text-[11px]">(Add gift packaging & message)</span>
+                </span>
+              </label>
+
+              {isGift && (
+                <div className="pl-6 pt-2 space-y-2 border-t border-[rgba(243,235,221,0.1)] text-[#B8C4C2]">
+                  <label className="flex items-center gap-2 cursor-pointer text-[11.5px] text-[#F5F1EA]">
+                    <input
+                      type="checkbox"
+                      checked={giftPackaging}
+                      onChange={(e) => setGiftPackaging(e.target.checked)}
+                      className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                    />
+                    <span>Add gift packaging</span>
+                  </label>
+
+                  <div>
+                    <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
+                      Personal Gift Message (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      value={giftMessage}
+                      onChange={(e) => setGiftMessage(e.target.value)}
+                      placeholder="e.g. Happy Birthday! Enjoy this fragrance signature."
+                      className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#C5A15A]"
+                      maxLength={150}
+                      id="product-gift-message-input"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -883,6 +960,55 @@ export default function ProductDetails() {
               )}
             </div>
 
+            {/* GIFT OPTIONS IN CART DRAWER */}
+            {cartItems.length > 0 && (
+              <div className="px-4 py-3 bg-[#102F38]/70 border-t border-b border-[rgba(243,235,221,0.12)] space-y-2 text-xs">
+                <label className="flex items-center justify-between cursor-pointer font-bold text-[#F5F1EA]">
+                  <span className="flex items-center gap-1.5">
+                    <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
+                    <span>Is this a gift?</span>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={cartGiftOpts?.isGift || false}
+                    onChange={(e) => handleCartGiftToggle(e.target.checked)}
+                    className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                    id="cart-gift-checkbox"
+                  />
+                </label>
+
+                {cartGiftOpts?.isGift && (
+                  <div className="pt-2 space-y-2 border-t border-[rgba(243,235,221,0.1)] text-[#B8C4C2]">
+                    <label className="flex items-center gap-2 cursor-pointer text-[11.5px] text-[#F5F1EA]">
+                      <input
+                        type="checkbox"
+                        checked={cartGiftOpts?.giftPackaging || false}
+                        onChange={(e) => handleCartGiftPackagingToggle(e.target.checked)}
+                        className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                        id="cart-gift-packaging-checkbox"
+                      />
+                      <span>Add gift packaging</span>
+                    </label>
+
+                    <div>
+                      <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
+                        Personal Gift Message
+                      </label>
+                      <input
+                        type="text"
+                        value={cartGiftOpts?.giftMessage || ''}
+                        onChange={(e) => handleCartGiftMessageChange(e.target.value)}
+                        placeholder="Enter a message for the recipient..."
+                        className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#C5A15A]"
+                        maxLength={150}
+                        id="cart-gift-message-input"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Cart Footer */}
             {cartItems.length > 0 && (
               <div className="p-4 border-t border-[rgba(243,235,221,0.12)] bg-[#0A0A0A] space-y-3">
@@ -900,7 +1026,7 @@ export default function ProductDetails() {
                     CONTINUE SHOPPING
                   </button>
                   <a
-                    href={createCartWhatsAppOrderUrl(cartItems)}
+                    href={createCartWhatsAppOrderUrl(cartItems, cartGiftOpts)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-white bg-[#102F38] hover:bg-[#163E49] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
