@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MainContainer from '../ui/MainContainer';
 import products from '../../data/products';
-import { addToCartItem, getCart } from '../../utils/cart';
-import { ShoppingBag, Check, Layers, Sparkles, ChevronRight } from 'lucide-react';
+import { addToCartItem } from '../../utils/cart';
+import { ShoppingBag, Check, Layers, Sparkles, ChevronRight, ArrowRight } from 'lucide-react';
 
 // Preset duos matching the 3 curated paths
 const BUNDLE_PRESETS = [
@@ -12,7 +13,7 @@ const BUNDLE_PRESETS = [
     subtitle: '2 × 60ML',
     description: 'A seductive combination for evenings and nights out.',
     defaultFirstSlug: 'noir',
-    defaultSecondSlug: 'oud-x',
+    defaultSecondSlug: 'velvet',
     badge: 'EVENING & SEDUCTIVE',
   },
   {
@@ -20,8 +21,8 @@ const BUNDLE_PRESETS = [
     title: 'EVERYDAY + OFFICE',
     subtitle: '2 × 60ML',
     description: 'One effortless everyday scent + one sharper scent for work.',
-    defaultFirstSlug: 'citrus-woods',
-    defaultSecondSlug: 'amber-velvet',
+    defaultFirstSlug: 'sable',
+    defaultSecondSlug: 'aura',
     badge: 'EFFORTLESS & SHARP',
   },
   {
@@ -29,8 +30,8 @@ const BUNDLE_PRESETS = [
     title: 'GIFT DUO',
     subtitle: '2 × 60ML',
     description: 'Two fragrances selected as a memorable gift.',
-    defaultFirstSlug: 'rose-noir',
-    defaultSecondSlug: 'vanilla-leather',
+    defaultFirstSlug: 'oud-x',
+    defaultSecondSlug: 'blanc',
     badge: 'MEMORABLE GIFT',
   },
 ];
@@ -51,23 +52,14 @@ export default function ScentWardrobeBundle() {
 
   // Calculate pricing & savings
   const originalTotalPrice = (product1.price || 1299) + (product2.price || 1299);
-  // Bundle price calculation (₹2,199 or 15% discount)
   const bundleDiscount = 399;
   const bundlePrice = Math.max(originalTotalPrice - bundleDiscount, 1999);
   const actualSavings = originalTotalPrice - bundlePrice;
-
-  // Handle preset click
-  const handleSelectPreset = (preset) => {
-    setActivePreset(preset.id);
-    setFirstProductSlug(preset.defaultFirstSlug);
-    setSecondProductSlug(preset.defaultSecondSlug);
-  };
 
   // Add Duo to Cart
   const handleAddDuoToCart = () => {
     if (!product1.id || !product2.id) return;
 
-    // Add both products to shared cart
     addToCartItem(product1, '60 ML');
     addToCartItem(product2, '60 ML');
 
@@ -86,7 +78,7 @@ export default function ScentWardrobeBundle() {
             <Layers className="w-3.5 h-3.5 text-[#C5A15A]" />
             <span>FRAGRANCE CURATION</span>
           </div>
-          <h2 className="font-sans text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-[#F5F1EA]">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-[#F5F1EA]">
             BUILD YOUR SCENT WARDROBE
           </h2>
           <p className="font-sans text-sm sm:text-base text-[#B8C4C2] mt-2">
@@ -94,44 +86,35 @@ export default function ScentWardrobeBundle() {
           </p>
         </div>
 
-        {/* 3 Curated Bundle Preset Cards */}
+        {/* 3 Curated Bundle Preset Cards — Click opens dedicated landing page */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-10">
-          {BUNDLE_PRESETS.map((preset) => {
-            const isSelected = activePreset === preset.id;
-            return (
-              <div
-                key={preset.id}
-                onClick={() => handleSelectPreset(preset)}
-                className={`p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
-                  isSelected
-                    ? 'bg-[#1C4A55] border-[#C5A15A] shadow-lg ring-1 ring-[#C5A15A]/50'
-                    : 'bg-[#102F38]/80 border-[rgba(243,235,221,0.12)] hover:border-[rgba(243,235,221,0.3)] hover:bg-[#102F38]'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded bg-[#102F38] text-[#C5A15A] border border-[rgba(243,235,221,0.15)]">
-                      {preset.badge}
-                    </span>
-                    <span className="text-xs font-bold text-[#B8C4C2]">{preset.subtitle}</span>
-                  </div>
-                  <h3 className="font-sans text-base sm:text-lg font-bold uppercase tracking-wide text-[#F5F1EA]">
-                    {preset.title}
-                  </h3>
-                  <p className="font-sans text-xs text-[#B8C4C2] mt-1.5 leading-relaxed">
-                    {preset.description}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-[rgba(243,235,221,0.1)] flex items-center justify-between text-xs font-bold">
-                  <span className={isSelected ? 'text-[#C5A15A]' : 'text-[#B8C4C2]'}>
-                    {isSelected ? 'ACTIVE DUO PRESET ✓' : 'SELECT PRESET'}
+          {BUNDLE_PRESETS.map((preset) => (
+            <Link
+              key={preset.id}
+              to={`/wardrobe/${preset.id}`}
+              className="p-5 rounded-xl border border-[rgba(243,235,221,0.15)] bg-[#102F38] hover:border-[#C5A15A] hover:bg-[#1C4A55] transition-all cursor-pointer flex flex-col justify-between group shadow-md"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded bg-[#102F38] text-[#C5A15A] border border-[rgba(243,235,221,0.15)]">
+                    {preset.badge}
                   </span>
-                  <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'translate-x-1 text-[#C5A15A]' : 'text-[#B8C4C2]'}`} />
+                  <span className="text-xs font-bold text-[#B8C4C2]">{preset.subtitle}</span>
                 </div>
+                <h3 className="font-serif text-lg font-bold uppercase tracking-wide text-[#F5F1EA] group-hover:text-[#C5A15A] transition-colors">
+                  {preset.title}
+                </h3>
+                <p className="font-sans text-xs text-[#B8C4C2] mt-1.5 leading-relaxed">
+                  {preset.description}
+                </p>
               </div>
-            );
-          })}
+
+              <div className="mt-4 pt-3 border-t border-[rgba(243,235,221,0.12)] flex items-center justify-between text-xs font-bold text-[#C5A15A]">
+                <span>EXPLORE WARDROBE PAGE</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          ))}
         </div>
 
         {/* Bundle Builder Container */}

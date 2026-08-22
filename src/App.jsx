@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import ProductDetails from './pages/ProductDetails';
+import WardrobePage from './pages/WardrobePage';
 import ReviewsPage from './pages/ReviewsPage';
 import FaqPage from './pages/FaqPage';
 import ShippingPage from './pages/ShippingPage';
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/category/:categorySlug" element={<CategoryPage />} />
           <Route path="/product/:productSlug" element={<ProductDetails />} />
+          <Route path="/wardrobe/:bundleSlug" element={<WardrobePage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/shipping" element={<ShippingPage />} />

@@ -3,7 +3,6 @@ import SEO from '../components/common/SEO';
 import ShopByOccasion from '../components/home/ShopByOccasion';
 import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
 import MostLoved from '../components/home/MostLoved';
-import GiftSection from '../components/home/GiftSection';
 import FindYourScent from '../components/home/FindYourScent';
 import TrustStrip from '../components/home/TrustStrip';
 import DiscoverySet from '../components/home/DiscoverySet';
@@ -14,21 +13,18 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * Home Page - Final Sequence
- *
- * Sequence:
- * 1. NAVBAR (App Layout)
- * 2. SHOP BY OCCASION (Date Night, Everyday, Office, Party)
- * 3. FIND YOUR SIGNATURE SCENT CTA (Compact Banner)
- * 4. FIND YOUR SCENT (Categories / Gender Selection)
- * 5. MOST LOVED (Bestsellers)
- * 6. TRUST STRIP (Secure Payments, COD, Tracked Delivery, Support)
- * 7. TRY BEFORE YOU BUY (Discovery / Sample Set)
- * 8. FIND YOUR SIGNATURE SCENT (Full Finder)
+ * Home Page - Sequence:
+ * 1. SHOP BY OCCASION
+ * 2. FIND YOUR SIGNATURE SCENT CTA
+ * 3. FIND YOUR SCENT
+ * 4. MOST LOVED
+ * 5. BUILD YOUR SCENT WARDROBE
+ * 6. TRUST STRIP
+ * 7. TRY BEFORE YOU BUY (DISCOVERY SET)
+ * 8. FIND YOUR SIGNATURE SCENT (SCENT QUIZ)
  * 9. WHY ÉLAVA
  * 10. WHAT PEOPLE SAY
- * 11. THE STORY BEHIND ÉLAVA
- * 12. FOOTER (App Layout)
+ * 11. BRAND STORY
  */
 export default function Home() {
   return (
@@ -52,28 +48,25 @@ export default function Home() {
       {/* 4. MOST LOVED (BESTSELLERS) */}
       <MostLoved />
 
-      {/* 5. FIND THE PERFECT GIFT (GIFTING SECTION) */}
-      <GiftSection />
-
-      {/* 5. TRUST STRIP */}
-      <TrustStrip />
-
-      {/* 6. TRY BEFORE YOU BUY (DISCOVERY SET) */}
-      <DiscoverySet />
-
-      {/* 7. BUILD YOUR SCENT WARDROBE (DUO BUNDLE BUILDER) */}
+      {/* 5. BUILD YOUR SCENT WARDROBE (DUO BUNDLE BUILDER) */}
       <ScentWardrobeBundle />
 
-      {/* 7. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
+      {/* 6. TRUST STRIP */}
+      <TrustStrip />
+
+      {/* 7. TRY BEFORE YOU BUY (DISCOVERY SET) */}
+      <DiscoverySet />
+
+      {/* 8. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
       <ScentQuiz />
 
-      {/* 8. WHY ÉLAVA */}
+      {/* 9. WHY ÉLAVA */}
       <WhyElava />
 
-      {/* 9. WHAT PEOPLE SAY */}
+      {/* 10. WHAT PEOPLE SAY */}
       <WhatPeopleSay />
 
-      {/* 10. THE STORY BEHIND ÉLAVA */}
+      {/* 11. THE STORY BEHIND ÉLAVA */}
       <BrandStory />
     </div>
   );
