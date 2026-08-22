@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ShieldCheck, Truck, Plus, Minus } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
@@ -98,6 +98,8 @@ function formatNotes(notesArray) {
 
 export default function ProductDetails() {
   const { productSlug } = useParams();
+  const mainCtaRef = useRef(null);
+  const [isStickyVisible, setIsStickyVisible] = useState(false);
 
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
@@ -116,6 +118,26 @@ export default function ProductDetails() {
 
   // Find product by slug
   const product = products.find((p) => p.slug === productSlug);
+
+  // Sticky Add to Cart IntersectionObserver
+  useEffect(() => {
+    if (!mainCtaRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isScrolledPast = entry.boundingClientRect.top < 0;
+        setIsStickyVisible(!entry.isIntersecting && isScrolledPast);
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px',
+      }
+    );
+
+    observer.observe(mainCtaRef.current);
+
+    return () => observer.disconnect();
+  }, [product]);
 
   // If product not found
   if (!product) {
@@ -267,8 +289,8 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Large WhatsApp CTA */}
-          <div className="mt-5">
+          {/* Large WhatsApp CTA Container */}
+          <div ref={mainCtaRef} className="mt-5">
             <a
               href={whatsappUrl}
               target="_blank"
@@ -291,14 +313,36 @@ export default function ProductDetails() {
             {/* Divider */}
             <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
 
-            {/* ABOUT THE SCENT */}
-            <section>
-              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
-                ABOUT THE SCENT
+            {/* WHAT DOES IT SMELL LIKE? */}
+            <section className="space-y-3">
+              <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA]">
+                WHAT DOES IT SMELL LIKE?
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#E5E9E8] leading-relaxed">
-                {product.description}
+              <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] leading-relaxed">
+                {product.whatItSmellsLike || product.description}
               </p>
+
+              {product.smellsLikeProfile && product.smellsLikeProfile.length > 0 && (
+                <div className="pt-1">
+                  <div className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F1EA] mb-2">
+                    SMELLS LIKE
+                  </div>
+                  <div className="font-sans text-xs sm:text-sm font-medium text-[#F5F1EA] flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    {product.smellsLikeProfile.map((trait, idx) => (
+                      <React.Fragment key={idx}>
+                        {idx > 0 && (
+                          <span className="text-[#B8C4C2]/60 font-normal select-none" aria-hidden="true">
+                            →
+                          </span>
+                        )}
+                        <span className="bg-[#102F38] text-[#F5F1EA] px-2.5 py-1 rounded border border-[rgba(243,235,221,0.15)] text-xs">
+                          {trait}
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Divider */}
@@ -382,7 +426,7 @@ export default function ProductDetails() {
 
           {/* MOBILE ACCORDIONS */}
           <div className="md:hidden mt-6 space-y-3">
-            {/* Accordion 1: ABOUT THE SCENT */}
+            {/* Accordion 1: WHAT DOES IT SMELL LIKE? */}
             <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
               <button
                 type="button"
@@ -390,7 +434,7 @@ export default function ProductDetails() {
                 className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
                 aria-expanded={openAccordions.about}
               >
-                <span>ABOUT THE SCENT</span>
+                <span>WHAT DOES IT SMELL LIKE?</span>
                 {openAccordions.about ? (
                   <Minus className="w-4 h-4 text-[#B8C4C2]" />
                 ) : (
@@ -398,8 +442,29 @@ export default function ProductDetails() {
                 )}
               </button>
               {openAccordions.about && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3">
-                  {product.description}
+                <div className="px-4 pb-4 font-sans text-xs text-[#B8C4C2] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 space-y-3">
+                  <p>{product.whatItSmellsLike || product.description}</p>
+                  {product.smellsLikeProfile && product.smellsLikeProfile.length > 0 && (
+                    <div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] mb-2">
+                        SMELLS LIKE
+                      </div>
+                      <div className="text-xs font-medium text-[#F5F1EA] flex flex-wrap items-center gap-1.5">
+                        {product.smellsLikeProfile.map((trait, idx) => (
+                          <React.Fragment key={idx}>
+                            {idx > 0 && (
+                              <span className="text-[#B8C4C2]/60 font-normal select-none" aria-hidden="true">
+                                →
+                              </span>
+                            )}
+                            <span className="bg-[#102F38] text-[#F5F1EA] px-2 py-0.5 rounded border border-[rgba(243,235,221,0.15)] text-[11px]">
+                              {trait}
+                            </span>
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -574,6 +639,52 @@ export default function ProductDetails() {
 
         </div>
       </div>
+
+      {/* STICKY ADD TO CART PURCHASE BAR */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-[#000000] border-t border-[rgba(243,235,221,0.15)] shadow-2xl transition-all duration-300 transform pb-[env(safe-area-inset-bottom)] ${
+          isStickyVisible
+            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            : 'translate-y-full opacity-0 pointer-events-none'
+        }`}
+        role="region"
+        aria-label="Sticky Add to Cart purchase bar"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3">
+          {/* Left: Product Name & Price */}
+          <div className="flex items-center gap-3 min-w-0">
+            <img
+              src={product.image}
+              alt={`ÉLAVA ${product.name}`}
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0 select-none"
+            />
+            <div className="min-w-0 flex flex-col sm:flex-row sm:items-center sm:gap-2">
+              <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F1EA] truncate">
+                ÉLAVA {product.name}
+              </span>
+              <span className="hidden sm:inline text-[#B8C4C2]/50 text-xs">|</span>
+              <span className="font-sans text-xs sm:text-sm font-bold text-[#F5F1EA]">
+                ₹{product.price?.toLocaleString()}
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Sticky Add to Cart CTA */}
+          <div className="shrink-0">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] rounded-md py-2 px-3.5 sm:py-2.5 sm:px-6 font-bold uppercase text-[11px] sm:text-xs tracking-[0.14em] flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.98]"
+              aria-label={`Add ÉLAVA ${product.name} to cart for ₹${product.price}`}
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366] fill-[#25D366]" />
+              <span>ADD TO CART</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </MainContainer>
   );
 }
+
