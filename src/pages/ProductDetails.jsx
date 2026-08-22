@@ -6,6 +6,14 @@ import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
 import products from '../data/products';
 import createWhatsAppOrderUrl from '../utils/whatsapp';
+import {
+  getCart,
+  addToCartItem,
+  updateCartItemQuantity,
+  removeCartItem,
+  getCartTotals,
+  createCartWhatsAppOrderUrl,
+} from '../utils/cart';
 
 /**
  * Official WhatsApp Icon matching brand style
@@ -102,6 +110,7 @@ export default function ProductDetails() {
   const [isStickyVisible, setIsStickyVisible] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
   const [showCartDrawer, setShowCartDrawer] = useState(false);
+  const [cartItems, setCartItems] = useState(getCart());
 
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
@@ -130,40 +139,33 @@ export default function ProductDetails() {
     }
   }, [product]);
 
+  // Synchronize cart items with localStorage events across navigations
+  useEffect(() => {
+    const syncCart = () => {
+      setCartItems(getCart());
+    };
+
+    syncCart();
+
+    window.addEventListener('cart-updated', syncCart);
+    window.addEventListener('storage', syncCart);
+
+    return () => {
+      window.removeEventListener('cart-updated', syncCart);
+      window.removeEventListener('storage', syncCart);
+    };
+  }, []);
+
   // Shared Add to Cart Handler for both Main Purchase Area & Sticky Bar
   const handleAddToCart = (e) => {
     if (e) e.preventDefault();
     if (!product) return;
 
-    // 1. Prepare product item with selected variant
-    const cartItem = {
-      id: product.id,
-      slug: product.slug,
-      name: product.name,
-      price: product.price,
-      size: selectedSize,
-      image: product.image,
-      quantity: 1,
-    };
+    // 1. Add product item with selected variant to shared multi-product cart
+    const updatedCart = addToCartItem(product, selectedSize);
+    setCartItems(updatedCart);
 
-    // 2. Persist to cart state / storage
-    try {
-      const existingCart = JSON.parse(localStorage.getItem('elava_cart') || '[]');
-      const existingIdx = existingCart.findIndex(
-        (item) => item.id === cartItem.id && item.size === cartItem.size
-      );
-      if (existingIdx > -1) {
-        existingCart[existingIdx].quantity += 1;
-      } else {
-        existingCart.push(cartItem);
-      }
-      localStorage.setItem('elava_cart', JSON.stringify(existingCart));
-      window.dispatchEvent(new Event('cart-updated'));
-    } catch (err) {
-      console.error('Failed updating cart state', err);
-    }
-
-    // 3. Trigger feedback and show cart confirmation drawer
+    // 2. Trigger feedback and show cart confirmation drawer
     setAddedToCart(true);
     setShowCartDrawer(true);
 
@@ -252,6 +254,8 @@ export default function ProductDetails() {
       availability: 'https://schema.org/InStock',
     },
   };
+
+  const cartTotals = getCartTotals(cartItems);
 
   return (
     <MainContainer className="py-6 sm:py-8">
@@ -736,7 +740,7 @@ export default function ProductDetails() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3">
           {/* Left: Product Name & Price */}
-          <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <img
               src={product.image}
               alt={`ÉLAVA ${product.name}`}
@@ -753,23 +757,38 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Right: Sticky Add to Cart CTA (Calls handleAddToCart, NOT WhatsApp) */}
-          <div className="shrink-0">
+          {/* Right: Sticky Buttons - ORDER ON WHATSAPP first, ADD TO CART second */}
+          <div className="shrink-0 flex items-center gap-2">
+            {/* 1. ORDER ON WHATSAPP (FIRST) */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#102F38] hover:bg-[#163E49] text-white border border-[rgba(243,235,221,0.2)] rounded-md py-1.5 px-2.5 sm:py-2 sm:px-4 font-bold uppercase text-[10.5px] sm:text-xs tracking-[0.12em] flex items-center justify-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
+              aria-label={`Order ÉLAVA ${product.name} on WhatsApp`}
+              id="sticky-whatsapp-btn"
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+              <span className="hidden sm:inline">ORDER ON WHATSAPP</span>
+              <span className="sm:hidden">WHATSAPP</span>
+            </a>
+
+            {/* 2. ADD TO CART (SECOND) */}
             <button
               type="button"
               onClick={handleAddToCart}
-              className="bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] rounded-md py-2 px-3.5 sm:py-2.5 sm:px-6 font-bold uppercase text-[11px] sm:text-xs tracking-[0.14em] flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.98] cursor-pointer"
+              className="bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] rounded-md py-1.5 px-3 sm:py-2 sm:px-5 font-bold uppercase text-[10.5px] sm:text-xs tracking-[0.12em] flex items-center justify-center gap-1.5 transition-all duration-200 shadow-sm active:scale-[0.98] cursor-pointer"
               aria-label={`Add ÉLAVA ${product.name} to cart for ₹${product.price}`}
               id="sticky-add-to-cart-btn"
             >
               {addedToCart ? (
                 <>
-                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366]" />
+                  <Check className="w-3.5 h-3.5 text-[#25D366]" />
                   <span>ADDED ✓</span>
                 </>
               ) : (
                 <>
-                  <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F5F1EA]" />
+                  <ShoppingBag className="w-3.5 h-3.5 text-[#F5F1EA]" />
                   <span>ADD TO CART</span>
                 </>
               )}
@@ -778,68 +797,126 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      {/* CART ADDED CONFIRMATION DRAWER / TOAST */}
+      {/* MULTI-PRODUCT CART DRAWER / MODAL */}
       {showCartDrawer && (
         <div
-          className="fixed bottom-16 right-4 sm:bottom-20 sm:right-6 z-50 bg-[#000000] border border-[rgba(243,235,221,0.25)] rounded-xl p-4 shadow-2xl max-w-sm w-[calc(100vw-2rem)] sm:w-80 text-[#F5F1EA] animate-in fade-in slide-in-from-bottom-4 duration-200"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/70 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
           role="dialog"
-          aria-label="Cart Notification"
+          aria-label="Your Shopping Cart"
         >
-          <div className="flex items-start justify-between gap-2 mb-2 pb-2 border-b border-[rgba(243,235,221,0.12)]">
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-[#25D366]" />
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA]">
-                ADDED TO CART
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setShowCartDrawer(false)}
-              className="text-[#B8C4C2] hover:text-[#F5F1EA] p-0.5 rounded transition-colors"
-              aria-label="Close notification"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-10 h-10 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0"
-            />
-            <div className="min-w-0 text-xs">
-              <div className="font-bold uppercase tracking-wide truncate text-[#F5F1EA]">
-                ÉLAVA {product.name}
+          <div className="bg-[#000000] border border-[rgba(243,235,221,0.25)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
+            {/* Header */}
+            <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <ShoppingBag className="w-4 h-4 text-[#C5A15A]" />
+                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F1EA]">
+                  YOUR CART ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})
+                </span>
               </div>
-              <div className="text-[#B8C4C2]">
-                {selectedSize} · ₹{product.price?.toLocaleString()}
-              </div>
+              <button
+                type="button"
+                onClick={() => setShowCartDrawer(false)}
+                className="text-[#B8C4C2] hover:text-[#F5F1EA] p-1 rounded-full hover:bg-white/10 transition-colors"
+                aria-label="Close cart drawer"
+                id="close-cart-btn"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-          </div>
 
-          <div className="mt-3 pt-2.5 border-t border-[rgba(243,235,221,0.12)] flex items-center justify-between gap-2">
-            <button
-              type="button"
-              onClick={() => setShowCartDrawer(false)}
-              className="text-[11px] font-semibold text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors uppercase tracking-wider"
-            >
-              CONTINUE SHOPPING
-            </button>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#102F38] hover:bg-[#163E49] text-white text-[10.5px] font-bold uppercase tracking-wider py-1.5 px-3 rounded border border-[rgba(243,235,221,0.2)] flex items-center gap-1.5 transition-colors"
-            >
-              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
-              <span>CHECKOUT</span>
-            </a>
+            {/* Cart Items List */}
+            <div className="p-4 space-y-3 overflow-y-auto flex-1 divide-y divide-[rgba(243,235,221,0.08)] max-h-[50vh]">
+              {cartItems.length === 0 ? (
+                <div className="py-8 text-center text-[#B8C4C2] text-xs">
+                  Your cart is currently empty.
+                </div>
+              ) : (
+                cartItems.map((item, idx) => (
+                  <div key={`${item.id}-${item.size}-${idx}`} className="pt-3 first:pt-0 flex items-center gap-3">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-12 h-12 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F5F1EA]">
+                        ÉLAVA {item.name}
+                      </div>
+                      <div className="text-[11px] text-[#B8C4C2] mt-0.5">
+                        {item.size} · ₹{item.price?.toLocaleString()}
+                      </div>
+                      {/* Quantity controls */}
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <div className="inline-flex items-center border border-[rgba(243,235,221,0.2)] rounded bg-[#102F38]">
+                          <button
+                            type="button"
+                            onClick={() => updateCartItemQuantity(item.id, item.size, -1)}
+                            className="px-2 py-0.5 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span className="px-2 text-xs font-bold text-[#F5F1EA]">{item.quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => updateCartItemQuantity(item.id, item.size, 1)}
+                            className="px-2 py-0.5 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeCartItem(item.id, item.size)}
+                          className="text-[10px] text-[#B8C4C2] hover:text-red-400 underline transition-colors"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                    <div className="text-right font-bold text-xs text-[#F5F1EA]">
+                      ₹{(item.price * item.quantity).toLocaleString()}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Cart Footer */}
+            {cartItems.length > 0 && (
+              <div className="p-4 border-t border-[rgba(243,235,221,0.12)] bg-[#0A0A0A] space-y-3">
+                <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
+                  <span className="text-[#B8C4C2] uppercase tracking-wider">TOTAL</span>
+                  <span className="text-[#F5F1EA] text-base font-bold">₹{cartTotals.totalAmount.toLocaleString()}</span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowCartDrawer(false)}
+                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-[#B8C4C2] bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    CONTINUE SHOPPING
+                  </button>
+                  <a
+                    href={createCartWhatsAppOrderUrl(cartItems)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-white bg-[#102F38] hover:bg-[#163E49] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+                    <span>CHECKOUT</span>
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
     </MainContainer>
   );
 }
+
 
 
