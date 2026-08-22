@@ -530,7 +530,7 @@ export default function ProductDetails() {
               <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-2.5">
                 FRAGRANCE NOTES
               </h2>
-              <div className="grid grid-cols-3 gap-3 lg:gap-4 py-0.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 py-0.5">
                 {/* TOP NOTES */}
                 <div className="flex items-start gap-2.5">
                   <img
@@ -549,7 +549,7 @@ export default function ProductDetails() {
                 </div>
 
                 {/* HEART NOTES */}
-                <div className="flex items-start gap-2.5 border-l border-[rgba(243,235,221,0.15)] pl-3 lg:pl-4">
+                <div className="flex items-start gap-2.5 sm:border-l border-[rgba(243,235,221,0.15)] sm:pl-3 lg:pl-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-[rgba(243,235,221,0.1)]">
                   <img
                     src="/images/notes/heart-notes.jpg"
                     alt="Heart notes illustration"
@@ -566,7 +566,7 @@ export default function ProductDetails() {
                 </div>
 
                 {/* BASE NOTES */}
-                <div className="flex items-start gap-2.5 border-l border-[rgba(243,235,221,0.15)] pl-3 lg:pl-4">
+                <div className="flex items-start gap-2.5 sm:border-l border-[rgba(243,235,221,0.15)] sm:pl-3 lg:pl-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-[rgba(243,235,221,0.1)]">
                   <img
                     src="/images/notes/base-notes.jpg"
                     alt="Base notes illustration"
@@ -587,6 +587,31 @@ export default function ProductDetails() {
             {/* Divider */}
             <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
 
+            {/* WHAT PEOPLE SAY */}
+            <section className="bg-[#1C4A55]/40 border border-[rgba(243,235,221,0.12)] rounded-xl p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA]">
+                  WHAT PEOPLE SAY
+                </h2>
+                <StarRating rating={product.rating} size={13} starColor="#C5A15A" />
+              </div>
+              <blockquote className="font-sans text-xs sm:text-sm italic text-[#E5E9E8] leading-relaxed">
+                "{productReview.text}"
+              </blockquote>
+              <div className="flex items-center justify-between text-xs text-[#B8C4C2] pt-1">
+                <span>{productReview.customer} · {productReview.city}</span>
+                <Link
+                  to={`/reviews?product=${product.slug}`}
+                  className="font-sans text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#C5A15A] hover:text-[#FFFFFF] transition-colors"
+                >
+                  VIEW REVIEWS →
+                </Link>
+              </div>
+            </section>
+
+            {/* Divider */}
+            <hr className="my-4 md:my-4.5 border-t border-[rgba(243,235,221,0.15)]" />
+
             {/* DELIVERY & ORDERING */}
             <section>
               <h2 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5F1EA] mb-1.5">
@@ -599,178 +624,6 @@ export default function ProductDetails() {
                 </p>
               </div>
             </section>
-          </div>
-
-          {/* MOBILE ACCORDIONS */}
-          <div className="md:hidden mt-6 space-y-3">
-            {/* Accordion 1: WHAT DOES IT SMELL LIKE? */}
-            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => toggleAccordion('about')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.about}
-              >
-                <span>WHAT DOES IT SMELL LIKE?</span>
-                {openAccordions.about ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
-                ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
-                )}
-              </button>
-              {openAccordions.about && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#B8C4C2] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 space-y-3">
-                  <p>{product.whatItSmellsLike || product.description}</p>
-                  {product.smellsLikeProfile && product.smellsLikeProfile.length > 0 && (
-                    <div>
-                      <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] mb-2">
-                        SMELLS LIKE
-                      </div>
-                      <div className="text-xs font-medium text-[#F5F1EA] flex flex-wrap items-center gap-1.5">
-                        {product.smellsLikeProfile.map((trait, idx) => (
-                          <React.Fragment key={idx}>
-                            {idx > 0 && (
-                              <span className="text-[#B8C4C2]/60 font-normal select-none" aria-hidden="true">
-                                →
-                              </span>
-                            )}
-                            <span className="bg-[#102F38] text-[#F5F1EA] px-2 py-0.5 rounded border border-[rgba(243,235,221,0.15)] text-[11px]">
-                              {trait}
-                            </span>
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Accordion 2: FRAGRANCE NOTES */}
-            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => toggleAccordion('notes')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.notes}
-              >
-                <span>FRAGRANCE NOTES</span>
-                {openAccordions.notes ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
-                ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
-                )}
-              </button>
-              {openAccordions.notes && (
-                <div className="px-4 pb-4 space-y-3.5 border-t border-[rgba(243,235,221,0.12)] pt-3">
-                  {/* Top */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/top-notes.jpg"
-                      alt="Top notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        TOP NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.top)}</div>
-                    </div>
-                  </div>
-                  {/* Heart */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/heart-notes.jpg"
-                      alt="Heart notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        HEART NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.heart)}</div>
-                    </div>
-                  </div>
-                  {/* Base */}
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/images/notes/base-notes.jpg"
-                      alt="Base notes"
-                      className="w-8 h-8 object-contain rounded-full bg-[#102F38] shrink-0 border border-[rgba(243,235,221,0.15)] p-0.5"
-                    />
-                    <div>
-                      <div className="font-sans text-[10px] font-bold tracking-[0.14em] uppercase text-[#F5F1EA]">
-                        BASE NOTES
-                      </div>
-                      <div className="font-sans text-xs text-[#B8C4C2]">{formatNotes(product.notes?.base)}</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Accordion 3: WHAT PEOPLE SAY */}
-            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => toggleAccordion('reviews')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.reviews}
-              >
-                <span>WHAT PEOPLE SAY</span>
-                {openAccordions.reviews ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
-                ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
-                )}
-              </button>
-              {openAccordions.reviews && (
-                <div className="px-4 pb-4 border-t border-[rgba(243,235,221,0.12)] pt-3 bg-[#1C4A55] text-[#F5F1EA] rounded-b-lg">
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
-                  </div>
-                  <blockquote className="font-sans text-base italic text-[#E5E9E8] leading-relaxed mb-2">
-                    "{productReview.text}"
-                  </blockquote>
-                  <div className="font-sans text-xs text-[#B8C4C2]">
-                    {productReview.customer} · {productReview.city}
-                  </div>
-                  <div className="mt-3">
-                    <Link
-                      to={`/reviews?product=${product.slug}`}
-                      className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors inline-flex items-center gap-1.5"
-                    >
-                      VIEW MORE REVIEWS <span aria-hidden>→</span>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Accordion 4: DELIVERY & ORDERING */}
-            <div className="border border-[rgba(243,235,221,0.15)] rounded-lg bg-[#1C4A55] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => toggleAccordion('delivery')}
-                className="w-full flex items-center justify-between p-4 text-left font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F1EA]"
-                aria-expanded={openAccordions.delivery}
-              >
-                <span>DELIVERY & ORDERING</span>
-                {openAccordions.delivery ? (
-                  <Minus className="w-4 h-4 text-[#B8C4C2]" />
-                ) : (
-                  <Plus className="w-4 h-4 text-[#B8C4C2]" />
-                )}
-              </button>
-              {openAccordions.delivery && (
-                <div className="px-4 pb-4 font-sans text-xs text-[#E5E9E8] leading-relaxed border-t border-[rgba(243,235,221,0.12)] pt-3 flex items-start gap-2.5">
-                  <Truck className="w-4 h-4 text-[#F5F1EA] shrink-0 mt-0.5" />
-                  <span>
-                    We take orders directly on WhatsApp. Our team will confirm your delivery details and shipping information.
-                  </span>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* SINGLE COMBINED TRUST / ORDER BOX — PURE BLACK #000000 */}
