@@ -39,8 +39,8 @@ export const products = [
     description:
       "A dark, composed fragrance built around warm woods and subtle spice. NOIR is designed to leave a confident presence without becoming overpowering.",
     whatItSmellsLike:
-      "Imagine stepping into a cool, air-conditioned executive lounge after a crisp morning drive—bright bergamot and black pepper give way to clean lavender, settling into warm amber and dark vetiver that stay composed all day.",
-    smellsLikeProfile: ["Fresh Spice", "Clean Floral", "Warm Amber", "Dark Vetiver"],
+      "Imagine stepping into a cool, air-conditioned office on a warm morning — fresh citrus and light spice that settle into smooth lavender, warm amber, and deep wood.",
+    smellsLikeProfile: ["Fresh Citrus", "Soft Spice", "Warm Amber", "Deep Wood"],
     notes: {
       top: "Bergamot · Black Pepper",
       heart: "Lavender · Geranium · Violet Leaf",
@@ -69,8 +69,8 @@ export const products = [
     description:
       "Deep and unmistakably bold, OUD X combines smoky oud with warm amber and polished leather for an intense evening signature.",
     whatItSmellsLike:
-      "Reminiscent of an opulent hotel lounge on a cool evening in the city—spiced saffron and velvet rose wrapped in rich, smoky oud and polished leather, leaving a warm, magnetic trail.",
-    smellsLikeProfile: ["Warm Saffron", "Rich Rose", "Smoky Oud", "Smooth Sandalwood"],
+      "Like stepping into a luxury hotel on a cool evening — warm saffron spice, smooth dark wood, and a hint of sweet rose that feels rich and confident.",
+    smellsLikeProfile: ["Warm Spice", "Dark Wood", "Soft Rose", "Rich Amber"],
     notes: {
       top: "Saffron · Bergamot",
       heart: "Oud · Rose · Leather",
@@ -99,8 +99,8 @@ export const products = [
     description:
       "EMBER opens with bright spice before settling into a warm, glowing blend of woods and amber. Designed for nights that demand presence.",
     whatItSmellsLike:
-      "Evokes the electric warmth of a vibrant midnight celebration—zippy blood orange and black pepper blending into fiery cinnamon, warm amberwood, and sweet tonka.",
-    smellsLikeProfile: ["Zesty Citrus", "Warm Cinnamon", "Glowing Amber", "Sweet Tonka"],
+      "Like a lively dinner on a cool night — fresh orange and black pepper blending into warm cinnamon and sweet, glowing wood.",
+    smellsLikeProfile: ["Fresh Orange", "Warm Cinnamon", "Sweet Wood", "Rich Spice"],
     notes: {
       top: "Blood Orange · Black Pepper",
       heart: "Cinnamon · Clove · Cedar",
@@ -129,8 +129,8 @@ export const products = [
     description:
       "Clean, understated and effortlessly refined. ECLIPSE pairs fresh citrus with dry woods for an everyday scent with quiet character.",
     whatItSmellsLike:
-      "Like starting a crisp office morning with a cup of iced green tea—sparkling mandarin and fresh bergamot grounding smoothly into dry cedarwood and soft musk.",
-    smellsLikeProfile: ["Citrusy", "Green Tea", "Clean Cedar", "Soft Musk"],
+      "Like taking a cool morning shower before work — zesty fresh citrus, crisp green tea, and clean, light wood.",
+    smellsLikeProfile: ["Fresh Citrus", "Green Tea", "Clean Wood", "Soft Musk"],
     notes: {
       top: "Bergamot · Mandarin · Green Tea",
       heart: "Cedar · Violet Leaf · Sage",
@@ -159,8 +159,8 @@ export const products = [
     description:
       "VELVET wraps delicate florals in a warm, creamy base. Soft at first impression, yet unmistakably sensual as it settles.",
     whatItSmellsLike:
-      "Like an elegant evening dinner under warm ambient lighting—luscious raspberry and pink pepper softening into blooming rose and peony, anchored by creamy vanilla and sandalwood.",
-    smellsLikeProfile: ["Fruity Spice", "Soft Rose", "Creamy Vanilla", "Warm Sandalwood"],
+      "Like an elegant evening dinner — sweet fresh raspberry, soft blooming roses, and creamy warm vanilla.",
+    smellsLikeProfile: ["Sweet Fruit", "Soft Rose", "Creamy Vanilla", "Warm Wood"],
     notes: {
       top: "Raspberry · Pink Pepper",
       heart: "Rose · Peony · Jasmine",
@@ -189,8 +189,8 @@ export const products = [
     description:
       "Fresh and graceful, MUSE blends luminous florals with soft woods for a fragrance that feels effortlessly polished.",
     whatItSmellsLike:
-      "Reminiscent of freshly pressed cotton on a bright morning—crisp juicy pear and bergamot mingling with fresh jasmine and white musk for an air of quiet confidence.",
-    smellsLikeProfile: ["Crisp Pear", "Fresh Jasmine", "Sheer Musk", "Soft Cashmere"],
+      "Like wearing freshly washed clothes on a sunny morning — juicy fresh pear, bright jasmine flowers, and clean soft musk.",
+    smellsLikeProfile: ["Fresh Pear", "Bright Floral", "Clean Clothes", "Soft Musk"],
     notes: {
       top: "Pear · Bergamot",
       heart: "Jasmine · Orange Blossom · Freesia",
@@ -219,8 +219,8 @@ export const products = [
     description:
       "AURA is bright, airy and radiant, balancing delicate florals with a soft musky finish.",
     whatItSmellsLike:
-      "Like stepping into a high-end luxury boutique filled with sunlight—bright mandarin and sparkling neroli radiating over white roses, with a whisper of gentle vanilla.",
-    smellsLikeProfile: ["Sparkling Citrus", "Luminous Floral", "Airy Musk", "Soft Vanilla"],
+      "Like stepping into a bright, sunlit garden — fresh citrus, soft white flowers, and a hint of gentle sweet vanilla.",
+    smellsLikeProfile: ["Fresh Citrus", "Soft Flowers", "Clean Musk", "Slightly Sweet"],
     notes: {
       top: "Mandarin · Pear · Neroli",
       heart: "White Rose · Jasmine · Lily",
@@ -249,8 +249,8 @@ export const products = [
     description:
       "Warm sweetness meets soft florals in a fragrance designed to linger beautifully long after sunset.",
     whatItSmellsLike:
-      "Captures the peaceful golden hour on a sunset drive—succulent peach and soft vanilla orchid bathed in warm amber and creamy sandalwood that melts into the skin.",
-    smellsLikeProfile: ["Sweet Peach", "Soft Orchid", "Golden Amber", "Creamy Vanilla"],
+      "Like watching the sunset on an evening drive — juicy fresh peach and soft flowers wrapped in warm vanilla and smooth sandalwood.",
+    smellsLikeProfile: ["Juicy Peach", "Soft Flowers", "Warm Vanilla", "Smooth Wood"],
     notes: {
       top: "Peach · Bergamot",
       heart: "Vanilla Orchid · Rose · Heliotrope",
@@ -279,8 +279,8 @@ export const products = [
     description:
       "SABLE captures the feeling of walking through a quiet green landscape after rain—fresh, earthy and effortlessly modern.",
     whatItSmellsLike:
-      "Like the pure, invigorating freshness right after monsoon rain—crisp green fig leaves and cool cypress grounded in damp earthy vetiver and cedarwood.",
-    smellsLikeProfile: ["Monsoon Green", "Fresh Tea", "Earthy Vetiver", "Dry Cedar"],
+      "Like stepping outside right after monsoon rain — crisp green leaves, fresh cool air, and damp, earthy wood.",
+    smellsLikeProfile: ["Like Rain", "Fresh Leaves", "Cool Tea", "Earthy Wood"],
     notes: {
       top: "Fig Leaf · Bergamot · Green Pepper",
       heart: "Violet Leaf · Cypress · Tea",
@@ -309,8 +309,8 @@ export const products = [
     description:
       "Crisp and precise, ELAN combines bright citrus with cool mineral notes and clean woods.",
     whatItSmellsLike:
-      "Evokes the clean, modern energy of a sunlit glass office—zesty lemon and icy juniper berries combined with crisp mineral accords and clean white musk.",
-    smellsLikeProfile: ["Icy Citrus", "Mineral Fresh", "Crisp Lavender", "Clean Musk"],
+      "Like a fresh citrus drink on a bright day — icy lemon, clean fresh lavender, and crisp, light wood.",
+    smellsLikeProfile: ["Fresh Lemon", "Clean Lavender", "Crisp Air", "Light Wood"],
     notes: {
       top: "Lemon · Juniper · Bergamot",
       heart: "Mineral Accord · Lavender · Neroli",
@@ -339,8 +339,8 @@ export const products = [
     description:
       "Warm amber and aromatic spice create a rich, glowing fragrance with a distinctly magnetic character.",
     whatItSmellsLike:
-      "Like relaxing in a cozy, ambient-lit artisanal café on a cool evening—fragrant cardamom and warm cinnamon melting into golden amber and velvety vanilla.",
-    smellsLikeProfile: ["Aromatic Cardamom", "Spiced Amber", "Golden Benzoin", "Rich Vanilla"],
+      "Like sitting in a warm, cozy café on a cool evening — sweet cardamom spice, warm amber, and creamy vanilla.",
+    smellsLikeProfile: ["Warm Spice", "Golden Amber", "Creamy Vanilla", "Sweet Wood"],
     notes: {
       top: "Cardamom · Mandarin",
       heart: "Cinnamon · Amber · Orange Blossom",
@@ -369,8 +369,8 @@ export const products = [
     description:
       "Fresh green notes meet dry woods in VERT, creating a sophisticated fragrance that feels clean without becoming predictable.",
     whatItSmellsLike:
-      "Like walking through a shaded botanical garden at dawn—zesty lime and crushed fresh basil floating over soothing green tea, anchored by clean forest woods.",
-    smellsLikeProfile: ["Zesty Lime", "Crushed Basil", "Green Tea", "Clean Woods"],
+      "Like a walk through a fresh green garden — zesty lime, fresh basil leaves, cool green tea, and clean dry wood.",
+    smellsLikeProfile: ["Zesty Lime", "Fresh Basil", "Green Tea", "Clean Wood"],
     notes: {
       top: "Lime · Basil · Green Apple",
       heart: "Green Tea · Fig · Geranium",
@@ -399,8 +399,8 @@ export const products = [
     description:
       "MONARCH is rich, smooth and quietly commanding, pairing soft suede with warm woods and amber.",
     whatItSmellsLike:
-      "Evokes the understated luxury of a plush grand hotel lobby—soft powdery iris and smooth suede lifted by black pepper, resting on warm sandalwood and amber.",
-    smellsLikeProfile: ["Black Pepper", "Soft Iris", "Smooth Suede", "Warm Sandalwood"],
+      "Like entering a grand hotel lobby — soft black pepper, smooth leather-like warmth, gentle iris flowers, and rich sandalwood.",
+    smellsLikeProfile: ["Soft Pepper", "Smooth Wood", "Gentle Floral", "Warm Amber"],
     notes: {
       top: "Bergamot · Black Pepper",
       heart: "Suede · Iris · Saffron",
@@ -429,8 +429,8 @@ export const products = [
     description:
       "Calm and understated, SEREN combines airy florals, white tea and soft woods into an effortlessly comfortable signature.",
     whatItSmellsLike:
-      "Like wrapping yourself in freshly washed, cashmere-soft cotton—delicate white tea and soothing lavender mingling with subtle iris and cloud-like musk.",
-    smellsLikeProfile: ["Clean Lavender", "Soothing White Tea", "Soft Musk", "Cashmere Wood"],
+      "Like wrapping yourself in a freshly washed, soft cotton towel — calming white tea, soft lavender, and gentle clean musk.",
+    smellsLikeProfile: ["Clean Lavender", "Soft White Tea", "Clean Cotton", "Gentle Musk"],
     notes: {
       top: "Pear · Mandarin · Lavender",
       heart: "Iris · White Tea · Jasmine",
@@ -459,8 +459,8 @@ export const products = [
     description:
       "Creamy white florals and delicate rose create an intimate fragrance with a soft, elegant trail.",
     whatItSmellsLike:
-      "Like an intimate candlelit dinner in a blossom garden—juicy lychee and sweet bergamot opening into lush tuberose and creamy rose with a warm sandalwood dry-down.",
-    smellsLikeProfile: ["Juicy Lychee", "Creamy Tuberose", "Velvet Rose", "Warm Sandalwood"],
+      "Like a romantic dinner in a flowering garden — sweet fresh lychee, creamy white flowers, soft rose, and warm sandalwood.",
+    smellsLikeProfile: ["Sweet Fruit", "Creamy Flowers", "Soft Rose", "Warm Sandalwood"],
     notes: {
       top: "Bergamot · Lychee",
       heart: "Rose · Tuberose · Jasmine",
@@ -489,8 +489,8 @@ export const products = [
     description:
       "Bright citrus opens into luminous white florals before settling into a clean, warm base. LUMIÈRE is made to feel radiant and alive.",
     whatItSmellsLike:
-      "Like stepping out into bright morning sunshine along the coast—radiant citrus and sparkling orange blossom uplifting your spirit before settling into clean white musk.",
-    smellsLikeProfile: ["Sparkling Citrus", "Orange Blossom", "Radiant Jasmine", "Clean Musk"],
+      "Like bright morning sunshine — sparkling lemon and fresh orange flowers settling into clean, warm musk.",
+    smellsLikeProfile: ["Fresh Citrus", "Orange Blossom", "Clean Musk", "Slightly Sweet"],
     notes: {
       top: "Lemon · Grapefruit · Mandarin",
       heart: "Orange Blossom · Jasmine · Neroli",
