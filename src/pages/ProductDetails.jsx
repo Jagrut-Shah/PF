@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -100,6 +100,8 @@ export default function ProductDetails() {
   const { productSlug } = useParams();
   const mainCtaRef = useRef(null);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [showCartDrawer, setShowCartDrawer] = useState(false);
 
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
@@ -119,24 +121,75 @@ export default function ProductDetails() {
   // Find product by slug
   const product = products.find((p) => p.slug === productSlug);
 
-  // Sticky Add to Cart IntersectionObserver
+  // Selected variant/size
+  const [selectedSize, setSelectedSize] = useState(product?.size || '60 ML');
+
   useEffect(() => {
-    if (!mainCtaRef.current) return;
+    if (product) {
+      setSelectedSize(product.size || '60 ML');
+    }
+  }, [product]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isScrolledPast = entry.boundingClientRect.top < 0;
-        setIsStickyVisible(!entry.isIntersecting && isScrolledPast);
-      },
-      {
-        threshold: 0,
-        rootMargin: '0px',
+  // Shared Add to Cart Handler for both Main Purchase Area & Sticky Bar
+  const handleAddToCart = (e) => {
+    if (e) e.preventDefault();
+    if (!product) return;
+
+    // 1. Prepare product item with selected variant
+    const cartItem = {
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      size: selectedSize,
+      image: product.image,
+      quantity: 1,
+    };
+
+    // 2. Persist to cart state / storage
+    try {
+      const existingCart = JSON.parse(localStorage.getItem('elava_cart') || '[]');
+      const existingIdx = existingCart.findIndex(
+        (item) => item.id === cartItem.id && item.size === cartItem.size
+      );
+      if (existingIdx > -1) {
+        existingCart[existingIdx].quantity += 1;
+      } else {
+        existingCart.push(cartItem);
       }
-    );
+      localStorage.setItem('elava_cart', JSON.stringify(existingCart));
+      window.dispatchEvent(new Event('cart-updated'));
+    } catch (err) {
+      console.error('Failed updating cart state', err);
+    }
 
-    observer.observe(mainCtaRef.current);
+    // 3. Trigger feedback and show cart confirmation drawer
+    setAddedToCart(true);
+    setShowCartDrawer(true);
 
-    return () => observer.disconnect();
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 2500);
+  };
+
+  // Sticky Add to Cart viewport visibility observer
+  useEffect(() => {
+    const checkVisibility = () => {
+      if (!mainCtaRef.current) return;
+      const rect = mainCtaRef.current.getBoundingClientRect();
+      // Appears immediately when the bottom of the main Add to Cart area leaves the top of the viewport
+      setIsStickyVisible(rect.bottom < 0);
+    };
+
+    checkVisibility();
+
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('resize', checkVisibility, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+      window.removeEventListener('resize', checkVisibility);
+    };
   }, [product]);
 
   // If product not found
@@ -165,8 +218,8 @@ export default function ProductDetails() {
   // Gender display label
   const genderTarget = product.gender === 'men' ? 'For Him' : product.gender === 'women' ? 'For Her' : 'Unisex';
 
-  // Dynamic WhatsApp pre-filled message
-  const waCustomMessage = `Hi, I'd like to order ÉLAVA ${product.name} (${product.size || '60 ML'}) for ₹${product.price?.toLocaleString()}.`;
+  // Dynamic WhatsApp pre-filled message for explicit WhatsApp order button
+  const waCustomMessage = `Hi, I'd like to order ÉLAVA ${product.name} (${selectedSize}) for ₹${product.price?.toLocaleString()}.`;
   const whatsappUrl = createWhatsAppOrderUrl({ customMessage: waCustomMessage });
 
   // Product specific review
@@ -279,26 +332,57 @@ export default function ProductDetails() {
             <span className="font-sans text-xs text-[#B8C4C2]">({product.reviewCount} reviews)</span>
           </div>
 
-          {/* Price & Size */}
+          {/* Price & Size Selection */}
           <div className="mt-4">
             <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F5F1EA] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
-            <div className="font-sans text-xs text-[#B8C4C2] font-medium tracking-wider uppercase mt-0.5">
-              {product.size || '60 ML'}
+            <div className="mt-1 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedSize(product.size || '60 ML')}
+                className={`font-sans text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded border transition-colors ${
+                  selectedSize === (product.size || '60 ML')
+                    ? 'border-[#F5F1EA] bg-[#102F38] text-[#F5F1EA]'
+                    : 'border-[rgba(243,235,221,0.15)] text-[#B8C4C2]'
+                }`}
+              >
+                {product.size || '60 ML'}
+              </button>
             </div>
           </div>
 
-          {/* Large WhatsApp CTA Container */}
-          <div ref={mainCtaRef} className="mt-5">
+          {/* Main Purchase CTA Area */}
+          <div ref={mainCtaRef} className="mt-5 space-y-2.5">
+            {/* Primary Add to Cart Button */}
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.2)] rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
+              id="main-add-to-cart-btn"
+            >
+              {addedToCart ? (
+                <>
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" />
+                  <span>ADDED TO CART ✓</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5F1EA]" />
+                  <span>ADD TO CART</span>
+                </>
+              )}
+            </button>
+
+            {/* Independent WhatsApp Order Button */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#000000] hover:bg-[#151515] text-white rounded-md py-3 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer shadow-sm active:scale-[0.99]"
+              className="w-full bg-[#102F38] hover:bg-[#163E49] text-white rounded-md py-2.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer border border-[rgba(243,235,221,0.15)] shadow-xs"
             >
-              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366] fill-[#25D366]" />
-              ORDER ON WHATSAPP
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
+              <span>ORDER ON WHATSAPP</span>
             </a>
 
             {/* Reassurance text */}
@@ -669,22 +753,93 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Right: Sticky Add to Cart CTA */}
+          {/* Right: Sticky Add to Cart CTA (Calls handleAddToCart, NOT WhatsApp) */}
           <div className="shrink-0">
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] rounded-md py-2 px-3.5 sm:py-2.5 sm:px-6 font-bold uppercase text-[11px] sm:text-xs tracking-[0.14em] flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.98] cursor-pointer"
+              aria-label={`Add ÉLAVA ${product.name} to cart for ₹${product.price}`}
+              id="sticky-add-to-cart-btn"
+            >
+              {addedToCart ? (
+                <>
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366]" />
+                  <span>ADDED ✓</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F5F1EA]" />
+                  <span>ADD TO CART</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* CART ADDED CONFIRMATION DRAWER / TOAST */}
+      {showCartDrawer && (
+        <div
+          className="fixed bottom-16 right-4 sm:bottom-20 sm:right-6 z-50 bg-[#000000] border border-[rgba(243,235,221,0.25)] rounded-xl p-4 shadow-2xl max-w-sm w-[calc(100vw-2rem)] sm:w-80 text-[#F5F1EA] animate-in fade-in slide-in-from-bottom-4 duration-200"
+          role="dialog"
+          aria-label="Cart Notification"
+        >
+          <div className="flex items-start justify-between gap-2 mb-2 pb-2 border-b border-[rgba(243,235,221,0.12)]">
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-[#25D366]" />
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA]">
+                ADDED TO CART
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowCartDrawer(false)}
+              className="text-[#B8C4C2] hover:text-[#F5F1EA] p-0.5 rounded transition-colors"
+              aria-label="Close notification"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-10 h-10 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0"
+            />
+            <div className="min-w-0 text-xs">
+              <div className="font-bold uppercase tracking-wide truncate text-[#F5F1EA]">
+                ÉLAVA {product.name}
+              </div>
+              <div className="text-[#B8C4C2]">
+                {selectedSize} · ₹{product.price?.toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 pt-2.5 border-t border-[rgba(243,235,221,0.12)] flex items-center justify-between gap-2">
+            <button
+              type="button"
+              onClick={() => setShowCartDrawer(false)}
+              className="text-[11px] font-semibold text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors uppercase tracking-wider"
+            >
+              CONTINUE SHOPPING
+            </button>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] rounded-md py-2 px-3.5 sm:py-2.5 sm:px-6 font-bold uppercase text-[11px] sm:text-xs tracking-[0.14em] flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.98]"
-              aria-label={`Add ÉLAVA ${product.name} to cart for ₹${product.price}`}
+              className="bg-[#102F38] hover:bg-[#163E49] text-white text-[10.5px] font-bold uppercase tracking-wider py-1.5 px-3 rounded border border-[rgba(243,235,221,0.2)] flex items-center gap-1.5 transition-colors"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366] fill-[#25D366]" />
-              <span>ADD TO CART</span>
+              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+              <span>CHECKOUT</span>
             </a>
           </div>
         </div>
-      </div>
+      )}
     </MainContainer>
   );
 }
+
 
