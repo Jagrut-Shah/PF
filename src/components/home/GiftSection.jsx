@@ -25,7 +25,7 @@ export default function GiftSection() {
     if (selectedRecipient === 'For Him') category = 'men';
     if (selectedRecipient === 'For Her') category = 'women';
     if (selectedRecipient === 'For Couples') category = 'unisex';
-
+    
     navigate(`/category/${category}?gift=true&occasion=${selectedOccasion.toLowerCase()}`);
   };
 
@@ -33,15 +33,15 @@ export default function GiftSection() {
     <section className="py-10 sm:py-14 bg-[#102F38] text-[#F5F1EA] border-t border-b border-[rgba(243,235,221,0.12)]">
       <MainContainer>
         <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden">
-
+          
           {/* Subtle Background Glow */}
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#C5A15A]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-
+            
             {/* Left Content (Text & Controls) */}
             <div className="lg:col-span-7 space-y-6">
-
+              
               {/* Header Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#C5A15A] text-xs font-bold uppercase tracking-wider">
                 <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
@@ -70,10 +70,11 @@ export default function GiftSection() {
                       key={item.label}
                       type="button"
                       onClick={() => setSelectedRecipient(item.label)}
-                      className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${selectedRecipient === item.label
+                      className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                        selectedRecipient === item.label
                           ? 'bg-[#102F38] text-[#F5F1EA] border-[#F5F1EA] shadow-sm'
                           : 'bg-[#102F38]/40 text-[#B8C4C2] border-[rgba(243,235,221,0.15)] hover:border-[#F5F1EA]/50'
-                        }`}
+                      }`}
                     >
                       {item.label}
                     </button>
@@ -93,10 +94,11 @@ export default function GiftSection() {
                       key={item.label}
                       type="button"
                       onClick={() => setSelectedOccasion(item.label)}
-                      className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${selectedOccasion === item.label
+                      className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                        selectedOccasion === item.label
                           ? 'bg-[#102F38] text-[#F5F1EA] border-[#F5F1EA] shadow-sm'
                           : 'bg-[#102F38]/40 text-[#B8C4C2] border-[rgba(243,235,221,0.15)] hover:border-[#F5F1EA]/50'
-                        }`}
+                      }`}
                     >
                       {item.label}
                     </button>

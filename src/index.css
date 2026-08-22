@@ -32,10 +32,7 @@
   --font-sans: "Manrope", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-html,
-body,
-#root,
-main {
+html, body, #root, main {
   margin: 0;
   padding: 0;
   background-color: #163E49 !important;
@@ -65,7 +62,6 @@ main {
 
 /* Accessibility: prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {

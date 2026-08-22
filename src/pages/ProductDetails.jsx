@@ -304,7 +304,7 @@ export default function ProductDetails() {
 
       {/* 2. Main Product Area */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
-
+        
         {/* LEFT COLUMN: Product Image + Featured Review Card (Desktop) */}
         <div className="md:col-span-6 lg:col-span-7">
           {/* Main Product Image Container */}
@@ -375,10 +375,11 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => setSelectedSize(product.size || '60 ML')}
-                className={`font-sans text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded border transition-colors ${selectedSize === (product.size || '60 ML')
+                className={`font-sans text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded border transition-colors ${
+                  selectedSize === (product.size || '60 ML')
                     ? 'border-[#F5F1EA] bg-[#102F38] text-[#F5F1EA]'
                     : 'border-[rgba(243,235,221,0.15)] text-[#B8C4C2]'
-                  }`}
+                }`}
               >
                 {product.size || '60 ML'}
               </button>
@@ -407,61 +408,62 @@ export default function ProductDetails() {
               )}
             </button>
 
-            {/* Independent WhatsApp Order Button */}
+            {/* Independent WhatsApp Order Button - Black Background */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F2EA] rounded-md py-2.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer border border-[rgba(245,242,234,0.14)] shadow-xs"
+              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] rounded-md py-2.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer border border-[rgba(243,235,221,0.2)] shadow-xs"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
               <span>ORDER ON WHATSAPP</span>
             </a>
 
             {/* Reassurance text */}
-            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#A6A3A0] font-sans">
+            <div className="mt-2 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
               <span>We'll confirm your order and delivery details on WhatsApp.</span>
             </div>
 
             {/* OPTIONAL GIFT OPTION BOX */}
-            <div className="mt-3.5 p-3 sm:p-3.5 bg-[#1C1C22] border border-[rgba(245,242,234,0.10)] rounded-lg text-xs space-y-2">
-              <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F5F2EA]">
+            <div className="mt-3.5 p-3 sm:p-3.5 bg-[#1C4A55]/70 border border-[rgba(243,235,221,0.18)] rounded-lg text-xs space-y-2">
+              <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F5F1EA]">
                 <input
                   type="checkbox"
                   checked={isGift}
                   onChange={(e) => setIsGift(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-600 accent-[#C8FF3D] cursor-pointer"
+                  className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
                   id="product-gift-checkbox"
                 />
                 <span className="flex items-center gap-1.5">
-                  <Gift className="w-3.5 h-3.5 text-[#C8FF3D]" />
+                  <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
                   <span>Gifting this?</span>
+                  <span className="text-[#B8C4C2] font-normal text-[11px]">(Add gift packaging & message)</span>
                 </span>
               </label>
 
               {isGift && (
-                <div className="pt-2 space-y-2 border-t border-[rgba(245,242,234,0.10)] text-[#A6A3A0]">
-                  <label className="flex items-center gap-2 cursor-pointer text-[11.5px] text-[#F5F2EA]">
+                <div className="pl-6 pt-2 space-y-2 border-t border-[rgba(243,235,221,0.1)] text-[#B8C4C2]">
+                  <label className="flex items-center gap-2 cursor-pointer text-[11.5px] text-[#F5F1EA]">
                     <input
                       type="checkbox"
                       checked={giftPackaging}
                       onChange={(e) => setGiftPackaging(e.target.checked)}
-                      className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C8FF3D] cursor-pointer"
+                      className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
                     />
                     <span>Add gift packaging</span>
                   </label>
 
                   <div>
-                    <label className="block text-[10.5px] uppercase font-semibold text-[#A6A3A0] mb-1">
+                    <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
                       Personal Gift Message (Optional)
                     </label>
                     <input
                       type="text"
                       value={giftMessage}
                       onChange={(e) => setGiftMessage(e.target.value)}
-                      placeholder="Enter a message for the recipient..."
-                      className="w-full bg-[#151519] border border-[rgba(245,242,234,0.12)] rounded px-2.5 py-1.5 text-xs text-[#F5F2EA] placeholder-[#A6A3A0]/50 focus:outline-none focus:border-[#C8FF3D]"
+                      placeholder="e.g. Happy Birthday! Enjoy this fragrance signature."
+                      className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#C5A15A]"
                       maxLength={150}
                       id="product-gift-message-input"
                     />

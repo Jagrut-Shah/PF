@@ -20,7 +20,7 @@ export default function TrustStrip() {
         {/* Unified Single Trust Container — Background #000000 */}
         <div className="bg-[#000000] border border-[rgba(243,235,221,0.16)] rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#F5F1EA]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[rgba(243,235,221,0.12)]">
-
+            
             {/* 1. Secure Payments */}
             <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
               <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
