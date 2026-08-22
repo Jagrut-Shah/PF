@@ -76,7 +76,7 @@ export default function GlobalCartDrawer() {
       aria-label="Your Shopping Cart"
     >
       <div className="bg-[#000000] border border-[rgba(243,235,221,0.25)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
-        
+
         {/* Header */}
         <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between">
           <div className="flex items-center gap-2">

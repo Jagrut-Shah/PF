@@ -28,17 +28,17 @@ export default function ScentQuiz() {
     <section id="scent-finder" className="py-10 sm:py-14 bg-[#163E49] text-[#F5F1EA] scroll-mt-20">
       <MainContainer>
         <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-xs font-sans tracking-[0.16em] uppercase text-[#F5F1EA] mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>PERFUME FINDER</span>
             </div>
-            
+
             <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-[0.06em] text-[#F5F1EA] mb-2">
               FIND YOUR SIGNATURE SCENT
             </h2>
-            
+
             <p className="font-sans text-xs sm:text-sm text-[#B8C4C2]">
               Select your preferences below to discover fragrances matched to your character.
             </p>
@@ -57,11 +57,10 @@ export default function ScentQuiz() {
                     key={type}
                     type="button"
                     onClick={() => setScentType(type)}
-                    className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${
-                      scentType === type
+                    className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${scentType === type
                         ? 'bg-[#7A2929] text-[#F5F1EA]'
                         : 'bg-[#1C4A55] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(243,235,221,0.15)]'
-                    }`}
+                      }`}
                   >
                     {type}
                   </button>
@@ -80,11 +79,10 @@ export default function ScentQuiz() {
                     key={occ}
                     type="button"
                     onClick={() => setOccasion(occ)}
-                    className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${
-                      occasion === occ
+                    className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${occasion === occ
                         ? 'bg-[#7A2929] text-[#F5F1EA]'
                         : 'bg-[#1C4A55] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(243,235,221,0.15)]'
-                    }`}
+                      }`}
                   >
                     {occ}
                   </button>

@@ -12,9 +12,9 @@ export default function DiscoverySet() {
     <section className="py-8 sm:py-10 bg-[#163E49] text-[#F5F1EA]">
       <MainContainer>
         <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-5 sm:p-7 md:p-8 shadow-lg relative overflow-hidden">
-          
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            
+
             {/* Left Column: Compact Visual */}
             <div className="md:col-span-5 lg:col-span-4">
               <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden border border-[rgba(243,235,221,0.15)] bg-[#102F38] shadow-sm">
