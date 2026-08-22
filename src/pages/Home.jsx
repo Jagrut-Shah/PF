@@ -7,6 +7,7 @@ import GiftSection from '../components/home/GiftSection';
 import FindYourScent from '../components/home/FindYourScent';
 import TrustStrip from '../components/home/TrustStrip';
 import DiscoverySet from '../components/home/DiscoverySet';
+import ScentWardrobeBundle from '../components/home/ScentWardrobeBundle';
 import ScentQuiz from '../components/home/ScentQuiz';
 import WhyElava from '../components/home/WhyElava';
 import WhatPeopleSay from '../components/home/WhatPeopleSay';
@@ -59,6 +60,9 @@ export default function Home() {
 
       {/* 6. TRY BEFORE YOU BUY (DISCOVERY SET) */}
       <DiscoverySet />
+
+      {/* 7. BUILD YOUR SCENT WARDROBE (DUO BUNDLE BUILDER) */}
+      <ScentWardrobeBundle />
 
       {/* 7. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
       <ScentQuiz />

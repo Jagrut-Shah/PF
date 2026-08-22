@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, ShoppingBag } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import NavbarSearch from './NavbarSearch';
 import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
+import { getCartTotals } from '../../utils/cart';
 
 /**
  * Official WhatsApp Brand Outline Icon
@@ -24,7 +25,25 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const location = useLocation();
+
+  // Synchronize cart count
+  useEffect(() => {
+    const updateCount = () => {
+      const { itemCount } = getCartTotals();
+      setCartCount(itemCount);
+    };
+
+    updateCount();
+    window.addEventListener('cart-updated', updateCount);
+    window.addEventListener('storage', updateCount);
+
+    return () => {
+      window.removeEventListener('cart-updated', updateCount);
+      window.removeEventListener('storage', updateCount);
+    };
+  }, []);
 
   // Close mobile menu and search on route change
   useEffect(() => {
@@ -129,8 +148,8 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* ACTIONS: Right (Search & WhatsApp) */}
-            <div className="flex items-center justify-end space-x-1 sm:space-x-3 w-16 md:w-auto">
+            {/* ACTIONS: Right (Search, Cart & WhatsApp) */}
+            <div className="flex items-center justify-end space-x-1 sm:space-x-2 w-auto">
               {/* Search Trigger */}
               <button
                 type="button"
@@ -142,6 +161,24 @@ export default function Navbar() {
                 aria-label="Search collection"
               >
                 <Search className="w-[19px] h-[19px] stroke-[1.5]" />
+              </button>
+
+              {/* Cart Drawer Trigger Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  window.dispatchEvent(new Event('open-cart-drawer'));
+                }}
+                className="p-2 text-white hover:text-[#C5A15A] transition-colors duration-200 focus:outline-none relative"
+                aria-label="View shopping cart"
+                id="navbar-cart-btn"
+              >
+                <ShoppingBag className="w-[19px] h-[19px] stroke-[1.5]" />
+                {cartCount > 0 && (
+                  <span className="absolute top-1 right-1 bg-[#C5A15A] text-[#102F38] text-[9.5px] font-extrabold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
+                    {cartCount}
+                  </span>
+                )}
               </button>
 
               {/* WhatsApp Direct Link */}

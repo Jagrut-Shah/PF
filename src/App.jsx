@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import GlobalCartDrawer from './components/cart/GlobalCartDrawer';
 import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
@@ -52,6 +53,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <GlobalCartDrawer />
     </div>
   );
 }
