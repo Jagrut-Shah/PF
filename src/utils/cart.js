@@ -188,3 +188,32 @@ export function createCartWhatsAppOrderUrl(cart = getCart()) {
 
   return createWhatsAppOrderUrl({ customMessage });
 }
+
+/**
+ * Get gift options from localStorage
+ */
+export function getCartGiftOptions() {
+  try {
+    const raw = localStorage.getItem(GIFT_STORAGE_KEY);
+    if (!raw) return { isGift: false, giftPackaging: false, giftMessage: '' };
+    return JSON.parse(raw);
+  } catch (err) {
+    return { isGift: false, giftPackaging: false, giftMessage: '' };
+  }
+}
+
+/**
+ * Update gift options in localStorage
+ */
+export function updateCartGiftOptions(patch = {}) {
+  const current = getCartGiftOptions();
+  const updated = { ...current, ...patch };
+  try {
+    localStorage.setItem(GIFT_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new Event('cart-updated'));
+  } catch (err) {
+    console.error('Error updating cart gift options', err);
+  }
+  return updated;
+}
+
