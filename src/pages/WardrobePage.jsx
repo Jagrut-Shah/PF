@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ShoppingBag, Check, Layers, Sparkles, ShieldCheck, Truck } from 'lucide-react';
-import MainContainer from '../ui/MainContainer';
+import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import products from '../data/products';
 import { getWardrobeBundle } from '../data/wardrobeBundles';

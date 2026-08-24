@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Search, X, SlidersHorizontal } from 'lucide-react';
-import MainContainer from '../ui/MainContainer';
+import MainContainer from '../components/ui/MainContainer';
 import ProductCard from '../components/home/ProductCard';
 import SectionHeading from '../components/ui/SectionHeading';
 import SEO from '../components/common/SEO';
