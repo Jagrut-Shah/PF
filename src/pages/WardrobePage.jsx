@@ -246,43 +246,7 @@ export default function WardrobePage() {
         </MainContainer>
       </section>
 
-      {/* ── 3. DISCOUNT & FINAL CTA SUMMARY ── */}
-      <section className="py-12 sm:py-16 border-t border-[rgba(243,235,221,0.12)]">
-        <MainContainer>
-          <div className="max-w-2xl mx-auto bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-2xl p-6 sm:p-8 text-center space-y-5 shadow-xl">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#C5A15A]">
-              LIMITED WARDROBE OFFER
-            </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold uppercase text-[#F5F1EA]">
-              ADD {bundle.title} TO YOUR CART
-            </h2>
-            <div className="flex items-center justify-center gap-4 text-xl sm:text-2xl font-bold">
-              <span className="text-[#F5F1EA]">₹{bundle.bundlePrice.toLocaleString()}</span>
-              <span className="text-[#B8C4C2] line-through text-sm sm:text-base">₹{bundle.originalPrice.toLocaleString()}</span>
-              <span className="text-[#25D366] text-sm sm:text-base font-extrabold">SAVE ₹{bundle.savings}</span>
-            </div>
 
-            <button
-              type="button"
-              onClick={handleAddDuoToCart}
-              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.3)] py-4 px-6 rounded-xl font-bold uppercase text-xs sm:text-sm tracking-[0.18em] flex items-center justify-center gap-3 transition-all duration-200 cursor-pointer shadow-lg active:scale-[0.99]"
-              id="wardrobe-bottom-cta"
-            >
-              {addedToCart ? (
-                <>
-                  <Check className="w-5 h-5 text-[#25D366]" />
-                  <span>DUO ADDED TO CART ✓</span>
-                </>
-              ) : (
-                <>
-                  <ShoppingBag className="w-5 h-5 text-[#F5F1EA]" />
-                  <span>BUILD MY DUO →</span>
-                </>
-              )}
-            </button>
-          </div>
-        </MainContainer>
-      </section>
 
     </div>
   );
