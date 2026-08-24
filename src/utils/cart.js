@@ -190,30 +190,37 @@ export function createCartWhatsAppOrderUrl(cart = getCart()) {
 }
 
 /**
- * Get gift options from localStorage
+ * Get persisted gift options from localStorage (used by ProductDetails.jsx)
+ * Returns { isGift: bool, giftMessage: string, giftFrom: string, giftTo: string }
  */
 export function getCartGiftOptions() {
   try {
     const raw = localStorage.getItem(GIFT_STORAGE_KEY);
-    if (!raw) return { isGift: false, giftPackaging: false, giftMessage: '' };
+    if (!raw) return { isGift: false, giftMessage: '', giftFrom: '', giftTo: '' };
     return JSON.parse(raw);
-  } catch (err) {
-    return { isGift: false, giftPackaging: false, giftMessage: '' };
+  } catch {
+    return { isGift: false, giftMessage: '', giftFrom: '', giftTo: '' };
   }
 }
 
 /**
- * Update gift options in localStorage
+ * Save gift options to localStorage
  */
-export function updateCartGiftOptions(patch = {}) {
-  const current = getCartGiftOptions();
-  const updated = { ...current, ...patch };
+export function saveCartGiftOptions(opts = {}) {
   try {
-    localStorage.setItem(GIFT_STORAGE_KEY, JSON.stringify(updated));
+    localStorage.setItem(GIFT_STORAGE_KEY, JSON.stringify(opts));
     window.dispatchEvent(new Event('cart-updated'));
   } catch (err) {
-    console.error('Error updating cart gift options', err);
+    console.error('Error saving gift options', err);
   }
-  return updated;
 }
 
+/**
+ * Update (merge) partial gift options into existing saved gift options
+ */
+export function updateCartGiftOptions(partial = {}) {
+  const current = getCartGiftOptions();
+  const updated = { ...current, ...partial };
+  saveCartGiftOptions(updated);
+  return updated;
+}

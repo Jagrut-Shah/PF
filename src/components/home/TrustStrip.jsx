@@ -2,9 +2,6 @@ import React from 'react';
 import { ShieldCheck, Truck, CreditCard } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
-/**
- * Official WhatsApp Icon for Customer Support
- */
 function WhatsAppIcon({ className = "w-4 h-4" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
@@ -13,27 +10,23 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
   );
 }
 
-/**
- * TrustStrip Section: Burgundy (#3A1729) environment with Deep Plum card (#241326)
- */
 export default function TrustStrip() {
   return (
-    <section className="py-6 bg-[#3A1729] border-b border-[rgba(217,138,155,0.15)]">
+    <section className="py-6 bg-[#163E49]">
       <MainContainer>
-        {/* Unified Single Trust Container */}
-        <div className="bg-[#241326] border border-[rgba(217,138,155,0.20)] rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#FFF8F7]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[rgba(217,138,155,0.15)]">
+        <div className="bg-[#000000] border border-[rgba(243,235,221,0.16)] rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#F5F1EA]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[rgba(243,235,221,0.12)]">
             
             {/* 1. Secure Payments */}
             <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
-              <div className="w-10 h-10 rounded-xl bg-[#3A1729] border border-[rgba(217,138,155,0.20)] flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 text-[#C94F70]" />
+              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#2563EB]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#FFF8F7] uppercase">
+                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
                   Secure Payments
                 </h4>
-                <p className="font-sans text-[11px] text-[#D98A9B] truncate">
+                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
                   UPI, Cards & Net Banking
                 </p>
               </div>
@@ -41,14 +34,14 @@ export default function TrustStrip() {
 
             {/* 2. COD Available */}
             <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4 first:pt-0">
-              <div className="w-10 h-10 rounded-xl bg-[#3A1729] border border-[rgba(217,138,155,0.20)] flex items-center justify-center shrink-0">
-                <CreditCard className="w-5 h-5 text-[#FFF8F7]" />
+              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
+                <CreditCard className="w-5 h-5 text-[#F5F1EA]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#FFF8F7] uppercase">
+                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
                   COD Available
                 </h4>
-                <p className="font-sans text-[11px] text-[#D98A9B] truncate">
+                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
                   Pay cash on delivery
                 </p>
               </div>
@@ -56,14 +49,14 @@ export default function TrustStrip() {
 
             {/* 3. Tracked Delivery */}
             <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#3A1729] border border-[rgba(217,138,155,0.20)] flex items-center justify-center shrink-0">
-                <Truck className="w-5 h-5 text-[#FFF8F7]" />
+              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
+                <Truck className="w-5 h-5 text-[#F5F1EA]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#FFF8F7] uppercase">
+                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
                   Tracked Delivery
                 </h4>
-                <p className="font-sans text-[11px] text-[#D98A9B] truncate">
+                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
                   Dispatched across India
                 </p>
               </div>
@@ -71,14 +64,14 @@ export default function TrustStrip() {
 
             {/* 4. Customer Support */}
             <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#3A1729] border border-[rgba(217,138,155,0.20)] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
                 <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#FFF8F7] uppercase">
+                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
                   Customer Support
                 </h4>
-                <p className="font-sans text-[11px] text-[#D98A9B] truncate">
+                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
                   Direct help via WhatsApp
                 </p>
               </div>

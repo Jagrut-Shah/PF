@@ -8,25 +8,25 @@ import reviews, { reviewAggregate } from '../../data/reviews';
 
 /**
  * WHAT PEOPLE SAY
- * WHAT PEOPLE SAY: Deep Plum / Burgundy (#241326 / #3A1729) atmosphere
+ * Editorial testimonial section with high-contrast text on dark teal (#123C3A) canvas.
  */
 export default function WhatPeopleSay() {
   const displayedReviews = reviews.slice(0, 3);
   const { rating, totalReviews } = reviewAggregate;
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-[#241326] via-[#3A1729] to-[#241326] text-[#FFF8F7] border-t border-b border-[rgba(217,138,155,0.15)]" aria-labelledby="what-people-say-heading">
+    <section className="pb-6 sm:pb-8 md:pb-10" aria-labelledby="what-people-say-heading">
       <MainContainer>
 
         {/* ── Section header ── */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-4 sm:mb-5">
           <h2
             id="what-people-say-heading"
-            className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-bold uppercase text-[#FFF8F7] leading-tight"
+            className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-normal uppercase text-[#F5F1EA] leading-tight"
           >
             WHAT PEOPLE SAY
           </h2>
-          <p className="font-sans text-[13px] sm:text-[14px] text-[#D98A9B] mt-1 font-normal tracking-wide">
+          <p className="font-sans text-[13px] sm:text-[14px] text-[#B8C4C2] mt-1 font-normal tracking-wide">
             Words from our fragrance collective.
           </p>
         </div>
@@ -51,15 +51,15 @@ export default function WhatPeopleSay() {
         </div>
 
         {/* ── Rating Summary row below cards ── */}
-        <div className="flex flex-col gap-3 pt-3 md:pt-4 md:flex-row md:items-center md:justify-between border-t border-[rgba(217,138,155,0.15)] mt-4">
+        <div className="flex flex-col gap-3 pt-3 md:pt-2 md:flex-row md:items-center md:justify-between border-t border-white/10 mt-2">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
-            {/* Gold stars (#C9A227 - Strict semantic gold for ratings) */}
-            <StarRating rating={rating} size={15} starColor="#C9A227" />
+            {/* Gold stars (#D4A72C) */}
+            <StarRating rating={rating} size={15} starColor="#D4A72C" />
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="font-sans text-[13px] font-semibold text-[#FFF8F7]">
+              <span className="font-sans text-[13px] font-semibold text-[#F5F1EA]">
                 {rating} out of 5
               </span>
-              <span className="font-sans text-[12px] text-[#D98A9B]">
+              <span className="font-sans text-[12px] text-[#B8C4C2]">
                 · {totalReviews.toLocaleString()} Total Reviews
               </span>
             </div>
@@ -67,11 +67,11 @@ export default function WhatPeopleSay() {
 
           <Link
             to="/reviews"
-            className="group inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.08em] text-[#C94F70] hover:text-[#E96885] transition-colors duration-200"
+            className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-[0.08em] text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200"
             aria-label="View more reviews"
           >
-            <span>VIEW MORE REVIEWS</span>
-            <ArrowRight className="w-3.5 h-3.5 stroke-[2] transform group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            VIEW MORE REVIEWS
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.75]" aria-hidden="true" />
           </Link>
         </div>
 

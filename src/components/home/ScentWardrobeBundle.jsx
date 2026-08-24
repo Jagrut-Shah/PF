@@ -31,9 +31,6 @@ const BUNDLE_PRESETS = [
   },
 ];
 
-/**
- * SCENT WARDROBE: Return to Deep Plum / Burgundy (#241326 / #3A1729)
- */
 export default function ScentWardrobeBundle() {
   return (
     <section className="py-12 sm:py-16 bg-gradient-to-b from-[#241326] via-[#3A1729] to-[#241326] text-[#FFF8F7] border-t border-b border-[rgba(217,138,155,0.15)]">
@@ -52,7 +49,7 @@ export default function ScentWardrobeBundle() {
           </p>
         </div>
 
-        {/* 3 Curated Bundle Preset Cards */}
+        {/* 3 Curated Bundle Preset Cards — Click opens dedicated landing page */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           {BUNDLE_PRESETS.map((preset) => (
             <Link

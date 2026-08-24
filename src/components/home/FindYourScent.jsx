@@ -32,11 +32,11 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section
- * FIND YOUR SCENT: Wine & Burgundy (#6E2945 / #3A1729 / #241326) with subtle cherry atmosphere
+ * Visual category showcase directly beneath the Navbar.
  */
 export default function FindYourScent() {
   return (
-    <section className="py-8 sm:py-12 bg-gradient-to-b from-[#3A1729] via-[#6E2945] to-[#241326] border-b border-[rgba(217,138,155,0.12)] text-[#FFF8F7]" aria-labelledby="find-your-scent-heading">
+    <section className="pt-5 sm:pt-8 md:pt-10 pb-5 sm:pb-8 md:pb-10" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         {/* Section Heading & Subtitle */}
         <SectionHeading
@@ -45,7 +45,7 @@ export default function FindYourScent() {
           subtitle="Find a fragrance for the way you feel."
         />
 
-        {/* Mobile 3-column grid */}
+        {/* Mobile 3-column grid — all three category cards visible */}
         <div className="grid grid-cols-3 gap-3 md:hidden">
           {SCENT_CATEGORIES.map((category) => (
             <div key={category.id} className="min-w-0">

@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 
 /**
  * ScentCategoryCard Component
- * Deep Burgundy / Wine atmospheric card for categories.
+ * Natural full-bleed image card matching the approved reference design.
+ * Specific centered focal alignment for FOR HER, and tailored spacing for others.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
 
+  // Custom focal positioning: FOR HER centered, others balanced with text
   const objectPositions = {
     'for-him': 'object-[85%_center]',
     'for-her': 'object-[50%_center]',
@@ -19,11 +21,11 @@ export default function ScentCategoryCard({ category }) {
   return (
     <Link
       to={category.link}
-      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#241326] border border-[rgba(217,138,155,0.20)] group-hover:border-[#C94F70]/60 transition-colors focus:outline-none"
+      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-elava-ivory border border-elava-border focus:outline-none focus-visible:ring-1 focus-visible:ring-elava-gold"
       aria-label={`Explore ${category.title} collection`}
     >
       <div className="block md:hidden">
-        <div className="overflow-hidden rounded-t-xl bg-[#3A1729]">
+        <div className="overflow-hidden rounded-t-xl bg-[#151515]">
           <img
             src={category.image}
             alt={category.alt}
@@ -31,11 +33,11 @@ export default function ScentCategoryCard({ category }) {
             loading="eager"
           />
         </div>
-        <div className="bg-[#241326] px-3 pt-2.5 pb-2 text-left">
-          <h3 className="font-serif text-[14px] tracking-[0.08em] font-bold text-[#FFF8F7] uppercase leading-tight">
+        <div className="bg-elava-ivory px-3 pt-2.5 pb-2 text-left">
+          <h3 className="font-serif text-[14px] tracking-[0.08em] font-normal text-elava-charcoal uppercase leading-tight">
             {category.title}
           </h3>
-          <div className="mt-1.5 flex items-center gap-1 text-[9px] font-bold tracking-[0.18em] text-[#C94F70] uppercase">
+          <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium tracking-[0.18em] text-elava-charcoal uppercase">
             <span>EXPLORE</span>
             <span aria-hidden="true">↗</span>
           </div>
@@ -51,24 +53,24 @@ export default function ScentCategoryCard({ category }) {
           loading="eager"
         />
 
-        {/* Natural, Soft Atmospheric Gradient */}
+        {/* Natural, Soft Atmospheric Gradient for text contrast on the left side */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 via-35% to-transparent pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 via-35% to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* Content Layer */}
+        {/* Content Layer: Left-aligned with comfortable padding and breathing room */}
         <div className="relative z-10 h-full p-5 sm:p-5.5 md:p-6 flex flex-col justify-between select-none">
           {/* Top: Category Title & Descriptors */}
           <div>
-            <h3 className="font-serif text-[17px] sm:text-[18px] md:text-[19px] tracking-[0.10em] font-bold text-[#FFF8F7] uppercase mb-2 sm:mb-2.5 leading-snug">
+            <h3 className="font-serif text-[17px] sm:text-[18px] md:text-[19px] tracking-[0.10em] font-normal text-white uppercase mb-2 sm:mb-2.5 leading-snug">
               {category.title}
             </h3>
             <div className="flex flex-col space-y-0.5 sm:space-y-1">
               {category.descriptors.map((desc, idx) => (
                 <span
                   key={idx}
-                  className="font-sans text-[12px] sm:text-[13px] text-[#D98A9B] font-medium tracking-wide"
+                  className="font-sans text-[12px] sm:text-[13px] text-white/85 font-light tracking-wide"
                 >
                   {desc}
                 </span>
@@ -77,7 +79,7 @@ export default function ScentCategoryCard({ category }) {
           </div>
 
           {/* Bottom: Anchored Explore Link */}
-          <div className="flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-bold tracking-[0.2em] text-[#C94F70] group-hover:text-[#E96885] uppercase pt-2 transition-colors">
+          <div className="flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-[#E8DFD0] uppercase pt-2">
             <span>EXPLORE</span>
             <span
               className="inline-block transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-250 ease-out"
