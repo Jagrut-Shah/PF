@@ -36,13 +36,13 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const linkCls = 'block font-sans text-[12px] text-[#858287] hover:text-[#D62F4F] transition-colors duration-150 leading-none py-1';
-const headingCls = 'font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#F1EEF2] mb-3.5';
+const linkCls = 'block font-sans text-[12px] text-[#D98A9B] hover:text-[#C94F70] transition-colors duration-150 leading-none py-1';
+const headingCls = 'font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#FFF8F7] mb-3.5';
 
 function Accordion({ title, children }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[rgba(241,238,242,0.10)]">
+    <div className="border-b border-[rgba(217,138,155,0.15)]">
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
@@ -51,8 +51,8 @@ function Accordion({ title, children }) {
       >
         <span className={headingCls.replace('mb-3.5', '')}>{title}</span>
         {open
-          ? <Minus size={13} className="text-[#858287] shrink-0" aria-hidden="true" />
-          : <Plus  size={13} className="text-[#858287] shrink-0" aria-hidden="true" />}
+          ? <Minus size={13} className="text-[#D98A9B] shrink-0" aria-hidden="true" />
+          : <Plus  size={13} className="text-[#D98A9B] shrink-0" aria-hidden="true" />}
       </button>
       <div className={`overflow-hidden transition-all duration-200 ease-out ${open ? 'max-h-48 pb-3' : 'max-h-0'}`}>
         {children}
@@ -61,11 +61,14 @@ function Accordion({ title, children }) {
   );
 }
 
+/**
+ * FOOTER: Deep Charcoal (#17151A)
+ */
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#08080A] border-t border-[rgba(241,238,242,0.10)] text-[#F1EEF2]" aria-label="Site footer">
+    <footer className="bg-[#17151A] border-t border-[rgba(217,138,155,0.15)] text-[#FFF8F7]" aria-label="Site footer">
 
       {/* DESKTOP */}
       <div className="hidden md:block">
@@ -77,25 +80,25 @@ export default function Footer() {
               <div>
                 <Link
                   to="/"
-                  className="inline-flex items-stretch border border-[#D62F4F] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3.5"
+                  className="inline-flex items-stretch border border-[#C94F70] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3.5"
                   aria-label="ÉLAVA Home"
                 >
-                  <div className="bg-[#111116] text-[#F1EEF2] px-3 py-1 flex items-center justify-center border-r border-[#D62F4F]/40">
-                    <span className="font-serif text-[16px] tracking-[0.24em] font-bold leading-none text-[#F1EEF2] uppercase">
+                  <div className="bg-[#241326] text-[#FFF8F7] px-3 py-1 flex items-center justify-center border-r border-[#C94F70]/40">
+                    <span className="font-serif text-[16px] tracking-[0.24em] font-bold leading-none text-[#FFF8F7] uppercase">
                       ÉLAVA
                     </span>
                   </div>
-                  <div className="bg-[#D62F4F] text-[#FFFFFF] px-2.5 py-1 flex items-center justify-center">
+                  <div className="bg-[#C94F70] text-[#FFFFFF] px-2.5 py-1 flex items-center justify-center">
                     <span className="font-sans text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#FFFFFF]">
                       PERFUMES
                     </span>
                   </div>
                 </Link>
-                <p className="font-sans text-xs text-[#858287] leading-relaxed mb-4">
+                <p className="font-sans text-xs text-[#D98A9B] leading-relaxed mb-4">
                   Artisanal Eau de Parfum signatures crafted for memorable presence across India.
                 </p>
               </div>
-              <div className="text-xs font-sans text-[#858287] space-y-1">
+              <div className="text-xs font-sans text-[#D98A9B] space-y-1">
                 <p>{DEMO_COMPANY_INFO.formattedAddress}</p>
               </div>
             </div>
@@ -115,12 +118,12 @@ export default function Footer() {
             {/* Customer Care Column */}
             <div className="col-span-3">
               <p className={headingCls}>CUSTOMER CARE</p>
-              <div className="space-y-2 text-xs font-sans text-[#858287]">
+              <div className="space-y-2 text-xs font-sans text-[#D98A9B]">
                 <a
                   href={waUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#F1EEF2] hover:text-[#25D366] transition-colors font-semibold"
+                  className="flex items-center gap-2 text-[#FFF8F7] hover:text-[#25D366] transition-colors font-semibold"
                 >
                   <WhatsAppIcon />
                   <span>Connect on WhatsApp</span>
@@ -129,7 +132,7 @@ export default function Footer() {
                   href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#F1EEF2] hover:text-[#E4405F] transition-colors font-semibold"
+                  className="flex items-center gap-2 text-[#FFF8F7] hover:text-[#E4405F] transition-colors font-semibold"
                 >
                   <InstagramIcon />
                   <span>Connect on Instagram</span>
@@ -143,13 +146,13 @@ export default function Footer() {
         </MainContainer>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[rgba(241,238,242,0.10)]">
+        <div className="border-t border-[rgba(217,138,155,0.15)]">
           <MainContainer>
             <div className="py-4 flex items-center justify-between">
-              <p className="font-sans text-[11px] text-[#858287]">© {year} ÉLAVA Perfumes. All rights reserved.</p>
+              <p className="font-sans text-[11px] text-[#D98A9B]">© {year} ÉLAVA Perfumes. All rights reserved.</p>
               <div className="flex items-center gap-4">
-                <Link to="/privacy" className="font-sans text-[11px] text-[#858287] hover:text-[#D62F4F] transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="font-sans text-[11px] text-[#858287] hover:text-[#D62F4F] transition-colors">Terms & Conditions</Link>
+                <Link to="/privacy" className="font-sans text-[11px] text-[#D98A9B] hover:text-[#C94F70] transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="font-sans text-[11px] text-[#D98A9B] hover:text-[#C94F70] transition-colors">Terms & Conditions</Link>
               </div>
             </div>
           </MainContainer>
@@ -165,21 +168,21 @@ export default function Footer() {
             <div className="mb-5">
               <Link
                 to="/"
-                className="inline-flex items-stretch border border-[#D62F4F] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3"
+                className="inline-flex items-stretch border border-[#C94F70] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3"
                 aria-label="ÉLAVA Home"
               >
-                <div className="bg-[#111116] text-[#F1EEF2] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#D62F4F]/40">
-                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-bold leading-none text-[#F1EEF2] uppercase">
+                <div className="bg-[#241326] text-[#FFF8F7] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C94F70]/40">
+                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-bold leading-none text-[#FFF8F7] uppercase">
                     ÉLAVA
                   </span>
                 </div>
-                <div className="bg-[#D62F4F] text-[#FFFFFF] px-2 sm:px-2.5 py-1 flex items-center justify-center">
+                <div className="bg-[#C94F70] text-[#FFFFFF] px-2 sm:px-2.5 py-1 flex items-center justify-center">
                   <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#FFFFFF]">
                     PERFUMES
                   </span>
                 </div>
               </Link>
-              <p className="font-sans text-[11.5px] text-[#858287] leading-snug">
+              <p className="font-sans text-[11.5px] text-[#D98A9B] leading-snug">
                 Artisanal Eau de Parfum signatures crafted for memorable presence.
               </p>
             </div>
@@ -192,11 +195,11 @@ export default function Footer() {
                 <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
               <Accordion title="Customer Care">
-                <div className="space-y-2 pt-1 text-xs text-[#858287]">
-                  <a href={waUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F1EEF2] font-semibold">
+                <div className="space-y-2 pt-1 text-xs text-[#D98A9B]">
+                  <a href={waUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#FFF8F7] font-semibold">
                     <WhatsAppIcon /> Connect on WhatsApp
                   </a>
-                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F1EEF2] font-semibold">
+                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#FFF8F7] font-semibold">
                     <InstagramIcon /> Connect on Instagram
                   </a>
                   <p className="text-[11px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
@@ -208,13 +211,13 @@ export default function Footer() {
         </MainContainer>
 
         {/* Legal Bottom */}
-        <div className="border-t border-[rgba(241,238,242,0.10)] mt-2">
+        <div className="border-t border-[rgba(217,138,155,0.15)] mt-2">
           <MainContainer>
             <div className="py-3.5 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <p className="font-sans text-[10.5px] text-[#858287]">© {year} ÉLAVA Perfumes.</p>
-              <Link to="/privacy" className="font-sans text-[10.5px] text-[#858287] hover:text-[#D62F4F]">Privacy Policy</Link>
-              <span className="text-[#858287]/40 text-[10px]">·</span>
-              <Link to="/terms" className="font-sans text-[10.5px] text-[#858287] hover:text-[#D62F4F]">Terms & Conditions</Link>
+              <p className="font-sans text-[10.5px] text-[#D98A9B]">© {year} ÉLAVA Perfumes.</p>
+              <Link to="/privacy" className="font-sans text-[10.5px] text-[#D98A9B] hover:text-[#C94F70]">Privacy Policy</Link>
+              <span className="text-[#D98A9B]/40 text-[10px]">·</span>
+              <Link to="/terms" className="font-sans text-[10.5px] text-[#D98A9B] hover:text-[#C94F70]">Terms & Conditions</Link>
             </div>
           </MainContainer>
         </div>
