@@ -120,6 +120,11 @@ export default function ProductDetails() {
   const [giftPackaging, setGiftPackaging] = useState(false);
   const [giftMessage, setGiftMessage] = useState('');
 
+  // Pincode delivery estimator state
+  const [pincodeInput, setPincodeInput] = useState('');
+  const [pincodeError, setPincodeError] = useState('');
+  const [deliveryStatus, setDeliveryStatus] = useState(null);
+
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState({
     about: true,
@@ -171,7 +176,7 @@ export default function ProductDetails() {
     if (!product) return;
 
     const giftDetails = isGift
-      ? { isGift: true, giftPackaging: Boolean(giftPackaging), giftMessage: giftMessage.trim() }
+      ? { isGift: true, giftMessage: giftMessage.trim() }
       : null;
 
     // 1. Add product item with selected variant to shared multi-product cart
@@ -390,44 +395,34 @@ export default function ProductDetails() {
           <div ref={mainCtaRef} className="mt-5 space-y-3">
             
             {/* 1. COMPACT PREMIUM GIFTING COMPONENT (PLACED ABOVE ADD TO CART) */}
-            <div className="p-3.5 sm:p-4 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl text-xs space-y-3 shadow-md">
+            <div className="p-3.5 sm:p-4 bg-[#111116] border border-[rgba(241,238,242,0.12)] rounded-xl text-xs space-y-3 shadow-md">
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F5F1EA] text-xs sm:text-sm">
+                <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F1EEF2] text-xs sm:text-sm">
                   <input
                     type="checkbox"
                     checked={isGift}
                     onChange={(e) => setIsGift(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                    className="w-4 h-4 rounded border-gray-600 accent-[#D62F4F] cursor-pointer"
                     id="product-gift-checkbox"
                   />
                   <span className="flex items-center gap-1.5">
-                    <Gift className="w-4 h-4 text-[#C5A15A]" />
-                    <span className="font-serif tracking-wide text-[#F5F1EA]">🎁 GIFTING THIS?</span>
+                    <Gift className="w-4 h-4 text-[#D62F4F]" />
+                    <span className="font-serif tracking-wide text-[#F1EEF2]">🎁 GIFTING THIS?</span>
                   </span>
                 </label>
-                <span className="text-[10.5px] text-[#B8C4C2] font-sans">
+                <span className="text-[10.5px] text-[#A7A3AA] font-sans">
                   Optional Gifting
                 </span>
               </div>
 
-              <p className="text-[11.5px] text-[#B8C4C2] font-sans leading-snug pl-6">
-                Make their fragrance feel even more special with bespoke packaging & personal card message.
+              <p className="text-[11.5px] text-[#A7A3AA] font-sans leading-snug pl-6">
+                Include a complimentary personal gift message with your fragrance order.
               </p>
 
               {isGift && (
-                <div className="pl-6 pt-2.5 space-y-2.5 border-t border-[rgba(243,235,221,0.12)] text-[#B8C4C2]">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs text-[#F5F1EA]">
-                    <input
-                      type="checkbox"
-                      checked={giftPackaging}
-                      onChange={(e) => setGiftPackaging(e.target.checked)}
-                      className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
-                    />
-                    <span>Add Gift Packaging</span>
-                  </label>
-
+                <div className="pl-6 pt-2.5 space-y-2 border-t border-[rgba(241,238,242,0.10)] text-[#A7A3AA]">
                   <div>
-                    <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
+                    <label className="block text-[10.5px] uppercase font-semibold text-[#A7A3AA] mb-1">
                       Personal Gift Message (Optional)
                     </label>
                     <input
@@ -435,7 +430,7 @@ export default function ProductDetails() {
                       value={giftMessage}
                       onChange={(e) => setGiftMessage(e.target.value)}
                       placeholder="e.g. Happy Birthday! Enjoy this signature scent."
-                      className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#C5A15A]"
+                      className="w-full bg-[#18181E] border border-[rgba(241,238,242,0.2)] rounded-lg px-3 py-2 text-xs text-[#F1EEF2] placeholder-[#A7A3AA]/60 focus:outline-none focus:border-[#D62F4F]"
                       maxLength={150}
                       id="product-gift-message-input"
                     />
@@ -448,28 +443,28 @@ export default function ProductDetails() {
             <button
               type="button"
               onClick={handleAddToCart}
-              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] border border-[rgba(243,235,221,0.2)] rounded-lg py-3.5 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-md active:scale-[0.99]"
+              className="w-full bg-[#D62F4F] hover:bg-[#F04463] active:bg-[#B92340] text-white rounded-xl py-4 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-lg active:scale-[0.99] group"
               id="main-add-to-cart-btn"
             >
               {addedToCart ? (
                 <>
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" />
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#72D66F]" />
                   <span>ADDED TO CART ✓</span>
                 </>
               ) : (
                 <>
-                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5F1EA]" />
+                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   <span>ADD TO CART</span>
                 </>
               )}
             </button>
 
-            {/* 3. INDEPENDENT WHATSAPP ORDER BUTTON (BLACK BACKGROUND) */}
+            {/* 3. INDEPENDENT WHATSAPP ORDER BUTTON */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#000000] hover:bg-[#151515] text-[#F5F1EA] rounded-lg py-3 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer border border-[rgba(243,235,221,0.2)] shadow-xs"
+              className="w-full bg-[#111116] hover:bg-[#18181E] text-[#F1EEF2] border border-[rgba(241,238,242,0.14)] rounded-xl py-3.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer shadow-xs"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
               <span>ORDER ON WHATSAPP</span>
@@ -479,6 +474,65 @@ export default function ProductDetails() {
             <div className="mt-1.5 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
               <span>We'll confirm your order and delivery details on WhatsApp.</span>
+            </div>
+
+            {/* 4. PINCODE DELIVERY ESTIMATOR */}
+            <div className="mt-4 p-3.5 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl text-xs space-y-2.5 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-[#F5F1EA] flex items-center gap-1.5 text-xs">
+                  <Truck className="w-4 h-4 text-[#C5A15A]" />
+                  <span>ESTIMATE DELIVERY TIME</span>
+                </span>
+                <span className="text-[10px] text-[#B8C4C2]">Enter 6-digit Pincode</span>
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const val = (pincodeInput || '').trim();
+                  if (/^[1-9][0-9]{5}$/.test(val)) {
+                    setPincodeError('');
+                    setDeliveryStatus({
+                      pincode: val,
+                      message: 'Estimated Delivery: 2–4 Business Days (Express Shipping Available)',
+                    });
+                  } else {
+                    setDeliveryStatus(null);
+                    setPincodeError('Please enter a valid 6-digit Indian pincode.');
+                  }
+                }}
+                className="flex items-center gap-2"
+              >
+                <input
+                  type="text"
+                  maxLength={6}
+                  value={pincodeInput}
+                  onChange={(e) => setPincodeInput(e.target.value.replace(/\D/g, ''))}
+                  placeholder="e.g. 400001"
+                  className="flex-1 bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#C5A15A]"
+                  id="pincode-input"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#C5A15A] hover:bg-[#b08e4c] text-[#102F38] px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
+                  id="check-pincode-btn"
+                >
+                  CHECK
+                </button>
+              </form>
+
+              {pincodeError && (
+                <div className="text-[11px] text-red-400 font-medium pl-1">
+                  {pincodeError}
+                </div>
+              )}
+
+              {deliveryStatus && (
+                <div className="text-[11px] text-[#25D366] font-semibold flex items-center gap-1.5 pl-1">
+                  <Check className="w-3.5 h-3.5 shrink-0" />
+                  <span>{deliveryStatus.message}</span>
+                </div>
+              )}
             </div>
 
           </div>

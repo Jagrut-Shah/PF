@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, RotateCcw } from 'lucide-react';
+import { Sparkles, RotateCcw, ArrowRight } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import products from '../../data/products';
 
@@ -13,6 +13,7 @@ export default function ScentQuiz() {
 
   // Filter actual matching products based on Scent Type & Occasion
   const matchedProducts = products.filter((p) => {
+    if (p.type === 'sample_set') return false;
     const pScent = (p.scentIdentity || '').toLowerCase();
     const pNotes = p.notes ? `${p.notes.top} ${p.notes.heart} ${p.notes.base}`.toLowerCase() : '';
     const targetScent = scentType.toLowerCase();
@@ -22,24 +23,24 @@ export default function ScentQuiz() {
   });
 
   // Fallback to top products if zero matches
-  const displayProducts = matchedProducts.length > 0 ? matchedProducts.slice(0, 3) : products.slice(0, 3);
+  const displayProducts = matchedProducts.length > 0 ? matchedProducts.slice(0, 3) : products.filter(p => p.type !== 'sample_set').slice(0, 3);
 
   return (
-    <section id="scent-finder" className="py-10 sm:py-14 bg-[#163E49] text-[#F5F1EA] scroll-mt-20">
+    <section id="scent-finder" className="py-10 sm:py-14 bg-[#0A0A0C] text-[#F1EEF2] scroll-mt-20">
       <MainContainer>
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+        <div className="bg-[#18181E] border border-[rgba(241,238,242,0.10)] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
           
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-xs font-sans tracking-[0.16em] uppercase text-[#F5F1EA] mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111116] border border-[rgba(241,238,242,0.12)] text-xs font-sans tracking-[0.16em] uppercase text-[#D62F4F] font-bold mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-[#D62F4F]" />
               <span>PERFUME FINDER</span>
             </div>
             
-            <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-[0.06em] text-[#F5F1EA] mb-2">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-[0.06em] text-[#F1EEF2] mb-2">
               FIND YOUR SIGNATURE SCENT
             </h2>
             
-            <p className="font-sans text-xs sm:text-sm text-[#B8C4C2]">
+            <p className="font-sans text-xs sm:text-sm text-[#A7A3AA]">
               Select your preferences below to discover fragrances matched to your character.
             </p>
           </div>
@@ -47,8 +48,8 @@ export default function ScentQuiz() {
           {/* Interactive Filters Grid: Exactly 2 Steps */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Step 1: Preferred Fragrance Profile */}
-            <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
-              <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#F5F1EA] mb-3">
+            <div className="bg-[#111116] border border-[rgba(241,238,242,0.08)] rounded-xl p-4">
+              <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#F1EEF2] mb-3">
                 1. PREFERRED FRAGRANCE PROFILE
               </label>
               <div className="flex flex-wrap gap-2">
@@ -59,8 +60,8 @@ export default function ScentQuiz() {
                     onClick={() => setScentType(type)}
                     className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${
                       scentType === type
-                        ? 'bg-[#7A2929] text-[#F5F1EA]'
-                        : 'bg-[#1C4A55] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(243,235,221,0.15)]'
+                        ? 'bg-[#D62F4F] text-white'
+                        : 'bg-[#18181E] text-[#A7A3AA] hover:text-[#F1EEF2] border border-[rgba(241,238,242,0.10)]'
                     }`}
                   >
                     {type}
@@ -70,8 +71,8 @@ export default function ScentQuiz() {
             </div>
 
             {/* Step 2: Primary Occasion */}
-            <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-xl p-4">
-              <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#F5F1EA] mb-3">
+            <div className="bg-[#111116] border border-[rgba(241,238,242,0.08)] rounded-xl p-4">
+              <label className="block font-sans text-xs font-bold uppercase tracking-[0.14em] text-[#F1EEF2] mb-3">
                 2. PRIMARY OCCASION
               </label>
               <div className="flex flex-wrap gap-2">
@@ -82,8 +83,8 @@ export default function ScentQuiz() {
                     onClick={() => setOccasion(occ)}
                     className={`px-3.5 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-colors ${
                       occasion === occ
-                        ? 'bg-[#7A2929] text-[#F5F1EA]'
-                        : 'bg-[#1C4A55] text-[#B8C4C2] hover:text-[#F5F1EA] border border-[rgba(243,235,221,0.15)]'
+                        ? 'bg-[#D62F4F] text-white'
+                        : 'bg-[#18181E] text-[#A7A3AA] hover:text-[#F1EEF2] border border-[rgba(241,238,242,0.10)]'
                     }`}
                   >
                     {occ}
@@ -94,10 +95,10 @@ export default function ScentQuiz() {
           </div>
 
           {/* Recommended Products Result Section */}
-          <div className="border-t border-[rgba(243,235,221,0.12)] pt-6">
+          <div className="border-t border-[rgba(241,238,242,0.10)] pt-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-sans text-base sm:text-lg text-[#F5F1EA] font-bold uppercase tracking-wide">
-                RECOMMENDED SIGNATURE MATCHES ({displayProducts.length})
+              <h3 className="font-sans text-xs sm:text-sm text-[#D62F4F] font-bold uppercase tracking-[0.16em]">
+                YOUR SIGNATURE MATCH
               </h3>
               <button
                 type="button"
@@ -105,39 +106,80 @@ export default function ScentQuiz() {
                   setScentType('Fresh');
                   setOccasion('Everyday');
                 }}
-                className="inline-flex items-center gap-1 text-xs text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs text-[#A7A3AA] hover:text-[#F1EEF2] transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {displayProducts.map((p) => (
-                <Link
-                  key={p.id}
-                  to={`/product/${p.slug}`}
-                  className="group bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl p-3.5 flex items-center gap-3.5 hover:border-[#F5F1EA]/40 transition-colors"
-                >
+            {/* Top Match Highlight Card */}
+            {displayProducts.length > 0 && (
+              <div className="bg-[#111116] border border-[rgba(241,238,242,0.14)] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 mb-4 shadow-md">
+                <div className="flex items-center gap-4 min-w-0 w-full sm:w-auto">
                   <img
-                    src={p.image}
-                    alt={p.name}
-                    className="w-14 h-14 object-cover rounded-lg shrink-0 bg-[#163E49]"
+                    src={displayProducts[0].image}
+                    alt={displayProducts[0].name}
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg shrink-0 bg-[#18181E] border border-[rgba(241,238,242,0.10)]"
                   />
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-sans text-xs sm:text-sm font-bold uppercase text-[#F5F1EA] group-hover:text-[#FFFFFF] transition-colors truncate">
-                      {p.name}
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#D62F4F]">
+                      TOP MATCH · ÉLAVA SIGNATURE
+                    </span>
+                    <h4 className="font-serif text-xl font-bold uppercase text-[#F1EEF2]">
+                      ÉLAVA {displayProducts[0].name}
                     </h4>
-                    <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
-                      {p.scentIdentity}
+                    <p className="font-sans text-xs text-[#A7A3AA] mt-0.5">
+                      {displayProducts[0].scentIdentity}
                     </p>
-                    <span className="font-sans text-xs font-bold text-[#F5F1EA] block mt-0.5">
-                      ₹{p.price.toLocaleString()}
+                    <span className="font-sans text-xs font-bold text-[#F1EEF2] mt-1 block">
+                      ₹{displayProducts[0].price?.toLocaleString()}
                     </span>
                   </div>
+                </div>
+
+                <Link
+                  to={`/product/${displayProducts[0].slug}`}
+                  className="w-full sm:w-auto bg-[#D62F4F] hover:bg-[#F04463] active:bg-[#B92340] text-white py-3 px-6 rounded-xl font-sans text-xs font-bold uppercase tracking-[0.16em] inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs group"
+                >
+                  <span>VIEW YOUR MATCH</span>
+                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
-              ))}
-            </div>
+              </div>
+            )}
+
+            {/* Other Good Matches */}
+            {displayProducts.length > 1 && (
+              <div className="pt-2">
+                <div className="text-[10.5px] font-bold uppercase tracking-wider text-[#A7A3AA] mb-2.5">
+                  OTHER GOOD MATCHES
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {displayProducts.slice(1, 3).map((p) => (
+                    <Link
+                      key={p.id}
+                      to={`/product/${p.slug}`}
+                      className="group bg-[#111116]/80 border border-[rgba(241,238,242,0.08)] rounded-lg p-3 flex items-center justify-between hover:border-[#D62F4F]/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          className="w-10 h-10 object-contain rounded bg-[#18181E] shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <h5 className="font-serif text-xs font-bold uppercase text-[#F1EEF2] truncate group-hover:text-[#D62F4F] transition-colors">
+                            ÉLAVA {p.name}
+                          </h5>
+                          <p className="text-[10px] text-[#A7A3AA] truncate">{p.scentIdentity}</p>
+                        </div>
+                      </div>
+                      <span className="text-xs font-bold text-[#D62F4F] shrink-0 ml-2">₹{p.price} →</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

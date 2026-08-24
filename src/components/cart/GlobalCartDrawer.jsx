@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Minus, Plus, X, Gift } from 'lucide-react';
+import { ShoppingBag, Minus, Plus, X, Gift, Sparkles } from 'lucide-react';
 import {
   getCart,
   updateCartItemQuantity,
   removeCartItem,
   getCartTotals,
-  getCartGiftOptions,
-  updateCartGiftOptions,
   createCartWhatsAppOrderUrl,
 } from '../../utils/cart';
 
@@ -21,13 +19,10 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 export default function GlobalCartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState(getCart());
-  const [cartGiftOpts, setCartGiftOpts] = useState(getCartGiftOptions());
 
   useEffect(() => {
     const handleCartUpdate = (e) => {
       setCartItems(getCart());
-      setCartGiftOpts(getCartGiftOptions());
-      // Open drawer if requested or when explicit add-to-cart occurs
       if (e?.detail?.openDrawer !== false) {
         setIsOpen(true);
       }
@@ -35,7 +30,6 @@ export default function GlobalCartDrawer() {
 
     const handleOpenCart = () => {
       setCartItems(getCart());
-      setCartGiftOpts(getCartGiftOptions());
       setIsOpen(true);
     };
 
@@ -53,42 +47,28 @@ export default function GlobalCartDrawer() {
   if (!isOpen) return null;
 
   const cartTotals = getCartTotals(cartItems);
-
-  const handleCartGiftToggle = (checked) => {
-    const updated = updateCartGiftOptions({ isGift: checked });
-    setCartGiftOpts(updated);
-  };
-
-  const handleCartGiftPackagingToggle = (checked) => {
-    const updated = updateCartGiftOptions({ giftPackaging: checked });
-    setCartGiftOpts(updated);
-  };
-
-  const handleCartGiftMessageChange = (val) => {
-    const updated = updateCartGiftOptions({ giftMessage: val });
-    setCartGiftOpts(updated);
-  };
+  const whatsAppOrderUrl = createCartWhatsAppOrderUrl(cartItems);
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/70 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/80 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
       role="dialog"
       aria-label="Your Shopping Cart"
     >
-      <div className="bg-[#000000] border border-[rgba(243,235,221,0.25)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
+      <div className="bg-[#0A0A0C] border border-[rgba(241,238,242,0.18)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F1EEF2] overflow-hidden">
         
         {/* Header */}
-        <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between">
+        <div className="p-4 border-b border-[rgba(241,238,242,0.10)] flex items-center justify-between bg-[#111116]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#C5A15A]" />
-            <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F1EA]">
+            <ShoppingBag className="w-4 h-4 text-[#D62F4F]" />
+            <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F1EEF2]">
               YOUR CART ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})
             </span>
           </div>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-[#B8C4C2] hover:text-[#F5F1EA] p-1 rounded-full hover:bg-white/10 transition-colors"
+            className="text-[#A7A3AA] hover:text-[#F1EEF2] p-1 rounded-full hover:bg-white/10 transition-colors"
             aria-label="Close cart drawer"
             id="global-close-cart-btn"
           >
@@ -97,146 +77,158 @@ export default function GlobalCartDrawer() {
         </div>
 
         {/* Cart Items List */}
-        <div className="p-4 space-y-3 overflow-y-auto flex-1 divide-y divide-[rgba(243,235,221,0.08)] max-h-[45vh]">
+        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-[rgba(241,238,242,0.08)] max-h-[50vh]">
           {cartItems.length === 0 ? (
-            <div className="py-8 text-center text-[#B8C4C2] text-xs">
+            <div className="py-10 text-center text-[#A7A3AA] text-xs">
               Your cart is currently empty.
             </div>
           ) : (
-            cartItems.map((item, idx) => (
-              <div key={`global-${item.id}-${item.size}-${idx}`} className="pt-3 first:pt-0 flex items-center gap-3">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-12 h-12 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0"
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F5F1EA]">
-                    ÉLAVA {item.name}
-                  </div>
-                  <div className="text-[11px] text-[#B8C4C2] mt-0.5">
-                    {item.size} · ₹{item.price?.toLocaleString()}
-                  </div>
-                  {/* Quantity controls */}
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <div className="inline-flex items-center border border-[rgba(243,235,221,0.2)] rounded bg-[#102F38]">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const updated = updateCartItemQuantity(item.id, item.size, -1);
-                          setCartItems(updated);
-                        }}
-                        className="px-2 py-0.5 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
-                        aria-label="Decrease quantity"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <span className="px-2 text-xs font-bold text-[#F5F1EA]">{item.quantity}</span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const updated = updateCartItemQuantity(item.id, item.size, 1);
-                          setCartItems(updated);
-                        }}
-                        className="px-2 py-0.5 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
-                        aria-label="Increase quantity"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
+            cartItems.map((item, idx) => {
+              const isDuo = item.type === 'duo_bundle';
+              const isSample = item.type === 'sample_set' || item.id === 'discovery-set';
+
+              return (
+                <div key={`global-${item.id}-${item.size}-${idx}`} className="pt-4 first:pt-0 space-y-2">
+                  <div className="flex items-start gap-3">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-14 h-14 object-contain rounded bg-[#111116] border border-[rgba(241,238,242,0.12)] shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F1EEF2]">
+                          {isDuo ? item.name : (item.name?.startsWith('ÉLAVA') ? item.name : `ÉLAVA ${item.name}`)}
+                        </div>
+                        {isDuo && (
+                          <span className="bg-[#D62F4F]/20 text-[#D62F4F] border border-[#D62F4F]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
+                            DUO BUNDLE
+                          </span>
+                        )}
+                        {isSample && (
+                          <span className="bg-[#D62F4F]/20 text-[#D62F4F] border border-[#D62F4F]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
+                            SAMPLE SET
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="text-[11px] text-[#A7A3AA] mt-0.5">
+                        {isDuo ? '2 × 60 ML Eau de Parfum' : isSample ? 'SAMPLE SET · 4 × 60 ML' : item.size}
+                      </div>
+
+                      {/* Included Fragrances for Duo */}
+                      {isDuo && item.includedFragrances && (
+                        <div className="text-[10px] text-[#A7A3AA] mt-1 space-y-0.5 bg-[#111116] p-2 rounded border border-[rgba(241,238,242,0.08)]">
+                          <span className="font-semibold text-[#F1EEF2] block uppercase">Included Signatures:</span>
+                          {item.includedFragrances.map((f, fIdx) => (
+                            <div key={fIdx} className="truncate">• ÉLAVA {f.name} ({f.size})</div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Per-Item Gift Information */}
+                      {item.giftDetails?.isGift && (
+                        <div className="mt-1.5 text-[10.5px] text-[#D62F4F] bg-[#111116] p-2 rounded border border-[rgba(214,47,79,0.3)] space-y-0.5">
+                          <div className="flex items-center gap-1.5 font-bold">
+                            <Gift className="w-3.5 h-3.5 text-[#D62F4F]" />
+                            <span>🎁 Gift Order</span>
+                          </div>
+                          {item.giftDetails.giftMessage && (
+                            <div className="text-[#A7A3AA] italic truncate">
+                              "{item.giftDetails.giftMessage}"
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Quantity Controls & Remove */}
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="inline-flex items-center border border-[rgba(241,238,242,0.14)] rounded bg-[#111116]">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updated = updateCartItemQuantity(item.id, item.size, -1);
+                              setCartItems(updated);
+                            }}
+                            className="px-2 py-1 text-xs text-[#A7A3AA] hover:text-[#F1EEF2]"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span className="px-2.5 text-xs font-bold text-[#F1EEF2]">{item.quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updated = updateCartItemQuantity(item.id, item.size, 1);
+                              setCartItems(updated);
+                            }}
+                            className="px-2 py-1 text-xs text-[#A7A3AA] hover:text-[#F1EEF2]"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = removeCartItem(item.id, item.size);
+                            setCartItems(updated);
+                          }}
+                          className="text-[11px] text-[#A7A3AA] hover:text-[#FF5C67] underline transition-colors"
+                        >
+                          Remove
+                        </button>
+                      </div>
+
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const updated = removeCartItem(item.id, item.size);
-                        setCartItems(updated);
-                      }}
-                      className="text-[10px] text-[#B8C4C2] hover:text-red-400 underline transition-colors"
-                    >
-                      Remove
-                    </button>
+
+                    {/* Price & Savings Display */}
+                    <div className="text-right shrink-0">
+                      {isDuo && item.originalPrice ? (
+                        <div>
+                          <span className="text-[10px] text-[#858287] line-through block">
+                            ₹{(item.originalPrice * item.quantity).toLocaleString()}
+                          </span>
+                          <span className="font-bold text-xs text-[#F1EEF2] block">
+                            ₹{(item.price * item.quantity).toLocaleString()}
+                          </span>
+                          <span className="text-[9.5px] font-extrabold text-[#D62F4F] block mt-0.5">
+                            SAVE ₹{(item.savings * item.quantity).toLocaleString()}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="font-bold text-xs text-[#F1EEF2]">
+                          ₹{(item.price * item.quantity).toLocaleString()}
+                        </div>
+                      )}
+                    </div>
+
                   </div>
                 </div>
-                <div className="text-right font-bold text-xs text-[#F5F1EA]">
-                  ₹{(item.price * item.quantity).toLocaleString()}
-                </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
-        {/* GIFT OPTIONS IN CART DRAWER */}
+        {/* Footer Summary & WhatsApp Order */}
         {cartItems.length > 0 && (
-          <div className="px-4 py-3 bg-[#102F38]/70 border-t border-b border-[rgba(243,235,221,0.12)] space-y-2 text-xs">
-            <label className="flex items-center justify-between cursor-pointer font-bold text-[#F5F1EA]">
-              <span className="flex items-center gap-1.5">
-                <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
-                <span>Is this a gift?</span>
-              </span>
-              <input
-                type="checkbox"
-                checked={cartGiftOpts?.isGift || false}
-                onChange={(e) => handleCartGiftToggle(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
-                id="global-cart-gift-checkbox"
-              />
-            </label>
-
-            {cartGiftOpts?.isGift && (
-              <div className="pt-2 space-y-2 border-t border-[rgba(243,235,221,0.1)] text-[#B8C4C2]">
-                <label className="flex items-center gap-2 cursor-pointer text-[11.5px] text-[#F5F1EA]">
-                  <input
-                    type="checkbox"
-                    checked={cartGiftOpts?.giftPackaging || false}
-                    onChange={(e) => handleCartGiftPackagingToggle(e.target.checked)}
-                    className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
-                  />
-                  <span>Add gift packaging</span>
-                </label>
-
-                <div>
-                  <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
-                    Personal Gift Message
-                  </label>
-                  <input
-                    type="text"
-                    value={cartGiftOpts?.giftMessage || ''}
-                    onChange={(e) => handleCartGiftMessageChange(e.target.value)}
-                    placeholder="Enter a message for the recipient..."
-                    className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#C5A15A]"
-                    maxLength={150}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Cart Footer */}
-        {cartItems.length > 0 && (
-          <div className="p-4 border-t border-[rgba(243,235,221,0.12)] bg-[#0A0A0A] space-y-3">
-            <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
-              <span className="text-[#B8C4C2] uppercase tracking-wider">TOTAL</span>
-              <span className="text-[#F5F1EA] text-base font-bold">₹{cartTotals.totalAmount.toLocaleString()}</span>
+          <div className="p-4 bg-[#111116] border-t border-[rgba(241,238,242,0.12)] space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold uppercase text-[#F1EEF2]">
+              <span>TOTAL ({cartTotals.itemCount} ITEMS)</span>
+              <span className="text-base text-[#F1EEF2]">₹{cartTotals.totalAmount.toLocaleString()}</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-[#B8C4C2] bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
-              >
-                CONTINUE SHOPPING
-              </button>
-              <a
-                href={createCartWhatsAppOrderUrl(cartItems, cartGiftOpts)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-white bg-[#102F38] hover:bg-[#163E49] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <WhatsAppIcon className="w-3.5 h-3.5" />
-                <span>CHECKOUT</span>
-              </a>
-            </div>
+            <a
+              href={whatsAppOrderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#D62F4F] hover:bg-[#F04463] text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors shadow-md"
+              id="checkout-whatsapp-btn"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white text-white" />
+              <span>COMPLETE ORDER ON WHATSAPP →</span>
+            </a>
           </div>
         )}
 

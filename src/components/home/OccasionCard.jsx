@@ -5,27 +5,27 @@ import { ArrowRight } from 'lucide-react';
 /**
  * Render distinct typographic identities for each occasion title
  *
- * 1. DATE NIGHT: Modern high-fashion italic with subtle weight contrast between DATE and NIGHT (seductive)
+ * 1. DATE NIGHT: Modern high-fashion italic with subtle cherry text accent (seductive)
  * 2. EVERYDAY: Clean geometric sans with compact, effortless tracking (effortless)
  * 3. OFFICE: Neo-grotesk sans with crisp edges & restrained wider tracking (sharp & structured)
  * 4. PARTY: Contemporary display sans with bold, energetic proportions (expressive)
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
   const baseSize = isDesktop ? 'text-[14px] lg:text-[15px]' : 'text-[9.5px] sm:text-[11px]';
-  const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
+  const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.6)' } : {};
 
   switch (occasion.id) {
     case 'date-night':
       return (
         <h3 className={`leading-none truncate ${baseSize}`} style={shadowStyle}>
-          <span className="font-sans italic font-medium tracking-[0.02em] uppercase text-[#F5F1EA]">DATE </span>
-          <span className="font-sans italic font-black tracking-[0.05em] uppercase text-[#F5F1EA]">NIGHT</span>
+          <span className="font-sans italic font-medium tracking-[0.02em] uppercase text-[#F1EEF2]">DATE </span>
+          <span className="font-sans italic font-black tracking-[0.05em] uppercase text-[#D62F4F]">NIGHT</span>
         </h3>
       );
     case 'everyday':
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.08em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-bold tracking-[0.08em] uppercase text-[#F1EEF2] leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           EVERYDAY
@@ -34,7 +34,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-sans font-semibold tracking-[0.24em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-semibold tracking-[0.24em] uppercase text-[#F1EEF2] leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           OFFICE
@@ -43,7 +43,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-sans font-black tracking-[0.16em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-black tracking-[0.16em] uppercase text-[#F1EEF2] leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           PARTY
@@ -52,7 +52,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.1em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-bold tracking-[0.1em] uppercase text-[#F1EEF2] leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           {occasion.title}
@@ -64,21 +64,21 @@ function OccasionTitle({ occasion, isDesktop = false }) {
 /**
  * OccasionCard Component
  * Mobile (< md): Compact photographic tile with occasion name OUTSIDE directly below image.
- * Desktop (>= md): Uniform premium photographic card layout across all 4 occasions (no dots, distinct typography).
+ * Desktop (>= md): Uniform premium photographic card layout across all 4 occasions.
  */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
 
   return (
     <div className="relative w-full">
-      {/* ── 1. MOBILE PRESENTATION (< md: IMAGE TOP, TEXT OUTSIDE BELOW) ── */}
+      {/* ── 1. MOBILE PRESENTATION (< md) ── */}
       <Link
         to={occasion.route}
         className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Compact Photographic Image Container */}
-        <div className="relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border border-white/10 transition-transform duration-300 group-hover:scale-[1.02] shadow-sm">
+        <div className="relative w-full aspect-[1/0.85] rounded-[8px] overflow-hidden border border-[rgba(241,238,242,0.10)] group-hover:border-[#D62F4F]/50 transition-all duration-300 shadow-sm">
           <img
             src={occasion.image}
             alt={occasion.alt}
@@ -93,10 +93,10 @@ export default function OccasionCard({ occasion }) {
         </div>
       </Link>
 
-      {/* ── 2. DESKTOP PRESENTATION (>= md: UNIFORM CAMPAIGN CARDS FOR ALL 4 OCCASIONS) ── */}
+      {/* ── 2. DESKTOP PRESENTATION (>= md) ── */}
       <Link
         to={occasion.route}
-        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-white/10 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/50"
+        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[12px] border border-[rgba(241,238,242,0.10)] group-hover:border-[#D62F4F]/50 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none shadow-md"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
         {/* Background Photography Layer */}
@@ -109,7 +109,7 @@ export default function OccasionCard({ occasion }) {
           />
 
           {/* Controlled Dark Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent transition-colors duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors duration-300" />
         </div>
 
         {/* Bottom Content Layer */}
@@ -120,8 +120,8 @@ export default function OccasionCard({ occasion }) {
 
             {/* Subtitle */}
             <p
-              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#E5E9E8]/90"
-              style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
+              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#A7A3AA]"
+              style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
             >
               {occasion.description}
             </p>
@@ -130,8 +130,7 @@ export default function OccasionCard({ occasion }) {
           {/* Bottom-Right Arrow Icon */}
           <div className="shrink-0 flex items-center justify-center pl-2">
             <ArrowRight
-              className="w-[19px] h-[19px] stroke-[1.75] transform transition-transform duration-250 ease-out group-hover:translate-x-1"
-              style={{ color: '#FFFFFF', filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.5))' }}
+              className="w-[19px] h-[19px] stroke-[2] text-[#D62F4F] transform transition-transform duration-250 ease-out group-hover:translate-x-1 group-hover:text-[#F04463]"
               aria-hidden="true"
             />
           </div>
