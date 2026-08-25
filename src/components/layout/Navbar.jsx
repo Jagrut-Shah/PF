@@ -205,7 +205,7 @@ export default function Navbar() {
         <div className="md:hidden">
           {/* Subtle translucent backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 transition-opacity duration-200"
+            className="fixed inset-0 bg-black/80 z-40 transition-opacity duration-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />

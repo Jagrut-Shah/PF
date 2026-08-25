@@ -51,7 +51,7 @@ export default function GlobalCartDrawer() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/80 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/85 md:bg-black/80 md:backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
       role="dialog"
       aria-label="Your Shopping Cart"
     >

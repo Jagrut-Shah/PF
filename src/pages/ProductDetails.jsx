@@ -211,21 +211,22 @@ export default function ProductDetails() {
 
   // Sticky Add to Cart viewport visibility observer
   useEffect(() => {
-    const checkVisibility = () => {
-      if (!mainCtaRef.current) return;
-      const rect = mainCtaRef.current.getBoundingClientRect();
-      // Appears immediately when the bottom of the main Add to Cart area leaves the top of the viewport
-      setIsStickyVisible(rect.bottom < 0);
-    };
+    if (!mainCtaRef.current) return;
 
-    checkVisibility();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Appears immediately when the bottom of the main Add to Cart area leaves the top of the viewport
+        setIsStickyVisible(!entry.isIntersecting && entry.boundingClientRect.bottom < 0);
+      },
+      {
+        threshold: 0,
+      }
+    );
 
-    window.addEventListener('scroll', checkVisibility, { passive: true });
-    window.addEventListener('resize', checkVisibility, { passive: true });
+    observer.observe(mainCtaRef.current);
 
     return () => {
-      window.removeEventListener('scroll', checkVisibility);
-      window.removeEventListener('resize', checkVisibility);
+      observer.disconnect();
     };
   }, [product]);
 
@@ -318,6 +319,7 @@ export default function ProductDetails() {
               src={product.image}
               alt={`ÉLAVA ${product.name} Eau de Parfum bottle`}
               className="w-full max-w-[560px] max-h-[480px] h-auto object-contain drop-shadow-xs select-none"
+              loading="eager"
             />
           </div>
 
@@ -722,7 +724,7 @@ export default function ProductDetails() {
       {/* MULTI-PRODUCT CART DRAWER / MODAL */}
       {showCartDrawer && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/70 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/85 md:bg-black/70 md:backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
           role="dialog"
           aria-label="Your Shopping Cart"
         >
