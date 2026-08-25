@@ -16,6 +16,10 @@ import ReturnsPage from './pages/ReturnsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -57,9 +61,13 @@ export default function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
 
-          {/* Auth Foundation Routes */}
-          <Route path="/login" element={<div className="min-h-screen py-24 text-center font-serif text-lg">Login Dashboard Coming Soon</div>} />
-          <Route path="/signup" element={<div className="min-h-screen py-24 text-center font-serif text-lg">Create Account Coming Soon</div>} />
+          {/* Auth Pages */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+          {/* Protected Future Pathways */}
           <Route path="/account" element={
             <ProtectedRoute>
               <div className="min-h-screen py-24 text-center font-serif text-lg">Account Dashboard Coming Soon</div>
