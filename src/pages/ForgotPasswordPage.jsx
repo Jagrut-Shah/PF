@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { isSupabaseConfigured } from '../utils/supabase';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 
@@ -10,6 +11,12 @@ export default function ForgotPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setError('Supabase configuration is missing. Please set your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.');
+    }
+  }, []);
 
   const handleResetRequest = async (e) => {
     e.preventDefault();

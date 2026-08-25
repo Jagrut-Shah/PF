@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../utils/supabase';
+import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 
@@ -16,6 +16,12 @@ export default function LoginPage() {
 
   // Destination redirect path state (default to '/account')
   const from = location.state?.from?.pathname || '/account';
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setError('Supabase configuration is missing. Please set your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.');
+    }
+  }, []);
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();

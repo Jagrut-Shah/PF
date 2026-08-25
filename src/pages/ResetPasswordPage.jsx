@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../utils/supabase';
+import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 
@@ -11,6 +11,12 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setError('Supabase configuration is missing. Please set your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.');
+    }
+  }, []);
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
