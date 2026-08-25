@@ -86,6 +86,7 @@ export default function GlobalCartDrawer() {
             cartItems.map((item, idx) => {
               const isDuo = item.type === 'duo_bundle';
               const isSample = item.type === 'sample_set' || item.id === 'discovery-set';
+              const isSingleSample = item.type === 'sample_purchase';
 
               return (
                 <div key={`global-${item.id}-${item.size}-${idx}`} className="pt-4 first:pt-0 space-y-2">
@@ -110,10 +111,15 @@ export default function GlobalCartDrawer() {
                             SAMPLE SET
                           </span>
                         )}
+                        {isSingleSample && (
+                          <span className="bg-[#7A2929]/20 text-[#F5F1EA] border border-[#7A2929]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
+                            SAMPLE BOTTLE
+                          </span>
+                        )}
                       </div>
 
                       <div className="text-[11px] text-[#B8C4C2] mt-0.5">
-                        {isDuo ? '2 × 60 ML Eau de Parfum' : isSample ? 'SAMPLE SET · 4 × 60 ML' : item.size}
+                        {isDuo ? '2 × 60 ML Eau de Parfum' : isSample ? 'SAMPLE SET · 4 × 60 ML' : isSingleSample ? 'SAMPLE · 60 ML' : item.size}
                       </div>
 
                       {/* Included Fragrances for Duo */}
