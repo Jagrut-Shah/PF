@@ -15,6 +15,7 @@ import ShippingPage from './pages/ShippingPage';
 import ReturnsPage from './pages/ReturnsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import ProtectedRoute from './components/common/ProtectedRoute';
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -55,6 +56,30 @@ export default function App() {
           <Route path="/returns" element={<ReturnsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+
+          {/* Auth Foundation Routes */}
+          <Route path="/login" element={<div className="min-h-screen py-24 text-center font-serif text-lg">Login Dashboard Coming Soon</div>} />
+          <Route path="/signup" element={<div className="min-h-screen py-24 text-center font-serif text-lg">Create Account Coming Soon</div>} />
+          <Route path="/account" element={
+            <ProtectedRoute>
+              <div className="min-h-screen py-24 text-center font-serif text-lg">Account Dashboard Coming Soon</div>
+            </ProtectedRoute>
+          } />
+          <Route path="/orders" element={
+            <ProtectedRoute>
+              <div className="min-h-screen py-24 text-center font-serif text-lg">Your Orders Coming Soon</div>
+            </ProtectedRoute>
+          } />
+          <Route path="/refer-and-earn" element={
+            <ProtectedRoute>
+              <div className="min-h-screen py-24 text-center font-serif text-lg">Refer & Earn Dashboard Coming Soon</div>
+            </ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <div className="min-h-screen py-24 text-center font-serif text-lg">Account Settings Coming Soon</div>
+            </ProtectedRoute>
+          } />
         </Routes>
       </main>
       <Footer />
