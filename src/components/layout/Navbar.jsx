@@ -88,7 +88,7 @@ export default function Navbar() {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-2 -ml-2 text-[#F5F1EA] hover:text-[#C5A15A] transition-colors duration-200 focus:outline-none"
+                className="p-2 -ml-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -137,8 +137,8 @@ export default function Navbar() {
                     className={
                       `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.18em] font-semibold px-3.5 py-2 rounded-md transition-colors duration-200 ${
                         isActive
-                          ? 'text-[#C5A15A] font-bold bg-[rgba(243,235,221,0.08)]'
-                          : 'text-[#F5F1EA] hover:text-[#C5A15A] hover:bg-[rgba(243,235,221,0.06)]'
+                          ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
+                          : 'text-[#F5F1EA] hover:text-[#FFFFFF] hover:bg-[rgba(243,235,221,0.06)]'
                       }`
                     }
                   >
@@ -157,7 +157,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#F5F1EA] hover:text-[#C5A15A] transition-colors duration-200 focus:outline-none"
+                className="p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none"
                 aria-label="Search collection"
               >
                 <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -169,7 +169,7 @@ export default function Navbar() {
                 onClick={() => {
                   window.dispatchEvent(new Event('open-cart-drawer'));
                 }}
-                className="p-2 text-[#F5F1EA] hover:text-[#C5A15A] transition-colors duration-200 focus:outline-none relative"
+                className="p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none relative"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
@@ -218,7 +218,7 @@ export default function Navbar() {
             {/* Panel Header */}
             <div>
               <div className="flex items-center justify-between pb-3.5 border-b border-[rgba(243,235,221,0.12)] mb-3">
-                <span className="font-serif text-xs tracking-[0.2em] font-bold text-[#C5A15A] uppercase">
+                <span className="font-serif text-xs tracking-[0.2em] font-bold text-[#B8C4C2] uppercase">
                   ÉLAVA NAVIGATION
                 </span>
                 <button
@@ -245,8 +245,8 @@ export default function Navbar() {
                       className={
                         `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[rgba(243,235,221,0.12)] transition-colors ${
                           isActive
-                            ? 'text-[#C5A15A] font-bold bg-[rgba(243,235,221,0.06)]'
-                            : 'text-[#F5F1EA] hover:bg-[rgba(243,235,221,0.06)] hover:text-[#C5A15A] font-medium'
+                            ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
+                            : 'text-[#F5F1EA] hover:bg-[rgba(243,235,221,0.06)] hover:text-[#FFFFFF] font-medium'
                         }`
                       }
                     >
@@ -265,9 +265,9 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#1C4A55] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F1EA] hover:text-[#C5A15A] border border-[rgba(243,235,221,0.15)] transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#1C4A55] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F1EA] hover:text-[#FFFFFF] border border-[rgba(243,235,221,0.15)] transition-colors"
               >
-                <Search className="w-4 h-4 text-[#C5A15A] shrink-0" />
+                <Search className="w-4 h-4 text-[#B8C4C2] shrink-0" />
                 <span>SEARCH COLLECTION</span>
               </button>
 
@@ -275,7 +275,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#102F38] border border-[rgba(243,235,221,0.14)] text-xs font-sans font-bold uppercase tracking-wider text-[#F5F1EA] hover:border-[#C5A15A]/50 transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#102F38] border border-[rgba(243,235,221,0.14)] text-xs font-sans font-bold uppercase tracking-wider text-[#F5F1EA] hover:border-[#F5F1EA]/40 transition-colors"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>

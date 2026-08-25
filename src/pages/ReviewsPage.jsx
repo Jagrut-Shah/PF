@@ -104,7 +104,7 @@ export default function ReviewsPage() {
             <div className="mb-1.5">
               <StarRating rating={displayRating} starColor="#C5A15A" />
             </div>
-            <div className="font-sans text-xs text-[#C5A15A] font-semibold tracking-wider uppercase">
+            <div className="font-sans text-xs text-[#B8C4C2] font-semibold tracking-wider uppercase">
               {displayReviewCount.toLocaleString()} VERIFIED REVIEWS
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function ReviewsPage() {
             {currentProduct ? (
               <Link
                 to="/reviews"
-                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F3EBDD] hover:text-[#C5A15A] transition-colors"
+                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F3EBDD] hover:text-[#FFFFFF] transition-colors"
               >
                 ← VIEW ALL REVIEWS
               </Link>
@@ -162,7 +162,7 @@ export default function ReviewsPage() {
             <p className="font-sans text-sm text-[#C8C1B5] mb-3">No reviews found for this selection.</p>
             <Link
               to="/reviews"
-              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#C5A15A] hover:underline"
+              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#B8C4C2] hover:underline"
             >
               Reset Filters →
             </Link>

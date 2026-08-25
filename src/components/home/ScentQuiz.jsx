@@ -93,7 +93,7 @@ export default function ScentQuiz() {
           {/* Results */}
           <div className="border-t border-[rgba(243,235,221,0.12)] pt-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-sans text-xs sm:text-sm text-[#C5A15A] font-bold uppercase tracking-[0.16em]">
+              <h3 className="font-sans text-xs sm:text-sm text-[#F5F1EA] font-bold uppercase tracking-[0.16em]">
                 YOUR SIGNATURE MATCH
               </h3>
               <button
@@ -115,7 +115,7 @@ export default function ScentQuiz() {
                     className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg shrink-0 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)]"
                   />
                   <div className="min-w-0">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#B8C4C2]">
                       TOP MATCH · ÉLAVA SIGNATURE
                     </span>
                     <h4 className="font-serif text-xl font-bold uppercase text-[#F5F1EA]">
@@ -149,7 +149,7 @@ export default function ScentQuiz() {
                     <Link
                       key={p.id}
                       to={`/product/${p.slug}`}
-                      className="group bg-[#102F38]/70 border border-[rgba(243,235,221,0.12)] rounded-lg p-3 flex items-center justify-between hover:border-[#C5A15A] transition-colors"
+                      className="group bg-[#102F38]/70 border border-[rgba(243,235,221,0.12)] rounded-lg p-3 flex items-center justify-between hover:border-[#F5F1EA]/40 transition-colors"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <img
@@ -164,7 +164,7 @@ export default function ScentQuiz() {
                           <p className="text-[10px] text-[#B8C4C2] truncate">{p.scentIdentity}</p>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-[#C5A15A] shrink-0 ml-2">₹{p.price} →</span>
+                      <span className="text-xs font-bold text-[#F5F1EA] shrink-0 ml-2">₹{p.price} →</span>
                     </Link>
                   ))}
                 </div>

@@ -24,14 +24,14 @@ export default function Hero() {
       <MainContainer className="relative z-10 py-12 sm:py-16 md:py-24 lg:py-28">
         <div className="max-w-2xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] mb-4 text-xs font-sans tracking-[0.16em] uppercase text-[#C5A15A]">
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A15A]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] mb-4 text-xs font-sans tracking-[0.16em] uppercase text-[#B8C4C2]">
+            <Sparkles className="w-3.5 h-3.5 text-[#B8C4C2]" />
             <span>60 ML EAU DE PARFUM COLLECTION</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.04em] uppercase text-[#F3EBDD] leading-[1.1] mb-4">
-            SCENTS THAT BECOME <span className="italic text-[#C5A15A]">PART OF YOU.</span>
+            SCENTS THAT BECOME <span className="italic text-[#F3EBDD] font-medium">PART OF YOU.</span>
           </h1>
 
           {/* Subhead */}

@@ -41,7 +41,7 @@ export default function WhyElava() {
               className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-6 flex flex-col justify-between shadow-sm transition-transform duration-300 hover:-translate-y-1"
             >
               <div>
-                <span className="font-serif text-3xl font-bold text-[#C5A15A] block mb-3">
+                <span className="font-serif text-3xl font-bold text-[#B8C4C2] block mb-3">
                   {item.number}
                 </span>
                 <h3 className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-[#F3EBDD] mb-2">

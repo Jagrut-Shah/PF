@@ -348,7 +348,7 @@ export default function ProductDetails() {
           {/* Bestseller Badge */}
           {product.isBestseller && (
             <div className="self-start">
-              <span className="bg-[#C5A15A] text-[#102F38] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-extrabold uppercase rounded-sm inline-block mb-2 shadow-xs">
+              <span className="bg-[#7A2929] text-[#F5F1EA] px-2.5 py-0.5 text-[10px] tracking-[0.2em] font-extrabold uppercase rounded-sm inline-block mb-2 shadow-xs">
                 BESTSELLER
               </span>
             </div>
@@ -395,34 +395,34 @@ export default function ProductDetails() {
           <div ref={mainCtaRef} className="mt-5 space-y-3">
             
             {/* 1. COMPACT PREMIUM GIFTING COMPONENT (PLACED ABOVE ADD TO CART) */}
-            <div className="p-3.5 sm:p-4 bg-[#111116] border border-[rgba(241,238,242,0.12)] rounded-xl text-xs space-y-3 shadow-md">
+            <div className="p-3.5 sm:p-4 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl text-xs space-y-3 shadow-md">
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F1EEF2] text-xs sm:text-sm">
+                <label className="flex items-center gap-2 cursor-pointer font-bold text-[#F5F1EA] text-xs sm:text-sm">
                   <input
                     type="checkbox"
                     checked={isGift}
                     onChange={(e) => setIsGift(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-600 accent-[#D62F4F] cursor-pointer"
+                    className="w-4 h-4 rounded border-gray-600 accent-[#7A2929] cursor-pointer"
                     id="product-gift-checkbox"
                   />
                   <span className="flex items-center gap-1.5">
-                    <Gift className="w-4 h-4 text-[#D62F4F]" />
-                    <span className="font-serif tracking-wide text-[#F1EEF2]">🎁 GIFTING THIS?</span>
+                    <Gift className="w-4 h-4 text-[#B8C4C2]" />
+                    <span className="font-serif tracking-wide text-[#F5F1EA]">GITING THIS?</span>
                   </span>
                 </label>
-                <span className="text-[10.5px] text-[#A7A3AA] font-sans">
+                <span className="text-[10.5px] text-[#B8C4C2] font-sans">
                   Optional Gifting
                 </span>
               </div>
 
-              <p className="text-[11.5px] text-[#A7A3AA] font-sans leading-snug pl-6">
+              <p className="text-[11.5px] text-[#B8C4C2] font-sans leading-snug pl-6">
                 Include a complimentary personal gift message with your fragrance order.
               </p>
 
               {isGift && (
-                <div className="pl-6 pt-2.5 space-y-2 border-t border-[rgba(241,238,242,0.10)] text-[#A7A3AA]">
+                <div className="pl-6 pt-2.5 space-y-2 border-t border-[rgba(243,235,221,0.12)] text-[#B8C4C2]">
                   <div>
-                    <label className="block text-[10.5px] uppercase font-semibold text-[#A7A3AA] mb-1">
+                    <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
                       Personal Gift Message (Optional)
                     </label>
                     <input
@@ -430,7 +430,7 @@ export default function ProductDetails() {
                       value={giftMessage}
                       onChange={(e) => setGiftMessage(e.target.value)}
                       placeholder="e.g. Happy Birthday! Enjoy this signature scent."
-                      className="w-full bg-[#18181E] border border-[rgba(241,238,242,0.2)] rounded-lg px-3 py-2 text-xs text-[#F1EEF2] placeholder-[#A7A3AA]/60 focus:outline-none focus:border-[#D62F4F]"
+                      className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#7A2929]"
                       maxLength={150}
                       id="product-gift-message-input"
                     />
@@ -443,7 +443,7 @@ export default function ProductDetails() {
             <button
               type="button"
               onClick={handleAddToCart}
-              className="w-full bg-[#D62F4F] hover:bg-[#F04463] active:bg-[#B92340] text-white rounded-xl py-4 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-lg active:scale-[0.99] group"
+              className="w-full bg-black hover:bg-neutral-900 active:bg-neutral-800 text-white rounded-xl py-4 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-lg active:scale-[0.99] group"
               id="main-add-to-cart-btn"
             >
               {addedToCart ? (
@@ -464,7 +464,7 @@ export default function ProductDetails() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#111116] hover:bg-[#18181E] text-[#F1EEF2] border border-[rgba(241,238,242,0.14)] rounded-xl py-3.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer shadow-xs"
+              className="w-full bg-[#102F38] hover:bg-[#1C4A55] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] rounded-xl py-3.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer shadow-xs"
             >
               <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
               <span>ORDER ON WHATSAPP</span>
@@ -480,7 +480,7 @@ export default function ProductDetails() {
             <div className="mt-4 p-3.5 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl text-xs space-y-2.5 shadow-xs">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-[#F5F1EA] flex items-center gap-1.5 text-xs">
-                  <Truck className="w-4 h-4 text-[#C5A15A]" />
+                  <Truck className="w-4 h-4 text-[#B8C4C2]" />
                   <span>ESTIMATE DELIVERY TIME</span>
                 </span>
                 <span className="text-[10px] text-[#B8C4C2]">Enter 6-digit Pincode</span>
@@ -509,12 +509,12 @@ export default function ProductDetails() {
                   value={pincodeInput}
                   onChange={(e) => setPincodeInput(e.target.value.replace(/\D/g, ''))}
                   placeholder="e.g. 400001"
-                  className="flex-1 bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#C5A15A]"
+                  className="flex-1 bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#7A2929]"
                   id="pincode-input"
                 />
                 <button
                   type="submit"
-                  className="bg-[#C5A15A] hover:bg-[#b08e4c] text-[#102F38] px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
+                  className="bg-[#7A2929] hover:bg-[#8C3232] text-[#F5F1EA] px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
                   id="check-pincode-btn"
                 >
                   CHECK
@@ -540,12 +540,12 @@ export default function ProductDetails() {
           {/* Content Blocks */}
           <div className="mt-8 space-y-6">
             
-            {/* REDESIGNED "WHAT DOES IT SMELL LIKE?" WITH HIGH VISUAL EMPHASIS */}
+            {/* REDESIGNED "WHAT IT FEELS LIKE" */}
             <section className="bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-2xl p-5 sm:p-6 shadow-md space-y-4">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#C5A15A]" />
+                <Sparkles className="w-4 h-4 text-[#B8C4C2]" />
                 <h2 className="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wide text-[#F5F1EA]">
-                  WHAT DOES IT SMELL LIKE?
+                  WHAT IT FEELS LIKE
                 </h2>
               </div>
 
@@ -555,21 +555,14 @@ export default function ProductDetails() {
 
               {product.smellsLikeProfile && product.smellsLikeProfile.length > 0 && (
                 <div className="pt-2 border-t border-[rgba(243,235,221,0.12)]">
-                  <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#C5A15A] mb-2.5">
-                    SMELLS LIKE
+                  <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#B8C4C2] mb-2.5">
+                    FEELS LIKE
                   </div>
                   <div className="font-sans text-xs sm:text-sm font-medium text-[#F5F1EA] flex flex-wrap items-center gap-2">
                     {product.smellsLikeProfile.map((trait, idx) => (
-                      <React.Fragment key={idx}>
-                        {idx > 0 && (
-                          <span className="text-[#C5A15A] font-bold text-xs select-none" aria-hidden="true">
-                            →
-                          </span>
-                        )}
-                        <span className="bg-[#1C4A55] text-[#F5F1EA] px-3 py-1.5 rounded-lg border border-[rgba(243,235,221,0.15)] text-xs font-semibold shadow-xs">
-                          {trait}
-                        </span>
-                      </React.Fragment>
+                      <span key={idx} className="bg-[#1C4A55] text-[#F5F1EA] px-3.5 py-1.5 rounded-lg border border-[rgba(243,235,221,0.15)] text-xs font-semibold shadow-xs">
+                        {trait}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -733,11 +726,11 @@ export default function ProductDetails() {
           role="dialog"
           aria-label="Your Shopping Cart"
         >
-          <div className="bg-[#000000] border border-[rgba(243,235,221,0.25)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
+          <div className="bg-[#163E49] border border-[rgba(243,235,221,0.18)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
             {/* Header */}
-            <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between">
+            <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between bg-[#102F38]">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="w-4 h-4 text-[#C5A15A]" />
+                <ShoppingBag className="w-4 h-4 text-[#F5F1EA]" />
                 <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F1EA]">
                   YOUR CART ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})
                 </span>
@@ -817,14 +810,14 @@ export default function ProductDetails() {
               <div className="px-4 py-3 bg-[#102F38]/70 border-t border-b border-[rgba(243,235,221,0.12)] space-y-2 text-xs">
                 <label className="flex items-center justify-between cursor-pointer font-bold text-[#F5F1EA]">
                   <span className="flex items-center gap-1.5">
-                    <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
+                    <Gift className="w-3.5 h-3.5 text-[#F5F1EA]" />
                     <span>Is this a gift?</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={cartGiftOpts?.isGift || false}
                     onChange={(e) => handleCartGiftToggle(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                    className="w-4 h-4 rounded border-gray-600 accent-[#7A2929] cursor-pointer"
                     id="cart-gift-checkbox"
                   />
                 </label>
@@ -836,7 +829,7 @@ export default function ProductDetails() {
                         type="checkbox"
                         checked={cartGiftOpts?.giftPackaging || false}
                         onChange={(e) => handleCartGiftPackagingToggle(e.target.checked)}
-                        className="w-3.5 h-3.5 rounded border-gray-600 accent-[#C5A15A] cursor-pointer"
+                        className="w-3.5 h-3.5 rounded border-gray-600 accent-[#7A2929] cursor-pointer"
                         id="cart-gift-packaging-checkbox"
                       />
                       <span>Add gift packaging</span>
@@ -851,7 +844,7 @@ export default function ProductDetails() {
                         value={cartGiftOpts?.giftMessage || ''}
                         onChange={(e) => handleCartGiftMessageChange(e.target.value)}
                         placeholder="Enter a message for the recipient..."
-                        className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#C5A15A]"
+                        className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded px-2.5 py-1.5 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/50 focus:outline-none focus:border-[#7A2929]"
                         maxLength={150}
                         id="cart-gift-message-input"
                       />
@@ -863,7 +856,7 @@ export default function ProductDetails() {
 
             {/* Cart Footer */}
             {cartItems.length > 0 && (
-              <div className="p-4 border-t border-[rgba(243,235,221,0.12)] bg-[#0A0A0A] space-y-3">
+              <div className="p-4 border-t border-[rgba(243,235,221,0.12)] bg-[#102F38] space-y-3">
                 <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
                   <span className="text-[#B8C4C2] uppercase tracking-wider">TOTAL</span>
                   <span className="text-[#F5F1EA] text-base font-bold">₹{cartTotals.totalAmount.toLocaleString()}</span>
@@ -881,7 +874,7 @@ export default function ProductDetails() {
                     href={createCartWhatsAppOrderUrl(cartItems, cartGiftOpts)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-white bg-[#102F38] hover:bg-[#163E49] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-[#F5F1EA] bg-[#7A2929] hover:bg-[#8C3232] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                   >
                     <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
                     <span>CHECKOUT</span>

@@ -43,7 +43,7 @@ export default function WardrobePage() {
           <div className="flex items-center gap-2 text-xs text-[#B8C4C2] mb-6 uppercase tracking-wider font-sans">
             <Link to="/" className="hover:text-[#F5F1EA] transition-colors">HOME</Link>
             <span>/</span>
-            <span className="text-[#C5A15A] font-bold">SCENT WARDROBE</span>
+            <span className="text-[#B8C4C2] font-bold">SCENT WARDROBE</span>
             <span>/</span>
             <span className="text-[#F5F1EA]">{bundle.title}</span>
           </div>
@@ -75,8 +75,8 @@ export default function WardrobePage() {
             <div className="lg:col-span-6 space-y-5">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] text-[#C5A15A] text-xs font-bold uppercase tracking-wider">
-                <Layers className="w-3.5 h-3.5 text-[#C5A15A]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] text-[#B8C4C2] text-xs font-bold uppercase tracking-wider">
+                <Layers className="w-3.5 h-3.5 text-[#B8C4C2]" />
                 <span>CURATED SCENT WARDROBE</span>
               </div>
 
@@ -85,7 +85,7 @@ export default function WardrobePage() {
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-[#F5F1EA] leading-tight">
                   {bundle.title}
                 </h1>
-                <p className="font-sans text-lg sm:text-xl text-[#C5A15A] mt-1 font-semibold">
+                <p className="font-sans text-lg sm:text-xl text-[#B8C4C2] mt-1 font-semibold">
                   {bundle.tagline}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function WardrobePage() {
 
               {/* ── WHAT YOU GET ── */}
               <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-3.5 sm:p-4 space-y-2.5 shadow-sm">
-                <div className="text-[11px] font-extrabold uppercase tracking-widest text-[#C5A15A] flex items-center justify-between">
+                <div className="text-[11px] font-extrabold uppercase tracking-widest text-[#B8C4C2] flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
                     <Layers className="w-3.5 h-3.5" />
                     <span>WHAT YOU GET IN THIS WARDROBE</span>
@@ -116,7 +116,7 @@ export default function WardrobePage() {
                       className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded bg-[#1C4A55] border border-[rgba(243,235,221,0.12)] shrink-0"
                     />
                     <div className="min-w-0">
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#C5A15A]">FRAGRANCE 01</div>
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#B8C4C2]">FRAGRANCE 01</div>
                       <div className="font-serif text-xs sm:text-sm font-bold uppercase text-[#F5F1EA] truncate">
                         ÉLAVA {fragrance1.name}
                       </div>
@@ -132,7 +132,7 @@ export default function WardrobePage() {
                       className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded bg-[#1C4A55] border border-[rgba(243,235,221,0.12)] shrink-0"
                     />
                     <div className="min-w-0">
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#C5A15A]">FRAGRANCE 02</div>
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-[#B8C4C2]">FRAGRANCE 02</div>
                       <div className="font-serif text-xs sm:text-sm font-bold uppercase text-[#F5F1EA] truncate">
                         ÉLAVA {fragrance2.name}
                       </div>
@@ -192,11 +192,11 @@ export default function WardrobePage() {
               {/* Reassurance Features */}
               <div className="grid grid-cols-2 gap-3 pt-2 text-xs text-[#B8C4C2] border-t border-[rgba(243,235,221,0.12)]">
                 <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-[#C5A15A] shrink-0" />
+                  <Truck className="w-4 h-4 text-[#B8C4C2] shrink-0" />
                   <span>Free Express Delivery Across India</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#C5A15A] shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-[#B8C4C2] shrink-0" />
                   <span>Authentic 60ml EDP Signatures</span>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function WardrobePage() {
             
             {/* Why This Combination */}
             <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase text-[#C5A15A] tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase text-[#B8C4C2] tracking-wider">
                 <Sparkles className="w-4 h-4" />
                 <span>WHY THIS COMBINATION</span>
               </div>
@@ -229,7 +229,7 @@ export default function WardrobePage() {
 
             {/* How to Use / When to Wear */}
             <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase text-[#C5A15A] tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase text-[#B8C4C2] tracking-wider">
                 <Layers className="w-4 h-4" />
                 <span>WHEN TO WEAR</span>
               </div>

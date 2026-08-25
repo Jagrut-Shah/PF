@@ -36,8 +36,7 @@ export default function ContactHelpBlock() {
           <span>{DEMO_COMPANY_INFO.brandName}</span>
           <span className="bg-[#163E49] text-[#C8C1B5] px-1.5 py-0.5 rounded border border-[rgba(243,235,221,0.15)]">DEMO CONTACT</span>
         </div>
-        <p className="text-[#F3EBDD] font-medium">{DEMO_COMPANY_INFO.formattedAddress}</p>
-        <p>Customer Care: <a href={`mailto:${DEMO_COMPANY_INFO.supportEmail}`} className="underline text-[#F3EBDD] hover:text-[#C5A15A]">{DEMO_COMPANY_INFO.supportEmail}</a> <span className="text-[10px] text-[#C8C1B5]">(DEMO)</span></p>
+        <p>Customer Care: <a href={`mailto:${DEMO_COMPANY_INFO.supportEmail}`} className="underline text-[#F3EBDD] hover:text-white">{DEMO_COMPANY_INFO.supportEmail}</a> <span className="text-[10px] text-[#C8C1B5]">(DEMO)</span></p>
         <p className="text-[#C8C1B5]">Support Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
       </div>
     </section>

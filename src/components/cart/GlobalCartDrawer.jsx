@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Minus, Plus, X, Gift, Sparkles } from 'lucide-react';
+import { ShoppingBag, Minus, Plus, X, Gift } from 'lucide-react';
 import {
   getCart,
   updateCartItemQuantity,
@@ -55,20 +55,20 @@ export default function GlobalCartDrawer() {
       role="dialog"
       aria-label="Your Shopping Cart"
     >
-      <div className="bg-[#0A0A0C] border border-[rgba(241,238,242,0.18)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F1EEF2] overflow-hidden">
+      <div className="bg-[#163E49] border border-[rgba(243,235,221,0.18)] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F1EA] overflow-hidden">
         
         {/* Header */}
-        <div className="p-4 border-b border-[rgba(241,238,242,0.10)] flex items-center justify-between bg-[#111116]">
+        <div className="p-4 border-b border-[rgba(243,235,221,0.12)] flex items-center justify-between bg-[#102F38]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#D62F4F]" />
-            <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F1EEF2]">
+            <ShoppingBag className="w-4 h-4 text-[#F5F1EA]" />
+            <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#F5F1EA]">
               YOUR CART ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})
             </span>
           </div>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-[#A7A3AA] hover:text-[#F1EEF2] p-1 rounded-full hover:bg-white/10 transition-colors"
+            className="text-[#B8C4C2] hover:text-[#F5F1EA] p-1 rounded-full hover:bg-white/10 transition-colors"
             aria-label="Close cart drawer"
             id="global-close-cart-btn"
           >
@@ -77,9 +77,9 @@ export default function GlobalCartDrawer() {
         </div>
 
         {/* Cart Items List */}
-        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-[rgba(241,238,242,0.08)] max-h-[50vh]">
+        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-[rgba(243,235,221,0.10)] max-h-[50vh]">
           {cartItems.length === 0 ? (
-            <div className="py-10 text-center text-[#A7A3AA] text-xs">
+            <div className="py-10 text-center text-[#B8C4C2] text-xs">
               Your cart is currently empty.
             </div>
           ) : (
@@ -93,33 +93,33 @@ export default function GlobalCartDrawer() {
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-14 h-14 object-contain rounded bg-[#111116] border border-[rgba(241,238,242,0.12)] shrink-0"
+                      className="w-14 h-14 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.15)] shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F1EEF2]">
+                        <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F5F1EA]">
                           {isDuo ? item.name : (item.name?.startsWith('ÉLAVA') ? item.name : `ÉLAVA ${item.name}`)}
                         </div>
                         {isDuo && (
-                          <span className="bg-[#D62F4F]/20 text-[#D62F4F] border border-[#D62F4F]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#7A2929]/20 text-[#F5F1EA] border border-[#7A2929]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
                             DUO BUNDLE
                           </span>
                         )}
                         {isSample && (
-                          <span className="bg-[#D62F4F]/20 text-[#D62F4F] border border-[#D62F4F]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#7A2929]/20 text-[#F5F1EA] border border-[#7A2929]/40 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE SET
                           </span>
                         )}
                       </div>
 
-                      <div className="text-[11px] text-[#A7A3AA] mt-0.5">
+                      <div className="text-[11px] text-[#B8C4C2] mt-0.5">
                         {isDuo ? '2 × 60 ML Eau de Parfum' : isSample ? 'SAMPLE SET · 4 × 60 ML' : item.size}
                       </div>
 
                       {/* Included Fragrances for Duo */}
                       {isDuo && item.includedFragrances && (
-                        <div className="text-[10px] text-[#A7A3AA] mt-1 space-y-0.5 bg-[#111116] p-2 rounded border border-[rgba(241,238,242,0.08)]">
-                          <span className="font-semibold text-[#F1EEF2] block uppercase">Included Signatures:</span>
+                        <div className="text-[10px] text-[#B8C4C2] mt-1 space-y-0.5 bg-[#102F38] p-2 rounded border border-[rgba(243,235,221,0.10)]">
+                          <span className="font-semibold text-[#F5F1EA] block uppercase">Included Signatures:</span>
                           {item.includedFragrances.map((f, fIdx) => (
                             <div key={fIdx} className="truncate">• ÉLAVA {f.name} ({f.size})</div>
                           ))}
@@ -128,13 +128,13 @@ export default function GlobalCartDrawer() {
 
                       {/* Per-Item Gift Information */}
                       {item.giftDetails?.isGift && (
-                        <div className="mt-1.5 text-[10.5px] text-[#D62F4F] bg-[#111116] p-2 rounded border border-[rgba(214,47,79,0.3)] space-y-0.5">
+                        <div className="mt-1.5 text-[10.5px] text-[#F5F1EA] bg-[#102F38] p-2 rounded border border-[rgba(243,235,221,0.20)] space-y-0.5">
                           <div className="flex items-center gap-1.5 font-bold">
-                            <Gift className="w-3.5 h-3.5 text-[#D62F4F]" />
-                            <span>🎁 Gift Order</span>
+                            <Gift className="w-3.5 h-3.5 text-[#F5F1EA]" />
+                            <span>Gift Order</span>
                           </div>
                           {item.giftDetails.giftMessage && (
-                            <div className="text-[#A7A3AA] italic truncate">
+                            <div className="text-[#B8C4C2] italic truncate">
                               "{item.giftDetails.giftMessage}"
                             </div>
                           )}
@@ -143,26 +143,26 @@ export default function GlobalCartDrawer() {
 
                       {/* Quantity Controls & Remove */}
                       <div className="flex items-center justify-between mt-2">
-                        <div className="inline-flex items-center border border-[rgba(241,238,242,0.14)] rounded bg-[#111116]">
+                        <div className="inline-flex items-center border border-[rgba(243,235,221,0.18)] rounded bg-[#102F38]">
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, -1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-xs text-[#A7A3AA] hover:text-[#F1EEF2]"
+                            className="px-2 py-1 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
                             aria-label="Decrease quantity"
                           >
                             <Minus className="w-3 h-3" />
                           </button>
-                          <span className="px-2.5 text-xs font-bold text-[#F1EEF2]">{item.quantity}</span>
+                          <span className="px-2.5 text-xs font-bold text-[#F5F1EA]">{item.quantity}</span>
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, 1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-xs text-[#A7A3AA] hover:text-[#F1EEF2]"
+                            className="px-2 py-1 text-xs text-[#B8C4C2] hover:text-[#F5F1EA]"
                             aria-label="Increase quantity"
                           >
                             <Plus className="w-3 h-3" />
@@ -175,7 +175,7 @@ export default function GlobalCartDrawer() {
                             const updated = removeCartItem(item.id, item.size);
                             setCartItems(updated);
                           }}
-                          className="text-[11px] text-[#A7A3AA] hover:text-[#FF5C67] underline transition-colors"
+                          className="text-[11px] text-[#B8C4C2] hover:text-[#FF5C67] underline transition-colors"
                         >
                           Remove
                         </button>
@@ -187,18 +187,18 @@ export default function GlobalCartDrawer() {
                     <div className="text-right shrink-0">
                       {isDuo && item.originalPrice ? (
                         <div>
-                          <span className="text-[10px] text-[#858287] line-through block">
+                          <span className="text-[10px] text-[#8FA6A3] line-through block">
                             ₹{(item.originalPrice * item.quantity).toLocaleString()}
                           </span>
-                          <span className="font-bold text-xs text-[#F1EEF2] block">
+                          <span className="font-bold text-xs text-[#F5F1EA] block">
                             ₹{(item.price * item.quantity).toLocaleString()}
                           </span>
-                          <span className="text-[9.5px] font-extrabold text-[#D62F4F] block mt-0.5">
+                          <span className="text-[9.5px] font-extrabold text-[#F5F1EA] block mt-0.5">
                             SAVE ₹{(item.savings * item.quantity).toLocaleString()}
                           </span>
                         </div>
                       ) : (
-                        <div className="font-bold text-xs text-[#F1EEF2]">
+                        <div className="font-bold text-xs text-[#F5F1EA]">
                           ₹{(item.price * item.quantity).toLocaleString()}
                         </div>
                       )}
@@ -213,20 +213,20 @@ export default function GlobalCartDrawer() {
 
         {/* Footer Summary & WhatsApp Order */}
         {cartItems.length > 0 && (
-          <div className="p-4 bg-[#111116] border-t border-[rgba(241,238,242,0.12)] space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold uppercase text-[#F1EEF2]">
+          <div className="p-4 bg-[#102F38] border-t border-[rgba(243,235,221,0.15)] space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold uppercase text-[#F5F1EA]">
               <span>TOTAL ({cartTotals.itemCount} ITEMS)</span>
-              <span className="text-base text-[#F1EEF2]">₹{cartTotals.totalAmount.toLocaleString()}</span>
+              <span className="text-base text-[#F5F1EA]">₹{cartTotals.totalAmount.toLocaleString()}</span>
             </div>
 
             <a
               href={whatsAppOrderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#D62F4F] hover:bg-[#F04463] text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors shadow-md"
+              className="w-full bg-[#7A2929] hover:bg-[#8C3232] text-[#F5F1EA] py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors shadow-md"
               id="checkout-whatsapp-btn"
             >
-              <WhatsAppIcon className="w-4 h-4 fill-white text-white" />
+              <WhatsAppIcon className="w-4 h-4 fill-[#F5F1EA] text-[#F5F1EA]" />
               <span>COMPLETE ORDER ON WHATSAPP →</span>
             </a>
           </div>

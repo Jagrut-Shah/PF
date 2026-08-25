@@ -35,7 +35,7 @@ export default function GiftSection() {
         <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden">
           
           {/* Subtle Background Glow */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#C5A15A]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#7A2929]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
@@ -43,8 +43,8 @@ export default function GiftSection() {
             <div className="lg:col-span-7 space-y-6">
               
               {/* Header Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#C5A15A] text-xs font-bold uppercase tracking-wider">
-                <Gift className="w-3.5 h-3.5 text-[#C5A15A]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#B8C4C2] text-xs font-bold uppercase tracking-wider">
+                <Gift className="w-3.5 h-3.5 text-[#B8C4C2]" />
                 <span>CURATED GIFTING</span>
               </div>
 
@@ -61,7 +61,7 @@ export default function GiftSection() {
               {/* Discovery Group 1: WHO ARE YOU GIFTING? */}
               <div className="space-y-2">
                 <div className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA]/90 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-[#C5A15A]" />
+                  <Sparkles className="w-3 h-3 text-[#B8C4C2]" />
                   <span>WHO ARE YOU GIFTING?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -85,7 +85,7 @@ export default function GiftSection() {
               {/* Discovery Group 2: WHAT'S THE OCCASION? */}
               <div className="space-y-2">
                 <div className="font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5F1EA]/90 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-[#C5A15A]" />
+                  <Sparkles className="w-3 h-3 text-[#B8C4C2]" />
                   <span>WHAT'S THE OCCASION?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">

@@ -6,7 +6,6 @@ import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 import DEMO_COMPANY_INFO from '../../data/companyInfo';
 
 const SHOP = [
-  { label: 'All Fragrances', to: '/category/bestsellers' },
   { label: 'Bestsellers', to: '/category/bestsellers' },
   { label: 'For Him', to: '/category/men' },
   { label: 'For Her', to: '/category/women' },
@@ -94,9 +93,6 @@ export default function Footer() {
                 <p className="font-sans text-xs text-[#B8C4C2] leading-relaxed mb-4">
                   Artisanal Eau de Parfum signatures crafted for memorable presence across India.
                 </p>
-              </div>
-              <div className="text-xs font-sans text-[#B8C4C2] space-y-1">
-                <p>{DEMO_COMPANY_INFO.formattedAddress}</p>
               </div>
             </div>
 
