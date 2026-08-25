@@ -54,7 +54,7 @@ export default function LoginPage() {
       const { error: oauthErr } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}${from}`,
+          redirectTo: window.location.origin,
         },
       });
       if (oauthErr) throw oauthErr;

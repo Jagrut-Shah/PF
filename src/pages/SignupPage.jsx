@@ -74,7 +74,7 @@ export default function SignupPage() {
       const { error: oauthErr } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/account`,
+          redirectTo: window.location.origin,
         },
       });
       if (oauthErr) throw oauthErr;
