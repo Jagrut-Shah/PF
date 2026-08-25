@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Search, Menu, X, ShoppingBag } from 'lucide-react';
+import { Search, Menu, X, ShoppingBag, User } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import NavbarSearch from './NavbarSearch';
 import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 import { getCartTotals } from '../../utils/cart';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * Official WhatsApp Brand Outline Icon
@@ -23,6 +24,7 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 }
 
 export default function Navbar() {
+  const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -148,8 +150,19 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* ACTIONS: Right (Search, Cart & WhatsApp) */}
+            {/* ACTIONS: Right (Account, Search, Cart & WhatsApp) */}
             <div className="flex items-center justify-end space-x-1 sm:space-x-2 w-auto">
+              {/* Account Link */}
+              <Link
+                to={user ? "/account" : "/login"}
+                className={`p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none ${
+                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#FFFFFF]' : ''
+                }`}
+                aria-label={user ? "View Account Profile" : "Login or Sign Up"}
+              >
+                <User className="w-[19px] h-[19px] stroke-[1.5]" />
+              </Link>
+
               {/* Search Trigger */}
               <button
                 type="button"
@@ -254,6 +267,20 @@ export default function Navbar() {
                     </NavLink>
                   );
                 })}
+
+                {/* Account / Profile Link */}
+                <NavLink
+                  to={user ? "/account" : "/login"}
+                  className={
+                    `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[rgba(243,235,221,0.12)] transition-colors ${
+                      location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
+                        ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
+                        : 'text-[#F5F1EA] hover:bg-[rgba(243,235,221,0.06)] hover:text-[#FFFFFF] font-medium'
+                    }`
+                  }
+                >
+                  {user ? "ACCOUNT" : "ACCOUNT / SIGN IN"}
+                </NavLink>
               </nav>
             </div>
 
