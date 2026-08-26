@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X, Gift, Sparkles } from 'lucide-react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X, Gift, Sparkles, CreditCard } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -108,6 +108,7 @@ function formatNotes(notesArray) {
 
 export default function ProductDetails() {
   const { productSlug } = useParams();
+  const navigate = useNavigate();
   const mainCtaRef = useRef(null);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -461,21 +462,24 @@ export default function ProductDetails() {
               )}
             </button>
 
-            {/* 3. INDEPENDENT WHATSAPP ORDER BUTTON */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-[#102F38] hover:bg-[#1C4A55] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] rounded-xl py-3.5 px-5 font-bold uppercase text-xs tracking-[0.14em] flex items-center justify-center gap-2.5 transition-colors duration-200 cursor-pointer shadow-xs"
+            {/* 3. DIRECT CHECKOUT BUTTON */}
+            <button
+              type="button"
+              onClick={() => {
+                addToCartItem(product, selectedSize);
+                navigate('/checkout');
+              }}
+              className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] rounded-xl py-3.5 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-md active:scale-[0.99]"
+              id="main-checkout-direct-btn"
             >
-              <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
-              <span>ORDER ON WHATSAPP</span>
-            </a>
+              <CreditCard className="w-4 h-4 text-[#102F38]" />
+              <span>CHECKOUT →</span>
+            </button>
 
-            {/* Reassurance text */}
-            <div className="mt-1.5 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#2563EB]" />
-              <span>We'll confirm your order and delivery details on WhatsApp.</span>
+            {/* Secondary WhatsApp Contact Option */}
+            <div className="mt-1 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
+              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366] shrink-0" />
+              <span>Questions? <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Chat with us on WhatsApp</a></span>
             </div>
 
             {/* 4. PINCODE DELIVERY ESTIMATOR */}
@@ -872,15 +876,17 @@ export default function ProductDetails() {
                   >
                     CONTINUE SHOPPING
                   </button>
-                  <a
-                    href={createCartWhatsAppOrderUrl(cartItems, cartGiftOpts)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-[#F5F1EA] bg-[#7A2929] hover:bg-[#8C3232] border border-[rgba(243,235,221,0.2)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowCartDrawer(false);
+                      navigate('/checkout');
+                    }}
+                    className="w-full py-2.5 px-3 rounded text-center text-xs font-bold uppercase tracking-wider text-[#102F38] bg-[#C5A15A] hover:bg-[#D4B26B] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
-                    <span>CHECKOUT</span>
-                  </a>
+                    <CreditCard className="w-3.5 h-3.5 text-[#102F38]" />
+                    <span>CHECKOUT →</span>
+                  </button>
                 </div>
               </div>
             )}

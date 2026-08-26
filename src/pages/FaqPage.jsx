@@ -10,7 +10,7 @@ const FAQ_DATA = [
     questions: [
       {
         q: 'How do I place an order?',
-        a: "Select the fragrance you'd like to purchase and choose ORDER ON WHATSAPP. WhatsApp will open with the product details, and our team will help confirm your order and delivery information."
+        a: "Select the fragrance you'd like to purchase and choose ADD TO CART or CHECKOUT → to complete your order online securely via our multi-step checkout. You can also contact our team directly on WhatsApp for assistance."
       },
       {
         q: 'How does ordering through WhatsApp work?',

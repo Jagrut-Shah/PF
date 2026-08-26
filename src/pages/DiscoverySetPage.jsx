@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingBag, Check, Sparkles, ArrowRight, ShieldCheck, Truck, Sparkle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShoppingBag, Check, Sparkles, ArrowRight, ShieldCheck, Truck, CreditCard } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import { addToCartItem } from '../utils/cart';
@@ -8,6 +8,7 @@ import products from '../data/products';
 import createWhatsAppOrderUrl from '../utils/whatsapp';
 
 export default function DiscoverySetPage() {
+  const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(products[0] || null);
   const [addedToCart, setAddedToCart] = useState(false);
 
@@ -28,6 +29,19 @@ export default function DiscoverySetPage() {
     setTimeout(() => {
       setAddedToCart(false);
     }, 2500);
+  };
+
+  const handleCheckoutDirect = () => {
+    if (!selectedProduct) return;
+    const sampleItem = {
+      ...selectedProduct,
+      id: `sample-${selectedProduct.id}`,
+      name: `${selectedProduct.name} (Sample)`,
+      type: 'sample_purchase',
+      size: '60 ML',
+    };
+    addToCartItem(sampleItem, '60 ML');
+    navigate('/checkout');
   };
 
   const handleWhatsAppOrder = () => {
@@ -207,11 +221,11 @@ export default function DiscoverySetPage() {
 
                 <button
                   type="button"
-                  onClick={handleWhatsAppOrder}
-                  className="flex-1 bg-black/45 hover:bg-black/60 text-[#F5F1EA] border border-[rgba(243,235,221,0.25)] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer"
+                  onClick={handleCheckoutDirect}
+                  className="flex-1 bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-md"
                 >
-                  <span>ORDER ON WHATSAPP</span>
-                  <ArrowRight className="w-4 h-4 text-[#F5F1EA]" />
+                  <CreditCard className="w-4 h-4 text-[#102F38]" />
+                  <span>CHECKOUT →</span>
                 </button>
               </div>
 

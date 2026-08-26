@@ -19,7 +19,7 @@ export default function ShippingPage() {
             SHIPPING & DELIVERY
           </h1>
           <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide font-normal leading-relaxed">
-            "We keep ordering simple. ÉLAVA orders are currently handled directly through WhatsApp so our team can confirm the details with you before dispatch."
+            "We keep ordering simple. Choose your fragrances, add them to your cart, and proceed to our secure multi-step online checkout."
           </p>
         </section>
 
@@ -33,10 +33,10 @@ export default function ShippingPage() {
             </h2>
             <ol className="space-y-3 font-sans text-xs sm:text-sm text-[#C8C1B5] list-decimal list-inside leading-relaxed">
               <li className="pl-1"><strong className="text-[#F3EBDD]">Choose your fragrance:</strong> Browse our collection and pick your preferred Eau de Parfum.</li>
-              <li className="pl-1"><strong className="text-[#F3EBDD]">Select ORDER ON WHATSAPP:</strong> Tap the order button to launch WhatsApp with product details.</li>
-              <li className="pl-1"><strong className="text-[#F3EBDD]">Confirm details:</strong> Confirm your fragrance selection and desired quantity with our team.</li>
-              <li className="pl-1"><strong className="text-[#F3EBDD]">Provide delivery information:</strong> Share your complete delivery address and contact details.</li>
-              <li className="pl-1"><strong className="text-[#F3EBDD]">Order & shipping confirmation:</strong> Our team confirms final order details and shipping arrangements.</li>
+              <li className="pl-1"><strong className="text-[#F3EBDD]">Click CHECKOUT →:</strong> Tap the checkout button to enter your delivery address and options.</li>
+              <li className="pl-1"><strong className="text-[#F3EBDD]">Confirm details:</strong> Customize your order with optional gift boxing and a complimentary 10ml sample.</li>
+              <li className="pl-1"><strong className="text-[#F3EBDD]">Complete payment:</strong> Complete your order with 256-bit encrypted online checkout.</li>
+              <li className="pl-1"><strong className="text-[#F3EBDD]">Order confirmation:</strong> Receive instant order confirmation and digital tracking information.</li>
               <li className="pl-1"><strong className="text-[#F3EBDD]">Preparation & dispatch:</strong> Your fragrance is carefully packaged and dispatched.</li>
             </ol>
           </div>
