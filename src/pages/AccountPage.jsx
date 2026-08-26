@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
-import { fetchUserReferralSummary } from '../utils/referral';
+import { fetchUserReferralSummary, submitWithdrawalRequest } from '../utils/referral';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
-import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check } from 'lucide-react';
+import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle } from 'lucide-react';
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -33,10 +33,25 @@ export default function AccountPage() {
     successfulReferrals: 0,
     pendingRewards: 0,
     availableRewards: 0,
+    availableToWithdraw: 0,
     referralList: [],
+    rewardHistory: [],
+    withdrawalList: [],
   });
   const [copyCodeSuccess, setCopyCodeSuccess] = useState(false);
   const [copyLinkSuccess, setCopyLinkSuccess] = useState(false);
+
+  // Withdrawal modal states
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState('');
+  const [payoutMethod, setPayoutMethod] = useState('upi'); // 'upi' or 'bank'
+  const [upiId, setUpiId] = useState('');
+  const [bankHolder, setBankHolder] = useState('');
+  const [bankAccount, setBankAccount] = useState('');
+  const [bankIfsc, setBankIfsc] = useState('');
+  const [withdrawLoading, setWithdrawLoading] = useState(false);
+  const [withdrawMsg, setWithdrawMsg] = useState('');
+  const [withdrawErr, setWithdrawErr] = useState('');
 
   // Form states
   const [name, setName] = useState('');
@@ -51,38 +66,102 @@ export default function AccountPage() {
   const [pwdErrorMsg, setPwdErrorMsg] = useState('');
   const [pwdSuccessMsg, setPwdSuccessMsg] = useState('');
 
-  // Fetch user profile from Supabase profiles table & referral details
-  useEffect(() => {
+  // Load profile and referral summary data
+  const loadAccountData = async () => {
     if (!user) return;
+    try {
+      setProfileLoading(true);
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
 
-    const loadData = async () => {
-      try {
-        setProfileLoading(true);
-        const { data, error } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', user.id)
-          .single();
-
-        if (!error && data) {
-          setProfile(data);
-          setName(data.name || '');
-          setPhone(data.phone || '');
-          setAvatarUrl(data.avatar_url || '');
-        }
-
-        // Fetch real referral summary
-        const summary = await fetchUserReferralSummary(user.id);
-        setReferralSummary(summary);
-      } catch (err) {
-        console.error('Error fetching account data:', err);
-      } finally {
-        setProfileLoading(false);
+      if (!error && data) {
+        setProfile(data);
+        setName(data.name || '');
+        setPhone(data.phone || '');
+        setAvatarUrl(data.avatar_url || '');
       }
-    };
 
-    loadData();
+      // Fetch real referral & reward summary
+      const summary = await fetchUserReferralSummary(user.id);
+      setReferralSummary(summary);
+      if (summary.availableToWithdraw > 0) {
+        setWithdrawAmount(summary.availableToWithdraw.toString());
+      }
+    } catch (err) {
+      console.error('Error fetching account data:', err);
+    } finally {
+      setProfileLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadAccountData();
   }, [user]);
+
+  // Handle Withdrawal Request submission
+  const handleWithdrawSubmit = async (e) => {
+    e.preventDefault();
+    const amountNum = Number(withdrawAmount);
+
+    if (!amountNum || amountNum < 100) {
+      setWithdrawErr('Minimum withdrawal amount is ₹100.');
+      return;
+    }
+    if (amountNum > referralSummary.availableToWithdraw) {
+      setWithdrawErr(`Requested amount exceeds available withdrawable balance (₹${referralSummary.availableToWithdraw}).`);
+      return;
+    }
+
+    let payoutDetails = {};
+    if (payoutMethod === 'upi') {
+      if (!upiId.trim() || !upiId.includes('@')) {
+        setWithdrawErr('Please enter a valid UPI ID (e.g., username@upi).');
+        return;
+      }
+      payoutDetails = { upi_id: upiId.trim() };
+    } else {
+      if (!bankHolder.trim() || !bankAccount.trim() || !bankIfsc.trim()) {
+        setWithdrawErr('Please fill in all bank transfer details.');
+        return;
+      }
+      payoutDetails = {
+        account_holder: bankHolder.trim(),
+        account_number: bankAccount.trim(),
+        ifsc_code: bankIfsc.trim().toUpperCase(),
+      };
+    }
+
+    try {
+      setWithdrawLoading(true);
+      setWithdrawErr('');
+      setWithdrawMsg('');
+
+      const res = await submitWithdrawalRequest({
+        amount: amountNum,
+        payoutMethod,
+        payoutDetails,
+      });
+
+      if (!res.success) {
+        setWithdrawErr(res.message || 'Unable to process withdrawal request.');
+      } else {
+        setWithdrawMsg('Your withdrawal request has been submitted and reserved successfully.');
+        await loadAccountData();
+        setTimeout(() => {
+          setIsWithdrawModalOpen(false);
+          setWithdrawMsg('');
+        }, 2000);
+      }
+    } catch (err) {
+      console.error('Error submitting withdrawal:', err);
+      setWithdrawErr(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setWithdrawLoading(false);
+    }
+  };
 
   // Handle Copy Code
   const handleCopyCode = async () => {
@@ -468,83 +547,319 @@ export default function AccountPage() {
                       </div>
                     </div>
 
-                    {/* Stats Grid */}
+                    {/* Wallet Stat Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      {/* Successful Referrals */}
-                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
-                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
-                          SUCCESSFUL REFERRALS
-                        </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">
-                          {referralSummary.successfulReferrals}
-                        </h3>
-                        <p className="font-sans text-[11px] text-[#B8C4C2]">Friends who ordered</p>
+                      {/* Available to Withdraw */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.14)] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+                        <div className="space-y-1">
+                          <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#C5A15A] uppercase">
+                            AVAILABLE TO WITHDRAW
+                          </span>
+                          <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">
+                            ₹{referralSummary.availableToWithdraw.toLocaleString()}
+                          </h3>
+                          <p className="font-sans text-[11px] text-[#B8C4C2]">Ready to cash out</p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            setWithdrawErr('');
+                            setWithdrawMsg('');
+                            setIsWithdrawModalOpen(true);
+                          }}
+                          disabled={referralSummary.availableToWithdraw < 100}
+                          className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all ${
+                            referralSummary.availableToWithdraw >= 100
+                              ? 'bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] cursor-pointer shadow-md'
+                              : 'bg-[#1C4A55] text-[#8FA6A3] cursor-not-allowed border border-[rgba(243,235,221,0.1)]'
+                          }`}
+                        >
+                          <Wallet className="w-3.5 h-3.5" />
+                          <span>WITHDRAW CASH</span>
+                        </button>
                       </div>
 
                       {/* Pending Rewards */}
-                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
-                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
-                          PENDING REWARDS
-                        </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">
-                          ₹{referralSummary.pendingRewards}
-                        </h3>
-                        <p className="font-sans text-[11px] text-[#B8C4C2]">Awaiting order fulfillment</p>
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1 flex flex-col justify-between">
+                        <div className="space-y-1">
+                          <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                            PENDING REWARDS
+                          </span>
+                          <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">
+                            ₹{referralSummary.pendingRewards.toLocaleString()}
+                          </h3>
+                          <p className="font-sans text-[11px] text-[#B8C4C2]">Awaiting order fulfillment</p>
+                        </div>
+                        <div className="text-[10px] text-[#8FA6A3] italic pt-2 border-t border-[rgba(243,235,221,0.08)]">
+                          Unlocks upon order completion
+                        </div>
                       </div>
 
-                      {/* Available Rewards */}
-                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
-                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
-                          AVAILABLE REWARDS
-                        </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">
-                          ₹{referralSummary.availableRewards}
-                        </h3>
-                        <p className="font-sans text-[11px] text-[#B8C4C2]">Ready in wallet</p>
+                      {/* Successful Referrals */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1 flex flex-col justify-between">
+                        <div className="space-y-1">
+                          <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                            SUCCESSFUL REFERRALS
+                          </span>
+                          <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">
+                            {referralSummary.successfulReferrals}
+                          </h3>
+                          <p className="font-sans text-[11px] text-[#B8C4C2]">Friends who ordered</p>
+                        </div>
+                        <div className="text-[10px] text-[#8FA6A3] italic pt-2 border-t border-[rgba(243,235,221,0.08)]">
+                          ₹100 reward per qualifying order
+                        </div>
                       </div>
                     </div>
 
-                    {/* Referral Ledger Activity */}
+                    {/* Reward Ledger History */}
                     <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 space-y-4">
                       <h3 className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border-b border-[rgba(243,235,221,0.12)] pb-2.5">
-                        REFERRAL ACTIVITY LEDGER
+                        REWARD HISTORY LEDGER
                       </h3>
 
-                      {referralSummary.referralList.length === 0 ? (
+                      {!referralSummary.rewardHistory || referralSummary.rewardHistory.length === 0 ? (
                         <div className="text-center py-8 space-y-2">
-                          <p className="font-serif text-base text-[#F5F1EA]">No referrals recorded yet</p>
+                          <p className="font-serif text-base text-[#F5F1EA]">No transactions recorded yet</p>
                           <p className="font-sans text-xs text-[#B8C4C2] max-w-md mx-auto">
                             Share your referral code <strong className="text-[#C5A15A] font-mono">{referralSummary.code}</strong> with your friends to earn ₹100 cash for every completed purchase.
                           </p>
                         </div>
                       ) : (
                         <div className="divide-y divide-[rgba(243,235,221,0.08)]">
-                          {referralSummary.referralList.map((item) => (
+                          {referralSummary.rewardHistory.map((item) => (
                             <div key={item.id} className="py-3 flex items-center justify-between text-xs">
                               <div className="space-y-0.5">
-                                <span className="font-mono font-bold text-[#C5A15A] text-sm">{item.code}</span>
+                                <div className="flex items-center gap-2">
+                                  <span className={`font-bold ${item.isCredit ? 'text-[#C5A15A]' : 'text-red-400'}`}>
+                                    {item.isCredit ? '+ ₹' : '- ₹'}{item.amount.toLocaleString()}
+                                  </span>
+                                  <span className="text-[#F5F1EA] font-medium">{item.title}</span>
+                                </div>
                                 <p className="text-[10px] text-[#B8C4C2]">
-                                  {new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                  {new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                                 </p>
                               </div>
-                              <div className="text-right space-y-0.5">
-                                <span className="font-bold text-[#F5F1EA]">₹{item.rewardAmount}</span>
-                                <div>
-                                  <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${
-                                    item.rewardStatus === 'available'
-                                      ? 'bg-green-500/10 text-green-400 border-green-500/30'
-                                      : item.rewardStatus === 'pending'
-                                      ? 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
-                                      : 'bg-neutral-500/10 text-neutral-400 border-neutral-500/30'
-                                  }`}>
-                                    {item.rewardStatus}
-                                  </span>
-                                </div>
+                              <div className="text-right">
+                                <span className={`text-[9.5px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${
+                                  item.status === 'available' || item.status === 'completed'
+                                    ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                                    : item.status === 'pending'
+                                    ? 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+                                    : item.status === 'processing'
+                                    ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
+                                    : 'bg-red-500/10 text-red-400 border-red-500/30'
+                                }`}>
+                                  {item.status}
+                                </span>
                               </div>
                             </div>
                           ))}
                         </div>
                       )}
+                    </div>
+
+                    {/* Withdrawal History Section */}
+                    <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 space-y-4">
+                      <h3 className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border-b border-[rgba(243,235,221,0.12)] pb-2.5">
+                        WITHDRAWAL HISTORY
+                      </h3>
+
+                      {!referralSummary.withdrawalList || referralSummary.withdrawalList.length === 0 ? (
+                        <div className="text-center py-6 text-xs text-[#B8C4C2]">
+                          No cash withdrawal requests submitted yet.
+                        </div>
+                      ) : (
+                        <div className="divide-y divide-[rgba(243,235,221,0.08)]">
+                          {referralSummary.withdrawalList.map((w) => (
+                            <div key={w.id} className="py-3 flex items-center justify-between text-xs">
+                              <div className="space-y-0.5">
+                                <div className="font-bold text-[#F5F1EA]">
+                                  ₹{w.amount.toLocaleString()} ({w.payoutMethod.toUpperCase()})
+                                </div>
+                                <p className="text-[10px] text-[#B8C4C2]">
+                                  Submitted: {new Date(w.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className={`text-[9.5px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${
+                                  w.status === 'completed'
+                                    ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                                    : w.status === 'pending'
+                                    ? 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+                                    : w.status === 'processing'
+                                    ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
+                                    : 'bg-red-500/10 text-red-400 border-red-500/30'
+                                }`}>
+                                  {w.status}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── WITHDRAW CASH MODAL ── */}
+                {isWithdrawModalOpen && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4 animate-in fade-in duration-200">
+                    <div className="bg-[#163E49] border border-[rgba(243,235,221,0.2)] rounded-2xl p-6 shadow-2xl w-full max-w-md space-y-5 text-[#F5F1EA]">
+                      <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
+                        <div className="flex items-center gap-2">
+                          <Wallet className="w-5 h-5 text-[#C5A15A]" />
+                          <h3 className="font-serif text-lg font-bold uppercase tracking-wider text-[#F5F1EA]">
+                            WITHDRAW CASH
+                          </h3>
+                        </div>
+                        <button
+                          onClick={() => setIsWithdrawModalOpen(false)}
+                          className="text-[#B8C4C2] hover:text-[#F5F1EA] p-1 rounded-full hover:bg-white/10 transition-colors"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      {withdrawErr && (
+                        <div className="bg-[#7A2929]/20 border border-[#7A2929]/50 text-red-300 text-xs p-3 rounded-xl flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                          <span>{withdrawErr}</span>
+                        </div>
+                      )}
+
+                      {withdrawMsg && (
+                        <div className="bg-green-500/10 border border-green-500/30 text-green-300 text-xs p-3 rounded-xl flex items-center gap-2">
+                          <Check className="w-4 h-4 shrink-0 text-green-400" />
+                          <span>{withdrawMsg}</span>
+                        </div>
+                      )}
+
+                      <form onSubmit={handleWithdrawSubmit} className="space-y-4">
+                        {/* Amount Field */}
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-between">
+                            <label className="text-[11px] font-extrabold uppercase tracking-wider text-[#B8C4C2]">
+                              WITHDRAWAL AMOUNT (₹)
+                            </label>
+                            <span className="text-[10px] text-[#C5A15A]">
+                              Max: ₹{referralSummary.availableToWithdraw}
+                            </span>
+                          </div>
+                          <input
+                            type="number"
+                            min="100"
+                            max={referralSummary.availableToWithdraw}
+                            value={withdrawAmount}
+                            onChange={(e) => setWithdrawAmount(e.target.value)}
+                            placeholder="Enter amount (min ₹100)"
+                            className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-4 py-2.5 text-sm text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                            required
+                          />
+                        </div>
+
+                        {/* Payout Method Toggle */}
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] font-extrabold uppercase tracking-wider text-[#B8C4C2]">
+                            PAYOUT METHOD
+                          </label>
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setPayoutMethod('upi')}
+                              className={`py-2 px-3 rounded-xl text-xs font-bold uppercase transition-all ${
+                                payoutMethod === 'upi'
+                                  ? 'bg-[#C5A15A] text-[#102F38] shadow-sm'
+                                  : 'bg-[#102F38] text-[#B8C4C2] border border-[rgba(243,235,221,0.1)]'
+                              }`}
+                            >
+                              UPI ID
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setPayoutMethod('bank')}
+                              className={`py-2 px-3 rounded-xl text-xs font-bold uppercase transition-all ${
+                                payoutMethod === 'bank'
+                                  ? 'bg-[#C5A15A] text-[#102F38] shadow-sm'
+                                  : 'bg-[#102F38] text-[#B8C4C2] border border-[rgba(243,235,221,0.1)]'
+                              }`}
+                            >
+                              BANK TRANSFER
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Method Specific Fields */}
+                        {payoutMethod === 'upi' ? (
+                          <div className="space-y-1">
+                            <label className="text-[11px] font-extrabold uppercase tracking-wider text-[#B8C4C2]">
+                              UPI ID (GPay / PhonePe / Paytm)
+                            </label>
+                            <input
+                              type="text"
+                              value={upiId}
+                              onChange={(e) => setUpiId(e.target.value)}
+                              placeholder="e.g. name@upi or 9876543210@paytm"
+                              className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-4 py-2.5 text-sm text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                              required
+                            />
+                          </div>
+                        ) : (
+                          <div className="space-y-2.5">
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Account Holder Name</label>
+                              <input
+                                type="text"
+                                value={bankHolder}
+                                onChange={(e) => setBankHolder(e.target.value)}
+                                placeholder="Full Name as in Bank"
+                                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3 py-2 text-xs text-[#F5F1EA]"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Account Number</label>
+                              <input
+                                type="text"
+                                value={bankAccount}
+                                onChange={(e) => setBankAccount(e.target.value)}
+                                placeholder="Bank Account Number"
+                                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3 py-2 text-xs text-[#F5F1EA]"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">IFSC Code</label>
+                              <input
+                                type="text"
+                                value={bankIfsc}
+                                onChange={(e) => setBankIfsc(e.target.value)}
+                                placeholder="e.g. SBIN0001234"
+                                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3 py-2 text-xs text-[#F5F1EA] uppercase"
+                                required
+                              />
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="bg-[#102F38] border border-[rgba(243,235,221,0.1)] p-3 rounded-xl text-[11px] text-[#B8C4C2] leading-relaxed">
+                          ℹ️ Your withdrawal request will be reviewed and processed manually by ÉLAVA within 24-48 hours. The amount is immediately reserved from your wallet balance.
+                        </div>
+
+                        <button
+                          type="submit"
+                          disabled={withdrawLoading}
+                          className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                        >
+                          {withdrawLoading ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin text-[#102F38]" />
+                              <span>SUBMITTING REQUEST...</span>
+                            </>
+                          ) : (
+                            <span>SUBMIT WITHDRAWAL REQUEST →</span>
+                          )}
+                        </button>
+                      </form>
                     </div>
                   </div>
                 )}

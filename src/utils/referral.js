@@ -165,10 +165,19 @@ export async function fetchUserReferralSummary(userId) {
     const { data: rewardsData } = await supabase
       .from('rewards')
       .select('id, referral_id, amount, status, type, created_at')
-      .eq('user_id', userId);
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+
+    // 4. Fetch withdrawal requests for user
+    const { data: withdrawalsData } = await supabase
+      .from('withdrawal_requests')
+      .select('id, amount, payout_method, payout_details, status, created_at, processed_at')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
 
     const referrals = referralsData || [];
     const rewards = rewardsData || [];
+    const withdrawals = withdrawalsData || [];
 
     const successfulReferrals = referrals.filter(
       (r) => r.status === 'completed' || r.status === 'qualifying'
@@ -178,15 +187,47 @@ export async function fetchUserReferralSummary(userId) {
       .filter((r) => r.status === 'pending')
       .reduce((sum, r) => sum + (Number(r.amount) || 0), 0);
 
-    const availableRewards = rewards
+    const totalAvailableRewards = rewards
       .filter((r) => r.status === 'available')
       .reduce((sum, r) => sum + (Number(r.amount) || 0), 0);
+
+    const totalReservedWithdrawals = withdrawals
+      .filter((w) => w.status === 'pending' || w.status === 'processing' || w.status === 'completed')
+      .reduce((sum, w) => sum + (Number(w.amount) || 0), 0);
+
+    const availableToWithdraw = Math.max(0, totalAvailableRewards - totalReservedWithdrawals);
+
+    // Build combined Reward History ledger items (+ ₹100 Reward / - ₹XXX Withdrawal)
+    const rewardLedgerItems = rewards.map((r) => ({
+      id: `reward-${r.id}`,
+      type: 'reward',
+      title: 'Referral Reward',
+      amount: Number(r.amount),
+      isCredit: true,
+      status: r.status,
+      date: r.created_at,
+    }));
+
+    const withdrawalLedgerItems = withdrawals.map((w) => ({
+      id: `withdrawal-${w.id}`,
+      type: 'withdrawal',
+      title: `Withdrawal (${w.payout_method.toUpperCase()})`,
+      amount: Number(w.amount),
+      isCredit: false,
+      status: w.status,
+      date: w.created_at,
+    }));
+
+    const combinedLedger = [...rewardLedgerItems, ...withdrawalLedgerItems].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
 
     return {
       code,
       successfulReferrals,
       pendingRewards,
-      availableRewards,
+      availableRewards: totalAvailableRewards,
+      availableToWithdraw,
       referralList: referrals.map((ref) => {
         const reward = rewards.find((r) => r.referral_id === ref.id);
         return {
@@ -198,6 +239,16 @@ export async function fetchUserReferralSummary(userId) {
           rewardStatus: reward ? reward.status : 'pending',
         };
       }),
+      rewardHistory: combinedLedger,
+      withdrawalList: withdrawals.map((w) => ({
+        id: w.id,
+        amount: Number(w.amount),
+        payoutMethod: w.payout_method,
+        payoutDetails: w.payout_details,
+        status: w.status,
+        date: w.created_at,
+        processedAt: w.processed_at,
+      })),
     };
   } catch (err) {
     console.error('Error fetching user referral summary:', err);
@@ -206,7 +257,82 @@ export async function fetchUserReferralSummary(userId) {
       successfulReferrals: 0,
       pendingRewards: 0,
       availableRewards: 0,
+      availableToWithdraw: 0,
       referralList: [],
+      rewardHistory: [],
+      withdrawalList: [],
     };
   }
 }
+
+/**
+ * Submit a customer cash withdrawal request securely
+ */
+export async function submitWithdrawalRequest({ amount, payoutMethod, payoutDetails }) {
+  if (!amount || amount < 100) {
+    return { success: false, reason: 'minimum_threshold_not_met', message: 'Minimum withdrawal amount is ₹100.' };
+  }
+
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return { success: false, reason: 'unauthenticated', message: 'Please log in to request a withdrawal.' };
+    }
+
+    // Call RPC request_withdrawal
+    const { data, error } = await supabase.rpc('request_withdrawal', {
+      p_amount: amount,
+      p_payout_method: payoutMethod,
+      p_payout_details: payoutDetails,
+      p_user_id: user.id,
+    });
+
+    if (error) {
+      console.warn('RPC request_withdrawal failed, fallback to direct insert check:', error.message);
+      // Fallback check balance & direct insert
+      const summary = await fetchUserReferralSummary(user.id);
+      if (amount > summary.availableToWithdraw) {
+        return {
+          success: false,
+          reason: 'insufficient_balance',
+          message: `Requested amount exceeds your withdrawable balance (₹${summary.availableToWithdraw}).`,
+        };
+      }
+
+      const { data: inserted, error: insertErr } = await supabase
+        .from('withdrawal_requests')
+        .insert({
+          user_id: user.id,
+          amount,
+          payout_method: payoutMethod,
+          payout_details: payoutDetails,
+          status: 'pending',
+        })
+        .select()
+        .single();
+
+      if (insertErr) {
+        return { success: false, reason: 'database_error', message: insertErr.message };
+      }
+
+      return { success: true, withdrawal: inserted };
+    }
+
+    if (data && data.success === false) {
+      if (data.reason === 'insufficient_balance') {
+        return {
+          success: false,
+          reason: 'insufficient_balance',
+          message: `Requested amount exceeds available withdrawable balance (₹${data.withdrawable_balance || 0}).`,
+        };
+      }
+      return { success: false, reason: data.reason, message: data.reason || 'Withdrawal request failed.' };
+    }
+
+    return { success: true, data };
+  } catch (err) {
+    console.error('Error submitting withdrawal request:', err);
+    return { success: false, reason: 'server_error', message: 'Unable to submit request. Please try again.' };
+  }
+}
+

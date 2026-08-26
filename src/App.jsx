@@ -84,6 +84,11 @@ export default function App() {
               <AccountPage />
             </ProtectedRoute>
           } />
+          <Route path="/account/refer-and-earn" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
           <Route path="/account/settings" element={
             <ProtectedRoute>
               <AccountPage />
