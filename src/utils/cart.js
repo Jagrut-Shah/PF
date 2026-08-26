@@ -1,7 +1,114 @@
 import createWhatsAppOrderUrl from './whatsapp';
+import { getStoredReferralCode } from './referral';
+import { supabase } from './supabase';
 
 const CART_STORAGE_KEY = 'elava_cart';
 const GIFT_STORAGE_KEY = 'elava_cart_gift';
+
+/**
+ * Log order & process referral reward in database asynchronously
+ */
+async function logReferredOrderToDatabase({ subtotalAmount, referralDiscount, totalAmount, referralCode }) {
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    const { data: order, error: orderErr } = await supabase
+      .from('orders')
+      .insert({
+        user_id: user?.id || null,
+        email: user?.email || 'guest@order.elava',
+        subtotal: subtotalAmount,
+        discount_amount: referralDiscount,
+        total_amount: totalAmount,
+        referral_code: referralCode || null,
+        status: 'pending',
+      })
+      .select('id')
+      .single();
+
+    if (orderErr) {
+      console.warn('Silent order database note:', orderErr.message);
+      return;
+    }
+
+    if (order?.id && referralCode) {
+      await supabase.rpc('process_referred_order', {
+        p_order_id: order.id,
+        p_referral_code: referralCode,
+        p_referred_email: user?.email || 'guest@order.elava',
+        p_referred_user_id: user?.id || null,
+      });
+    }
+  } catch (err) {
+    console.warn('Order DB sync notice:', err);
+  }
+}
+
+/**
+ * Calculate totals from cart array with referral discount
+ */
+export function getCartTotals(cart = getCart()) {
+  const itemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  const subtotalAmount = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (item.quantity || 1), 0);
+
+  const referralData = getStoredReferralCode();
+  let referralDiscount = 0;
+  let referralCode = null;
+
+  if (referralData?.code && subtotalAmount > 0) {
+    referralCode = referralData.code;
+    // ₹200 discount capped at subtotal so total is never negative
+    referralDiscount = Math.min(200, subtotalAmount);
+  }
+
+  const totalAmount = Math.max(0, subtotalAmount - referralDiscount);
+
+  return {
+    itemCount,
+    subtotalAmount,
+    referralDiscount,
+    totalAmount,
+    referralCode,
+  };
+}
+
+/**
+ * Create multi-product WhatsApp order URL for full cart
+ */
+export function createCartWhatsAppOrderUrl(cart = getCart()) {
+  if (!cart || cart.length === 0) {
+    return createWhatsAppOrderUrl({ customMessage: "Hi ÉLAVA, I'd like to explore your collection." });
+  }
+
+  const { itemCount, subtotalAmount, referralDiscount, totalAmount, referralCode } = getCartTotals(cart);
+  const itemsText = cart
+    .map((item) => {
+      let line = `• ÉLAVA ${item.name} (${item.size || 'Standard'}) x ${item.quantity} - ₹${(item.price * item.quantity).toLocaleString()}`;
+      if (item.type === 'duo_bundle' && item.includedFragrances) {
+        line += `\n  Includes: ${item.includedFragrances.map((f) => f.name).join(' + ')}`;
+      }
+      if (item.giftDetails?.isGift) {
+        line += `\n  🎁 Gift Order`;
+        if (item.giftDetails.giftMessage) {
+          line += ` ("${item.giftDetails.giftMessage}")`;
+        }
+      }
+      return line;
+    })
+    .join('\n');
+
+  let discountText = '';
+  if (referralDiscount > 0 && referralCode) {
+    discountText = `\n\n🎟️ Referral Discount (${referralCode}): -₹${referralDiscount.toLocaleString()}\nSubtotal: ₹${subtotalAmount.toLocaleString()}`;
+  }
+
+  const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}${discountText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
+
+  // Log order asynchronously
+  logReferredOrderToDatabase({ subtotalAmount, referralDiscount, totalAmount, referralCode });
+
+  return createWhatsAppOrderUrl({ customMessage });
+}
 
 /**
  * Get current cart array from localStorage
@@ -149,45 +256,7 @@ export function removeCartItem(id, size) {
   return filtered;
 }
 
-/**
- * Calculate totals from cart array
- */
-export function getCartTotals(cart = getCart()) {
-  const itemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-  const totalAmount = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (item.quantity || 1), 0);
 
-  return { itemCount, totalAmount };
-}
-
-/**
- * Create multi-product WhatsApp order URL for full cart
- */
-export function createCartWhatsAppOrderUrl(cart = getCart()) {
-  if (!cart || cart.length === 0) {
-    return createWhatsAppOrderUrl({ customMessage: "Hi ÉLAVA, I'd like to explore your collection." });
-  }
-
-  const { itemCount, totalAmount } = getCartTotals(cart);
-  const itemsText = cart
-    .map((item) => {
-      let line = `• ÉLAVA ${item.name} (${item.size || 'Standard'}) x ${item.quantity} - ₹${(item.price * item.quantity).toLocaleString()}`;
-      if (item.type === 'duo_bundle' && item.includedFragrances) {
-        line += `\n  Includes: ${item.includedFragrances.map((f) => f.name).join(' + ')}`;
-      }
-      if (item.giftDetails?.isGift) {
-        line += `\n  🎁 Gift Order`;
-        if (item.giftDetails.giftMessage) {
-          line += ` ("${item.giftDetails.giftMessage}")`;
-        }
-      }
-      return line;
-    })
-    .join('\n');
-
-  const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
-
-  return createWhatsAppOrderUrl({ customMessage });
-}
 
 /**
  * Get persisted gift options from localStorage (used by ProductDetails.jsx)

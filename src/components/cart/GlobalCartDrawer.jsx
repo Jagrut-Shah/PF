@@ -36,11 +36,13 @@ export default function GlobalCartDrawer() {
     window.addEventListener('cart-updated', handleCartUpdate);
     window.addEventListener('open-cart-drawer', handleOpenCart);
     window.addEventListener('storage', handleCartUpdate);
+    window.addEventListener('referral-updated', handleCartUpdate);
 
     return () => {
       window.removeEventListener('cart-updated', handleCartUpdate);
       window.removeEventListener('open-cart-drawer', handleOpenCart);
       window.removeEventListener('storage', handleCartUpdate);
+      window.removeEventListener('referral-updated', handleCartUpdate);
     };
   }, []);
 
@@ -220,8 +222,21 @@ export default function GlobalCartDrawer() {
         {/* Footer Summary & WhatsApp Order */}
         {cartItems.length > 0 && (
           <div className="p-4 bg-[#102F38] border-t border-[rgba(243,235,221,0.15)] space-y-3">
+            {cartTotals.referralDiscount > 0 ? (
+              <div className="space-y-1.5 border-b border-[rgba(243,235,221,0.12)] pb-2.5 text-xs">
+                <div className="flex items-center justify-between text-[#B8C4C2]">
+                  <span>SUBTOTAL</span>
+                  <span>₹{cartTotals.subtotalAmount.toLocaleString()}</span>
+                </div>
+                <div className="flex items-center justify-between text-[#C5A15A] font-bold">
+                  <span>REFERRAL DISCOUNT ({cartTotals.referralCode})</span>
+                  <span>-₹{cartTotals.referralDiscount.toLocaleString()}</span>
+                </div>
+              </div>
+            ) : null}
+
             <div className="flex items-center justify-between text-xs font-bold uppercase text-[#F5F1EA]">
-              <span>TOTAL ({cartTotals.itemCount} ITEMS)</span>
+              <span>TOTAL ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})</span>
               <span className="text-base text-[#F5F1EA]">₹{cartTotals.totalAmount.toLocaleString()}</span>
             </div>
 
