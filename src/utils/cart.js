@@ -8,20 +8,27 @@ const GIFT_STORAGE_KEY = 'elava_cart_gift';
 /**
  * Log order & process referral reward in database asynchronously
  */
-async function logReferredOrderToDatabase({ subtotalAmount, referralDiscount, totalAmount, referralCode }) {
+async function logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode }) {
   try {
     const { data: { user } } = await supabase.auth.getUser();
     
+    // Generate order number e.g. #ELV1024
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const orderNumber = `#ELV${randomNum}`;
+
     const { data: order, error: orderErr } = await supabase
       .from('orders')
       .insert({
         user_id: user?.id || null,
         email: user?.email || 'guest@order.elava',
+        order_number: orderNumber,
+        items: cart || [],
         subtotal: subtotalAmount,
         discount_amount: referralDiscount,
         total_amount: totalAmount,
         referral_code: referralCode || null,
-        status: 'pending',
+        status: 'confirmed',
+        payment_status: 'paid',
       })
       .select('id')
       .single();
@@ -105,7 +112,7 @@ export function createCartWhatsAppOrderUrl(cart = getCart()) {
   const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}${discountText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
 
   // Log order asynchronously
-  logReferredOrderToDatabase({ subtotalAmount, referralDiscount, totalAmount, referralCode });
+  logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode });
 
   return createWhatsAppOrderUrl({ customMessage });
 }

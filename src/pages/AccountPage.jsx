@@ -3,9 +3,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import { fetchUserReferralSummary, submitWithdrawalRequest } from '../utils/referral';
+import { fetchCustomerOrders } from '../utils/orders';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
-import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle } from 'lucide-react';
+import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle, FileText, ChevronRight } from 'lucide-react';
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -14,6 +15,7 @@ export default function AccountPage() {
 
   // Navigation tab state based on URL
   const getTabFromLocation = () => {
+    if (location.pathname.includes('/orders')) return 'orders';
     if (location.pathname.endsWith('/settings')) return 'settings';
     if (location.pathname.endsWith('/refer') || location.pathname.includes('/refer-and-earn')) return 'refer';
     return 'overview';
@@ -21,11 +23,24 @@ export default function AccountPage() {
 
   const currentTab = getTabFromLocation();
 
+  // Navigation items
+  const navItems = [
+    { id: 'overview', label: 'Overview', icon: User, path: '/account', disabled: false },
+    { id: 'orders', label: 'My Orders', icon: ShoppingBag, path: '/account/orders', disabled: false },
+    { id: 'refer', label: 'Refer & Earn', icon: Gift, path: '/account/refer-and-earn', disabled: false },
+    { id: 'settings', label: 'Settings', icon: SettingsIcon, path: '/account/settings', disabled: false },
+  ];
+
   // Profile data state
   const [profile, setProfile] = useState(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [pwdLoading, setPwdLoading] = useState(false);
+
+  // Orders state
+  const [ordersList, setOrdersList] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(true);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   // Referral summary state
   const [referralSummary, setReferralSummary] = useState({
@@ -90,10 +105,16 @@ export default function AccountPage() {
       if (summary.availableToWithdraw > 0) {
         setWithdrawAmount(summary.availableToWithdraw.toString());
       }
+
+      // Fetch customer orders from database
+      setOrdersLoading(true);
+      const customerOrders = await fetchCustomerOrders(user.id);
+      setOrdersList(customerOrders);
     } catch (err) {
       console.error('Error fetching account data:', err);
     } finally {
       setProfileLoading(false);
+      setOrdersLoading(false);
     }
   };
 
@@ -293,13 +314,7 @@ export default function AccountPage() {
     }
   };
 
-  const navItems = [
-    { id: 'overview', label: 'Overview', icon: User, path: '/account' },
-    { id: 'orders', label: 'My Orders', icon: ShoppingBag, path: '/account#orders', disabled: true },
-    { id: 'refer', label: 'Refer & Earn', icon: Gift, path: '/account/refer', disabled: false },
-    { id: 'addresses', label: 'Addresses', icon: MapPin, path: '/account#addresses', disabled: true },
-    { id: 'settings', label: 'Settings', icon: SettingsIcon, path: '/account/settings' }
-  ];
+
 
   return (
     <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-10 sm:py-16">
@@ -408,11 +423,11 @@ export default function AccountPage() {
                     {/* Stats Blocks */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       {/* Orders Stat Card */}
-                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 shadow-sm space-y-1">
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 shadow-sm space-y-1 cursor-pointer hover:border-[rgba(243,235,221,0.25)] transition-colors" onClick={() => navigate('/account/orders')}>
                         <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           ORDERS
                         </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">0</h3>
+                        <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">{ordersList.length}</h3>
                         <p className="font-sans text-[11px] text-[#B8C4C2]">Total number of orders</p>
                       </div>
 
@@ -442,11 +457,11 @@ export default function AccountPage() {
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <button
-                          disabled
-                          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#102F38]/60 border border-[rgba(243,235,221,0.12)] text-xs font-bold uppercase text-[#8FA6A3] cursor-not-allowed opacity-60 text-left"
+                          onClick={() => navigate('/account/orders')}
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#102F38] hover:bg-[#0d262d] border border-[rgba(243,235,221,0.12)] text-xs font-bold uppercase text-[#F5F1EA] hover:text-white transition-colors text-left cursor-pointer"
                         >
-                          <ShoppingBag className="w-4 h-4 text-[#8FA6A3]" />
-                          <span>View Orders (Soon)</span>
+                          <ShoppingBag className="w-4 h-4 text-[#C5A15A]" />
+                          <span>My Orders</span>
                         </button>
                         <button
                           onClick={() => navigate('/account/refer')}
@@ -463,6 +478,297 @@ export default function AccountPage() {
                           <span>Account Settings</span>
                         </button>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── TAB 2: MY ORDERS ── */}
+                {currentTab === 'orders' && (
+                  <div className="space-y-6">
+                    <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm flex items-center justify-between">
+                      <div className="space-y-1">
+                        <span className="font-sans text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
+                          PURCHASE HISTORY
+                        </span>
+                        <h2 className="font-serif text-2xl sm:text-3xl font-bold uppercase text-[#F5F1EA] tracking-wide">
+                          MY ORDERS ({ordersList.length})
+                        </h2>
+                      </div>
+                      <button
+                        onClick={() => navigate('/')}
+                        className="hidden sm:inline-flex items-center gap-2 bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.12)] px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                      >
+                        <span>EXPLORE COLLECTION →</span>
+                      </button>
+                    </div>
+
+                    {ordersLoading ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-12 text-center text-[#B8C4C2]">
+                        <Loader2 className="w-6 h-6 animate-spin text-[#C5A15A] mx-auto mb-2" />
+                        <span className="text-xs uppercase font-bold tracking-wider">Loading orders...</span>
+                      </div>
+                    ) : ordersList.length === 0 ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-10 text-center space-y-4 shadow-sm">
+                        <div className="w-14 h-14 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-full flex items-center justify-center mx-auto text-[#C5A15A]">
+                          <ShoppingBag className="w-6 h-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <h3 className="font-serif text-2xl font-bold uppercase text-[#F5F1EA]">NO ORDERS YET</h3>
+                          <p className="font-sans text-xs text-[#B8C4C2] max-w-sm mx-auto leading-relaxed">
+                            Your next signature scent is waiting. Explore our luxury collection and order online or directly on WhatsApp.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => navigate('/')}
+                          className="inline-flex items-center gap-2 bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+                        >
+                          <span>EXPLORE FRAGRANCES →</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {ordersList.map((ord) => {
+                          const dateFormatted = ord.createdAt
+                            ? new Date(ord.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }).toUpperCase()
+                            : 'RECENT ORDER';
+
+                          return (
+                            <div key={ord.id} className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-5 space-y-4 shadow-sm">
+                              {/* Card Header */}
+                              <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
+                                <div className="space-y-0.5">
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-mono text-sm font-bold text-[#C5A15A]">{ord.orderNumber}</span>
+                                    {ord.referralCode && (
+                                      <span className="bg-[#C5A15A]/10 text-[#C5A15A] border border-[#C5A15A]/30 text-[9px] font-extrabold px-2 py-0.5 rounded">
+                                        REF: {ord.referralCode}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-[10px] text-[#B8C4C2] tracking-wider">{dateFormatted}</p>
+                                </div>
+                                <span className={`text-[9.5px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${
+                                  ord.status === 'confirmed' || ord.status === 'delivered' || ord.status === 'completed'
+                                    ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                                    : ord.status === 'shipped'
+                                    ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
+                                    : ord.status === 'cancelled'
+                                    ? 'bg-red-500/10 text-red-400 border-red-500/30'
+                                    : 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+                                }`}>
+                                  {ord.status}
+                                </span>
+                              </div>
+
+                              {/* Items Breakdown */}
+                              <div className="space-y-3">
+                                {ord.items && ord.items.length > 0 ? (
+                                  ord.items.map((item, iIdx) => {
+                                    const isDuo = item.type === 'duo_bundle';
+                                    const isSample = item.type === 'sample_set' || item.id === 'discovery-set' || item.type === 'sample_purchase';
+
+                                    return (
+                                      <div key={iIdx} className="flex items-center justify-between text-xs gap-3">
+                                        <div className="flex items-center gap-3 min-w-0">
+                                          {item.image && (
+                                            <img
+                                              src={item.image}
+                                              alt={item.name}
+                                              className="w-12 h-12 object-contain rounded bg-[#102F38] border border-[rgba(243,235,221,0.12)] shrink-0"
+                                            />
+                                          )}
+                                          <div className="min-w-0">
+                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                              <span className="font-bold text-[#F5F1EA] uppercase truncate">
+                                                {item.name?.startsWith('ÉLAVA') ? item.name : `ÉLAVA ${item.name}`}
+                                              </span>
+                                              {isDuo && (
+                                                <span className="bg-[#7A2929]/20 text-[#F5F1EA] border border-[#7A2929]/40 text-[8.5px] font-extrabold uppercase px-1.5 py-0.2 rounded">
+                                                  DUO BUNDLE
+                                                </span>
+                                              )}
+                                              {isSample && (
+                                                <span className="bg-[#7A2929]/20 text-[#F5F1EA] border border-[#7A2929]/40 text-[8.5px] font-extrabold uppercase px-1.5 py-0.2 rounded">
+                                                  SAMPLE — 60ML
+                                                </span>
+                                              )}
+                                            </div>
+                                            <span className="text-[11px] text-[#B8C4C2] block">
+                                              {item.size || '60 ML'} × {item.quantity || 1}
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <span className="font-bold text-[#F5F1EA] shrink-0">
+                                          ₹{((item.price || 0) * (item.quantity || 1)).toLocaleString()}
+                                        </span>
+                                      </div>
+                                    );
+                                  })
+                                ) : (
+                                  <div className="text-xs text-[#B8C4C2] italic">
+                                    Fragrance order items confirmed
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Card Footer */}
+                              <div className="flex items-center justify-between pt-3 border-t border-[rgba(243,235,221,0.12)]">
+                                <div className="space-y-0.5">
+                                  <span className="text-[10px] text-[#B8C4C2] uppercase block">TOTAL AMOUNT</span>
+                                  <span className="font-serif text-lg font-bold text-[#F5F1EA]">
+                                    ₹{ord.totalAmount.toLocaleString()}
+                                  </span>
+                                </div>
+                                <button
+                                  onClick={() => setSelectedOrder(ord)}
+                                  className="bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                                >
+                                  VIEW ORDER →
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* ── ORDER DETAILS MODAL ── */}
+                {selectedOrder && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4 animate-in fade-in duration-200">
+                    <div className="bg-[#163E49] border border-[rgba(243,235,221,0.2)] rounded-2xl p-6 shadow-2xl w-full max-w-lg space-y-5 text-[#F5F1EA] max-h-[90vh] overflow-y-auto">
+                      {/* Modal Header */}
+                      <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
+                        <div className="space-y-0.5">
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-base font-bold text-[#C5A15A]">
+                              {selectedOrder.orderNumber}
+                            </span>
+                            <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${
+                              selectedOrder.status === 'confirmed' || selectedOrder.status === 'delivered' || selectedOrder.status === 'completed'
+                                ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                                : selectedOrder.status === 'shipped'
+                                ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
+                                : 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+                            }`}>
+                              {selectedOrder.status}
+                            </span>
+                          </div>
+                          <p className="text-[10px] text-[#B8C4C2]">
+                            Placed on {new Date(selectedOrder.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setSelectedOrder(null)}
+                          className="text-[#B8C4C2] hover:text-[#F5F1EA] p-1 rounded-full hover:bg-white/10 transition-colors"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      {/* Products Breakdown */}
+                      <div className="space-y-3">
+                        <h4 className="font-sans text-[11px] font-extrabold tracking-widest text-[#C5A15A] uppercase border-b border-[rgba(243,235,221,0.1)] pb-1.5">
+                          PRODUCTS IN ORDER
+                        </h4>
+                        {selectedOrder.items && selectedOrder.items.length > 0 ? (
+                          selectedOrder.items.map((item, idx) => {
+                            const isDuo = item.type === 'duo_bundle';
+                            const isSample = item.type === 'sample_set' || item.id === 'discovery-set' || item.type === 'sample_purchase';
+
+                            return (
+                              <div key={idx} className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] p-3 rounded-xl space-y-2">
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex items-center gap-3">
+                                    {item.image && (
+                                      <img src={item.image} alt={item.name} className="w-12 h-12 object-contain bg-[#163E49] rounded border border-[rgba(243,235,221,0.1)] shrink-0" />
+                                    )}
+                                    <div>
+                                      <span className="font-bold text-xs uppercase text-[#F5F1EA] block">
+                                        {item.name?.startsWith('ÉLAVA') ? item.name : `ÉLAVA ${item.name}`}
+                                      </span>
+                                      <span className="text-[11px] text-[#B8C4C2]">
+                                        {isDuo ? '2 × 60 ML Eau de Parfum' : isSample ? 'SAMPLE — 60 ML' : item.size || '60 ML'} × {item.quantity || 1}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <span className="font-bold text-xs text-[#F5F1EA]">
+                                    ₹{((item.price || 0) * (item.quantity || 1)).toLocaleString()}
+                                  </span>
+                                </div>
+
+                                {isDuo && item.includedFragrances && (
+                                  <div className="text-[10px] text-[#B8C4C2] bg-[#163E49] p-2 rounded space-y-0.5">
+                                    <span className="font-semibold text-[#F5F1EA] block uppercase">Included Signatures:</span>
+                                    {item.includedFragrances.map((f, fIdx) => (
+                                      <div key={fIdx}>• ÉLAVA {f.name} ({f.size})</div>
+                                    ))}
+                                  </div>
+                                )}
+
+                                {item.giftDetails?.isGift && (
+                                  <div className="text-[10.5px] text-[#F5F1EA] bg-[#163E49] p-2 rounded border border-[rgba(243,235,221,0.15)] space-y-0.5">
+                                    <div className="font-bold">🎁 Gift Order</div>
+                                    {item.giftDetails.giftMessage && (
+                                      <div className="text-[#B8C4C2] italic">"{item.giftDetails.giftMessage}"</div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <div className="text-xs text-[#B8C4C2] italic">Standard fragrance order</div>
+                        )}
+                      </div>
+
+                      {/* Pricing Summary */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] p-4 rounded-xl space-y-2 text-xs">
+                        <h4 className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase border-b border-[rgba(243,235,221,0.08)] pb-1.5">
+                          PRICING BREAKDOWN
+                        </h4>
+                        <div className="flex items-center justify-between text-[#B8C4C2]">
+                          <span>SUBTOTAL</span>
+                          <span>₹{selectedOrder.subtotal.toLocaleString()}</span>
+                        </div>
+                        {selectedOrder.discountAmount > 0 && (
+                          <div className="flex items-center justify-between text-[#C5A15A] font-bold">
+                            <span>REFERRAL DISCOUNT ({selectedOrder.referralCode || 'APPLIED'})</span>
+                            <span>-₹{selectedOrder.discountAmount.toLocaleString()}</span>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between text-sm font-bold text-[#F5F1EA] pt-2 border-t border-[rgba(243,235,221,0.1)]">
+                          <span>TOTAL PAID</span>
+                          <span>₹{selectedOrder.totalAmount.toLocaleString()}</span>
+                        </div>
+                      </div>
+
+                      {/* Order Information */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] p-4 rounded-xl space-y-2 text-xs">
+                        <h4 className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase border-b border-[rgba(243,235,221,0.08)] pb-1.5">
+                          ORDER INFORMATION
+                        </h4>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#B8C4C2]">PAYMENT STATUS</span>
+                          <span className="font-bold text-green-400 uppercase">{selectedOrder.paymentStatus}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#B8C4C2]">ORDER STATUS</span>
+                          <span className="font-bold text-[#F5F1EA] uppercase">{selectedOrder.status}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#B8C4C2]">CUSTOMER EMAIL</span>
+                          <span className="font-medium text-[#F5F1EA]">{selectedOrder.email}</span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => setSelectedOrder(null)}
+                        className="w-full bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                      >
+                        CLOSE ORDER DETAILS
+                      </button>
                     </div>
                   </div>
                 )}

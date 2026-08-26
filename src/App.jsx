@@ -94,9 +94,19 @@ export default function App() {
               <AccountPage />
             </ProtectedRoute>
           } />
+          <Route path="/account/orders" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/account/orders/:orderId" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
           <Route path="/orders" element={
             <ProtectedRoute>
-              <div className="min-h-screen py-24 text-center font-serif text-lg">Your Orders Coming Soon</div>
+              <AccountPage />
             </ProtectedRoute>
           } />
           <Route path="/refer-and-earn" element={
