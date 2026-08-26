@@ -4,7 +4,14 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Editorial Light Presentation
+ * ReviewCard Component
+ * Harmonized dark petrol surface testimonial card (#0D3B48) matching #0F4C5C brand canvas.
+ * Card Surface: #0D3B48
+ * Border: rgba(245, 241, 234, 0.15)
+ * Quote Text: #F5F1EA
+ * Reviewer Name: #B8C4C2
+ * Product Name: #F5F1EA
+ * Stars: #D4A72C
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -21,41 +28,41 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#FBF8F3] border border-[#08111F]/10 rounded-2xl p-6 text-[#08111F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:shadow-md transition-shadow"
+      className="bg-[#0D3B48] border border-[rgba(245,241,234,0.15)] rounded-xl p-5 md:p-6 text-[#F5F1EA] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm"
       role="figure"
     >
-      {/* Decorative quotation mark */}
+      {/* Subtle decorative background quotation mark */}
       <span
-        className="absolute top-2 right-4 font-serif text-[80px] leading-none text-[#08111F]/[0.08] select-none pointer-events-none"
+        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-[#F5F1EA]/[0.06] select-none pointer-events-none"
         aria-hidden="true"
       >
         "
       </span>
 
-      {/* ★★★★★ Stars */}
+      {/* ★★★★★ Stars (#D4A72C) */}
       <div className="mb-3 flex items-center">
-        <StarRating rating={rating} size={15} starColor="#C6A15B" />
+        <StarRating rating={rating} size={15} starColor="#D4A72C" />
       </div>
 
-      {/* Quote */}
-      <blockquote className="font-serif text-base lg:text-lg italic text-[#08111F] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      {/* Quote — main content (#F5F1EA) */}
+      <blockquote className="font-serif text-base lg:text-lg italic text-[#F5F1EA] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
-      {/* Metadata row */}
-      <div className="pt-3 border-t border-[#08111F]/10 flex justify-between items-end gap-2 text-xs tracking-wide">
-        <span className="font-sans text-[#111A27]/75 font-medium">
+      {/* Metadata row: Customer (#B8C4C2) · City on left, PRODUCT (#F5F1EA link) on right */}
+      <div className="pt-3 border-t border-[rgba(245,241,234,0.12)] flex justify-between items-end gap-2 text-xs tracking-wide">
+        <span className="font-sans text-[#B8C4C2] font-medium">
           {customer} {city ? `· ${city}` : ''}
         </span>
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#285BE6] hover:underline font-bold transition-colors"
+            className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F5F1EA] hover:text-[#FFFFFF] font-semibold transition-colors"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#08111F] font-semibold">{productName}</span>
+          <span className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F5F1EA] font-semibold">{productName}</span>
         )}
       </div>
     </div>

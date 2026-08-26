@@ -1,6 +1,5 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
-import Hero from '../components/home/Hero';
 import ShopByOccasion from '../components/home/ShopByOccasion';
 import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
 import MostLoved from '../components/home/MostLoved';
@@ -14,12 +13,23 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * ÉLAVA Homepage Container
- * Controlled Visual Rhythm: Light → Dark → Light → Dark/Accent → Dark
+ * Home Page - Sequence:
+ * 1. SHOP BY OCCASION
+ * 2. FIND YOUR SIGNATURE SCENT CTA
+ * 3. FIND YOUR SCENT
+ * 4. MOST LOVED
+ * 5. BUILD YOUR SCENT WARDROBE
+ * 6. TRUST STRIP
+ * 7. TRY BEFORE YOU BUY (DISCOVERY SET)
+ * 8. SHARE & EARN (PATRON REWARDS)
+ * 9. FIND YOUR SIGNATURE SCENT (SCENT QUIZ)
+ * 10. WHY ÉLAVA
+ * 11. WHAT PEOPLE SAY
+ * 12. BRAND STORY
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#F7F3EC] text-[#111A27]">
+    <div className="w-full bg-[#163E49] text-[#F5F1EA]">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."
@@ -27,40 +37,37 @@ export default function Home() {
         ogType="website"
       />
       
-      {/* 1. HERO — Editorial Master Reference (#F7F3EC) */}
-      <Hero />
-
-      {/* 2. SHOP BY OCCASION (#FBF8F3) */}
+      {/* 1. SHOP BY OCCASION */}
       <ShopByOccasion />
 
-      {/* 3. MOST LOVED (BESTSELLERS - #F7F3EC) */}
-      <MostLoved />
-
-      {/* 4. FIND YOUR SCENT (SCENT DISCOVERY - #102A4C) */}
-      <FindYourScent />
-
-      {/* 5. SIGNATURE CTA BANNER (#102A4C) */}
+      {/* 2. FIND YOUR SIGNATURE SCENT CTA (Compact Banner) */}
       <SignatureCtaBanner />
 
-      {/* 6. BUILD YOUR SCENT WARDROBE (DUO BUNDLE - #102A4C) */}
+      {/* 3. FIND YOUR SCENT (GENDER/CATEGORIES FIRST) */}
+      <FindYourScent />
+
+      {/* 4. MOST LOVED (BESTSELLERS) */}
+      <MostLoved />
+
+      {/* 5. BUILD YOUR SCENT WARDROBE (DUO BUNDLE BUILDER) */}
       <ScentWardrobeBundle />
 
-      {/* 7. TRUST STRIP (#FBF8F3) */}
+      {/* 6. TRUST STRIP */}
       <TrustStrip />
 
-      {/* 8. SHARE ÉLAVA. EARN ₹100 CASH. (REFERRAL BANNER - COBALT #285BE6 / #102A4C) */}
+      {/* 7. SHARE ÉLAVA. EARN ₹100. (PATRON REWARDS) */}
       <ReferralBanner />
 
-      {/* 9. SCENT QUIZ FINDER (#102A4C) */}
+      {/* 9. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
       <ScentQuiz />
 
-      {/* 10. WHY ÉLAVA (#FBF8F3) */}
+      {/* 10. WHY ÉLAVA */}
       <WhyElava />
 
-      {/* 11. WHAT PEOPLE SAY (#F7F3EC) */}
+      {/* 11. WHAT PEOPLE SAY */}
       <WhatPeopleSay />
 
-      {/* 12. BRAND STORY (#08111F) */}
+      {/* 12. THE STORY BEHIND ÉLAVA */}
       <BrandStory />
     </div>
   );
