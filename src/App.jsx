@@ -21,6 +21,7 @@ import SignupPage from './pages/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import AccountPage from './pages/AccountPage';
+import CheckoutPage from './pages/CheckoutPage';
 import { captureReferralAttribution } from './utils/referral';
 
 function ScrollToTop() {
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="/returns" element={<ReturnsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
 
           {/* Auth Pages */}
           <Route path="/login" element={<LoginPage />} />

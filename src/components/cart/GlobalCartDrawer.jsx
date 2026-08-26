@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Minus, Plus, X, Gift, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ShoppingBag, Minus, Plus, X, Gift, MapPin, CreditCard } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { fetchCustomerAddresses } from '../../utils/addresses';
 import {
@@ -19,11 +20,17 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 }
 
 export default function GlobalCartDrawer() {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState(getCart());
   const [userAddresses, setUserAddresses] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState('');
+
+  const handleCheckoutClick = () => {
+    setIsOpen(false);
+    navigate('/checkout');
+  };
 
   useEffect(() => {
     async function loadAddresses() {
@@ -284,15 +291,24 @@ export default function GlobalCartDrawer() {
               </div>
             )}
 
+            <button
+              onClick={handleCheckoutClick}
+              className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01] cursor-pointer"
+              id="cart-checkout-primary-btn"
+            >
+              <CreditCard className="w-4 h-4 text-[#102F38]" />
+              <span>CHECKOUT →</span>
+            </button>
+
             <a
               href={whatsAppOrderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#7A2929] hover:bg-[#8C3232] text-[#F5F1EA] py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors shadow-md"
-              id="checkout-whatsapp-btn"
+              className="w-full bg-[#102F38] hover:bg-[#0d262d] text-[#B8C4C2] hover:text-white border border-[rgba(243,235,221,0.15)] py-2.5 px-4 rounded-xl font-bold text-[11px] uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+              id="checkout-whatsapp-secondary-btn"
             >
-              <WhatsAppIcon className="w-4 h-4 fill-[#F5F1EA] text-[#F5F1EA]" />
-              <span>COMPLETE ORDER ON WHATSAPP →</span>
+              <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366] text-[#25D366]" />
+              <span>ORDER DIRECTLY VIA WHATSAPP</span>
             </a>
           </div>
         )}

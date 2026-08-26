@@ -306,3 +306,16 @@ export function updateCartGiftOptions(partial = {}) {
   saveCartGiftOptions(updated);
   return updated;
 }
+
+/**
+ * Clear all cart items from localStorage
+ */
+export function clearCart() {
+  try {
+    localStorage.removeItem(CART_STORAGE_KEY);
+    localStorage.removeItem(GIFT_STORAGE_KEY);
+    window.dispatchEvent(new CustomEvent('cart-updated', { detail: { openDrawer: false } }));
+  } catch (err) {
+    console.error('Error clearing cart:', err);
+  }
+}
