@@ -2,22 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
+/**
+ * OccasionTitle Component
+ * Gives distinct, unique typographic personalities to each occasion (Date Night, Everyday, Office, Party).
+ */
 function OccasionTitle({ occasion, isDesktop = false }) {
-  const baseSize = isDesktop ? 'text-[14px] lg:text-[15px]' : 'text-[9.5px] sm:text-[11px]';
   const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
 
   switch (occasion.id) {
     case 'date-night':
       return (
-        <h3 className={`leading-none truncate ${baseSize}`} style={shadowStyle}>
-          <span className="font-sans italic font-medium tracking-[0.02em] uppercase text-[#F6EFE7]">DATE </span>
-          <span className="font-sans italic font-black tracking-[0.05em] uppercase text-[#F6EFE7]">NIGHT</span>
+        <h3
+          className={`leading-none truncate ${isDesktop ? 'text-base lg:text-lg' : 'text-[10px] sm:text-xs'}`}
+          style={shadowStyle}
+        >
+          <span className="font-serif italic font-normal text-[#E7C4C5] tracking-wide uppercase">DATE </span>
+          <span className="font-serif italic font-semibold text-[#F6EFE7] tracking-wider uppercase">NIGHT</span>
         </h3>
       );
     case 'everyday':
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.08em] uppercase text-[#F6EFE7] leading-none truncate ${baseSize}`}
+          className={`font-sans font-bold tracking-[0.14em] uppercase text-[#F6EFE7] leading-none truncate ${
+            isDesktop ? 'text-sm lg:text-base' : 'text-[9.5px] sm:text-xs'
+          }`}
           style={shadowStyle}
         >
           EVERYDAY
@@ -26,7 +34,9 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-sans font-semibold tracking-[0.24em] uppercase text-[#F6EFE7] leading-none truncate ${baseSize}`}
+          className={`font-sans font-semibold tracking-[0.28em] uppercase text-[#F6EFE7] leading-none truncate ${
+            isDesktop ? 'text-xs lg:text-sm' : 'text-[8.5px] sm:text-[10.5px]'
+          }`}
           style={shadowStyle}
         >
           OFFICE
@@ -35,7 +45,9 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-sans font-black tracking-[0.16em] uppercase text-[#F6EFE7] leading-none truncate ${baseSize}`}
+          className={`font-sans font-extrabold tracking-[0.18em] uppercase text-[#F6EFE7] leading-none truncate ${
+            isDesktop ? 'text-base lg:text-lg' : 'text-[10.5px] sm:text-xs'
+          }`}
           style={shadowStyle}
         >
           PARTY
@@ -44,7 +56,9 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.1em] uppercase text-[#F6EFE7] leading-none truncate ${baseSize}`}
+          className={`font-sans font-semibold tracking-wider text-[#F6EFE7] leading-none truncate ${
+            isDesktop ? 'text-sm lg:text-base' : 'text-xs'
+          }`}
           style={shadowStyle}
         >
           {occasion.title}
@@ -83,7 +97,7 @@ export default function OccasionCard({ occasion }) {
         className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-[#E7C4C5]/15 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E7C4C5]/50"
         aria-label={`Shop perfumes for ${occasion.title}`}
       >
-        {/* Background Photography Layer */}
+        {/* Background Layer */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <img
             src={occasion.image}
@@ -94,12 +108,12 @@ export default function OccasionCard({ occasion }) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#2A0D14]/90 via-[#2A0D14]/40 to-transparent transition-colors duration-300" />
         </div>
 
-        {/* Bottom Content Layer */}
+        {/* Content Layer */}
         <div className="relative z-10 flex items-end justify-between w-full">
           <div className="flex flex-col min-w-0 pr-3">
             <OccasionTitle occasion={occasion} isDesktop={true} />
             <p
-              className="font-sans text-[12px] lg:text-[12.5px] leading-snug mt-1.5 font-normal tracking-[0.01em] truncate text-[#E7C4C5]/90"
+              className="font-sans text-xs leading-relaxed mt-1 font-normal tracking-wide truncate text-[#E7C4C5]/90"
               style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
             >
               {occasion.description}

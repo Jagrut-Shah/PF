@@ -12,28 +12,21 @@ export default function ReviewsPage() {
   const [searchParams] = useSearchParams();
   const productSlug = searchParams.get('product');
 
-  // Gender Filter State (ALL, MEN, WOMEN, UNISEX)
   const [activeGender, setActiveGender] = useState('ALL');
-
-  // Progressive Reveal Limit
   const [visibleLimit, setVisibleLimit] = useState(6);
 
-  // Find product if product query param is supplied
   const currentProduct = useMemo(() => {
     if (!productSlug) return null;
     return products.find((p) => p.slug === productSlug) || null;
   }, [productSlug]);
 
-  // Filter reviews based on product query or gender selection
   const filteredReviews = useMemo(() => {
     let result = reviews;
 
-    // 1. Product specific filter takes priority
     if (currentProduct) {
       return result.filter((r) => r.productSlug === currentProduct.slug);
     }
 
-    // 2. Gender filter using product metadata
     if (activeGender !== 'ALL') {
       const targetGender = activeGender.toLowerCase();
       result = result.filter((r) => {
@@ -46,7 +39,6 @@ export default function ReviewsPage() {
     return result;
   }, [currentProduct, activeGender]);
 
-  // Paginated visible slice
   const visibleReviews = filteredReviews.slice(0, visibleLimit);
   const hasMore = filteredReviews.length > visibleLimit;
 
@@ -54,7 +46,6 @@ export default function ReviewsPage() {
     setVisibleLimit((prev) => prev + 6);
   };
 
-  // Dynamic Head SEO values
   const seoTitle = currentProduct
     ? `Customer Reviews for ${currentProduct.name} | ÉLAVA`
     : 'Customer Reviews | ÉLAVA';
@@ -65,10 +56,9 @@ export default function ReviewsPage() {
 
   const seoCanonical = currentProduct ? `/reviews?product=${currentProduct.slug}` : '/reviews';
 
-  // Hero Display Values
   const heroTitle = currentProduct
-    ? `WHAT PEOPLE SAY ABOUT ${currentProduct.name}`
-    : 'WHAT PEOPLE SAY';
+    ? `What People Say About ${currentProduct.name}`
+    : 'What People Say';
 
   const heroSubtitle = currentProduct
     ? 'The fragrance our customers keep coming back to.'
@@ -78,7 +68,7 @@ export default function ReviewsPage() {
   const displayReviewCount = currentProduct ? currentProduct.reviewCount : reviewAggregate.totalReviews;
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F3EBDD] min-h-screen">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
       <SEO
         title={seoTitle}
         description={seoDescription}
@@ -89,51 +79,50 @@ export default function ReviewsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-12">
         {/* 1. PAGE HERO */}
         <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#F3EBDD] leading-tight mb-2">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] leading-tight mb-2">
             {heroTitle}
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide mb-5 font-normal">
+          <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 tracking-wide mb-5 font-normal leading-relaxed">
             "{heroSubtitle}"
           </p>
 
           {/* Rating Display */}
-          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl shadow-sm">
-            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F3EBDD] tracking-tight mb-1">
-              {displayRating} <span className="text-xl text-[#C8C1B5]">/ 5</span>
+          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl shadow-sm">
+            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F6EFE7] tracking-tight mb-1">
+              {displayRating} <span className="text-xl text-[#E7C4C5]">/ 5</span>
             </div>
             <div className="mb-1.5">
-              <StarRating rating={displayRating} starColor="#C5A15A" />
+              <StarRating rating={displayRating} starColor="#C6A15B" />
             </div>
-            <div className="font-sans text-xs text-[#B8C4C2] font-semibold tracking-wider uppercase">
-              {displayReviewCount.toLocaleString()} VERIFIED REVIEWS
+            <div className="font-sans text-xs text-[#E7C4C5] font-semibold tracking-wider uppercase">
+              {displayReviewCount.toLocaleString()} Verified Reviews
             </div>
           </div>
         </section>
 
         {/* 2. SUBSECTION & FILTER BAR */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(243,235,221,0.15)]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#E7C4C5]/15">
             <div>
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#F3EBDD]">
-                A FEW WORDS FROM OUR COMMUNITY
+              <h2 className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7]">
+                A few words from our community
               </h2>
               {currentProduct && (
-                <p className="font-sans text-xs text-[#C8C1B5] mt-0.5">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 mt-0.5 font-normal">
                   Filtered by {currentProduct.name}
                 </p>
               )}
             </div>
 
-            {/* If product filtered: link back to all reviews; else show gender tabs */}
             {currentProduct ? (
               <Link
                 to="/reviews"
-                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F3EBDD] hover:text-[#FFFFFF] transition-colors"
+                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7] hover:text-[#C94B5B] transition-colors"
               >
-                ← VIEW ALL REVIEWS
+                ← View All Reviews
               </Link>
             ) : (
-              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap font-sans">
                 {['ALL', 'MEN', 'WOMEN', 'UNISEX'].map((gender) => (
                   <button
                     key={gender}
@@ -142,10 +131,10 @@ export default function ReviewsPage() {
                       setActiveGender(gender);
                       setVisibleLimit(6);
                     }}
-                    className={`px-3 py-1 rounded text-[11px] font-bold tracking-[0.14em] uppercase transition-colors ${
+                    className={`px-3 py-1 rounded-lg text-xs font-semibold tracking-wide uppercase transition-colors ${
                       activeGender === gender
-                        ? 'bg-[#7A2929] text-[#F3EBDD]'
-                        : 'bg-[#1C4A55] text-[#C8C1B5] hover:text-[#F3EBDD] border border-[rgba(243,235,221,0.15)]'
+                        ? 'bg-[#C94B5B] text-[#F6EFE7]'
+                        : 'bg-[#641D2D] text-[#E7C4C5]/80 hover:text-[#F6EFE7] border border-[#E7C4C5]/15'
                     }`}
                   >
                     {gender}
@@ -156,55 +145,34 @@ export default function ReviewsPage() {
           </div>
         </section>
 
-        {/* 3. REVIEWS GRID USING UNIFIED ReviewCard COMPONENT */}
-        {visibleReviews.length === 0 ? (
-          <div className="text-center py-12 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl my-8">
-            <p className="font-sans text-sm text-[#C8C1B5] mb-3">No reviews found for this selection.</p>
-            <Link
-              to="/reviews"
-              className="font-sans text-xs uppercase tracking-wider font-semibold text-[#B8C4C2] hover:underline"
-            >
-              Reset Filters →
-            </Link>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-10 md:mb-12">
-            {visibleReviews.map((rev) => (
-              <ReviewCard key={rev.id} review={rev} />
-            ))}
-          </div>
-        )}
+        {/* 3. REVIEWS GRID */}
+        <section aria-label="Customer reviews grid">
+          {visibleReviews.length === 0 ? (
+            <div className="py-12 text-center text-[#E7C4C5]/80 font-sans text-xs font-normal">
+              No reviews found for this selection.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {visibleReviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          )}
 
-        {/* 4. SHOW MORE REVIEWS BUTTON */}
-        {hasMore && (
-          <div className="text-center mb-14">
-            <button
-              type="button"
-              onClick={handleShowMore}
-              className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-7 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 cursor-pointer shadow-sm"
-            >
-              <span>SHOW MORE REVIEWS</span>
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-            </button>
-          </div>
-        )}
-
-        {/* 5. BOTTOM EDITORIAL CTA */}
-        <section className="mt-14 pt-10 border-t border-[rgba(243,235,221,0.15)] text-center max-w-xl mx-auto">
-          <h2 className="font-serif text-2xl sm:text-3xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-2">
-            FIND YOUR SIGNATURE
-          </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed mb-6">
-            Explore the ÉLAVA collection and discover the fragrance that feels like you.
-          </p>
-          <Link
-            to="/category/bestsellers"
-            className="inline-flex items-center gap-2 bg-[#7A2929] hover:bg-[#8C3232] text-[#F3EBDD] px-6 py-3 rounded text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-sm"
-          >
-            <span>EXPLORE COLLECTION</span>
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-          </Link>
+          {/* Show More Button */}
+          {hasMore && (
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                onClick={handleShowMore}
+                className="bg-[#641D2D] hover:bg-[#7A2437] text-[#F6EFE7] border border-[#E7C4C5]/20 font-sans text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors shadow-sm"
+              >
+                Show More Reviews
+              </button>
+            </div>
+          )}
         </section>
+
       </MainContainer>
     </div>
   );

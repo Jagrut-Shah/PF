@@ -53,7 +53,7 @@ export default function DiscoverySetPage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen pb-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen pb-16">
       <SEO
         title="ÉLAVA Samples — Try Any 60ml Eau de Parfum Signature at Home"
         description="Select any fragrance from our collection and experience the full 60ml bottle before deciding if it's your signature scent."

@@ -113,7 +113,7 @@ function FaqItem({ question, answer }) {
 
 export default function FaqPage() {
   return (
-    <div className="w-full bg-[#163E49] text-[#F3EBDD] min-h-screen">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
       <SEO
         title="FAQ | ÉLAVA Perfumes"
         description="Everything you need to know about ÉLAVA fragrances, ordering through WhatsApp, shipping and delivery."

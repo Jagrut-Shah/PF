@@ -116,7 +116,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* NAVIGATION LINKS */}
+            {/* NAVIGATION LINKS — Manrope 600 Exclusively */}
             <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => {
                 const isActive = link.path === '/'
@@ -128,7 +128,7 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={
-                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.18em] font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
+                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.16em] font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
                         isActive
                           ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
                           : 'text-[#F6EFE7]/85 hover:text-[#F6EFE7] hover:bg-[#641D2D]/60'
@@ -179,19 +179,19 @@ export default function Navbar() {
               >
                 <ShoppingBag className="w-[19px] h-[19px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-[#C94B5B] text-[#F6EFE7] text-[9.5px] font-extrabold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
+                  <span className="absolute top-1 right-1 bg-[#C94B5B] text-[#F6EFE7] text-[9.5px] font-sans font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              {/* Primary Action Button: SHOP NOW → (Coral Accent) */}
+              {/* Primary Action Button: SHOP NOW → (Manrope 600) */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] text-[11px] font-extrabold tracking-widest uppercase transition-all duration-200 shadow-sm ml-1"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] text-[11px] font-sans font-semibold tracking-wider uppercase transition-all duration-200 shadow-sm ml-1"
                 id="navbar-shop-now-btn"
               >
-                <span>SHOP NOW →</span>
+                <span>Shop Now →</span>
               </Link>
             </div>
 
@@ -217,7 +217,7 @@ export default function Navbar() {
           >
             <div>
               <div className="flex items-center justify-between pb-3.5 border-b border-[#E7C4C5]/15 mb-3">
-                <span className="font-serif text-xs tracking-[0.2em] font-bold text-[#E7C4C5] uppercase">
+                <span className="font-sans text-xs tracking-wider font-semibold text-[#E7C4C5] uppercase">
                   ÉLAVA NAVIGATION
                 </span>
                 <button
@@ -241,7 +241,7 @@ export default function Navbar() {
                       key={link.path}
                       to={link.path}
                       className={
-                        `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
+                        `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
                           isActive
                             ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
                             : 'text-[#F6EFE7]/85 hover:bg-[#641D2D]/60 hover:text-[#F6EFE7] font-medium'
@@ -256,7 +256,7 @@ export default function Navbar() {
                 <NavLink
                   to={user ? "/account" : "/login"}
                   className={
-                    `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
+                    `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
                       location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
                         ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
                         : 'text-[#F6EFE7]/85 hover:bg-[#641D2D]/60 hover:text-[#F6EFE7] font-medium'
@@ -285,7 +285,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#2A0D14] border border-[#E7C4C5]/20 text-xs font-sans font-bold uppercase tracking-wider text-[#F6EFE7] hover:border-[#E7C4C5]/40 transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#2A0D14] border border-[#E7C4C5]/20 text-xs font-sans font-semibold uppercase tracking-wider text-[#F6EFE7] hover:border-[#E7C4C5]/40 transition-colors"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>

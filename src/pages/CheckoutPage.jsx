@@ -453,7 +453,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-8 sm:py-12">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen py-8 sm:py-12">
       <SEO
         title="Checkout — ÉLAVA Perfumes"
         description="Complete your ÉLAVA luxury artisanal fragrance order with secure checkout."
@@ -465,14 +465,14 @@ export default function CheckoutPage() {
         <div className="max-w-4xl mx-auto space-y-8">
           
           {/* Header & Back Link */}
-          <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-4">
-            <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-[#B8C4C2] hover:text-white uppercase tracking-wider font-bold transition-colors">
-              <ArrowLeft className="w-4 h-4 text-[#C5A15A]" />
+          <div className="flex items-center justify-between border-b border-[#E7C4C5]/15 pb-4">
+            <Link to="/" className="inline-flex items-center gap-1.5 font-sans text-xs text-[#E7C4C5]/85 hover:text-white uppercase tracking-wider font-semibold transition-colors">
+              <ArrowLeft className="w-4 h-4 text-[#C94B5B]" />
               <span>RETURN TO SHOP</span>
             </Link>
-            <span className="font-serif text-lg font-bold uppercase tracking-wider text-[#C5A15A]">
-              ÉLAVA CHECKOUT
-            </span>
+            <h1 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-[#F6EFE7]">
+              ÉLAVA Checkout
+            </h1>
           </div>
 
           {/* Stepper Progress Bar (Only when not confirmed) */}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 /**
  * ScentCategoryCard Component
- * Full-bleed image card matching Deep Cherry / Rich Wine / Cream visual identity.
+ * Cormorant Garamond serif for category title, Manrope for descriptors & action link.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -22,6 +22,7 @@ export default function ScentCategoryCard({ category }) {
       className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#2A0D14] border border-[#E7C4C5]/15 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E7C4C5]"
       aria-label={`Explore ${category.title} collection`}
     >
+      {/* MOBILE */}
       <div className="block md:hidden">
         <div className="overflow-hidden rounded-t-xl bg-[#171316]">
           <img
@@ -32,18 +33,18 @@ export default function ScentCategoryCard({ category }) {
           />
         </div>
         <div className="bg-[#2A0D14] px-3 pt-2.5 pb-2 text-left">
-          <h3 className="font-serif text-[14px] tracking-[0.08em] font-normal text-[#F6EFE7] uppercase leading-tight">
+          <h3 className="font-serif text-lg font-normal text-[#F6EFE7] leading-tight">
             {category.title}
           </h3>
-          <div className="mt-1.5 flex items-center gap-1 text-[9px] font-medium tracking-[0.18em] text-[#E7C4C5] uppercase">
-            <span>EXPLORE</span>
+          <div className="mt-1 flex items-center gap-1 text-[11px] font-sans font-semibold tracking-wider text-[#E7C4C5]">
+            <span>Explore</span>
             <span aria-hidden="true">↗</span>
           </div>
         </div>
       </div>
 
+      {/* DESKTOP */}
       <div className="hidden md:block w-full h-full relative">
-        {/* Full-Bleed Background Photography Layer */}
         <img
           src={category.image}
           alt={category.alt}
@@ -51,24 +52,21 @@ export default function ScentCategoryCard({ category }) {
           loading="eager"
         />
 
-        {/* Deep Cherry Atmospheric Overlay */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#2A0D14]/90 via-[#2A0D14]/45 via-35% to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* Content Layer */}
-        <div className="relative z-10 h-full p-5 sm:p-5.5 md:p-6 flex flex-col justify-between select-none">
-          {/* Top: Category Title & Descriptors */}
+        <div className="relative z-10 h-full p-5 sm:p-6 flex flex-col justify-between select-none">
           <div>
-            <h3 className="font-serif text-[17px] sm:text-[18px] md:text-[19px] tracking-[0.10em] font-normal text-[#F6EFE7] uppercase mb-2 sm:mb-2.5 leading-snug">
+            <h3 className="font-serif text-2xl md:text-3xl font-normal text-[#F6EFE7] mb-2 leading-snug">
               {category.title}
             </h3>
-            <div className="flex flex-col space-y-0.5 sm:space-y-1">
+            <div className="flex flex-col space-y-1">
               {category.descriptors.map((desc, idx) => (
                 <span
                   key={idx}
-                  className="font-sans text-[12px] sm:text-[13px] text-[#E7C4C5]/85 font-light tracking-wide"
+                  className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 font-normal tracking-wide"
                 >
                   {desc}
                 </span>
@@ -76,9 +74,8 @@ export default function ScentCategoryCard({ category }) {
             </div>
           </div>
 
-          {/* Bottom: Anchored Explore Link */}
-          <div className="flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-[#E7C4C5] uppercase pt-2">
-            <span>EXPLORE</span>
+          <div className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#E7C4C5] pt-2">
+            <span>Explore</span>
             <span
               className="inline-block transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-250 ease-out"
               aria-hidden="true"

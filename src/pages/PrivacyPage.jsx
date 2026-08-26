@@ -6,7 +6,7 @@ import DEMO_COMPANY_INFO from '../data/companyInfo';
 
 export default function PrivacyPage() {
   return (
-    <div className="w-full bg-[#163E49] text-[#F3EBDD] min-h-screen">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
       <SEO
         title="Privacy Policy | ÉLAVA Perfumes"
         description="Read the privacy policy for ÉLAVA Perfumes detailing how order information is handled."

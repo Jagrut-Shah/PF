@@ -62,7 +62,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-[80vh] flex items-center py-12 sm:py-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-[80vh] flex items-center py-12 sm:py-16">
       <SEO
         title="Reset Password — ÉLAVA Perfumes"
         description="Set a new password for your ÉLAVA customer account."

@@ -4,7 +4,7 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Deep Cherry / Rich Wine / Cream Palette
+ * ReviewCard Component — Manrope for review quote text, customer name (600), rating (600).
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -32,30 +32,30 @@ export default function ReviewCard({ review }) {
         "
       </span>
 
-      {/* ★★★★★ Stars */}
+      {/* Star rating */}
       <div className="mb-3 flex items-center">
         <StarRating rating={rating} size={15} starColor="#E7C4C5" />
       </div>
 
-      {/* Quote */}
-      <blockquote className="font-serif text-base lg:text-lg italic text-[#F6EFE7] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      {/* Review Text — Manrope 400 leading-relaxed */}
+      <blockquote className="font-sans text-sm sm:text-base text-[#F6EFE7] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
-      {/* Metadata row */}
-      <div className="pt-3 border-t border-[#E7C4C5]/15 flex justify-between items-end gap-2 text-xs tracking-wide">
-        <span className="font-sans text-[#E7C4C5]/85 font-medium">
+      {/* Customer Name & Product Link — Manrope 600 */}
+      <div className="pt-3 border-t border-[#E7C4C5]/15 flex justify-between items-end gap-2 text-xs">
+        <span className="font-sans text-[#E7C4C5]/90 font-semibold">
           {customer} {city ? `· ${city}` : ''}
         </span>
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F6EFE7] hover:text-[#C94B5B] font-semibold transition-colors"
+            className="font-sans text-[11px] text-[#F6EFE7] hover:text-[#C94B5B] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-sans uppercase tracking-[0.16em] text-[10.5px] text-[#F6EFE7] font-semibold">{productName}</span>
+          <span className="font-sans text-[11px] text-[#F6EFE7] font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>

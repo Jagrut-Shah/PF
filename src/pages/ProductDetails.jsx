@@ -396,36 +396,36 @@ export default function ProductDetails() {
             </div>
           )}
 
-          {/* Product Title */}
-          <h1 className="font-sans text-3xl sm:text-4xl lg:text-[44px] uppercase font-bold tracking-[0.04em] text-[#F5F1EA] leading-tight">
+          {/* Product Title — Cormorant Garamond Serif */}
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#F6EFE7] leading-tight tracking-tight">
             {product.name}
           </h1>
 
           {/* Product Type + Gender */}
-          <div className="font-sans text-xs sm:text-sm text-[#B8C4C2] tracking-wide font-medium mt-1">
+          <div className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 tracking-wide font-normal mt-1">
             Eau de Parfum · {genderTarget}
           </div>
 
           {/* Rating + Review Count */}
-          <div className="mt-3 flex items-center gap-2.5">
-            <StarRating rating={product.rating} size={14} starColor="#C5A15A" />
-            <span className="font-sans text-xs font-semibold text-[#F5F1EA]">{product.rating}</span>
-            <span className="font-sans text-xs text-[#B8C4C2]">({product.reviewCount} reviews)</span>
+          <div className="mt-3 flex items-center gap-2.5 font-sans">
+            <StarRating rating={product.rating} size={14} starColor="#C6A15B" />
+            <span className="text-xs font-semibold text-[#F6EFE7]">{product.rating}</span>
+            <span className="text-xs text-[#E7C4C5]/85 font-normal">({product.reviewCount} reviews)</span>
           </div>
 
-          {/* Price & Size Selection */}
+          {/* Price & Size Selection — Manrope 600 */}
           <div className="mt-4">
-            <div className="font-sans text-2xl sm:text-3xl font-bold text-[#F5F1EA] tracking-tight">
+            <div className="font-sans text-2xl sm:text-3xl font-semibold text-[#F6EFE7] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
-            <div className="mt-1 flex items-center gap-2">
+            <div className="mt-2 flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setSelectedSize(product.size || '60 ML')}
-                className={`font-sans text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded border transition-colors ${
+                className={`font-sans text-xs font-semibold tracking-wider uppercase px-3 py-1.5 rounded-lg border transition-colors ${
                   selectedSize === (product.size || '60 ML')
-                    ? 'border-[#F5F1EA] bg-[#102F38] text-[#F5F1EA]'
-                    : 'border-[rgba(243,235,221,0.15)] text-[#B8C4C2]'
+                    ? 'border-[#F6EFE7] bg-[#641D2D] text-[#F6EFE7]'
+                    : 'border-[#E7C4C5]/20 text-[#E7C4C5]/80'
                 }`}
               >
                 {product.size || '60 ML'}

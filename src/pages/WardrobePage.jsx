@@ -27,7 +27,7 @@ export default function WardrobePage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen pb-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen pb-16">
       <SEO
         title={`ÉLAVA ${bundle.title} — 2 × 60ml Fragrance Wardrobe`}
         description={bundle.subtitle}

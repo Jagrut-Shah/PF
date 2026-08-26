@@ -12,55 +12,55 @@ const VALID_SLUGS = [...GENDER_CATEGORIES, ...OCCASION_CATEGORIES, 'bestsellers'
 
 const CATEGORY_CONFIG = {
   all: {
-    title: 'ALL FRAGRANCES',
+    title: 'All Fragrances',
     subtitle: 'Explore our complete artisanal Eau de Parfum collection.',
     seoTitle: 'All Fragrances | ÉLAVA',
     seoDescription: 'Explore the full ÉLAVA artisanal fragrance collection.',
   },
   men: {
-    title: 'MEN',
+    title: 'For Him',
     subtitle: 'Fragrances crafted for him.',
     seoTitle: "Men's Fragrances | ÉLAVA",
     seoDescription: "Explore ÉLAVA's premium artisanal fragrances crafted for him.",
   },
   women: {
-    title: 'WOMEN',
+    title: 'For Her',
     subtitle: 'Fragrances crafted for her.',
     seoTitle: "Women's Fragrances | ÉLAVA",
     seoDescription: "Explore ÉLAVA's elegant artisanal fragrances crafted for her.",
   },
   unisex: {
-    title: 'UNISEX',
+    title: 'Unisex',
     subtitle: 'Fragrances for every expression.',
     seoTitle: 'Unisex Fragrances | ÉLAVA',
     seoDescription: "Explore ÉLAVA's distinctive unisex fragrances for every expression.",
   },
   bestsellers: {
-    title: 'BESTSELLERS',
-    subtitle: 'Our most loved fragrances.',
+    title: 'Bestsellers',
+    subtitle: 'Our most loved signature fragrances.',
     seoTitle: 'Bestseller Fragrances | ÉLAVA',
     seoDescription: "Discover ÉLAVA's most coveted and bestselling signature perfumes.",
   },
   'date-night': {
-    title: 'DATE NIGHT',
+    title: 'Date Night',
     subtitle: 'Fragrances for nights worth remembering.',
     seoTitle: 'Date Night Fragrances | ÉLAVA',
     seoDescription: "Discover ÉLAVA's seductive date night fragrances for evenings worth remembering.",
   },
   everyday: {
-    title: 'EVERYDAY',
+    title: 'Everyday',
     subtitle: 'Your signature scent, every day.',
     seoTitle: 'Everyday Fragrances | ÉLAVA',
     seoDescription: "Discover ÉLAVA's refined everyday signature scents for effortless wear.",
   },
   office: {
-    title: 'OFFICE',
+    title: 'Office',
     subtitle: 'Clean. Sharp. Effortless.',
     seoTitle: 'Office Fragrances | ÉLAVA',
     seoDescription: "Discover ÉLAVA's clean, sharp, and polished fragrances for work.",
   },
   party: {
-    title: 'PARTY',
+    title: 'Party',
     subtitle: 'Walk in. Get noticed.',
     seoTitle: 'Party Fragrances | ÉLAVA',
     seoDescription: "Discover ÉLAVA's bold and magnetic party fragrances made to get noticed.",
@@ -71,7 +71,6 @@ export default function CategoryPage() {
   const { categorySlug = 'all' } = useParams();
   const isSupportedSlug = VALID_SLUGS.includes(categorySlug);
 
-  // Base Category Products (Excludes sample_set from standard grids)
   const categoryProducts = products.filter((p) => {
     if (p.type === 'sample_set') return false;
     if (!isSupportedSlug || categorySlug === 'all') return true;
@@ -96,15 +95,15 @@ export default function CategoryPage() {
           description="The requested fragrance collection does not exist."
           canonicalPath={`/category/${categorySlug || ''}`}
         />
-        <h1 className="font-serif text-3xl font-normal uppercase tracking-wider text-[#F5F1EA] mb-3">
+        <h1 className="font-serif text-3xl font-normal text-[#F6EFE7] mb-3">
           Collection Not Found
         </h1>
-        <p className="font-sans text-sm text-[#B8C4C2] mb-6">
+        <p className="font-sans text-sm text-[#E7C4C5]/85 mb-6 font-normal">
           The requested fragrance collection does not exist.
         </p>
         <Link
           to="/"
-          className="inline-block bg-[#7A2929] text-[#F5F1EA] px-6 py-2.5 rounded text-xs uppercase tracking-widest font-semibold hover:bg-[#8C3232] transition-colors"
+          className="inline-block bg-[#C94B5B] text-[#F6EFE7] px-6 py-2.5 rounded-xl font-sans text-xs font-semibold tracking-wider hover:bg-[#B03D4C] transition-colors"
         >
           Return to Homepage
         </Link>
@@ -113,9 +112,9 @@ export default function CategoryPage() {
   }
 
   const config = CATEGORY_CONFIG[categorySlug] || {
-    title: categorySlug.toUpperCase(),
+    title: categorySlug,
     subtitle: '',
-    seoTitle: `${categorySlug.toUpperCase()} | ÉLAVA`,
+    seoTitle: `${categorySlug} | ÉLAVA`,
     seoDescription: `Explore ÉLAVA ${categorySlug} luxury fragrance collection.`,
   };
 
@@ -131,14 +130,14 @@ export default function CategoryPage() {
       <SectionHeading as="h1" title={config.title} subtitle={config.subtitle} />
 
       {/* Results Count */}
-      <div className="mt-6 mb-2 text-xs text-[#B8C4C2]">
+      <div className="mt-6 mb-2 font-sans text-xs text-[#E7C4C5]/85 font-normal">
         <span>Showing {categoryProducts.length} {categoryProducts.length === 1 ? 'fragrance' : 'fragrances'}</span>
       </div>
 
       {/* Product Grid */}
       {categoryProducts.length === 0 ? (
-        <div className="mt-6 text-center py-12 bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl">
-          <p className="font-sans text-sm text-[#B8C4C2]">No fragrances in this collection yet.</p>
+        <div className="mt-6 text-center py-12 bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl">
+          <p className="font-sans text-sm text-[#E7C4C5]/85 font-normal">No fragrances in this collection yet.</p>
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">

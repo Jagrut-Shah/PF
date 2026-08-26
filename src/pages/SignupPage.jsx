@@ -91,7 +91,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-[85vh] flex items-center py-12 sm:py-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-[85vh] flex items-center py-12 sm:py-16">
       <SEO
         title="Create Account — ÉLAVA Perfumes"
         description="Register a new ÉLAVA customer account."

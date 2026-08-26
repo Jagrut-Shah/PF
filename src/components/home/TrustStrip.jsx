@@ -23,10 +23,10 @@ export default function TrustStrip() {
                 <ShieldCheck className="w-5 h-5 text-[#C94B5B]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F6EFE7] uppercase">
+                <h4 className="font-sans text-xs font-semibold tracking-wide text-[#F6EFE7]">
                   Secure Payments
                 </h4>
-                <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 truncate font-normal">
                   UPI, Cards & Net Banking
                 </p>
               </div>
@@ -38,10 +38,10 @@ export default function TrustStrip() {
                 <CreditCard className="w-5 h-5 text-[#F6EFE7]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F6EFE7] uppercase">
+                <h4 className="font-sans text-xs font-semibold tracking-wide text-[#F6EFE7]">
                   COD Available
                 </h4>
-                <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 truncate font-normal">
                   Pay cash on delivery
                 </p>
               </div>
@@ -53,10 +53,10 @@ export default function TrustStrip() {
                 <Truck className="w-5 h-5 text-[#F6EFE7]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F6EFE7] uppercase">
+                <h4 className="font-sans text-xs font-semibold tracking-wide text-[#F6EFE7]">
                   Tracked Delivery
                 </h4>
-                <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 truncate font-normal">
                   Dispatched across India
                 </p>
               </div>
@@ -68,10 +68,10 @@ export default function TrustStrip() {
                 <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F6EFE7] uppercase">
+                <h4 className="font-sans text-xs font-semibold tracking-wide text-[#F6EFE7]">
                   Customer Support
                 </h4>
-                <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 truncate font-normal">
                   Direct help via WhatsApp
                 </p>
               </div>

@@ -6,23 +6,23 @@ import { Layers, ArrowRight } from 'lucide-react';
 const BUNDLE_PRESETS = [
   {
     id: 'date-night',
-    title: 'DATE NIGHT DUO',
-    subtitle: '2 × 60ML',
-    description: 'A seductive combination for evenings and nights out.',
+    title: 'Date Night Duo',
+    subtitle: '2 × 60ml',
+    description: 'A seductive combination for evenings and memorable nights out.',
     badge: 'EVENING & SEDUCTIVE',
   },
   {
     id: 'everyday-office',
-    title: 'EVERYDAY + OFFICE',
-    subtitle: '2 × 60ML',
-    description: 'One effortless everyday scent + one sharper scent for work.',
+    title: 'Everyday + Office',
+    subtitle: '2 × 60ml',
+    description: 'One effortless everyday scent + one sharper signature for work.',
     badge: 'EFFORTLESS & SHARP',
   },
   {
     id: 'gift-duo',
-    title: 'GIFT DUO',
-    subtitle: '2 × 60ML',
-    description: 'Two fragrances selected as a memorable gift.',
+    title: 'Gift Duo',
+    subtitle: '2 × 60ml',
+    description: 'Two fragrances thoughtfully selected as an unforgettable gift.',
     badge: 'MEMORABLE GIFT',
   },
 ];
@@ -33,15 +33,15 @@ export default function ScentWardrobeBundle() {
       <MainContainer>
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#641D2D] border border-[#E7C4C5]/20 text-[#E7C4C5] text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#641D2D] border border-[#E7C4C5]/20 text-[#E7C4C5] text-xs font-sans font-semibold tracking-widest uppercase mb-3 shadow-xs">
             <Layers className="w-3.5 h-3.5 text-[#E7C4C5]" />
-            <span>FRAGRANCE CURATION</span>
+            <span>Fragrance Curation</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-[#F6EFE7]">
-            BUILD YOUR SCENT WARDROBE
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F6EFE7] tracking-tight leading-tight">
+            Build Your Scent Wardrobe
           </h2>
-          <p className="font-sans text-sm sm:text-base text-[#E7C4C5]/80 mt-2">
-            Different moments deserve different scents.
+          <p className="font-sans text-sm sm:text-base text-[#E7C4C5]/85 mt-2 font-normal leading-relaxed">
+            Different moments deserve different fragrance signatures.
           </p>
         </div>
 
@@ -54,23 +54,23 @@ export default function ScentWardrobeBundle() {
               className="p-6 rounded-2xl border border-[#E7C4C5]/20 bg-[#641D2D] hover:border-[#E7C4C5]/50 transition-all cursor-pointer flex flex-col justify-between group shadow-xl"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded bg-[#2A0D14] text-[#E7C4C5] border border-[#E7C4C5]/15">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[10px] font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#2A0D14] text-[#E7C4C5] border border-[#E7C4C5]/15">
                     {preset.badge}
                   </span>
-                  <span className="text-xs font-bold text-[#E7C4C5]/80">{preset.subtitle}</span>
+                  <span className="text-xs font-sans font-medium text-[#E7C4C5]/80">{preset.subtitle}</span>
                 </div>
-                <h3 className="font-serif text-xl font-bold uppercase tracking-wide text-[#F6EFE7] group-hover:text-[#C94B5B] transition-colors">
+                <h3 className="font-serif text-2xl font-normal text-[#F6EFE7] group-hover:text-[#C94B5B] transition-colors leading-snug">
                   {preset.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/80 mt-2 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 mt-2 leading-relaxed font-normal">
                   {preset.description}
                 </p>
               </div>
 
-              {/* Single Arrow CTA */}
-              <div className="mt-6 pt-4 border-t border-[#E7C4C5]/15 flex items-center justify-between text-xs font-bold text-[#E7C4C5] group-hover:text-[#F6EFE7] transition-colors">
-                <span>EXPLORE DUO</span>
+              {/* Action Link */}
+              <div className="mt-6 pt-4 border-t border-[#E7C4C5]/15 flex items-center justify-between text-xs font-sans font-semibold tracking-wider text-[#E7C4C5] group-hover:text-[#F6EFE7] transition-colors">
+                <span>Explore Duo</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>

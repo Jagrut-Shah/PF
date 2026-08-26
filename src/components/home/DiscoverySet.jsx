@@ -9,7 +9,7 @@ import MainContainer from '../ui/MainContainer';
  */
 export default function DiscoverySet() {
   return (
-    <section className="py-8 sm:py-10 bg-[#163E49] text-[#F5F1EA]">
+    <section className="py-8 sm:py-10 bg-[#2A0D14] text-[#F6EFE7]">
       <MainContainer>
         <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.18)] rounded-2xl p-5 sm:p-7 md:p-8 shadow-lg relative overflow-hidden">
           

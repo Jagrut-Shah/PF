@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * SectionHeading UI Component
- * Editorial heading with title (#F6EFE7 Cream) and subtitle (#E7C4C5 Soft Blush) over Deep Cherry/Wine canvas.
+ * Editorial serif title (Cormorant Garamond, font-normal) and functional sans-serif subtitle (Manrope)
  */
 export default function SectionHeading({
   title,
@@ -15,14 +15,14 @@ export default function SectionHeading({
   const alignmentClass = align === 'center' ? 'text-center' : 'text-left';
 
   return (
-    <div className={`${alignmentClass} mb-4 sm:mb-5 ${className}`}>
+    <div className={`${alignmentClass} mb-6 sm:mb-8 ${className}`}>
       {title && (
-        <Component id={id} className="font-serif text-[26px] sm:text-[30px] md:text-[32px] tracking-[0.06em] font-normal uppercase text-[#F6EFE7] leading-tight">
+        <Component id={id} className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] leading-[1.1] tracking-tight">
           {title}
         </Component>
       )}
       {subtitle && (
-        <p className="font-sans text-[13px] sm:text-[14px] text-[#E7C4C5]/85 mt-1 sm:mt-1.5 font-normal tracking-wide">
+        <p className="font-sans text-xs sm:text-sm md:text-base text-[#E7C4C5]/85 mt-2 font-normal leading-relaxed">
           {subtitle}
         </p>
       )}

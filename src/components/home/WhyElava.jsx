@@ -16,7 +16,7 @@ const DIFFERENTIATORS = [
   {
     number: '03',
     title: 'Premium Experience',
-    description: 'Offered in 60 ML Eau de Parfum bottles designed for tactile elegance and effortless daily signature wear.'
+    description: 'Offered in 60 ml Eau de Parfum bottles designed for tactile elegance and effortless daily signature wear.'
   },
   {
     number: '04',
@@ -30,7 +30,7 @@ export default function WhyElava() {
     <section className="py-12 sm:py-16 md:py-20 bg-[#2A0D14] text-[#F6EFE7]">
       <MainContainer>
         <SectionHeading
-          title="WHY ÉLAVA"
+          title="Why Élava"
           subtitle="Genuine differentiators behind our fragrance craft."
         />
 
@@ -41,13 +41,13 @@ export default function WhyElava() {
               className="bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl p-6 flex flex-col justify-between shadow-sm transition-transform duration-300 hover:-translate-y-1"
             >
               <div>
-                <span className="font-serif text-3xl font-bold text-[#E7C4C5] block mb-3">
+                <span className="font-serif text-4xl font-normal text-[#E7C4C5] block mb-3 leading-none">
                   {item.number}
                 </span>
-                <h3 className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-[#F6EFE7] mb-2">
+                <h3 className="font-sans text-sm font-semibold tracking-wide text-[#F6EFE7] mb-2">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs text-[#E7C4C5]/80 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>

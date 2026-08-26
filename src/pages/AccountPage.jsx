@@ -541,9 +541,9 @@ export default function AccountPage() {
 
   if (authLoading) {
     return (
-      <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-16 flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="w-8 h-8 text-[#C5A15A] animate-spin" />
-        <p className="font-sans text-xs tracking-wider text-[#B8C4C2] uppercase">Loading your ÉLAVA workspace...</p>
+      <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen py-16 flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="w-8 h-8 text-[#C94B5B] animate-spin" />
+        <p className="font-sans text-xs tracking-wider text-[#E7C4C5] uppercase font-semibold">Loading your ÉLAVA workspace...</p>
       </div>
     );
   }
@@ -553,7 +553,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-10 sm:py-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen py-10 sm:py-16">
       <SEO
         title="My Account — ÉLAVA Perfumes"
         description="Manage your ÉLAVA client account profile, orders, and rewards settings."
@@ -565,18 +565,17 @@ export default function AccountPage() {
         {/* Profile Loader */}
         {profileLoading ? (
           <div className="flex flex-col items-center justify-center py-24 space-y-4">
-            <Loader2 className="w-8 h-8 text-[#C5A15A] animate-spin" />
-            <p className="font-sans text-xs tracking-wider text-[#B8C4C2] uppercase">Loading your ÉLAVA workspace...</p>
+            <Loader2 className="w-8 h-8 text-[#C94B5B] animate-spin" />
+            <p className="font-sans text-xs tracking-wider text-[#E7C4C5] uppercase font-semibold">Loading your ÉLAVA workspace...</p>
           </div>
         ) : (
           <div className="space-y-8 max-w-6xl mx-auto">
             
             {/* Header / Account Card */}
-            <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#C5A15A]/[0.02] rounded-full blur-2xl pointer-events-none" />
+            <div className="bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-xl relative overflow-hidden">
               
               {/* User Avatar */}
-              <div className="w-20 h-20 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] flex items-center justify-center text-[#C5A15A] font-serif text-3xl font-bold uppercase shrink-0 select-none overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-[#2A0D14] border border-[#E7C4C5]/20 flex items-center justify-center text-[#E7C4C5] font-serif text-3xl font-normal shrink-0 select-none overflow-hidden">
                 {profile?.avatar_url ? (
                   <img src={profile.avatar_url} alt={profile?.name || user?.email} className="w-full h-full object-cover" />
                 ) : (
@@ -586,13 +585,13 @@ export default function AccountPage() {
 
               {/* User Identity Details */}
               <div className="text-center sm:text-left space-y-1">
-                <span className="font-sans text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
-                  MY ÉLAVA
+                <span className="font-sans text-[11px] font-semibold uppercase tracking-widest text-[#E7C4C5]">
+                  My Élava
                 </span>
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+                <h1 className="font-serif text-3xl sm:text-4xl font-normal text-[#F6EFE7]">
                   {profile?.name || 'Valued Customer'}
                 </h1>
-                <p className="font-sans text-xs text-[#B8C4C2]">
+                <p className="font-sans text-xs text-[#E7C4C5]/85 font-normal">
                   {user?.email}
                 </p>
               </div>
