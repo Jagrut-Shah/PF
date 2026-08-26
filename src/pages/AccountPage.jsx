@@ -11,9 +11,19 @@ import SEO from '../components/common/SEO';
 import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle, FileText, ChevronRight, Plus, Trash2, Edit3, CheckCircle2 } from 'lucide-react';
 
 export default function AccountPage() {
-  const { user, logout } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Redirect unauthenticated users cleanly to /login
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/login?redirect=' + encodeURIComponent(location.pathname), { replace: true });
+    }
+  }, [user, authLoading, navigate, location.pathname]);
+
+  // Track fetched user ID to avoid duplicate re-fetches
+  const fetchedUserIdRef = React.useRef(null);
 
   // Navigation tab state based on URL
   const getTabFromLocation = () => {
@@ -40,6 +50,11 @@ export default function AccountPage() {
   const [profileLoading, setProfileLoading] = useState(true);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [pwdLoading, setPwdLoading] = useState(false);
+
+  // Section error states
+  const [ordersError, setOrdersError] = useState('');
+  const [addressesError, setAddressesError] = useState('');
+  const [referralError, setReferralError] = useState('');
 
   // Orders state
   const [ordersList, setOrdersList] = useState([]);
@@ -104,51 +119,86 @@ export default function AccountPage() {
   const [pwdErrorMsg, setPwdErrorMsg] = useState('');
   const [pwdSuccessMsg, setPwdSuccessMsg] = useState('');
 
-  // Load profile and referral summary data
+  // Load profile and section data in parallel with fault tolerance
   const loadAccountData = async () => {
     if (!user) return;
-    try {
-      setProfileLoading(true);
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
+    fetchedUserIdRef.current = user.id;
 
-      if (!error && data) {
-        setProfile(data);
-        setName(data.name || '');
-        setPhone(data.phone || '');
-        setAvatarUrl(data.avatar_url || '');
-      }
+    setProfileLoading(true);
+    setOrdersLoading(true);
+    setAddressesLoading(true);
 
-      // Fetch real referral & reward summary
-      const summary = await fetchUserReferralSummary(user.id);
-      setReferralSummary(summary);
-      if (summary.availableToWithdraw > 0) {
-        setWithdrawAmount(summary.availableToWithdraw.toString());
-      }
+    setOrdersError('');
+    setAddressesError('');
+    setReferralError('');
 
-      // Fetch customer orders from database
-      setOrdersLoading(true);
-      const customerOrders = await fetchCustomerOrders(user.id, user.email || '');
-      setOrdersList(customerOrders);
+    // Task 1: Profile
+    const fetchProfileTask = supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data, error }) => {
+        if (!error && data) {
+          setProfile(data);
+          setName(data.name || '');
+          setPhone(data.phone || '');
+          setAvatarUrl(data.avatar_url || '');
+        }
+      })
+      .catch((err) => console.warn('Profile fetch note:', err.message));
 
-      // Fetch saved customer addresses
-      setAddressesLoading(true);
-      const savedAddresses = await fetchCustomerAddresses(user.id);
-      setAddressesList(savedAddresses);
-    } catch (err) {
-      console.error('Error fetching account data:', err);
-    } finally {
-      setProfileLoading(false);
-      setOrdersLoading(false);
-      setAddressesLoading(false);
-    }
+    // Task 2: Referral Summary
+    const fetchReferralTask = fetchUserReferralSummary(user.id)
+      .then((summary) => {
+        if (summary) {
+          setReferralSummary(summary);
+          if (summary.availableToWithdraw > 0) {
+            setWithdrawAmount(summary.availableToWithdraw.toString());
+          }
+        }
+      })
+      .catch((err) => {
+        console.warn('Referral summary fetch note:', err.message);
+        setReferralError('Unable to load referral summary.');
+      });
+
+    // Task 3: Customer Orders
+    const fetchOrdersTask = fetchCustomerOrders(user.id, user.email || '')
+      .then((customerOrders) => {
+        setOrdersList(customerOrders || []);
+      })
+      .catch((err) => {
+        console.warn('Orders fetch note:', err.message);
+        setOrdersError('Unable to load order history.');
+      });
+
+    // Task 4: Saved Addresses
+    const fetchAddressesTask = fetchCustomerAddresses(user.id)
+      .then((savedAddresses) => {
+        setAddressesList(savedAddresses || []);
+      })
+      .catch((err) => {
+        console.warn('Addresses fetch note:', err.message);
+        setAddressesError('Unable to load saved addresses.');
+      });
+
+    await Promise.allSettled([
+      fetchProfileTask,
+      fetchReferralTask,
+      fetchOrdersTask,
+      fetchAddressesTask,
+    ]);
+
+    setProfileLoading(false);
+    setOrdersLoading(false);
+    setAddressesLoading(false);
   };
 
   useEffect(() => {
-    loadAccountData();
+    if (user && fetchedUserIdRef.current !== user.id) {
+      loadAccountData();
+    }
   }, [user]);
 
   // Handle URL order parameter (e.g. /account/orders/ELV-20260826-1024)
@@ -469,6 +519,19 @@ export default function AccountPage() {
 
 
 
+  if (authLoading) {
+    return (
+      <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-16 flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="w-8 h-8 text-[#C5A15A] animate-spin" />
+        <p className="font-sans text-xs tracking-wider text-[#B8C4C2] uppercase">Loading your ÉLAVA workspace...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-screen py-10 sm:py-16">
       <SEO
@@ -655,7 +718,18 @@ export default function AccountPage() {
                       </button>
                     </div>
 
-                    {ordersLoading ? (
+                    {ordersError ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-8 text-center space-y-3 shadow-sm">
+                        <AlertCircle className="w-6 h-6 text-red-400 mx-auto" />
+                        <p className="text-xs text-[#B8C4C2] font-semibold">{ordersError}</p>
+                        <button
+                          onClick={() => loadAccountData()}
+                          className="px-4 py-2 bg-[#102F38] hover:bg-[#0d262d] text-[#C5A15A] text-xs font-bold uppercase tracking-wider rounded-lg border border-[rgba(243,235,221,0.15)] cursor-pointer"
+                        >
+                          TRY AGAIN
+                        </button>
+                      </div>
+                    ) : ordersLoading ? (
                       <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-12 text-center text-[#B8C4C2]">
                         <Loader2 className="w-6 h-6 animate-spin text-[#C5A15A] mx-auto mb-2" />
                         <span className="text-xs uppercase font-bold tracking-wider">Loading orders...</span>
@@ -981,7 +1055,18 @@ export default function AccountPage() {
                     </div>
 
                     {/* Addresses Content */}
-                    {addressesLoading ? (
+                    {addressesError ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-8 text-center space-y-3 shadow-sm">
+                        <AlertCircle className="w-6 h-6 text-red-400 mx-auto" />
+                        <p className="text-xs text-[#B8C4C2] font-semibold">{addressesError}</p>
+                        <button
+                          onClick={() => loadAccountData()}
+                          className="px-4 py-2 bg-[#102F38] hover:bg-[#0d262d] text-[#C5A15A] text-xs font-bold uppercase tracking-wider rounded-lg border border-[rgba(243,235,221,0.15)] cursor-pointer"
+                        >
+                          TRY AGAIN
+                        </button>
+                      </div>
+                    ) : addressesLoading ? (
                       <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-12 text-center text-[#B8C4C2]">
                         <Loader2 className="w-6 h-6 animate-spin text-[#C5A15A] mx-auto mb-2" />
                         <span className="text-xs uppercase font-bold tracking-wider">Loading saved addresses...</span>
@@ -1078,6 +1163,18 @@ export default function AccountPage() {
                 {/* ── TAB 2: REFER & EARN ── */}
                 {currentTab === 'refer' && (
                   <div className="space-y-6">
+                    {referralError && (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 text-center space-y-3 shadow-sm">
+                        <AlertCircle className="w-6 h-6 text-red-400 mx-auto" />
+                        <p className="text-xs text-[#B8C4C2] font-semibold">{referralError}</p>
+                        <button
+                          onClick={() => loadAccountData()}
+                          className="px-4 py-2 bg-[#102F38] hover:bg-[#0d262d] text-[#C5A15A] text-xs font-bold uppercase tracking-wider rounded-lg border border-[rgba(243,235,221,0.15)] cursor-pointer"
+                        >
+                          RETRY LOADING REWARDS
+                        </button>
+                      </div>
+                    )}
                     {/* Header Banner */}
                     <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm space-y-2 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-36 h-36 bg-[#C5A15A]/[0.03] rounded-full blur-3xl pointer-events-none" />
