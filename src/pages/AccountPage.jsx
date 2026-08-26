@@ -381,11 +381,20 @@ export default function AccountPage() {
     }
   };
 
+  const getActiveReferralCode = () => {
+    if (referralSummary.code) return referralSummary.code;
+    if (user?.id) {
+      return `ELAVA${user.id.replace(/-/g, '').substring(0, 6).toUpperCase()}`;
+    }
+    return '';
+  };
+
   // Handle Copy Code
   const handleCopyCode = async () => {
-    if (!referralSummary.code) return;
+    const code = getActiveReferralCode();
+    if (!code) return;
     try {
-      await navigator.clipboard.writeText(referralSummary.code);
+      await navigator.clipboard.writeText(code);
       setCopyCodeSuccess(true);
       setTimeout(() => setCopyCodeSuccess(false), 2000);
     } catch (err) {
@@ -396,7 +405,8 @@ export default function AccountPage() {
   // Handle Share / Copy Link
   const getReferralUrl = () => {
     const origin = typeof window !== 'undefined' ? window.location.origin : 'https://pf-indol-alpha.vercel.app';
-    return `${origin}/?ref=${referralSummary.code}`;
+    const code = getActiveReferralCode();
+    return `${origin}/?ref=${code}`;
   };
 
   const handleCopyLink = async () => {
@@ -412,9 +422,10 @@ export default function AccountPage() {
 
   const handleShare = async () => {
     const url = getReferralUrl();
+    const code = getActiveReferralCode();
     const shareData = {
       title: 'ÉLAVA — ₹200 Off Referral',
-      text: `Use my referral code ${referralSummary.code} to get ₹200 off your luxury fragrance order at ÉLAVA!`,
+      text: `Use my referral code ${code} to get ₹200 off your luxury fragrance order at ÉLAVA!`,
       url: url,
     };
 
@@ -433,7 +444,8 @@ export default function AccountPage() {
 
   const handleWhatsAppReferralShare = () => {
     const url = getReferralUrl();
-    const text = encodeURIComponent(`Give your friends ₹200 OFF on ÉLAVA Luxury Perfumes — and get ₹100 CASH when they purchase! Use my referral code ${referralSummary.code}: ${url}`);
+    const code = getActiveReferralCode();
+    const text = encodeURIComponent(`Give your friends ₹200 OFF on ÉLAVA Luxury Perfumes — and get ₹100 CASH when they purchase! Use my referral code ${code}: ${url}`);
     window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
@@ -1198,7 +1210,7 @@ export default function AccountPage() {
                         </span>
                         <div className="flex items-center justify-between bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-3">
                           <span className="font-mono text-lg font-bold tracking-wider text-[#C5A15A] select-all">
-                            {referralSummary.code || 'ELAVA...'}
+                            {referralSummary.code || getActiveReferralCode() || 'ELAVA...'}
                           </span>
                           <button
                             onClick={handleCopyCode}

@@ -125,8 +125,10 @@ export async function fetchUserReferralSummary(userId) {
   }
 
   try {
-    // 1. Get or generate user's referral code
-    let code = '';
+    const cleanUserId = (userId || '').replace(/-/g, '').toUpperCase();
+    const fallbackCode = `ELAVA${cleanUserId.substring(0, 6)}`;
+    let code = fallbackCode;
+
     const { data: rpcCode, error: rpcErr } = await supabase.rpc('get_or_create_referral_code', {
       p_user_id: userId,
     });
@@ -144,10 +146,9 @@ export async function fetchUserReferralSummary(userId) {
       if (existing?.code) {
         code = existing.code;
       } else {
-        // Simple client fallback code format if database trigger pending
-        code = `ELAVA${userId.substring(0, 6).toUpperCase()}`;
+        code = fallbackCode;
         try {
-          await supabase.from('referral_codes').insert({ user_id: userId, code });
+          await supabase.from('referral_codes').insert({ user_id: userId, code: fallbackCode });
         } catch {
           // ignore duplicate insert errors
         }
@@ -253,7 +254,7 @@ export async function fetchUserReferralSummary(userId) {
   } catch (err) {
     console.error('Error fetching user referral summary:', err);
     return {
-      code: `ELAVA${userId.substring(0, 6).toUpperCase()}`,
+      code: `ELAVA${(userId || '').replace(/-/g, '').substring(0, 6).toUpperCase()}`,
       successfulReferrals: 0,
       pendingRewards: 0,
       availableRewards: 0,
