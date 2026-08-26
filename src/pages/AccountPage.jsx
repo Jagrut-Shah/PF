@@ -4,9 +4,10 @@ import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import { fetchUserReferralSummary, submitWithdrawalRequest } from '../utils/referral';
 import { fetchCustomerOrders } from '../utils/orders';
+import { fetchCustomerAddresses, saveCustomerAddress, deleteCustomerAddress, setDefaultCustomerAddress } from '../utils/addresses';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
-import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle, FileText, ChevronRight } from 'lucide-react';
+import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle, FileText, ChevronRight, Plus, Trash2, Edit3, CheckCircle2 } from 'lucide-react';
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -16,6 +17,7 @@ export default function AccountPage() {
   // Navigation tab state based on URL
   const getTabFromLocation = () => {
     if (location.pathname.includes('/orders')) return 'orders';
+    if (location.pathname.includes('/addresses')) return 'addresses';
     if (location.pathname.endsWith('/settings')) return 'settings';
     if (location.pathname.endsWith('/refer') || location.pathname.includes('/refer-and-earn')) return 'refer';
     return 'overview';
@@ -28,6 +30,7 @@ export default function AccountPage() {
     { id: 'overview', label: 'Overview', icon: User, path: '/account', disabled: false },
     { id: 'orders', label: 'My Orders', icon: ShoppingBag, path: '/account/orders', disabled: false },
     { id: 'refer', label: 'Refer & Earn', icon: Gift, path: '/account/refer-and-earn', disabled: false },
+    { id: 'addresses', label: 'Addresses', icon: MapPin, path: '/account/addresses', disabled: false },
     { id: 'settings', label: 'Settings', icon: SettingsIcon, path: '/account/settings', disabled: false },
   ];
 
@@ -41,6 +44,24 @@ export default function AccountPage() {
   const [ordersList, setOrdersList] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
   const [selectedOrder, setSelectedOrder] = useState(null);
+
+  // Address states
+  const [addressesList, setAddressesList] = useState([]);
+  const [addressesLoading, setAddressesLoading] = useState(true);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+  const [editingAddress, setEditingAddress] = useState(null);
+  const [addrName, setAddrName] = useState('');
+  const [addrPhone, setAddrPhone] = useState('');
+  const [addrLine1, setAddrLine1] = useState('');
+  const [addrLine2, setAddrLine2] = useState('');
+  const [addrCity, setAddrCity] = useState('');
+  const [addrState, setAddrState] = useState('');
+  const [addrPostal, setAddrPostal] = useState('');
+  const [addrCountry, setAddrCountry] = useState('India');
+  const [addrDefault, setAddrDefault] = useState(false);
+  const [addrErrorMsg, setAddrErrorMsg] = useState('');
+  const [addrSuccessMsg, setAddrSuccessMsg] = useState('');
+  const [addrSubmitLoading, setAddrSubmitLoading] = useState(false);
 
   // Referral summary state
   const [referralSummary, setReferralSummary] = useState({
@@ -110,11 +131,17 @@ export default function AccountPage() {
       setOrdersLoading(true);
       const customerOrders = await fetchCustomerOrders(user.id);
       setOrdersList(customerOrders);
+
+      // Fetch saved customer addresses
+      setAddressesLoading(true);
+      const savedAddresses = await fetchCustomerAddresses(user.id);
+      setAddressesList(savedAddresses);
     } catch (err) {
       console.error('Error fetching account data:', err);
     } finally {
       setProfileLoading(false);
       setOrdersLoading(false);
+      setAddressesLoading(false);
     }
   };
 
@@ -181,6 +208,106 @@ export default function AccountPage() {
       setWithdrawErr(err.message || 'Submission failed. Please try again.');
     } finally {
       setWithdrawLoading(false);
+    }
+  };
+
+  // Address Modal & Action Handlers
+  const handleOpenAddressModal = (addr = null) => {
+    setAddrErrorMsg('');
+    setAddrSuccessMsg('');
+    if (addr) {
+      setEditingAddress(addr);
+      setAddrName(addr.fullName || '');
+      setAddrPhone(addr.phone || '');
+      setAddrLine1(addr.addressLine1 || '');
+      setAddrLine2(addr.addressLine2 || '');
+      setAddrCity(addr.city || '');
+      setAddrState(addr.state || '');
+      setAddrPostal(addr.postalCode || '');
+      setAddrCountry(addr.country || 'India');
+      setAddrDefault(Boolean(addr.isDefault));
+    } else {
+      setEditingAddress(null);
+      setAddrName(name || '');
+      setAddrPhone(phone || '');
+      setAddrLine1('');
+      setAddrLine2('');
+      setAddrCity('');
+      setAddrState('');
+      setAddrPostal('');
+      setAddrCountry('India');
+      setAddrDefault(addressesList.length === 0);
+    }
+    setIsAddressModalOpen(true);
+  };
+
+  const handleSaveAddressSubmit = async (e) => {
+    e.preventDefault();
+    if (!addrName.trim() || !addrPhone.trim() || !addrLine1.trim() || !addrCity.trim() || !addrState.trim() || !addrPostal.trim()) {
+      setAddrErrorMsg('Please fill in all required address fields.');
+      return;
+    }
+
+    try {
+      setAddrSubmitLoading(true);
+      setAddrErrorMsg('');
+      setAddrSuccessMsg('');
+
+      const res = await saveCustomerAddress(
+        {
+          id: editingAddress?.id || null,
+          fullName: addrName,
+          phone: addrPhone,
+          addressLine1: addrLine1,
+          addressLine2: addrLine2,
+          city: addrCity,
+          state: addrState,
+          postalCode: addrPostal,
+          country: addrCountry,
+          isDefault: addrDefault,
+        },
+        user.id
+      );
+
+      if (res.success) {
+        setAddrSuccessMsg('Saved address successfully.');
+        const updated = await fetchCustomerAddresses(user.id);
+        setAddressesList(updated);
+        setTimeout(() => {
+          setIsAddressModalOpen(false);
+        }, 600);
+      } else {
+        setAddrErrorMsg(res.message || 'Failed to save address.');
+      }
+    } catch (err) {
+      setAddrErrorMsg('Error saving address: ' + err.message);
+    } finally {
+      setAddrSubmitLoading(false);
+    }
+  };
+
+  const handleDeleteAddressItem = async (addressId) => {
+    if (!window.confirm('Are you sure you want to delete this saved address?')) return;
+    try {
+      const res = await deleteCustomerAddress(addressId, user.id);
+      if (res.success) {
+        const updated = await fetchCustomerAddresses(user.id);
+        setAddressesList(updated);
+      }
+    } catch (err) {
+      console.error('Error deleting address:', err);
+    }
+  };
+
+  const handleSetDefaultAddressItem = async (addressId) => {
+    try {
+      const res = await setDefaultCustomerAddress(addressId, user.id);
+      if (res.success) {
+        const updated = await fetchCustomerAddresses(user.id);
+        setAddressesList(updated);
+      }
+    } catch (err) {
+      console.error('Error setting default address:', err);
     }
   };
 
@@ -761,6 +888,15 @@ export default function AccountPage() {
                           <span className="text-[#B8C4C2]">CUSTOMER EMAIL</span>
                           <span className="font-medium text-[#F5F1EA]">{selectedOrder.email}</span>
                         </div>
+
+                        {selectedOrder.shippingAddress?.fullName && (
+                          <div className="pt-2 border-t border-[rgba(243,235,221,0.08)] space-y-1">
+                            <span className="text-[#B8C4C2] font-bold block uppercase text-[9.5px] tracking-wider">DELIVERY ADDRESS SNAPSHOT</span>
+                            <p className="font-medium text-[#F5F1EA]">{selectedOrder.shippingAddress.fullName} ({selectedOrder.shippingAddress.phone})</p>
+                            <p className="text-[#B8C4C2] text-[11px]">{selectedOrder.shippingAddress.addressLine1}{selectedOrder.shippingAddress.addressLine2 ? ', ' + selectedOrder.shippingAddress.addressLine2 : ''}</p>
+                            <p className="text-[#B8C4C2] text-[11px]">{selectedOrder.shippingAddress.city}, {selectedOrder.shippingAddress.state} - {selectedOrder.shippingAddress.postalCode}, {selectedOrder.shippingAddress.country || 'India'}</p>
+                          </div>
+                        )}
                       </div>
 
                       <button
@@ -770,6 +906,121 @@ export default function AccountPage() {
                         CLOSE ORDER DETAILS
                       </button>
                     </div>
+                  </div>
+                )}
+
+                {/* ── TAB: SAVED ADDRESSES ── */}
+                {currentTab === 'addresses' && (
+                  <div className="space-y-6">
+                    {/* Header Bar */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm">
+                      <div className="space-y-1">
+                        <h2 className="font-serif text-2xl font-bold uppercase text-[#F5F1EA]">SAVED ADDRESSES</h2>
+                        <p className="font-sans text-xs text-[#B8C4C2]">
+                          Manage your delivery addresses for seamless ÉLAVA checkout.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleOpenAddressModal(null)}
+                        className="bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0 shadow-md"
+                      >
+                        <Plus className="w-4 h-4 text-[#102F38]" />
+                        <span>ADD NEW ADDRESS</span>
+                      </button>
+                    </div>
+
+                    {/* Addresses Content */}
+                    {addressesLoading ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-12 text-center text-[#B8C4C2]">
+                        <Loader2 className="w-6 h-6 animate-spin text-[#C5A15A] mx-auto mb-2" />
+                        <span className="text-xs uppercase font-bold tracking-wider">Loading saved addresses...</span>
+                      </div>
+                    ) : addressesList.length === 0 ? (
+                      <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-10 text-center space-y-4 shadow-sm">
+                        <div className="w-14 h-14 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-full flex items-center justify-center mx-auto text-[#C5A15A]">
+                          <MapPin className="w-6 h-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <h3 className="font-serif text-2xl font-bold uppercase text-[#F5F1EA]">NO SAVED ADDRESSES YET</h3>
+                          <p className="font-sans text-xs text-[#B8C4C2] max-w-sm mx-auto leading-relaxed">
+                            Save your delivery addresses to speed up checkout and order placements.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => handleOpenAddressModal(null)}
+                          className="inline-flex items-center gap-2 bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+                        >
+                          <Plus className="w-4 h-4 text-[#102F38]" />
+                          <span>ADD YOUR FIRST ADDRESS</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {addressesList.map((addr) => (
+                          <div
+                            key={addr.id}
+                            className={`bg-[#1C4A55] border rounded-2xl p-5 space-y-4 shadow-sm relative flex flex-col justify-between ${
+                              addr.isDefault
+                                ? 'border-[#C5A15A] shadow-md bg-[#1C4A55]/90'
+                                : 'border-[rgba(243,235,221,0.14)]'
+                            }`}
+                          >
+                            {/* Card Header & Default Badge */}
+                            <div className="flex items-start justify-between gap-2 border-b border-[rgba(243,235,221,0.12)] pb-3">
+                              <div className="space-y-0.5">
+                                <h4 className="font-serif text-lg font-bold text-[#F5F1EA]">{addr.fullName}</h4>
+                                <p className="text-xs text-[#B8C4C2] font-mono">{addr.phone}</p>
+                              </div>
+                              {addr.isDefault && (
+                                <span className="bg-[#C5A15A]/15 text-[#C5A15A] border border-[#C5A15A]/40 text-[9.5px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0 flex items-center gap-1">
+                                  <CheckCircle2 className="w-3 h-3 text-[#C5A15A]" />
+                                  <span>DEFAULT</span>
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Address Details */}
+                            <div className="text-xs text-[#F5F1EA]/85 space-y-1 leading-relaxed py-1">
+                              <p className="font-medium">{addr.addressLine1}</p>
+                              {addr.addressLine2 && <p className="text-[#B8C4C2]">{addr.addressLine2}</p>}
+                              <p className="text-[#B8C4C2]">
+                                {addr.city}, {addr.state} - <span className="font-mono">{addr.postalCode}</span>
+                              </p>
+                              <p className="text-[11px] font-bold text-[#C5A15A] uppercase tracking-wider">{addr.country || 'India'}</p>
+                            </div>
+
+                            {/* Card Actions */}
+                            <div className="pt-3 border-t border-[rgba(243,235,221,0.12)] flex items-center justify-between gap-2">
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => handleOpenAddressModal(addr)}
+                                  className="px-3 py-1.5 rounded-lg bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] text-[11px] font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1 cursor-pointer"
+                                >
+                                  <Edit3 className="w-3 h-3 text-[#C5A15A]" />
+                                  <span>EDIT</span>
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteAddressItem(addr.id)}
+                                  className="px-3 py-1.5 rounded-lg bg-[#7A2929]/20 hover:bg-[#7A2929]/40 text-red-300 border border-red-500/20 text-[11px] font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1 cursor-pointer"
+                                >
+                                  <Trash2 className="w-3 h-3 text-red-300" />
+                                  <span>DELETE</span>
+                                </button>
+                              </div>
+
+                              {!addr.isDefault && (
+                                <button
+                                  onClick={() => handleSetDefaultAddressItem(addr.id)}
+                                  className="text-[11px] font-bold uppercase text-[#C5A15A] hover:underline cursor-pointer tracking-wider"
+                                >
+                                  SET AS DEFAULT
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1331,6 +1582,173 @@ export default function AccountPage() {
                       </form>
                     </div>
 
+                  </div>
+                )}
+
+                {/* ── ADD / EDIT ADDRESS MODAL ── */}
+                {isAddressModalOpen && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4 animate-in fade-in duration-200">
+                    <div className="bg-[#163E49] border border-[rgba(243,235,221,0.2)] rounded-2xl p-6 shadow-2xl w-full max-w-md space-y-4 text-[#F5F1EA] max-h-[90vh] overflow-y-auto">
+                      {/* Header */}
+                      <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-5 h-5 text-[#C5A15A]" />
+                          <h3 className="font-serif text-xl font-bold uppercase">
+                            {editingAddress ? 'EDIT ADDRESS' : 'ADD NEW ADDRESS'}
+                          </h3>
+                        </div>
+                        <button
+                          onClick={() => setIsAddressModalOpen(false)}
+                          className="p-1 text-[#B8C4C2] hover:text-white rounded-lg cursor-pointer"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      {/* Error & Success Messages */}
+                      {addrErrorMsg && (
+                        <div className="bg-[#7A2929]/20 border border-[#7A2929]/50 text-[#F5F1EA] text-xs p-3 rounded-xl flex items-start gap-2">
+                          <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                          <span>{addrErrorMsg}</span>
+                        </div>
+                      )}
+                      {addrSuccessMsg && (
+                        <div className="bg-green-500/10 border border-green-500/30 text-green-300 text-xs p-3 rounded-xl flex items-center gap-2">
+                          <Check className="w-4 h-4 text-green-400 shrink-0" />
+                          <span>{addrSuccessMsg}</span>
+                        </div>
+                      )}
+
+                      {/* Form */}
+                      <form onSubmit={handleSaveAddressSubmit} className="space-y-3 text-xs">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Full Name *</label>
+                          <input
+                            type="text"
+                            value={addrName}
+                            onChange={(e) => setAddrName(e.target.value)}
+                            placeholder="Recipient's full name"
+                            className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                            required
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Phone Number *</label>
+                          <input
+                            type="tel"
+                            value={addrPhone}
+                            onChange={(e) => setAddrPhone(e.target.value)}
+                            placeholder="10-digit mobile number"
+                            className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                            required
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Address Line 1 *</label>
+                          <input
+                            type="text"
+                            value={addrLine1}
+                            onChange={(e) => setAddrLine1(e.target.value)}
+                            placeholder="House / Flat No., Building Name, Street"
+                            className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                            required
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Address Line 2 (Optional)</label>
+                          <input
+                            type="text"
+                            value={addrLine2}
+                            onChange={(e) => setAddrLine2(e.target.value)}
+                            placeholder="Landmark, Area, Sector"
+                            className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">City *</label>
+                            <input
+                              type="text"
+                              value={addrCity}
+                              onChange={(e) => setAddrCity(e.target.value)}
+                              placeholder="City"
+                              className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                              required
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">State *</label>
+                            <input
+                              type="text"
+                              value={addrState}
+                              onChange={(e) => setAddrState(e.target.value)}
+                              placeholder="State"
+                              className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">PIN Code *</label>
+                            <input
+                              type="text"
+                              value={addrPostal}
+                              onChange={(e) => setAddrPostal(e.target.value)}
+                              placeholder="6-digit PIN code"
+                              className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-xl px-3.5 py-2.5 text-xs text-[#F5F1EA] placeholder-[#8FA6A3] focus:outline-none focus:border-[#C5A15A]"
+                              required
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold uppercase text-[#B8C4C2]">Country</label>
+                            <input
+                              type="text"
+                              value={addrCountry}
+                              readOnly
+                              className="w-full bg-[#102F38]/60 border border-[rgba(243,235,221,0.1)] rounded-xl px-3.5 py-2.5 text-xs text-[#B8C4C2]"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="pt-1 flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            id="addr-default-chk"
+                            checked={addrDefault}
+                            onChange={(e) => setAddrDefault(e.target.checked)}
+                            className="w-4 h-4 accent-[#C5A15A] rounded border-[rgba(243,235,221,0.2)] bg-[#102F38] cursor-pointer"
+                          />
+                          <label htmlFor="addr-default-chk" className="text-xs text-[#F5F1EA] cursor-pointer select-none">
+                            Set as default delivery address
+                          </label>
+                        </div>
+
+                        <div className="pt-3">
+                          <button
+                            type="submit"
+                            disabled={addrSubmitLoading}
+                            className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-md"
+                          >
+                            {addrSubmitLoading ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin text-[#102F38]" />
+                                <span>SAVING ADDRESS...</span>
+                              </>
+                            ) : (
+                              <span>SAVE ADDRESS →</span>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 )}
 

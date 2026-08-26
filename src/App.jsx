@@ -89,6 +89,16 @@ export default function App() {
               <AccountPage />
             </ProtectedRoute>
           } />
+          <Route path="/account/addresses" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/addresses" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
           <Route path="/account/settings" element={
             <ProtectedRoute>
               <AccountPage />

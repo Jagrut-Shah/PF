@@ -8,7 +8,7 @@ const GIFT_STORAGE_KEY = 'elava_cart_gift';
 /**
  * Log order & process referral reward in database asynchronously
  */
-async function logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode }) {
+async function logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode, selectedAddress }) {
   try {
     const { data: { user } } = await supabase.auth.getUser();
     
@@ -29,6 +29,7 @@ async function logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscou
         referral_code: referralCode || null,
         status: 'confirmed',
         payment_status: 'paid',
+        shipping_address: selectedAddress || {},
       })
       .select('id')
       .single();
@@ -82,7 +83,7 @@ export function getCartTotals(cart = getCart()) {
 /**
  * Create multi-product WhatsApp order URL for full cart
  */
-export function createCartWhatsAppOrderUrl(cart = getCart()) {
+export function createCartWhatsAppOrderUrl(cart = getCart(), selectedAddress = null) {
   if (!cart || cart.length === 0) {
     return createWhatsAppOrderUrl({ customMessage: "Hi ÉLAVA, I'd like to explore your collection." });
   }
@@ -109,10 +110,15 @@ export function createCartWhatsAppOrderUrl(cart = getCart()) {
     discountText = `\n\n🎟️ Referral Discount (${referralCode}): -₹${referralDiscount.toLocaleString()}\nSubtotal: ₹${subtotalAmount.toLocaleString()}`;
   }
 
-  const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}${discountText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
+  let addressText = '';
+  if (selectedAddress?.fullName) {
+    addressText = `\n\n📍 Delivery Address:\n${selectedAddress.fullName} (${selectedAddress.phone})\n${selectedAddress.addressLine1}${selectedAddress.addressLine2 ? ', ' + selectedAddress.addressLine2 : ''}\n${selectedAddress.city}, ${selectedAddress.state} - ${selectedAddress.postalCode}, ${selectedAddress.country || 'India'}`;
+  }
+
+  const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}${discountText}${addressText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
 
   // Log order asynchronously
-  logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode });
+  logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode, selectedAddress });
 
   return createWhatsAppOrderUrl({ customMessage });
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Minus, Plus, X, Gift } from 'lucide-react';
+import { ShoppingBag, Minus, Plus, X, Gift, MapPin } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { fetchCustomerAddresses } from '../../utils/addresses';
 import {
   getCart,
   updateCartItemQuantity,
@@ -17,8 +19,28 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 }
 
 export default function GlobalCartDrawer() {
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState(getCart());
+  const [userAddresses, setUserAddresses] = useState([]);
+  const [selectedAddressId, setSelectedAddressId] = useState('');
+
+  useEffect(() => {
+    async function loadAddresses() {
+      if (user?.id) {
+        const addresses = await fetchCustomerAddresses(user.id);
+        setUserAddresses(addresses);
+        const defaultAddr = addresses.find((a) => a.isDefault) || addresses[0];
+        if (defaultAddr) {
+          setSelectedAddressId(defaultAddr.id);
+        }
+      } else {
+        setUserAddresses([]);
+        setSelectedAddressId('');
+      }
+    }
+    loadAddresses();
+  }, [user]);
 
   useEffect(() => {
     const handleCartUpdate = (e) => {
@@ -49,7 +71,8 @@ export default function GlobalCartDrawer() {
   if (!isOpen) return null;
 
   const cartTotals = getCartTotals(cartItems);
-  const whatsAppOrderUrl = createCartWhatsAppOrderUrl(cartItems);
+  const selectedAddress = userAddresses.find((a) => a.id === selectedAddressId) || null;
+  const whatsAppOrderUrl = createCartWhatsAppOrderUrl(cartItems, selectedAddress);
 
   return (
     <div
@@ -235,10 +258,31 @@ export default function GlobalCartDrawer() {
               </div>
             ) : null}
 
-            <div className="flex items-center justify-between text-xs font-bold uppercase text-[#F5F1EA]">
-              <span>TOTAL ({cartTotals.itemCount} {cartTotals.itemCount === 1 ? 'ITEM' : 'ITEMS'})</span>
-              <span className="text-base text-[#F5F1EA]">₹{cartTotals.totalAmount.toLocaleString()}</span>
-            </div>
+            {/* Delivery Address Selector for Logged-In Customer */}
+            {user && userAddresses.length > 0 && (
+              <div className="space-y-1 bg-[#163E49] p-2.5 rounded-xl border border-[rgba(243,235,221,0.14)] text-xs">
+                <div className="flex items-center justify-between text-[10px] font-extrabold uppercase text-[#B8C4C2] tracking-wider">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-[#C5A15A]" />
+                    DELIVERY ADDRESS
+                  </span>
+                  {selectedAddress?.isDefault && (
+                    <span className="text-[#C5A15A]">DEFAULT</span>
+                  )}
+                </div>
+                <select
+                  value={selectedAddressId}
+                  onChange={(e) => setSelectedAddressId(e.target.value)}
+                  className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-lg px-2.5 py-1.5 text-xs text-[#F5F1EA] focus:outline-none focus:border-[#C5A15A]"
+                >
+                  {userAddresses.map((addr) => (
+                    <option key={addr.id} value={addr.id}>
+                      {addr.fullName} — {addr.addressLine1}, {addr.city} ({addr.postalCode}) {addr.isDefault ? '[DEFAULT]' : ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             <a
               href={whatsAppOrderUrl}
