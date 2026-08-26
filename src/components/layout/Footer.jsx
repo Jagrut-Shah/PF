@@ -76,16 +76,16 @@ export default function Footer() {
               <div>
                 <Link
                   to="/"
-                  className="inline-flex items-stretch border border-[#E7C4C5]/30 rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3.5"
+                  className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3.5"
                   aria-label="ÉLAVA Home"
                 >
-                  <div className="bg-[#641D2D] text-[#F6EFE7] px-3 py-1 flex items-center justify-center border-r border-[#E7C4C5]/30">
-                    <span className="font-serif text-[16px] tracking-[0.24em] font-medium leading-none text-[#F6EFE7] uppercase">
+                  <div className="bg-[#0D2D1B] text-[#C8A45A] px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
+                    <span className="font-serif text-[16px] tracking-[0.24em] font-medium leading-none text-[#C8A45A] uppercase">
                       ÉLAVA
                     </span>
                   </div>
-                  <div className="bg-[#2A0D14] text-[#E7C4C5] px-2.5 py-1 flex items-center justify-center">
-                    <span className="font-sans text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#E7C4C5]">
+                  <div className="bg-[#8B1E1E] text-[#F3EDE3] px-2.5 py-1 flex items-center justify-center">
+                    <span className="font-sans text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#F3EDE3]">
                       PERFUMES
                     </span>
                   </div>
@@ -160,16 +160,16 @@ export default function Footer() {
             <div className="mb-5">
               <Link
                 to="/"
-                className="inline-flex items-stretch border border-[#E7C4C5]/30 rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3"
+                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm mb-3"
                 aria-label="ÉLAVA Home"
               >
-                <div className="bg-[#641D2D] text-[#F6EFE7] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#E7C4C5]/30">
-                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#F6EFE7] uppercase">
+                <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
+                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#C8A45A] uppercase">
                     ÉLAVA
                   </span>
                 </div>
-                <div className="bg-[#2A0D14] text-[#E7C4C5] px-2 sm:px-2.5 py-1 flex items-center justify-center">
-                  <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#E7C4C5]">
+                <div className="bg-[#8B1E1E] text-[#F3EDE3] px-2 sm:px-2.5 py-1 flex items-center justify-center">
+                  <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#F3EDE3]">
                     PERFUMES
                   </span>
                 </div>

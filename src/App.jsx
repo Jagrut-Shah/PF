@@ -50,7 +50,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#163E49] text-[#F3EBDD]">
+    <div className="flex flex-col min-h-screen bg-[#2A0D14] text-[#F6EFE7]">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

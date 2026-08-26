@@ -71,7 +71,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA] min-h-[85vh] flex items-center py-12 sm:py-16">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-[85vh] flex items-center py-12 sm:py-16">
       <SEO
         title="Sign In — ÉLAVA Perfumes"
         description="Sign in to your premium ÉLAVA customer account."
