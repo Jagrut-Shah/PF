@@ -1281,7 +1281,7 @@ export default function AccountPage() {
                             AVAILABLE TO WITHDRAW
                           </span>
                           <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">
-                            ₹{referralSummary.availableToWithdraw.toLocaleString()}
+                            ₹{(referralSummary?.availableToWithdraw || 0).toLocaleString()}
                           </h3>
                           <p className="font-sans text-[11px] text-[#B8C4C2]">Ready to cash out</p>
                         </div>
@@ -1291,9 +1291,9 @@ export default function AccountPage() {
                             setWithdrawMsg('');
                             setIsWithdrawModalOpen(true);
                           }}
-                          disabled={referralSummary.availableToWithdraw < 100}
+                          disabled={(referralSummary?.availableToWithdraw || 0) < 100}
                           className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all ${
-                            referralSummary.availableToWithdraw >= 100
+                            (referralSummary?.availableToWithdraw || 0) >= 100
                               ? 'bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] cursor-pointer shadow-md'
                               : 'bg-[#1C4A55] text-[#8FA6A3] cursor-not-allowed border border-[rgba(243,235,221,0.1)]'
                           }`}
@@ -1310,7 +1310,7 @@ export default function AccountPage() {
                             PENDING REWARDS
                           </span>
                           <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">
-                            ₹{referralSummary.pendingRewards.toLocaleString()}
+                            ₹{(referralSummary?.pendingRewards || 0).toLocaleString()}
                           </h3>
                           <p className="font-sans text-[11px] text-[#B8C4C2]">Awaiting order fulfillment</p>
                         </div>
@@ -1326,7 +1326,7 @@ export default function AccountPage() {
                             SUCCESSFUL REFERRALS
                           </span>
                           <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">
-                            {referralSummary.successfulReferrals}
+                            {referralSummary?.successfulReferrals || 0}
                           </h3>
                           <p className="font-sans text-[11px] text-[#B8C4C2]">Friends who ordered</p>
                         </div>
@@ -1342,26 +1342,26 @@ export default function AccountPage() {
                         REWARD HISTORY LEDGER
                       </h3>
 
-                      {!referralSummary.rewardHistory || referralSummary.rewardHistory.length === 0 ? (
+                      {!referralSummary?.rewardHistory || referralSummary.rewardHistory.length === 0 ? (
                         <div className="text-center py-8 space-y-2">
                           <p className="font-serif text-base text-[#F5F1EA]">No transactions recorded yet</p>
                           <p className="font-sans text-xs text-[#B8C4C2] max-w-md mx-auto">
-                            Share your referral code <strong className="text-[#C5A15A] font-mono">{referralSummary.code}</strong> with your friends to earn ₹100 cash for every completed purchase.
+                            Share your referral code <strong className="text-[#C5A15A] font-mono">{referralSummary?.code || getActiveReferralCode()}</strong> with your friends to earn ₹100 cash for every completed purchase.
                           </p>
                         </div>
                       ) : (
                         <div className="divide-y divide-[rgba(243,235,221,0.08)]">
                           {referralSummary.rewardHistory.map((item) => (
-                            <div key={item.id} className="py-3 flex items-center justify-between text-xs">
+                            <div key={item.id || Math.random()} className="py-3 flex items-center justify-between text-xs">
                               <div className="space-y-0.5">
                                 <div className="flex items-center gap-2">
                                   <span className={`font-bold ${item.isCredit ? 'text-[#C5A15A]' : 'text-red-400'}`}>
-                                    {item.isCredit ? '+ ₹' : '- ₹'}{item.amount.toLocaleString()}
+                                    {item.isCredit ? '+ ₹' : '- ₹'}{(item.amount || 0).toLocaleString()}
                                   </span>
-                                  <span className="text-[#F5F1EA] font-medium">{item.title}</span>
+                                  <span className="text-[#F5F1EA] font-medium">{item.title || 'Reward Transaction'}</span>
                                 </div>
                                 <p className="text-[10px] text-[#B8C4C2]">
-                                  {new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                  {item.date ? new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'RECENT'}
                                 </p>
                               </div>
                               <div className="text-right">
@@ -1374,7 +1374,7 @@ export default function AccountPage() {
                                     ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
                                     : 'bg-red-500/10 text-red-400 border-red-500/30'
                                 }`}>
-                                  {item.status}
+                                  {item.status || 'pending'}
                                 </span>
                               </div>
                             </div>
@@ -1389,20 +1389,20 @@ export default function AccountPage() {
                         WITHDRAWAL HISTORY
                       </h3>
 
-                      {!referralSummary.withdrawalList || referralSummary.withdrawalList.length === 0 ? (
+                      {!referralSummary?.withdrawalList || referralSummary.withdrawalList.length === 0 ? (
                         <div className="text-center py-6 text-xs text-[#B8C4C2]">
                           No cash withdrawal requests submitted yet.
                         </div>
                       ) : (
                         <div className="divide-y divide-[rgba(243,235,221,0.08)]">
                           {referralSummary.withdrawalList.map((w) => (
-                            <div key={w.id} className="py-3 flex items-center justify-between text-xs">
+                            <div key={w.id || Math.random()} className="py-3 flex items-center justify-between text-xs">
                               <div className="space-y-0.5">
                                 <div className="font-bold text-[#F5F1EA]">
-                                  ₹{w.amount.toLocaleString()} ({w.payoutMethod.toUpperCase()})
+                                  ₹{(w.amount || 0).toLocaleString()} ({(w.payoutMethod || 'UPI').toUpperCase()})
                                 </div>
                                 <p className="text-[10px] text-[#B8C4C2]">
-                                  Submitted: {new Date(w.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                  Submitted: {w.date ? new Date(w.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : 'RECENT'}
                                 </p>
                               </div>
                               <div className="text-right">
@@ -1415,7 +1415,7 @@ export default function AccountPage() {
                                     ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
                                     : 'bg-red-500/10 text-red-400 border-red-500/30'
                                 }`}>
-                                  {w.status}
+                                  {w.status || 'pending'}
                                 </span>
                               </div>
                             </div>
