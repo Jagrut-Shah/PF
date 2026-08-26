@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
+import { fetchUserReferralSummary } from '../utils/referral';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
-import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound } from 'lucide-react';
+import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check } from 'lucide-react';
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -12,14 +13,31 @@ export default function AccountPage() {
   const location = useLocation();
 
   // Navigation tab state based on URL
-  const currentTab = location.pathname.endsWith('/settings') ? 'settings' : 'overview';
+  const getTabFromLocation = () => {
+    if (location.pathname.endsWith('/settings')) return 'settings';
+    if (location.pathname.endsWith('/refer') || location.pathname.includes('/refer-and-earn')) return 'refer';
+    return 'overview';
+  };
+
+  const currentTab = getTabFromLocation();
 
   // Profile data state
   const [profile, setProfile] = useState(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [pwdLoading, setPwdLoading] = useState(false);
-  
+
+  // Referral summary state
+  const [referralSummary, setReferralSummary] = useState({
+    code: '',
+    successfulReferrals: 0,
+    pendingRewards: 0,
+    availableRewards: 0,
+    referralList: [],
+  });
+  const [copyCodeSuccess, setCopyCodeSuccess] = useState(false);
+  const [copyLinkSuccess, setCopyLinkSuccess] = useState(false);
+
   // Form states
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -33,11 +51,11 @@ export default function AccountPage() {
   const [pwdErrorMsg, setPwdErrorMsg] = useState('');
   const [pwdSuccessMsg, setPwdSuccessMsg] = useState('');
 
-  // Fetch user profile from Supabase profiles table
+  // Fetch user profile from Supabase profiles table & referral details
   useEffect(() => {
     if (!user) return;
 
-    const fetchProfile = async () => {
+    const loadData = async () => {
       try {
         setProfileLoading(true);
         const { data, error } = await supabase
@@ -46,21 +64,75 @@ export default function AccountPage() {
           .eq('id', user.id)
           .single();
 
-        if (error) throw error;
-        setProfile(data);
-        setName(data?.name || '');
-        setPhone(data?.phone || '');
-        setAvatarUrl(data?.avatar_url || '');
+        if (!error && data) {
+          setProfile(data);
+          setName(data.name || '');
+          setPhone(data.phone || '');
+          setAvatarUrl(data.avatar_url || '');
+        }
+
+        // Fetch real referral summary
+        const summary = await fetchUserReferralSummary(user.id);
+        setReferralSummary(summary);
       } catch (err) {
-        console.error('Error fetching profile:', err);
-        setErrorMsg('Unable to retrieve profile information.');
+        console.error('Error fetching account data:', err);
       } finally {
         setProfileLoading(false);
       }
     };
 
-    fetchProfile();
+    loadData();
   }, [user]);
+
+  // Handle Copy Code
+  const handleCopyCode = async () => {
+    if (!referralSummary.code) return;
+    try {
+      await navigator.clipboard.writeText(referralSummary.code);
+      setCopyCodeSuccess(true);
+      setTimeout(() => setCopyCodeSuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
+  };
+
+  // Handle Share / Copy Link
+  const getReferralUrl = () => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://pf-indol-alpha.vercel.app';
+    return `${origin}/?ref=${referralSummary.code}`;
+  };
+
+  const handleCopyLink = async () => {
+    const url = getReferralUrl();
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopyLinkSuccess(true);
+      setTimeout(() => setCopyLinkSuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
+  };
+
+  const handleShare = async () => {
+    const url = getReferralUrl();
+    const shareData = {
+      title: 'ÉLAVA — ₹200 Off Referral',
+      text: `Use my referral code ${referralSummary.code} to get ₹200 off your luxury fragrance order at ÉLAVA!`,
+      url: url,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          handleCopyLink();
+        }
+      }
+    } else {
+      handleCopyLink();
+    }
+  };
 
   // Handle personal information updates
   const handleUpdateProfile = async (e) => {
@@ -145,7 +217,7 @@ export default function AccountPage() {
   const navItems = [
     { id: 'overview', label: 'Overview', icon: User, path: '/account' },
     { id: 'orders', label: 'My Orders', icon: ShoppingBag, path: '/account#orders', disabled: true },
-    { id: 'refer', label: 'Refer & Earn', icon: Gift, path: '/account#refer', disabled: true },
+    { id: 'refer', label: 'Refer & Earn', icon: Gift, path: '/account/refer', disabled: false },
     { id: 'addresses', label: 'Addresses', icon: MapPin, path: '/account#addresses', disabled: true },
     { id: 'settings', label: 'Settings', icon: SettingsIcon, path: '/account/settings' }
   ];
@@ -270,7 +342,7 @@ export default function AccountPage() {
                         <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           REWARDS
                         </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">₹0</h3>
+                        <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">₹{referralSummary.availableRewards}</h3>
                         <p className="font-sans text-[11px] text-[#B8C4C2]">Current available rewards</p>
                       </div>
 
@@ -279,7 +351,7 @@ export default function AccountPage() {
                         <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           PENDING
                         </span>
-                        <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">₹0</h3>
+                        <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">₹{referralSummary.pendingRewards}</h3>
                         <p className="font-sans text-[11px] text-[#B8C4C2]">Pending rewards</p>
                       </div>
                     </div>
@@ -289,20 +361,20 @@ export default function AccountPage() {
                       <h3 className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border-b border-[rgba(243,235,221,0.12)] pb-2.5">
                         Quick Actions
                       </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <button
                           disabled
                           className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#102F38]/60 border border-[rgba(243,235,221,0.12)] text-xs font-bold uppercase text-[#8FA6A3] cursor-not-allowed opacity-60 text-left"
                         >
                           <ShoppingBag className="w-4 h-4 text-[#8FA6A3]" />
-                          <span>View Orders (Coming Soon)</span>
+                          <span>View Orders (Soon)</span>
                         </button>
                         <button
-                          disabled
-                          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#102F38]/60 border border-[rgba(243,235,221,0.12)] text-xs font-bold uppercase text-[#8FA6A3] cursor-not-allowed opacity-60 text-left"
+                          onClick={() => navigate('/account/refer')}
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#102F38] hover:bg-[#0d262d] border border-[rgba(243,235,221,0.12)] text-xs font-bold uppercase text-[#F5F1EA] hover:text-white transition-colors text-left cursor-pointer"
                         >
-                          <Gift className="w-4 h-4 text-[#8FA6A3]" />
-                          <span>Refer & Earn (Coming Soon)</span>
+                          <Gift className="w-4 h-4 text-[#C5A15A]" />
+                          <span>Refer & Earn</span>
                         </button>
                         <button
                           onClick={() => navigate('/account/settings')}
@@ -312,6 +384,167 @@ export default function AccountPage() {
                           <span>Account Settings</span>
                         </button>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── TAB 2: REFER & EARN ── */}
+                {currentTab === 'refer' && (
+                  <div className="space-y-6">
+                    {/* Header Banner */}
+                    <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm space-y-2 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-36 h-36 bg-[#C5A15A]/[0.03] rounded-full blur-3xl pointer-events-none" />
+                      <span className="font-sans text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
+                        EXCLUSIVE REWARDS PROGRAM
+                      </span>
+                      <h2 className="font-serif text-2xl sm:text-3xl font-bold uppercase text-[#F5F1EA] tracking-wide">
+                        GIVE ₹200. EARN ₹100 CASH.
+                      </h2>
+                      <p className="font-sans text-xs text-[#B8C4C2] max-w-xl leading-relaxed">
+                        Share your personal referral code with friends. They receive <strong className="text-white font-semibold">₹200 OFF</strong> their first ÉLAVA order, and you earn <strong className="text-[#C5A15A] font-semibold">₹100 CASH</strong> reward in your wallet for every qualifying purchase.
+                      </p>
+                    </div>
+
+                    {/* Code & Link Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Referral Code Box */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.14)] rounded-2xl p-5 space-y-3">
+                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                          YOUR UNIQUE REFERRAL CODE
+                        </span>
+                        <div className="flex items-center justify-between bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-3">
+                          <span className="font-mono text-lg font-bold tracking-wider text-[#C5A15A] select-all">
+                            {referralSummary.code || 'ELAVA...'}
+                          </span>
+                          <button
+                            onClick={handleCopyCode}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#102F38] hover:bg-[#0a2027] text-xs font-bold uppercase text-[#F5F1EA] border border-[rgba(243,235,221,0.1)] transition-colors cursor-pointer"
+                          >
+                            {copyCodeSuccess ? (
+                              <>
+                                <Check className="w-3.5 h-3.5 text-green-400" />
+                                <span className="text-green-400">COPIED</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3.5 h-3.5 text-[#C5A15A]" />
+                                <span>COPY</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Referral Link & Share Box */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.14)] rounded-2xl p-5 space-y-3">
+                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                          SHARE DIRECT REFERRAL LINK
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={handleCopyLink}
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#1C4A55] hover:bg-[#18424c] text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border border-[rgba(243,235,221,0.12)] transition-colors cursor-pointer"
+                          >
+                            {copyLinkSuccess ? (
+                              <>
+                                <Check className="w-4 h-4 text-green-400" />
+                                <span className="text-green-400">LINK COPIED</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-4 h-4 text-[#C5A15A]" />
+                                <span>COPY LINK</span>
+                              </>
+                            )}
+                          </button>
+                          <button
+                            onClick={handleShare}
+                            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-black hover:bg-neutral-900 text-xs font-bold uppercase tracking-wider text-[#F5F1EA] transition-colors cursor-pointer"
+                          >
+                            <Share2 className="w-4 h-4 text-[#C5A15A]" />
+                            <span>SHARE</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {/* Successful Referrals */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
+                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                          SUCCESSFUL REFERRALS
+                        </span>
+                        <h3 className="font-serif text-3xl font-bold text-[#F5F1EA]">
+                          {referralSummary.successfulReferrals}
+                        </h3>
+                        <p className="font-sans text-[11px] text-[#B8C4C2]">Friends who ordered</p>
+                      </div>
+
+                      {/* Pending Rewards */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
+                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                          PENDING REWARDS
+                        </span>
+                        <h3 className="font-serif text-3xl font-bold text-[#B8C4C2]">
+                          ₹{referralSummary.pendingRewards}
+                        </h3>
+                        <p className="font-sans text-[11px] text-[#B8C4C2]">Awaiting order fulfillment</p>
+                      </div>
+
+                      {/* Available Rewards */}
+                      <div className="bg-[#102F38] border border-[rgba(243,235,221,0.12)] rounded-2xl p-5 space-y-1">
+                        <span className="font-sans text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
+                          AVAILABLE REWARDS
+                        </span>
+                        <h3 className="font-serif text-3xl font-bold text-[#C5A15A]">
+                          ₹{referralSummary.availableRewards}
+                        </h3>
+                        <p className="font-sans text-[11px] text-[#B8C4C2]">Ready in wallet</p>
+                      </div>
+                    </div>
+
+                    {/* Referral Ledger Activity */}
+                    <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 space-y-4">
+                      <h3 className="font-sans text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border-b border-[rgba(243,235,221,0.12)] pb-2.5">
+                        REFERRAL ACTIVITY LEDGER
+                      </h3>
+
+                      {referralSummary.referralList.length === 0 ? (
+                        <div className="text-center py-8 space-y-2">
+                          <p className="font-serif text-base text-[#F5F1EA]">No referrals recorded yet</p>
+                          <p className="font-sans text-xs text-[#B8C4C2] max-w-md mx-auto">
+                            Share your referral code <strong className="text-[#C5A15A] font-mono">{referralSummary.code}</strong> with your friends to earn ₹100 cash for every completed purchase.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="divide-y divide-[rgba(243,235,221,0.08)]">
+                          {referralSummary.referralList.map((item) => (
+                            <div key={item.id} className="py-3 flex items-center justify-between text-xs">
+                              <div className="space-y-0.5">
+                                <span className="font-mono font-bold text-[#C5A15A] text-sm">{item.code}</span>
+                                <p className="text-[10px] text-[#B8C4C2]">
+                                  {new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                </p>
+                              </div>
+                              <div className="text-right space-y-0.5">
+                                <span className="font-bold text-[#F5F1EA]">₹{item.rewardAmount}</span>
+                                <div>
+                                  <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full border ${
+                                    item.rewardStatus === 'available'
+                                      ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                                      : item.rewardStatus === 'pending'
+                                      ? 'bg-yellow-500/10 text-yellow-300 border-yellow-500/30'
+                                      : 'bg-neutral-500/10 text-neutral-400 border-neutral-500/30'
+                                  }`}>
+                                    {item.rewardStatus}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}

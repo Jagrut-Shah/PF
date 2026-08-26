@@ -21,6 +21,7 @@ import SignupPage from './pages/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import AccountPage from './pages/AccountPage';
+import { captureReferralAttribution } from './utils/referral';
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -43,6 +44,10 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  useEffect(() => {
+    captureReferralAttribution();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-[#163E49] text-[#F3EBDD]">
       <ScrollToTop />
@@ -68,8 +73,13 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
 
-          {/* Protected Future Pathways */}
+          {/* Protected Account Pathways */}
           <Route path="/account" element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/account/refer" element={
             <ProtectedRoute>
               <AccountPage />
             </ProtectedRoute>
@@ -86,7 +96,7 @@ export default function App() {
           } />
           <Route path="/refer-and-earn" element={
             <ProtectedRoute>
-              <div className="min-h-screen py-24 text-center font-serif text-lg">Refer & Earn Dashboard Coming Soon</div>
+              <AccountPage />
             </ProtectedRoute>
           } />
           <Route path="/settings" element={
