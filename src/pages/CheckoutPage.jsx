@@ -356,7 +356,34 @@ export default function CheckoutPage() {
             prefill: {
               name: `${firstName} ${lastName}`.trim(),
               email: email,
-              contact: phone,
+              contact: phone ? phone.replace(/\D/g, '').slice(-10) : '',
+            },
+            config: {
+              display: {
+                blocks: {
+                  upi: {
+                    name: 'Pay via UPI / QR Code',
+                    instruments: [
+                      { method: 'upi' },
+                    ],
+                  },
+                  cards_and_more: {
+                    name: 'Cards, Netbanking & Wallets',
+                    instruments: [
+                      { method: 'card' },
+                      { method: 'netbanking' },
+                      { method: 'wallet' },
+                    ],
+                  },
+                },
+                sequence: ['block.upi', 'block.cards_and_more'],
+                preferences: {
+                  show_default_blocks: true,
+                },
+              },
+            },
+            retry: {
+              enabled: true,
             },
             theme: {
               color: '#163E49',
