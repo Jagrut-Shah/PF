@@ -40,9 +40,10 @@ export default async function handler(req, res) {
     const keyId = process.env.RAZORPAY_KEY_ID || process.env.VITE_RAZORPAY_KEY_ID;
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
-    // Generate Order Receipt / Order Number
+    // Generate Order Receipt / Order Number (ELV-YYYYMMDD-XXXX)
+    const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    const receipt = `ELV_${randomNum}_${Date.now().toString().slice(-4)}`;
+    const receipt = `ELV-${dateStr}-${randomNum}`;
 
     let razorpayOrderId = null;
 

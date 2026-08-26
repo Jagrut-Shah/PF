@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '../utils/supabase';
 import { getCart, getCartTotals, clearCart } from '../utils/cart';
 import { fetchCustomerAddresses, saveCustomerAddress } from '../utils/addresses';
+import { generateOrderNumber } from '../utils/orders';
 import FreeSampleModal from '../components/checkout/FreeSampleModal';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
@@ -204,7 +205,7 @@ export default function CheckoutPage() {
         );
       }
 
-      const orderNumber = `#ELV${Math.floor(1000 + Math.random() * 9000)}`;
+      const orderNumber = generateOrderNumber();
 
       const shippingAddressSnapshot = {
         fullName: `${firstName} ${lastName}`.trim(),
@@ -356,34 +357,7 @@ export default function CheckoutPage() {
             prefill: {
               name: `${firstName} ${lastName}`.trim(),
               email: email,
-              contact: phone ? phone.replace(/\D/g, '').slice(-10) : '',
-            },
-            config: {
-              display: {
-                blocks: {
-                  upi: {
-                    name: 'Pay via UPI / QR Code',
-                    instruments: [
-                      { method: 'upi' },
-                    ],
-                  },
-                  cards_and_more: {
-                    name: 'Cards, Netbanking & Wallets',
-                    instruments: [
-                      { method: 'card' },
-                      { method: 'netbanking' },
-                      { method: 'wallet' },
-                    ],
-                  },
-                },
-                sequence: ['block.upi', 'block.cards_and_more'],
-                preferences: {
-                  show_default_blocks: true,
-                },
-              },
-            },
-            retry: {
-              enabled: true,
+              contact: phone,
             },
             theme: {
               color: '#163E49',

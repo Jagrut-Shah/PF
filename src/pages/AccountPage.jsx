@@ -3,8 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import { fetchUserReferralSummary, submitWithdrawalRequest } from '../utils/referral';
-import { fetchCustomerOrders } from '../utils/orders';
+import { fetchCustomerOrders, fetchOrderByIdOrNumber } from '../utils/orders';
 import { fetchCustomerAddresses, saveCustomerAddress, deleteCustomerAddress, setDefaultCustomerAddress } from '../utils/addresses';
+import InvoiceModal from '../components/orders/InvoiceModal';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import { User, ShoppingBag, Gift, MapPin, Settings as SettingsIcon, LogOut, Loader2, KeyRound, Copy, Share2, Check, Wallet, ArrowUpRight, Clock, X, AlertCircle, FileText, ChevronRight, Plus, Trash2, Edit3, CheckCircle2 } from 'lucide-react';
@@ -44,6 +45,7 @@ export default function AccountPage() {
   const [ordersList, setOrdersList] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [selectedInvoiceOrder, setSelectedInvoiceOrder] = useState(null);
 
   // Address states
   const [addressesList, setAddressesList] = useState([]);
@@ -129,7 +131,7 @@ export default function AccountPage() {
 
       // Fetch customer orders from database
       setOrdersLoading(true);
-      const customerOrders = await fetchCustomerOrders(user.id);
+      const customerOrders = await fetchCustomerOrders(user.id, user.email || '');
       setOrdersList(customerOrders);
 
       // Fetch saved customer addresses
@@ -148,6 +150,24 @@ export default function AccountPage() {
   useEffect(() => {
     loadAccountData();
   }, [user]);
+
+  // Handle URL order parameter (e.g. /account/orders/ELV-20260826-1024)
+  useEffect(() => {
+    async function checkUrlOrderParam() {
+      if (!user) return;
+      const parts = location.pathname.split('/account/orders/');
+      if (parts.length > 1 && parts[1]) {
+        const orderIdParam = parts[1].trim();
+        if (orderIdParam) {
+          const ord = await fetchOrderByIdOrNumber(orderIdParam, user.id, user.email || '');
+          if (ord) {
+            setSelectedOrder(ord);
+          }
+        }
+      }
+    }
+    checkUrlOrderParam();
+  }, [location.pathname, user]);
 
   // Handle Withdrawal Request submission
   const handleWithdrawSubmit = async (e) => {
@@ -746,12 +766,21 @@ export default function AccountPage() {
                                     ₹{ord.totalAmount.toLocaleString()}
                                   </span>
                                 </div>
-                                <button
-                                  onClick={() => setSelectedOrder(ord)}
-                                  className="bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
-                                >
-                                  VIEW ORDER →
-                                </button>
+                                <div className="flex items-center gap-2">
+                                  <button
+                                    onClick={() => setSelectedInvoiceOrder(ord)}
+                                    className="bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] px-3.5 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shadow-sm"
+                                  >
+                                    <FileText className="w-3.5 h-3.5" />
+                                    <span>INVOICE</span>
+                                  </button>
+                                  <button
+                                    onClick={() => setSelectedOrder(ord)}
+                                    className="bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] px-3.5 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                                  >
+                                    VIEW ORDER →
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           );
@@ -899,15 +928,31 @@ export default function AccountPage() {
                         )}
                       </div>
 
-                      <button
-                        onClick={() => setSelectedOrder(null)}
-                        className="w-full bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
-                      >
-                        CLOSE ORDER DETAILS
-                      </button>
+                      <div className="flex items-center gap-3 pt-2">
+                        <button
+                          onClick={() => setSelectedInvoiceOrder(selectedOrder)}
+                          className="flex-1 bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-md"
+                        >
+                          <FileText className="w-4 h-4 text-[#102F38]" />
+                          <span>VIEW INVOICE</span>
+                        </button>
+                        <button
+                          onClick={() => setSelectedOrder(null)}
+                          className="flex-1 bg-[#102F38] hover:bg-[#0d262d] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                        >
+                          CLOSE
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
+
+                {/* Printable Invoice Modal */}
+                <InvoiceModal
+                  isOpen={!!selectedInvoiceOrder}
+                  onClose={() => setSelectedInvoiceOrder(null)}
+                  order={selectedInvoiceOrder}
+                />
 
                 {/* ── TAB: SAVED ADDRESSES ── */}
                 {currentTab === 'addresses' && (
