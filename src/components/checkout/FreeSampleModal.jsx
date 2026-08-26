@@ -91,6 +91,8 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
                 <img
                   src={sample.image}
                   alt={sample.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-14 h-14 object-cover rounded-xl border border-[rgba(243,235,221,0.15)] shrink-0"
                   onError={(e) => {
                     e.currentTarget.src = '/images/products/noir.jpg';

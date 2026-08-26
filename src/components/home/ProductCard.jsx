@@ -34,6 +34,7 @@ export default function ProductCard({ product, className = '' }) {
           alt={`ÉLAVA ${product.name} perfume bottle`}
           className="w-full h-full object-cover object-center origin-center transition-transform duration-300 ease-out group-hover:scale-[1.03] will-change-transform"
           loading="lazy"
+          decoding="async"
         />
       </div>
 

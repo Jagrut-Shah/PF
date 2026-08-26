@@ -381,6 +381,12 @@ export default function AccountPage() {
     }
   };
 
+  const handleWhatsAppReferralShare = () => {
+    const url = getReferralUrl();
+    const text = encodeURIComponent(`Give your friends ₹200 OFF on ÉLAVA Luxury Perfumes — and get ₹100 CASH when they purchase! Use my referral code ${referralSummary.code}: ${url}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
+  };
+
   // Handle personal information updates
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -1137,6 +1143,14 @@ export default function AccountPage() {
                                 <span>COPY LINK</span>
                               </>
                             )}
+                          </button>
+                          <button
+                            onClick={handleWhatsAppReferralShare}
+                            className="flex items-center justify-center gap-2 px-3.5 py-3 rounded-xl bg-[#102F38] hover:bg-black text-xs font-bold uppercase tracking-wider text-[#F5F1EA] border border-[rgba(243,235,221,0.12)] transition-colors cursor-pointer"
+                            title="Share on WhatsApp"
+                          >
+                            <WhatsAppIcon className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
+                            <span className="hidden sm:inline">WHATSAPP</span>
                           </button>
                           <button
                             onClick={handleShare}

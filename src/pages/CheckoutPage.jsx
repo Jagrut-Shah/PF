@@ -23,6 +23,8 @@ import {
   Package,
   ShieldCheck,
   Check,
+  Share2,
+  Copy,
 } from 'lucide-react';
 
 export default function CheckoutPage() {
@@ -36,6 +38,39 @@ export default function CheckoutPage() {
   // Redirect if cart is empty and not on confirmation
   const [step, setStep] = useState(1); // 1: Delivery, 2: Options, 3: Review/Billing, 4: Confirmation
   const [confirmedOrder, setConfirmedOrder] = useState(null);
+  const [copiedOrderShare, setCopiedOrderShare] = useState(false);
+
+  const handleShareElavaOrder = async () => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const shareUrl = origin || 'https://pf-indol-alpha.vercel.app';
+    const shareData = {
+      title: 'ÉLAVA — Artisanal Eau de Parfum',
+      text: 'Discover artisanal luxury fragrances by ÉLAVA.',
+      url: shareUrl,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          handleCopyOrderShareUrl(shareUrl);
+        }
+      }
+    } else {
+      handleCopyOrderShareUrl(shareUrl);
+    }
+  };
+
+  const handleCopyOrderShareUrl = async (url) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedOrderShare(true);
+      setTimeout(() => setCopiedOrderShare(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy share link:', err);
+    }
+  };
 
   useEffect(() => {
     if (cartItems.length === 0 && !confirmedOrder) {
@@ -1109,8 +1144,25 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
+              {/* Subtle SHARE ÉLAVA Block */}
+              <div className="pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#102F38] border border-[rgba(243,235,221,0.12)] p-4 rounded-2xl text-xs">
+                  <div className="text-left space-y-0.5">
+                    <div className="font-bold text-[#F5F1EA] uppercase">SHARE ÉLAVA WITH FRIENDS</div>
+                    <div className="text-[11px] text-[#B8C4C2]">Introduce your circle to artisanal luxury fragrances.</div>
+                  </div>
+                  <button
+                    onClick={handleShareElavaOrder}
+                    className="w-full sm:w-auto bg-[#1C4A55] hover:bg-[#18424c] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
+                  >
+                    <Share2 className="w-4 h-4 text-[#C5A15A]" />
+                    <span>{copiedOrderShare ? 'LINK COPIED' : 'SHARE ÉLAVA'}</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Action Buttons */}
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                 {user && (
                   <button
                     onClick={() => navigate('/account/orders')}

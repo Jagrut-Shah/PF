@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X, Gift, Sparkles, CreditCard } from 'lucide-react';
+import { ShieldCheck, Truck, Plus, Minus, ShoppingBag, Check, X, Gift, Sparkles, CreditCard, Share2, Copy } from 'lucide-react';
 import MainContainer from '../components/ui/MainContainer';
 import SEO from '../components/common/SEO';
 import StarRating from '../components/ui/StarRating';
@@ -146,6 +146,45 @@ export default function ProductDetails() {
 
   // Selected variant/size
   const [selectedSize, setSelectedSize] = useState(product?.size || '60 ML');
+  const [copiedProductShare, setCopiedProductShare] = useState(false);
+
+  const handleWhatsAppProductShare = () => {
+    if (!product) return;
+    const text = encodeURIComponent(`Discover ÉLAVA ${product.name} Eau de Parfum (${selectedSize}): ${window.location.href}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleProductShare = async () => {
+    if (!product) return;
+    const url = window.location.href;
+    const shareData = {
+      title: `ÉLAVA — ${product.name}`,
+      text: `Discover ÉLAVA ${product.name} Eau de Parfum (${selectedSize})`,
+      url: url,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          handleCopyProductUrl();
+        }
+      }
+    } else {
+      handleCopyProductUrl();
+    }
+  };
+
+  const handleCopyProductUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopiedProductShare(true);
+      setTimeout(() => setCopiedProductShare(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy product URL:', err);
+    }
+  };
 
   useEffect(() => {
     if (product) {
@@ -477,9 +516,31 @@ export default function ProductDetails() {
             </button>
 
             {/* Secondary WhatsApp Contact Option */}
-            <div className="mt-1 flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
-              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366] shrink-0" />
-              <span>Questions? <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Chat with us on WhatsApp</a></span>
+            <div className="mt-1 flex items-center justify-between gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
+              <div className="flex items-center gap-1.5">
+                <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366] shrink-0" />
+                <span>Questions? <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Chat on WhatsApp</a></span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={handleWhatsAppProductShare}
+                  className="px-2 py-1 rounded bg-[#102F38] hover:bg-white/10 text-[#F5F1EA] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-[rgba(243,235,221,0.12)]"
+                  title="Share via WhatsApp"
+                >
+                  <WhatsAppIcon className="w-3 h-3 text-[#25D366] fill-[#25D366]" />
+                  <span>Share</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleProductShare}
+                  className="px-2 py-1 rounded bg-[#102F38] hover:bg-white/10 text-[#C5A15A] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-[rgba(243,235,221,0.12)]"
+                  title="Share or Copy Link"
+                >
+                  <Share2 className="w-3 h-3 text-[#C5A15A]" />
+                  <span>{copiedProductShare ? 'Copied' : 'Link'}</span>
+                </button>
+              </div>
             </div>
 
             {/* 4. PINCODE DELIVERY ESTIMATOR */}
