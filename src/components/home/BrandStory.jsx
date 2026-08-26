@@ -3,21 +3,21 @@ import MainContainer from '../ui/MainContainer';
 
 export default function BrandStory() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#102F38] text-[#F3EBDD] border-y border-[rgba(243,235,221,0.12)]">
+    <section className="py-14 sm:py-20 md:py-24 bg-[#08111F] text-[#F7F3EC] border-b border-white/10">
       <MainContainer>
-        <div className="max-w-4xl mx-auto bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-10 md:p-14 shadow-lg text-center relative overflow-hidden">
-          {/* Subtle Decorative Background Graphic */}
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#C5A15A]/[0.05] rounded-full blur-2xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto bg-[#102A4C]/90 border border-white/15 rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl text-center relative overflow-hidden">
+          {/* Subtle Decorative Atmosphere */}
+          <div className="absolute -top-16 -right-16 w-64 h-64 bg-[#285BE6]/15 rounded-full blur-3xl pointer-events-none" />
 
-          <span className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-[#C5A15A] block mb-2">
+          <span className="font-sans text-xs font-extrabold uppercase tracking-[0.24em] text-[#5F8CFF] block mb-3">
             OUR ESSENCE & ORIGIN
           </span>
 
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal uppercase tracking-[0.06em] text-[#F3EBDD] mb-6 leading-tight">
-            THE STORY BEHIND <span className="italic text-[#C5A15A]">ÉLAVA</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wide text-[#F7F3EC] mb-6 leading-tight">
+            THE STORY BEHIND <span className="italic text-[#5F8CFF]">ÉLAVA</span>
           </h2>
 
-          <div className="space-y-4 font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed max-w-2xl mx-auto">
+          <div className="space-y-4 font-sans text-xs sm:text-sm text-[#F7F3EC]/80 leading-relaxed max-w-2xl mx-auto">
             <p>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
@@ -26,15 +26,15 @@ export default function BrandStory() {
             </p>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-[rgba(243,235,221,0.12)] flex items-center justify-center gap-6">
+          <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-center gap-8">
             <div className="text-center">
-              <span className="font-serif text-lg font-medium text-[#F3EBDD] block">60 ML</span>
-              <span className="font-sans text-[10px] uppercase tracking-wider text-[#C8C1B5]">Eau de Parfum</span>
+              <span className="font-serif text-xl sm:text-2xl font-light text-[#F7F3EC] block">60 ML</span>
+              <span className="font-sans text-[10px] font-mono uppercase tracking-wider text-[#5F8CFF]">Eau de Parfum</span>
             </div>
-            <div className="w-px h-8 bg-[rgba(243,235,221,0.15)]" />
+            <div className="w-px h-10 bg-white/15" />
             <div className="text-center">
-              <span className="font-serif text-lg font-medium text-[#F3EBDD] block">India</span>
-              <span className="font-sans text-[10px] uppercase tracking-wider text-[#C8C1B5]">Crafted Origin</span>
+              <span className="font-serif text-xl sm:text-2xl font-light text-[#F7F3EC] block">India</span>
+              <span className="font-sans text-[10px] font-mono uppercase tracking-wider text-[#5F8CFF]">Crafted Origin</span>
             </div>
           </div>
         </div>

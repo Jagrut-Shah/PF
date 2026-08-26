@@ -10,14 +10,14 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'date-night':
       return (
         <h3 className={`leading-none truncate ${baseSize}`} style={shadowStyle}>
-          <span className="font-sans italic font-medium tracking-[0.02em] uppercase text-[#F5F1EA]">DATE </span>
-          <span className="font-sans italic font-black tracking-[0.05em] uppercase text-[#F5F1EA]">NIGHT</span>
+          <span className={`font-sans italic font-medium tracking-[0.02em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'}`}>DATE </span>
+          <span className={`font-sans italic font-black tracking-[0.05em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'}`}>NIGHT</span>
         </h3>
       );
     case 'everyday':
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.08em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-bold tracking-[0.08em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'} leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           EVERYDAY
@@ -26,7 +26,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-sans font-semibold tracking-[0.24em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-semibold tracking-[0.24em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'} leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           OFFICE
@@ -35,7 +35,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-sans font-black tracking-[0.16em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-black tracking-[0.16em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'} leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           PARTY
@@ -44,7 +44,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-sans font-bold tracking-[0.1em] uppercase text-[#F5F1EA] leading-none truncate ${baseSize}`}
+          className={`font-sans font-bold tracking-[0.1em] uppercase ${isDesktop ? 'text-[#F5F1EA]' : 'text-[#08111F]'} leading-none truncate ${baseSize}`}
           style={shadowStyle}
         >
           {occasion.title}

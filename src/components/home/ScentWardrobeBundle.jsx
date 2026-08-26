@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import MainContainer from '../ui/MainContainer';
 import { Layers, ArrowRight } from 'lucide-react';
 
-// Preset duos matching the 3 curated paths
 const BUNDLE_PRESETS = [
   {
     id: 'date-night',
@@ -11,7 +10,6 @@ const BUNDLE_PRESETS = [
     subtitle: '2 × 60ML',
     description: 'A seductive combination for evenings and nights out.',
     badge: 'EVENING & SEDUCTIVE',
-    accentColor: '#7A2929',
   },
   {
     id: 'everyday-office',
@@ -19,7 +17,6 @@ const BUNDLE_PRESETS = [
     subtitle: '2 × 60ML',
     description: 'One effortless everyday scent + one sharper scent for work.',
     badge: 'EFFORTLESS & SHARP',
-    accentColor: '#7A2929',
   },
   {
     id: 'gift-duo',
@@ -27,53 +24,52 @@ const BUNDLE_PRESETS = [
     subtitle: '2 × 60ML',
     description: 'Two fragrances selected as a memorable gift.',
     badge: 'MEMORABLE GIFT',
-    accentColor: '#7A2929',
   },
 ];
 
 export default function ScentWardrobeBundle() {
   return (
-    <section className="py-12 sm:py-16 bg-[#163E49] text-[#F5F1EA] border-t border-b border-[rgba(243,235,221,0.12)]">
+    <section className="py-12 sm:py-16 bg-[#102A4C] text-[#F7F3EC] border-b border-white/10">
       <MainContainer>
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#B8C4C2] text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
-            <Layers className="w-3.5 h-3.5 text-[#B8C4C2]" />
-            <span>FRAGRANCE CURATION</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#08111F] border border-white/10 text-[#5F8CFF] text-xs font-bold uppercase tracking-wider mb-3">
+            <Layers className="w-3.5 h-3.5 text-[#5F8CFF]" />
+            <span>DUO BUNDLE CURATION</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-[#F5F1EA]">
-            BUILD YOUR SCENT WARDROBE
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wide text-[#F7F3EC]">
+            BUILD YOUR <span className="italic text-[#5F8CFF]">SCENT WARDROBE</span>
           </h2>
-          <p className="font-sans text-sm sm:text-base text-[#B8C4C2] mt-2">
-            Different moments deserve different scents.
+          <p className="font-sans text-xs sm:text-sm text-[#F7F3EC]/75 mt-2">
+            Different moments deserve different scents. Save ₹399 when bundling two 60 ML signatures.
           </p>
         </div>
 
-        {/* 3 Curated Bundle Preset Cards — Click opens dedicated landing page */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+        {/* 3 Curated Bundle Preset Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
           {BUNDLE_PRESETS.map((preset) => (
             <Link
               key={preset.id}
               to={`/wardrobe/${preset.id}`}
-              className="p-6 rounded-2xl border border-[rgba(243,235,221,0.15)] bg-[#1C4A55] hover:border-[#F5F1EA]/40 transition-all cursor-pointer flex flex-col justify-between group shadow-xl"
+              className="p-6 sm:p-7 rounded-2xl border border-white/15 bg-[#08111F] hover:border-[#285BE6] transition-all cursor-pointer flex flex-col justify-between group shadow-xl"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded bg-[#102F38] text-[#B8C4C2] border border-[rgba(243,235,221,0.12)]">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest px-2.5 py-1 rounded bg-[#285BE6]/20 text-[#5F8CFF] border border-[#5F8CFF]/30">
                     {preset.badge}
                   </span>
-                  <span className="text-xs font-bold text-[#B8C4C2]">{preset.subtitle}</span>
+                  <span className="text-xs font-mono font-bold text-[#F7F3EC]/70">{preset.subtitle}</span>
                 </div>
-                <h3 className="font-serif text-xl font-bold uppercase tracking-wide text-[#F5F1EA] group-hover:text-[#C5A15A] transition-colors">
+                <h3 className="font-serif text-xl sm:text-2xl font-light uppercase tracking-wide text-[#F7F3EC] group-hover:text-[#5F8CFF] transition-colors">
                   {preset.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] mt-2 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-[#F7F3EC]/70 mt-2 leading-relaxed">
                   {preset.description}
                 </p>
               </div>
 
               {/* Single Arrow CTA */}
-              <div className="mt-6 pt-4 border-t border-[rgba(243,235,221,0.10)] flex items-center justify-between text-xs font-bold text-[#B8C4C2] group-hover:text-[#F5F1EA] transition-colors">
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-[#5F8CFF] group-hover:text-white transition-colors">
                 <span>EXPLORE DUO</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </div>

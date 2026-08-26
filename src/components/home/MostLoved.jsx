@@ -13,30 +13,33 @@ export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
 
   return (
-    <section className="pb-4 sm:pb-5 md:pb-6" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 md:py-16 bg-[#F7F3EC] text-[#111A27] border-b border-[#08111F]/10" aria-labelledby="most-loved-heading">
       <MainContainer>
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 sm:mb-5 pb-1 gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 pb-1 gap-2">
           <div>
+            <span className="font-sans text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#C6A15B] block">
+              MOST COVETED SIGNATURES
+            </span>
             <h2
               id="most-loved-heading"
-              className="font-sans text-[22px] sm:text-[26px] md:text-[28px] tracking-[0.06em] font-bold uppercase text-[#F5F1EA] leading-tight"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-wide font-light uppercase text-[#08111F] leading-tight mt-1"
             >
-              MOST LOVED
+              ÉLAVA <span className="text-[#C6A15B] font-normal">BESTSELLERS</span>
             </h2>
-            <p className="font-sans text-[13px] sm:text-[14px] text-[#B8C4C2] mt-1 font-normal tracking-wide">
-              Our most coveted signatures.
+            <p className="font-sans text-xs sm:text-sm text-[#111A27]/70 mt-1 font-normal tracking-wide">
+              Handcrafted Eau de Parfum signatures made for enduring impression.
             </p>
           </div>
 
           <Link
             to="/category/bestsellers"
-            className="group inline-flex items-center gap-1.5 font-sans text-[11px] sm:text-[12px] font-bold tracking-[0.16em] uppercase text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 self-start sm:self-end pb-0.5"
+            className="group inline-flex items-center gap-2 font-sans text-xs font-bold tracking-[0.16em] uppercase text-[#08111F] hover:text-[#285BE6] transition-colors duration-200 self-start sm:self-end pb-0.5"
             aria-label="View all bestsellers"
           >
             <span>VIEW ALL BESTSELLERS</span>
             <ArrowRight
-              className="w-3.5 h-3.5 stroke-[1.75] transform transition-transform duration-200 group-hover:translate-x-1"
+              className="w-4 h-4 text-[#285BE6] stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1"
               aria-hidden="true"
             />
           </Link>

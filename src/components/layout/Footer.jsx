@@ -64,7 +64,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#102F38] border-t border-[rgba(243,235,221,0.12)] text-[#F5F1EA]" aria-label="Site footer">
+    <footer className="bg-[#08111F] border-t border-white/10 text-[#F7F3EC]" aria-label="Site footer">
 
       {/* DESKTOP */}
       <div className="hidden md:block">

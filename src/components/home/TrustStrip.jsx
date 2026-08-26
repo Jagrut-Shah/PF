@@ -1,83 +1,51 @@
 import React from 'react';
-import { ShieldCheck, Truck, CreditCard } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
+import { ShieldCheck, Truck, Clock, Sparkles } from 'lucide-react';
 
-function WhatsAppIcon({ className = "w-4 h-4" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
-      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm-3.53 3.63c-.19 0-.42.07-.64.31-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 2 .86 2.41.69 2.84.65.43-.04 1.4-.57 1.6-1.13.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28s-1.4-.69-1.62-.77c-.22-.08-.38-.12-.54.12s-.62.77-.76.93c-.14.16-.28.18-.52.06s-1.01-.37-1.92-1.19c-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.48-.39-.41-.54-.42-.14-.01-.3-.01-.46-.01z" />
-    </svg>
-  );
-}
+const TRUST_ITEMS = [
+  {
+    icon: Clock,
+    title: 'LONG LASTING 12H+',
+    description: 'High Eau de Parfum concentration formulated to endure tropical humidity.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'IFRA CERTIFIED',
+    description: 'Compliant with international fragrance safety and skin-dermatology standards.',
+  },
+  {
+    icon: Truck,
+    title: 'FREE EXPRESS SHIPPING',
+    description: 'Dispatched within 24 hours across India with real-time tracking.',
+  },
+  {
+    icon: Sparkles,
+    title: 'ARTISANAL FORMULATION',
+    description: 'Handcrafted signature blends combining rare woods, florals, and warm amber.',
+  },
+];
 
 export default function TrustStrip() {
   return (
-    <section className="py-6 bg-[#163E49]">
+    <section className="py-8 sm:py-12 bg-[#FBF8F3] text-[#08111F] border-b border-[#08111F]/10">
       <MainContainer>
-        <div className="bg-[#000000] border border-[rgba(243,235,221,0.16)] rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#F5F1EA]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[rgba(243,235,221,0.12)]">
-            
-            {/* 1. Secure Payments */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
-              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 text-[#2563EB]" />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
-                  Secure Payments
-                </h4>
-                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
-                  UPI, Cards & Net Banking
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          {TRUST_ITEMS.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div key={idx} className="flex flex-col items-center text-center space-y-2 p-2">
+                <div className="w-10 h-10 rounded-full bg-[#285BE6]/10 border border-[#285BE6]/20 flex items-center justify-center text-[#285BE6]">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-[#08111F]">
+                  {item.title}
+                </h3>
+                <p className="font-sans text-[11px] text-[#111A27]/75 leading-relaxed max-w-xs">
+                  {item.description}
                 </p>
               </div>
-            </div>
-
-            {/* 2. COD Available */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4 first:pt-0">
-              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
-                <CreditCard className="w-5 h-5 text-[#F5F1EA]" />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
-                  COD Available
-                </h4>
-                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
-                  Pay cash on delivery
-                </p>
-              </div>
-            </div>
-
-            {/* 3. Tracked Delivery */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
-                <Truck className="w-5 h-5 text-[#F5F1EA]" />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
-                  Tracked Delivery
-                </h4>
-                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
-                  Dispatched across India
-                </p>
-              </div>
-            </div>
-
-            {/* 4. Customer Support */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#111111] border border-[rgba(243,235,221,0.12)] flex items-center justify-center shrink-0">
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-sans text-xs font-bold tracking-wider text-[#F5F1EA] uppercase">
-                  Customer Support
-                </h4>
-                <p className="font-sans text-[11px] text-[#B8C4C2] truncate">
-                  Direct help via WhatsApp
-                </p>
-              </div>
-            </div>
-
-          </div>
+            );
+          })}
         </div>
       </MainContainer>
     </section>
