@@ -3,6 +3,7 @@
 
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
+import { sendTransactionalEmail } from './utils/emailService.js';
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'https://ynzzppjatnltpobbrhji.supabase.co';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_21MGWSYebjuCCi_iZa9ZTA_4LKIM8vf';
@@ -82,6 +83,28 @@ export default async function handler(req, res) {
         });
       } catch (refErr) {
         console.warn('Referral reward RPC note:', refErr.message);
+      }
+    }
+
+    // 6. Dispatch Order Confirmation & Payment Success Transactional Emails (Idempotently)
+    const orderData = savedOrder || finalOrder;
+    if (orderData.email) {
+      try {
+        await sendTransactionalEmail({
+          eventType: 'order-confirmed',
+          idempotencyKey: `order-confirmed-${orderData.order_number}`,
+          recipient: orderData.email,
+          data: orderData,
+        });
+
+        await sendTransactionalEmail({
+          eventType: 'payment-success',
+          idempotencyKey: `payment-success-${orderData.order_number}`,
+          recipient: orderData.email,
+          data: orderData,
+        });
+      } catch (emailErr) {
+        console.warn('Email dispatch warning (non-blocking):', emailErr.message);
       }
     }
 

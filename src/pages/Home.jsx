@@ -5,7 +5,6 @@ import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
 import MostLoved from '../components/home/MostLoved';
 import FindYourScent from '../components/home/FindYourScent';
 import TrustStrip from '../components/home/TrustStrip';
-import DiscoverySet from '../components/home/DiscoverySet';
 import ScentWardrobeBundle from '../components/home/ScentWardrobeBundle';
 import ReferralBanner from '../components/home/ReferralBanner';
 import ScentQuiz from '../components/home/ScentQuiz';
@@ -56,10 +55,7 @@ export default function Home() {
       {/* 6. TRUST STRIP */}
       <TrustStrip />
 
-      {/* 7. TRY BEFORE YOU BUY (DISCOVERY SET) */}
-      <DiscoverySet />
-
-      {/* 8. SHARE ÉLAVA. EARN ₹100. (PATRON REWARDS) */}
+      {/* 7. SHARE ÉLAVA. EARN ₹100. (PATRON REWARDS) */}
       <ReferralBanner />
 
       {/* 9. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}

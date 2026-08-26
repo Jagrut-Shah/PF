@@ -7,42 +7,42 @@ const AVAILABLE_SAMPLES = [
     name: 'ÉLAVA NOIR',
     family: 'Woody Amber & Spiced Vanilla',
     description: 'Deep, sensual notes of smoked vanilla, rich amber, and velvet cedarwood.',
-    image: '/images/products/noir.jpg',
+    image: '/images/products/row-1-column-1.png',
   },
   {
     id: 'sample-lumina',
     name: 'ÉLAVA LUMINA',
     family: 'Sparkling Citrus & White Floral',
     description: 'Bright bergamot layered with jasmine sambac and radiant white musk.',
-    image: '/images/products/lumina.jpg',
+    image: '/images/products/row-1-column-2.png',
   },
   {
     id: 'sample-aura',
     name: 'ÉLAVA AURA',
     family: 'Velvet Rose & Smoked Oud',
     description: 'Opulent Damask rose infused with rare Cambodian oud and warm saffron.',
-    image: '/images/products/aura.jpg',
+    image: '/images/products/row-1-column-3.png',
   },
   {
     id: 'sample-soleil',
     name: 'ÉLAVA SOLEIL',
     family: 'Golden Bergamot & Sea Salt',
     description: 'Sun-drenched Mediterranean citrus paired with crisp oceanic sea breeze.',
-    image: '/images/products/soleil.jpg',
+    image: '/images/products/row-2-column-1.png',
   },
   {
     id: 'sample-elan',
     name: 'ÉLAVA ÉLAN',
     family: 'Fresh Vetiver & Cedarwood',
     description: 'Refined Haitian vetiver wrapped in dry cedarwood and green cardamom.',
-    image: '/images/products/elan.jpg',
+    image: '/images/products/row-2-column-2.png',
   },
   {
     id: 'sample-vesper',
     name: 'ÉLAVA VESPER',
     family: 'Midnight Patchouli & Wild Fig',
     description: 'Mysterious dark patchouli balanced with luscious black fig and sandalwood.',
-    image: '/images/products/vesper.jpg',
+    image: '/images/products/row-2-column-3.png',
   },
 ];
 
@@ -95,7 +95,7 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
                   decoding="async"
                   className="w-14 h-14 object-cover rounded-xl border border-[rgba(243,235,221,0.15)] shrink-0"
                   onError={(e) => {
-                    e.currentTarget.src = '/images/products/noir.jpg';
+                    e.currentTarget.src = '/images/products/row-1-column-1.png';
                   }}
                 />
                 <div className="flex-1 space-y-1">
