@@ -543,64 +543,7 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            {/* 4. PINCODE DELIVERY ESTIMATOR */}
-            <div className="mt-4 p-3.5 bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-xl text-xs space-y-2.5 shadow-xs">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-[#F5F1EA] flex items-center gap-1.5 text-xs">
-                  <Truck className="w-4 h-4 text-[#B8C4C2]" />
-                  <span>ESTIMATE DELIVERY TIME</span>
-                </span>
-                <span className="text-[10px] text-[#B8C4C2]">Enter 6-digit Pincode</span>
-              </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const val = (pincodeInput || '').trim();
-                  if (/^[1-9][0-9]{5}$/.test(val)) {
-                    setPincodeError('');
-                    setDeliveryStatus({
-                      pincode: val,
-                      message: 'Estimated Delivery: 2–4 Business Days (Express Shipping Available)',
-                    });
-                  } else {
-                    setDeliveryStatus(null);
-                    setPincodeError('Please enter a valid 6-digit Indian pincode.');
-                  }
-                }}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="text"
-                  maxLength={6}
-                  value={pincodeInput}
-                  onChange={(e) => setPincodeInput(e.target.value.replace(/\D/g, ''))}
-                  placeholder="e.g. 400001"
-                  className="flex-1 bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#7A2929]"
-                  id="pincode-input"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#7A2929] hover:bg-[#8C3232] text-[#F5F1EA] px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
-                  id="check-pincode-btn"
-                >
-                  CHECK
-                </button>
-              </form>
-
-              {pincodeError && (
-                <div className="text-[11px] text-red-400 font-medium pl-1">
-                  {pincodeError}
-                </div>
-              )}
-
-              {deliveryStatus && (
-                <div className="text-[11px] text-[#25D366] font-semibold flex items-center gap-1.5 pl-1">
-                  <Check className="w-3.5 h-3.5 shrink-0" />
-                  <span>{deliveryStatus.message}</span>
-                </div>
-              )}
-            </div>
 
           </div>
 

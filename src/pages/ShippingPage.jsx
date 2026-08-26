@@ -57,7 +57,7 @@ export default function ShippingPage() {
                 DELIVERY TIMELINES
               </h2>
               <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed">
-                Estimated delivery timelines will be confirmed at the time of ordering based on the destination and shipping method.
+                Delivery timelines will be confirmed at the time of order processing based on your location.
               </p>
             </div>
           </div>

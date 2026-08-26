@@ -19,10 +19,10 @@ export default function ProductCard({ product, className = '' }) {
     >
       {/* Compact Image Container */}
       <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#102F38] border border-[rgba(243,235,221,0.15)] aspect-[4/3.8] md:aspect-[4/4.5]">
-        {/* Burgundy Bestseller Corner Ribbon */}
+        {/* Refined Warm Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
-            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#7A2929] text-[#F5F1EA] text-[7.5px] font-extrabold tracking-[0.16em] py-0.5 text-center -rotate-45 uppercase shadow-sm">
+            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C5A15A] text-[#102F38] text-[7.5px] font-extrabold tracking-[0.16em] py-0.5 text-center -rotate-45 uppercase shadow-sm">
               BESTSELLER
             </div>
           </div>

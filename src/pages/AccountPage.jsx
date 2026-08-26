@@ -507,7 +507,7 @@ export default function AccountPage() {
                   MY ÉLAVA
                 </span>
                 <h1 className="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#F5F1EA]">
-                  {profile?.name || 'Valued Fragrance Patron'}
+                  {profile?.name || 'Valued Customer'}
                 </h1>
                 <p className="font-sans text-xs text-[#B8C4C2]">
                   {user?.email}
@@ -566,7 +566,7 @@ export default function AccountPage() {
                     {/* Welcome banner */}
                     <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm">
                       <h2 className="font-serif text-xl sm:text-2xl font-bold uppercase text-[#F5F1EA] tracking-wide mb-1">
-                        WELCOME BACK, {profile?.name || 'PATRON'}
+                        WELCOME BACK, {profile?.name || 'MEMBER'}
                       </h2>
                       <p className="font-sans text-xs text-[#B8C4C2]">
                         Welcome to your ÉLAVA workspace. Manage your orders, rewards, and personal details.

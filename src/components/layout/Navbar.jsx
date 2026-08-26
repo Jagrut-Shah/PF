@@ -122,11 +122,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* DESKTOP NAVIGATION: Center (HOME, MEN, WOMEN, UNISEX, BESTSELLERS) */}
-            <nav
-              className="hidden md:flex items-center justify-center space-x-2 lg:space-x-4"
-              aria-label="Primary Navigation"
-            >
+            {/* NAVIGATION LINKS: Center Desktop Horizontal Bar */}
+            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => {
                 const isActive = link.path === '/'
                   ? location.pathname === '/'
@@ -137,7 +134,7 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={
-                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.18em] font-semibold px-3.5 py-2 rounded-md transition-colors duration-200 ${
+                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.18em] font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
                         isActive
                           ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
                           : 'text-[#F5F1EA] hover:text-[#FFFFFF] hover:bg-[rgba(243,235,221,0.06)]'
@@ -150,7 +147,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* ACTIONS: Right (Account, Search, Cart & WhatsApp) */}
+            {/* ACTIONS: Right (Account, Search, Cart & SHOP NOW CTA) */}
             <div className="flex items-center justify-end space-x-1 sm:space-x-2 w-auto">
               {/* Account Link */}
               <Link
@@ -194,16 +191,14 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* WhatsApp Direct Link */}
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-[#F5F1EA] hover:text-[#25D366] transition-colors duration-200 focus:outline-none"
-                aria-label="Connect on WhatsApp"
+              {/* Primary Action Button: SHOP NOW → */}
+              <Link
+                to="/category/bestsellers"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] text-[11px] font-extrabold tracking-widest uppercase transition-all duration-200 shadow-sm ml-1"
+                id="navbar-shop-now-btn"
               >
-                <WhatsAppIcon className="w-[19px] h-[19px]" />
-              </a>
+                <span>SHOP NOW →</span>
+              </Link>
             </div>
 
           </div>
