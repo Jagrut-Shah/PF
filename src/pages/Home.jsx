@@ -7,6 +7,7 @@ import FindYourScent from '../components/home/FindYourScent';
 import TrustStrip from '../components/home/TrustStrip';
 import DiscoverySet from '../components/home/DiscoverySet';
 import ScentWardrobeBundle from '../components/home/ScentWardrobeBundle';
+import ReferralBanner from '../components/home/ReferralBanner';
 import ScentQuiz from '../components/home/ScentQuiz';
 import WhyElava from '../components/home/WhyElava';
 import WhatPeopleSay from '../components/home/WhatPeopleSay';
@@ -21,10 +22,11 @@ import BrandStory from '../components/home/BrandStory';
  * 5. BUILD YOUR SCENT WARDROBE
  * 6. TRUST STRIP
  * 7. TRY BEFORE YOU BUY (DISCOVERY SET)
- * 8. FIND YOUR SIGNATURE SCENT (SCENT QUIZ)
- * 9. WHY ÉLAVA
- * 10. WHAT PEOPLE SAY
- * 11. BRAND STORY
+ * 8. SHARE & EARN (PATRON REWARDS)
+ * 9. FIND YOUR SIGNATURE SCENT (SCENT QUIZ)
+ * 10. WHY ÉLAVA
+ * 11. WHAT PEOPLE SAY
+ * 12. BRAND STORY
  */
 export default function Home() {
   return (
@@ -57,16 +59,19 @@ export default function Home() {
       {/* 7. TRY BEFORE YOU BUY (DISCOVERY SET) */}
       <DiscoverySet />
 
-      {/* 8. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
+      {/* 8. SHARE ÉLAVA. EARN ₹100. (PATRON REWARDS) */}
+      <ReferralBanner />
+
+      {/* 9. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
       <ScentQuiz />
 
-      {/* 9. WHY ÉLAVA */}
+      {/* 10. WHY ÉLAVA */}
       <WhyElava />
 
-      {/* 10. WHAT PEOPLE SAY */}
+      {/* 11. WHAT PEOPLE SAY */}
       <WhatPeopleSay />
 
-      {/* 11. THE STORY BEHIND ÉLAVA */}
+      {/* 12. THE STORY BEHIND ÉLAVA */}
       <BrandStory />
     </div>
   );
