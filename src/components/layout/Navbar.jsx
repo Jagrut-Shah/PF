@@ -7,9 +7,6 @@ import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 import { getCartTotals } from '../../utils/cart';
 import { useAuth } from '../../context/AuthContext';
 
-/**
- * Official WhatsApp Brand Outline Icon
- */
 function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
   return (
     <svg
@@ -30,7 +27,6 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
   const location = useLocation();
 
-  // Synchronize cart count
   useEffect(() => {
     const updateCount = () => {
       const { itemCount } = getCartTotals();
@@ -47,13 +43,11 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close mobile menu and search on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsSearchOpen(false);
   }, [location.pathname]);
 
-  // Handle ESC key to close drawers
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -77,12 +71,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full px-2 sm:px-4 pt-2 pb-1 bg-transparent">
-      {/* Boxed Premium Dark Container */}
-      <div className="max-w-7xl mx-auto bg-[#102F38] border border-[rgba(243,235,221,0.14)] rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-200">
+      {/* Boxed Deep Cherry Container */}
+      <div className="max-w-7xl mx-auto bg-[#2A0D14] border border-[#E7C4C5]/20 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-200">
         <MainContainer>
           <div className="h-[58px] sm:h-[64px] md:h-[72px] flex items-center justify-between">
             
-            {/* MOBILE: Hamburger Button (Left) */}
+            {/* MOBILE: Hamburger Button */}
             <div className="flex items-center md:hidden w-12">
               <button
                 type="button"
@@ -90,7 +84,7 @@ export default function Navbar() {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-2 -ml-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none"
+                className="p-2 -ml-2 text-[#F6EFE7] hover:text-[#C94B5B] transition-colors duration-200 focus:outline-none"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -102,27 +96,27 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* BRAND LOGO: Modern Sleek Boxed Wordmark */}
+            {/* BRAND LOGO: Deep Cherry & Wine Boxed Wordmark */}
             <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
               <Link
                 to="/"
-                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
+                className="inline-flex items-stretch border border-[#E7C4C5]/30 rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
                 aria-label="ÉLAVA Home"
               >
-                <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
-                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#C8A45A] uppercase">
+                <div className="bg-[#641D2D] text-[#F6EFE7] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#E7C4C5]/30">
+                  <span className="font-serif text-[14px] sm:text-[16px] tracking-[0.24em] font-medium leading-none text-[#F6EFE7] uppercase">
                     ÉLAVA
                   </span>
                 </div>
-                <div className="bg-[#8B1E1E] text-[#F3EDE3] px-2 sm:px-2.5 py-1 flex items-center justify-center">
-                  <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#F3EDE3]">
+                <div className="bg-[#2A0D14] text-[#E7C4C5] px-2 sm:px-2.5 py-1 flex items-center justify-center">
+                  <span className="font-sans text-[7.5px] sm:text-[8.5px] tracking-[0.26em] font-bold leading-none uppercase text-[#E7C4C5]">
                     PERFUMES
                   </span>
                 </div>
               </Link>
             </div>
 
-            {/* NAVIGATION LINKS: Center Desktop Horizontal Bar */}
+            {/* NAVIGATION LINKS */}
             <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => {
                 const isActive = link.path === '/'
@@ -136,8 +130,8 @@ export default function Navbar() {
                     className={
                       `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.18em] font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
                         isActive
-                          ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
-                          : 'text-[#F5F1EA] hover:text-[#FFFFFF] hover:bg-[rgba(243,235,221,0.06)]'
+                          ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
+                          : 'text-[#F6EFE7]/85 hover:text-[#F6EFE7] hover:bg-[#641D2D]/60'
                       }`
                     }
                   >
@@ -147,13 +141,13 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* ACTIONS: Right (Account, Search, Cart & SHOP NOW CTA) */}
+            {/* ACTIONS */}
             <div className="flex items-center justify-end space-x-1 sm:space-x-2 w-auto">
               {/* Account Link */}
               <Link
                 to={user ? "/account" : "/login"}
-                className={`p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none ${
-                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#FFFFFF]' : ''
+                className={`p-2 text-[#F6EFE7] hover:text-[#C94B5B] transition-colors duration-200 focus:outline-none ${
+                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#C94B5B]' : ''
                 }`}
                 aria-label={user ? "View Account Profile" : "Login or Sign Up"}
               >
@@ -167,7 +161,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none"
+                className="p-2 text-[#F6EFE7] hover:text-[#C94B5B] transition-colors duration-200 focus:outline-none"
                 aria-label="Search collection"
               >
                 <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -179,22 +173,22 @@ export default function Navbar() {
                 onClick={() => {
                   window.dispatchEvent(new Event('open-cart-drawer'));
                 }}
-                className="p-2 text-[#F5F1EA] hover:text-[#FFFFFF] transition-colors duration-200 focus:outline-none relative"
+                className="p-2 text-[#F6EFE7] hover:text-[#C94B5B] transition-colors duration-200 focus:outline-none relative"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
                 <ShoppingBag className="w-[19px] h-[19px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-[#7A2929] text-[#F5F1EA] text-[9.5px] font-extrabold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
+                  <span className="absolute top-1 right-1 bg-[#C94B5B] text-[#F6EFE7] text-[9.5px] font-extrabold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              {/* Primary Action Button: SHOP NOW → */}
+              {/* Primary Action Button: SHOP NOW → (Coral Accent) */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] text-[11px] font-extrabold tracking-widest uppercase transition-all duration-200 shadow-sm ml-1"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] text-[11px] font-extrabold tracking-widest uppercase transition-all duration-200 shadow-sm ml-1"
                 id="navbar-shop-now-btn"
               >
                 <span>SHOP NOW →</span>
@@ -211,35 +205,31 @@ export default function Navbar() {
       {/* COMPACT FLOATING MOBILE MENU PANEL */}
       {isMobileMenuOpen && (
         <div className="md:hidden">
-          {/* Subtle translucent backdrop */}
           <div
             className="fixed inset-0 bg-black/80 z-40 transition-opacity duration-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
-          {/* Floating Navigation Card/Panel (Background #111116, Border rgba(241,238,242,0.16)) */}
           <aside
-            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#102F38] border border-[rgba(243,235,221,0.16)] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F5F1EA] transition-transform duration-200 ease-out"
+            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#2A0D14] border border-[#E7C4C5]/20 rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F6EFE7] transition-transform duration-200 ease-out"
             aria-label="Mobile Navigation Panel"
           >
-            {/* Panel Header */}
             <div>
-              <div className="flex items-center justify-between pb-3.5 border-b border-[rgba(243,235,221,0.12)] mb-3">
-                <span className="font-serif text-xs tracking-[0.2em] font-bold text-[#B8C4C2] uppercase">
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#E7C4C5]/15 mb-3">
+                <span className="font-serif text-xs tracking-[0.2em] font-bold text-[#E7C4C5] uppercase">
                   ÉLAVA NAVIGATION
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1 text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors"
+                  className="p-1 text-[#E7C4C5] hover:text-[#F6EFE7] transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Mobile Navigation Links */}
               <nav className="flex flex-col">
                 {navLinks.map((link) => {
                   const isActive = link.path === '/'
@@ -251,10 +241,10 @@ export default function Navbar() {
                       key={link.path}
                       to={link.path}
                       className={
-                        `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[rgba(243,235,221,0.12)] transition-colors ${
+                        `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
                           isActive
-                            ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
-                            : 'text-[#F5F1EA] hover:bg-[rgba(243,235,221,0.06)] hover:text-[#FFFFFF] font-medium'
+                            ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
+                            : 'text-[#F6EFE7]/85 hover:bg-[#641D2D]/60 hover:text-[#F6EFE7] font-medium'
                         }`
                       }
                     >
@@ -263,14 +253,13 @@ export default function Navbar() {
                   );
                 })}
 
-                {/* Account / Profile Link */}
                 <NavLink
                   to={user ? "/account" : "/login"}
                   className={
-                    `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[rgba(243,235,221,0.12)] transition-colors ${
+                    `w-full text-left font-sans text-xs uppercase tracking-[0.2em] h-[48px] px-5 flex items-center border-b border-[#E7C4C5]/15 transition-colors ${
                       location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
-                        ? 'text-[#FFFFFF] font-bold bg-[rgba(243,235,221,0.08)]'
-                        : 'text-[#F5F1EA] hover:bg-[rgba(243,235,221,0.06)] hover:text-[#FFFFFF] font-medium'
+                        ? 'text-[#F6EFE7] font-bold bg-[#641D2D]'
+                        : 'text-[#F6EFE7]/85 hover:bg-[#641D2D]/60 hover:text-[#F6EFE7] font-medium'
                     }`
                   }
                 >
@@ -279,17 +268,16 @@ export default function Navbar() {
               </nav>
             </div>
 
-            {/* Panel Quick Actions Footer */}
-            <div className="pt-3 border-t border-[rgba(243,235,221,0.12)] space-y-2">
+            <div className="pt-3 border-t border-[#E7C4C5]/15 space-y-2">
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#1C4A55] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F1EA] hover:text-[#FFFFFF] border border-[rgba(243,235,221,0.15)] transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#641D2D] text-xs font-sans font-semibold uppercase tracking-wider text-[#F6EFE7] hover:text-white border border-[#E7C4C5]/20 transition-colors"
               >
-                <Search className="w-4 h-4 text-[#B8C4C2] shrink-0" />
+                <Search className="w-4 h-4 text-[#E7C4C5] shrink-0" />
                 <span>SEARCH COLLECTION</span>
               </button>
 
@@ -297,7 +285,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#102F38] border border-[rgba(243,235,221,0.14)] text-xs font-sans font-bold uppercase tracking-wider text-[#F5F1EA] hover:border-[#F5F1EA]/40 transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#2A0D14] border border-[#E7C4C5]/20 text-xs font-sans font-bold uppercase tracking-wider text-[#F6EFE7] hover:border-[#E7C4C5]/40 transition-colors"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>

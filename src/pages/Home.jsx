@@ -13,23 +13,12 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * Home Page - Sequence:
- * 1. SHOP BY OCCASION
- * 2. FIND YOUR SIGNATURE SCENT CTA
- * 3. FIND YOUR SCENT
- * 4. MOST LOVED
- * 5. BUILD YOUR SCENT WARDROBE
- * 6. TRUST STRIP
- * 7. TRY BEFORE YOU BUY (DISCOVERY SET)
- * 8. SHARE & EARN (PATRON REWARDS)
- * 9. FIND YOUR SIGNATURE SCENT (SCENT QUIZ)
- * 10. WHY ÉLAVA
- * 11. WHAT PEOPLE SAY
- * 12. BRAND STORY
+ * ÉLAVA Homepage Container — Deep Cherry / Cherry + Cream Coherent Visual Identity
+ * Base Palette: Deep Cherry (#2A0D14), Rich Wine (#641D2D), Cream (#F6EFE7), Soft Blush (#E7C4C5)
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#163E49] text-[#F5F1EA]">
+    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."
@@ -40,34 +29,34 @@ export default function Home() {
       {/* 1. SHOP BY OCCASION */}
       <ShopByOccasion />
 
-      {/* 2. FIND YOUR SIGNATURE SCENT CTA (Compact Banner) */}
+      {/* 2. FIND YOUR SIGNATURE SCENT CTA */}
       <SignatureCtaBanner />
 
-      {/* 3. FIND YOUR SCENT (GENDER/CATEGORIES FIRST) */}
+      {/* 3. FIND YOUR SCENT */}
       <FindYourScent />
 
       {/* 4. MOST LOVED (BESTSELLERS) */}
       <MostLoved />
 
-      {/* 5. BUILD YOUR SCENT WARDROBE (DUO BUNDLE BUILDER) */}
+      {/* 5. BUILD YOUR SCENT WARDROBE (DUO BUNDLE) */}
       <ScentWardrobeBundle />
 
       {/* 6. TRUST STRIP */}
       <TrustStrip />
 
-      {/* 7. SHARE ÉLAVA. EARN ₹100. (PATRON REWARDS) */}
+      {/* 7. SHARE ÉLAVA. EARN ₹100 CASH. (REFER & EARN) */}
       <ReferralBanner />
 
-      {/* 9. FIND YOUR SIGNATURE SCENT (FULL SCENT FINDER) */}
+      {/* 8. SCENT QUIZ */}
       <ScentQuiz />
 
-      {/* 10. WHY ÉLAVA */}
+      {/* 9. WHY ÉLAVA */}
       <WhyElava />
 
-      {/* 11. WHAT PEOPLE SAY */}
+      {/* 10. WHAT PEOPLE SAY */}
       <WhatPeopleSay />
 
-      {/* 12. THE STORY BEHIND ÉLAVA */}
+      {/* 11. BRAND STORY */}
       <BrandStory />
     </div>
   );

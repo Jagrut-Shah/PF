@@ -27,7 +27,7 @@ const DIFFERENTIATORS = [
 
 export default function WhyElava() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#163E49] text-[#F3EBDD]">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#2A0D14] text-[#F6EFE7]">
       <MainContainer>
         <SectionHeading
           title="WHY ÉLAVA"
@@ -38,16 +38,16 @@ export default function WhyElava() {
           {DIFFERENTIATORS.map((item) => (
             <div
               key={item.number}
-              className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-6 flex flex-col justify-between shadow-sm transition-transform duration-300 hover:-translate-y-1"
+              className="bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl p-6 flex flex-col justify-between shadow-sm transition-transform duration-300 hover:-translate-y-1"
             >
               <div>
-                <span className="font-serif text-3xl font-bold text-[#B8C4C2] block mb-3">
+                <span className="font-serif text-3xl font-bold text-[#E7C4C5] block mb-3">
                   {item.number}
                 </span>
-                <h3 className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-[#F3EBDD] mb-2">
+                <h3 className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-[#F6EFE7] mb-2">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs text-[#C8C1B5] leading-relaxed">
+                <p className="font-sans text-xs text-[#E7C4C5]/80 leading-relaxed">
                   {item.description}
                 </p>
               </div>

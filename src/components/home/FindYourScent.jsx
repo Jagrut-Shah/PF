@@ -33,10 +33,11 @@ const SCENT_CATEGORIES = [
 /**
  * FindYourScent Homepage Section
  * Visual category showcase directly beneath the Navbar.
+ * Palette: Deep Cherry (#2A0D14) background, Cream (#F6EFE7) headings.
  */
 export default function FindYourScent() {
   return (
-    <section className="pt-5 sm:pt-8 md:pt-10 pb-5 sm:pb-8 md:pb-10" aria-labelledby="find-your-scent-heading">
+    <section className="pt-5 sm:pt-8 md:pt-10 pb-5 sm:pb-8 md:pb-10 bg-[#2A0D14] text-[#F6EFE7]" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         {/* Section Heading & Subtitle */}
         <SectionHeading
