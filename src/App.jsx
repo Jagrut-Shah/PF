@@ -20,6 +20,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import AccountPage from './pages/AccountPage';
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -70,7 +71,12 @@ export default function App() {
           {/* Protected Future Pathways */}
           <Route path="/account" element={
             <ProtectedRoute>
-              <div className="min-h-screen py-24 text-center font-serif text-lg">Account Dashboard Coming Soon</div>
+              <AccountPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/account/settings" element={
+            <ProtectedRoute>
+              <AccountPage />
             </ProtectedRoute>
           } />
           <Route path="/orders" element={
@@ -85,7 +91,7 @@ export default function App() {
           } />
           <Route path="/settings" element={
             <ProtectedRoute>
-              <div className="min-h-screen py-24 text-center font-serif text-lg">Account Settings Coming Soon</div>
+              <AccountPage />
             </ProtectedRoute>
           } />
         </Routes>
