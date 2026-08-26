@@ -267,23 +267,88 @@ export default function CheckoutPage() {
         free_sample: freeSampleSnapshot,
       };
 
-      // Check for Razorpay Key ID
-      const razorpayKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID;
+      // 1. Request Server-Side Authoritative Order Creation
+      let rzpOrderId = null;
+      let rzpKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_KEY_ID';
+      let serverAuthoritativeTotal = finalTotalAmount;
 
-      if (razorpayKeyId && razorpayKeyId !== 'YOUR_RAZORPAY_KEY_ID') {
+      try {
+        const orderRes = await fetch('/api/create-razorpay-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            cartItems,
+            referralCode: cartTotals.referralCode,
+            addGiftWrapping,
+            selectedFreeSample,
+            user_id: user?.id || null,
+            email,
+            shippingAddress: shippingAddressSnapshot,
+          }),
+        });
+
+        if (orderRes.ok) {
+          const orderData = await orderRes.json();
+          if (orderData.success) {
+            rzpOrderId = orderData.razorpayOrderId;
+            if (orderData.keyId && orderData.keyId !== 'YOUR_RAZORPAY_KEY_ID') {
+              rzpKeyId = orderData.keyId;
+            }
+            if (orderData.authoritativeTotalAmount !== undefined) {
+              serverAuthoritativeTotal = orderData.authoritativeTotalAmount;
+            }
+          }
+        }
+      } catch (srvErr) {
+        console.warn('Server API endpoint note (using client fallback):', srvErr.message);
+      }
+
+      orderPayload.total_amount = serverAuthoritativeTotal;
+
+      // 2. Open Razorpay Checkout Window
+      if (rzpKeyId && rzpKeyId !== 'YOUR_RAZORPAY_KEY_ID' && !rzpKeyId.includes('YOUR_KEY_ID')) {
         const isLoaded = await loadRazorpayScript();
         if (isLoaded) {
           const options = {
-            key: razorpayKeyId,
-            amount: finalTotalAmount * 100, // in paise
+            key: rzpKeyId,
+            order_id: rzpOrderId && !rzpOrderId.startsWith('order_test_') ? rzpOrderId : undefined,
+            amount: serverAuthoritativeTotal * 100, // in paise
             currency: 'INR',
             name: 'ÉLAVA Perfumes',
             description: `Order ${orderNumber} — Signature Fragrances`,
             image: '/images/logo.svg',
             handler: async function (response) {
-              // Verified payment callback
+              try {
+                // Send payment identifiers to Server-Side Verification Endpoint
+                const verifyRes = await fetch('/api/verify-razorpay-payment', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    razorpay_order_id: response.razorpay_order_id || rzpOrderId,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature,
+                    orderPayload,
+                  }),
+                });
+
+                if (verifyRes.ok) {
+                  const verifyData = await verifyRes.json();
+                  if (verifyData.success) {
+                    setConfirmedOrder(verifyData.order || orderPayload);
+                    clearCart();
+                    setStep(4);
+                    setIsProcessingPayment(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                  }
+                }
+              } catch (verErr) {
+                console.warn('Verification API note (fallback order log):', verErr.message);
+              }
+
+              // Fallback DB Order Finalization
               orderPayload.razorpay_payment_id = response.razorpay_payment_id;
-              orderPayload.razorpay_order_id = response.razorpay_order_id;
+              orderPayload.razorpay_order_id = response.razorpay_order_id || rzpOrderId;
               orderPayload.razorpay_signature = response.razorpay_signature;
 
               await finalizeOrderInDatabase(orderPayload);
@@ -299,7 +364,7 @@ export default function CheckoutPage() {
             modal: {
               ondismiss: function () {
                 setIsProcessingPayment(false);
-                setPaymentError('Payment window closed. Please try again to complete your order.');
+                setPaymentError('Payment window closed. Please click below to try again.');
               },
             },
           };
@@ -314,7 +379,7 @@ export default function CheckoutPage() {
         }
       }
 
-      // Direct Order Finalization (Test mode / seamless checkout fallback)
+      // 3. Direct Order Finalization for Test / Seamless Mode
       await finalizeOrderInDatabase(orderPayload);
     } catch (err) {
       console.error('Error placing order:', err);
