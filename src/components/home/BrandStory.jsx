@@ -2,30 +2,29 @@ import React from 'react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * BrandStory Component — Near-Black #0D0A0C bottom stats panel for art-directed depth,
- * Bodoni Moda Title & Pull Quote, Manrope Body Copy.
+ * BrandStory Component — Variant B: Warm Ivory (#F3E9DD) Story Card + Near Black (#0D0A0C) Stats Anchor
  */
 export default function BrandStory() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#2A0D14] text-[#F6EFE7] border-y border-[#E7C4C5]/15">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#2A0D14] text-[#F3E9DD] border-y border-[#E7C4C5]/15">
       <MainContainer>
-        <div className="max-w-4xl mx-auto bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl p-6 sm:p-10 md:p-14 shadow-lg text-center relative overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-[#F3E9DD] border border-[#641D2D]/20 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden">
           
-          <span className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#E7C4C5] block mb-3">
+          <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#641D2D] block mb-3">
             Our Essence & Origin
           </span>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] mb-6 leading-tight tracking-tight">
-            The Story Behind <span className="italic font-normal text-[#E7C4C5]">Élava</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#2A0D14] mb-6 leading-tight tracking-tight">
+            The Story Behind <span className="italic font-normal text-[#641D2D]">Élava</span>
           </h2>
 
-          <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#F6EFE7]/85 leading-relaxed font-normal max-w-2xl mx-auto">
+          <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#2A0D14]/85 leading-relaxed font-normal max-w-2xl mx-auto">
             <p>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
             {/* Selected Pull Quote — Bodoni Moda Italic 400 */}
-            <blockquote className="my-6 py-4 border-y border-[#E7C4C5]/15 font-serif italic text-2xl sm:text-3xl text-[#F6EFE7] font-normal leading-snug max-w-xl mx-auto">
+            <blockquote className="my-6 py-4 border-y border-[#641D2D]/15 font-serif italic text-2xl sm:text-3xl text-[#2A0D14] font-normal leading-snug max-w-xl mx-auto">
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
             </blockquote>
 
@@ -34,16 +33,16 @@ export default function BrandStory() {
             </p>
           </div>
 
-          {/* Near Black #0D0A0C Stats Panel */}
+          {/* Near Black #0D0A0C Stats Anchor Panel */}
           <div className="mt-8 pt-2">
-            <div className="bg-[#0D0A0C] border border-[#E7C4C5]/20 rounded-xl p-4 max-w-sm mx-auto flex items-center justify-center gap-6 shadow-sm">
+            <div className="bg-[#0D0A0C] border border-[#E7C4C5]/20 rounded-xl p-4 max-w-sm mx-auto flex items-center justify-center gap-6 shadow-md text-[#F3E9DD]">
               <div className="text-center">
-                <span className="font-serif text-xl font-normal text-[#F6EFE7] block">60 ml</span>
+                <span className="font-serif text-xl font-normal text-[#F3E9DD] block">60 ml</span>
                 <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Eau de Parfum</span>
               </div>
               <div className="w-px h-8 bg-[#E7C4C5]/20" />
               <div className="text-center">
-                <span className="font-serif text-xl font-normal text-[#F6EFE7] block">India</span>
+                <span className="font-serif text-xl font-normal text-[#F3E9DD] block">India</span>
                 <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Crafted Origin</span>
               </div>
             </div>

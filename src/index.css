@@ -5,7 +5,7 @@
   --elava-cherry: #2A0D14;
   --elava-wine: #641D2D;
   --elava-near-black: #0D0A0C;
-  --elava-cream: #F6EFE7;
+  --elava-cream: #F3E9DD; /* Variant B: Warm Ivory */
   --elava-blush: #E7C4C5;
   --elava-charcoal: #171316;
   --elava-coral: #C94B5B;
@@ -32,7 +32,7 @@
   --color-elava-cherry: #2A0D14;
   --color-elava-wine: #641D2D;
   --color-elava-black: #0D0A0C;
-  --color-elava-cream: #F6EFE7;
+  --color-elava-cream: #F3E9DD;
   --color-elava-blush: #E7C4C5;
   --color-elava-charcoal: #171316;
   --color-elava-coral: #C94B5B;
@@ -47,7 +47,7 @@ html, body, #root, main {
   margin: 0;
   padding: 0;
   background-color: #2A0D14;
-  color: #F6EFE7;
+  color: #F3E9DD;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -186,5 +186,5 @@ html {
 /* Selection color */
 ::selection {
   background: rgba(100, 29, 45, 0.5);
-  color: #F6EFE7;
+  color: #F3E9DD;
 }
