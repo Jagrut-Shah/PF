@@ -53,11 +53,12 @@ async function logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscou
 }
 
 /**
- * Calculate totals from cart array with referral discount
+ * Calculate totals from cart array with referral discount and property aliases
  */
 export function getCartTotals(cart = getCart()) {
-  const itemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-  const subtotalAmount = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (item.quantity || 1), 0);
+  const safeCart = Array.isArray(cart) ? cart : [];
+  const itemCount = safeCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  const subtotalAmount = safeCart.reduce((sum, item) => sum + (Number(item.price) || 0) * (item.quantity || 1), 0);
 
   const referralData = getStoredReferralCode();
   let referralDiscount = 0;
@@ -74,8 +75,11 @@ export function getCartTotals(cart = getCart()) {
   return {
     itemCount,
     subtotalAmount,
+    subtotal: subtotalAmount,
     referralDiscount,
+    discountAmount: referralDiscount,
     totalAmount,
+    finalTotal: totalAmount,
     referralCode,
   };
 }
@@ -84,14 +88,15 @@ export function getCartTotals(cart = getCart()) {
  * Create multi-product WhatsApp order URL for full cart
  */
 export function createCartWhatsAppOrderUrl(cart = getCart(), selectedAddress = null) {
-  if (!cart || cart.length === 0) {
+  const safeCart = Array.isArray(cart) ? cart : [];
+  if (!safeCart || safeCart.length === 0) {
     return createWhatsAppOrderUrl({ customMessage: "Hi ÉLAVA, I'd like to explore your collection." });
   }
 
-  const { itemCount, subtotalAmount, referralDiscount, totalAmount, referralCode } = getCartTotals(cart);
-  const itemsText = cart
+  const { itemCount, subtotalAmount, referralDiscount, totalAmount, referralCode } = getCartTotals(safeCart);
+  const itemsText = safeCart
     .map((item) => {
-      let line = `• ÉLAVA ${item.name} (${item.size || 'Standard'}) x ${item.quantity} - ₹${(item.price * item.quantity).toLocaleString()}`;
+      let line = `• ÉLAVA ${item.name} (${item.size || 'Standard'}) x ${item.quantity} - ₹${((item.price || 0) * (item.quantity || 1)).toLocaleString()}`;
       if (item.type === 'duo_bundle' && item.includedFragrances) {
         line += `\n  Includes: ${item.includedFragrances.map((f) => f.name).join(' + ')}`;
       }
@@ -118,7 +123,7 @@ export function createCartWhatsAppOrderUrl(cart = getCart(), selectedAddress = n
   const customMessage = `Hi ÉLAVA, I'd like to order the following items from my cart:\n\n${itemsText}${discountText}${addressText}\n\nTotal (${itemCount} ${itemCount === 1 ? 'item' : 'items'}): ₹${totalAmount.toLocaleString()}`;
 
   // Log order asynchronously
-  logReferredOrderToDatabase({ cart, subtotalAmount, referralDiscount, totalAmount, referralCode, selectedAddress });
+  logReferredOrderToDatabase({ cart: safeCart, subtotalAmount, referralDiscount, totalAmount, referralCode, selectedAddress });
 
   return createWhatsAppOrderUrl({ customMessage });
 }
@@ -269,11 +274,8 @@ export function removeCartItem(id, size) {
   return filtered;
 }
 
-
-
 /**
  * Get persisted gift options from localStorage (used by ProductDetails.jsx)
- * Returns { isGift: bool, giftMessage: string, giftFrom: string, giftTo: string }
  */
 export function getCartGiftOptions() {
   try {
