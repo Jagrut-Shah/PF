@@ -44,13 +44,16 @@ function ScrollToTop() {
   return null;
 }
 
+/**
+ * App Layout Container — Deep Black #0B0B0B & Warm White #F5F2EE Base
+ */
 export default function App() {
   useEffect(() => {
     captureReferralAttribution();
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#2A0D14] text-[#F6EFE7]">
+    <div className="flex flex-col min-h-screen bg-[#0B0B0B] text-[#F5F2EE]">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

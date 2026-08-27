@@ -7,25 +7,26 @@ import StarRating from '../ui/StarRating';
 import reviews, { reviewAggregate } from '../../data/reviews';
 
 /**
- * WHAT PEOPLE SAY — Final Color Direction C: Dark Espresso #241918 environment + Warm Cream #F0E2D0 typography.
+ * WHAT PEOPLE SAY — Black & Red Luxury Aesthetic:
+ * Deep Black #0B0B0B section environment + Warm White #F5F2EE typography.
  */
 export default function WhatPeopleSay() {
   const displayedReviews = reviews.slice(0, 3);
   const { rating, totalReviews } = reviewAggregate;
 
   return (
-    <section className="py-8 sm:py-12 bg-[#241918] text-[#F0E2D0]" aria-labelledby="what-people-say-heading">
+    <section className="py-8 sm:py-12 bg-[#0B0B0B] text-[#F5F2EE]" aria-labelledby="what-people-say-heading">
       <MainContainer>
 
         {/* Section header */}
         <div className="mb-6 sm:mb-8">
           <h2
             id="what-people-say-heading"
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F0E2D0] tracking-tight leading-tight"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F5F2EE] tracking-tight leading-tight"
           >
             What People Say
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#CDBBAA] mt-1 font-normal leading-relaxed">
+          <p className="font-sans text-xs sm:text-sm text-[#B8B3AF] mt-1 font-normal leading-relaxed">
             Words from our fragrance collective.
           </p>
         </div>
@@ -50,14 +51,14 @@ export default function WhatPeopleSay() {
         </div>
 
         {/* Rating Summary row below cards */}
-        <div className="flex flex-col gap-3 pt-3 md:pt-4 md:flex-row md:items-center md:justify-between border-t border-[#CDBBAA]/15 mt-2">
+        <div className="flex flex-col gap-3 pt-3 md:pt-4 md:flex-row md:items-center md:justify-between border-t border-white/10 mt-2">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
             <StarRating rating={rating} size={15} starColor="#C6A15B" />
             <div className="flex flex-wrap items-center gap-1.5 font-sans">
-              <span className="text-xs sm:text-sm font-semibold text-[#F0E2D0]">
+              <span className="text-xs sm:text-sm font-semibold text-[#F5F2EE]">
                 {rating} out of 5
               </span>
-              <span className="text-xs text-[#CDBBAA] font-normal">
+              <span className="text-xs text-[#B8B3AF] font-normal">
                 · {totalReviews.toLocaleString()} Total Reviews
               </span>
             </div>
@@ -65,7 +66,7 @@ export default function WhatPeopleSay() {
 
           <Link
             to="/reviews"
-            className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#F0E2D0] hover:text-[#CDBBAA] transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200"
             aria-label="View more reviews"
           >
             <span>View More Reviews</span>
