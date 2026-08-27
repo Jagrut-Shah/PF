@@ -2,7 +2,8 @@ import React from 'react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * BrandStory Component — Bodoni Moda Title & Pull Quote (Section 24), Manrope Body Copy.
+ * BrandStory Component — Near-Black #0D0A0C bottom stats panel for art-directed depth,
+ * Bodoni Moda Title & Pull Quote, Manrope Body Copy.
  */
 export default function BrandStory() {
   return (
@@ -23,7 +24,7 @@ export default function BrandStory() {
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
-            {/* Selected Pull Quote — Bodoni Moda Italic 400 (Section 24) */}
+            {/* Selected Pull Quote — Bodoni Moda Italic 400 */}
             <blockquote className="my-6 py-4 border-y border-[#E7C4C5]/15 font-serif italic text-2xl sm:text-3xl text-[#F6EFE7] font-normal leading-snug max-w-xl mx-auto">
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
             </blockquote>
@@ -33,15 +34,18 @@ export default function BrandStory() {
             </p>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-[#E7C4C5]/15 flex items-center justify-center gap-6">
-            <div className="text-center">
-              <span className="font-serif text-xl font-normal text-[#F6EFE7] block">60 ml</span>
-              <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Eau de Parfum</span>
-            </div>
-            <div className="w-px h-8 bg-[#E7C4C5]/15" />
-            <div className="text-center">
-              <span className="font-serif text-xl font-normal text-[#F6EFE7] block">India</span>
-              <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Crafted Origin</span>
+          {/* Near Black #0D0A0C Stats Panel */}
+          <div className="mt-8 pt-2">
+            <div className="bg-[#0D0A0C] border border-[#E7C4C5]/20 rounded-xl p-4 max-w-sm mx-auto flex items-center justify-center gap-6 shadow-sm">
+              <div className="text-center">
+                <span className="font-serif text-xl font-normal text-[#F6EFE7] block">60 ml</span>
+                <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Eau de Parfum</span>
+              </div>
+              <div className="w-px h-8 bg-[#E7C4C5]/20" />
+              <div className="text-center">
+                <span className="font-serif text-xl font-normal text-[#F6EFE7] block">India</span>
+                <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#E7C4C5]/80">Crafted Origin</span>
+              </div>
             </div>
           </div>
         </div>

@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- * ScentCategoryCard Component — Bodoni Moda 400 Titles & Manrope UI (Section 18), Touch & Scale Animations (Section 15)
+ * ScentCategoryCard Component — Bodoni Moda 400 Titles & Manrope UI (Section 18),
+ * Near-Black #0D0A0C container base for art-directed contrast.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -18,12 +19,12 @@ export default function ScentCategoryCard({ category }) {
   return (
     <Link
       to={category.link}
-      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#2A0D14] border border-[#E7C4C5]/15 focus:outline-none active:scale-[0.98] transition-transform duration-150 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#0D0A0C] border border-[#E7C4C5]/15 focus:outline-none active:scale-[0.98] transition-transform duration-150 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
       aria-label={`Explore ${category.title} collection`}
     >
       {/* MOBILE */}
       <div className="block md:hidden">
-        <div className="overflow-hidden rounded-t-xl bg-[#171316]">
+        <div className="overflow-hidden rounded-t-xl bg-[#0D0A0C]">
           <img
             src={category.image}
             alt={category.alt}
@@ -31,7 +32,7 @@ export default function ScentCategoryCard({ category }) {
             loading="eager"
           />
         </div>
-        <div className="bg-[#2A0D14] px-3 pt-2.5 pb-2 text-left">
+        <div className="bg-[#0D0A0C] px-3 pt-2.5 pb-2 text-left border-t border-[#E7C4C5]/10">
           <h3 className="font-serif text-[21px] font-normal text-[#F6EFE7] leading-tight">
             {category.title}
           </h3>
@@ -52,7 +53,7 @@ export default function ScentCategoryCard({ category }) {
         />
 
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#2A0D14]/90 via-[#2A0D14]/45 via-35% to-transparent pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-r from-[#0D0A0C]/90 via-[#2A0D14]/50 via-35% to-transparent pointer-events-none"
           aria-hidden="true"
         />
 

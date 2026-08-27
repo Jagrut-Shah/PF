@@ -38,7 +38,7 @@ export default function WhyElava() {
           {DIFFERENTIATORS.map((item) => (
             <div
               key={item.number}
-              className="bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl p-6 flex flex-col justify-between shadow-sm transition-transform duration-300 hover:-translate-y-1"
+              className="bg-[#0D0A0C] border border-[#E7C4C5]/15 rounded-xl p-6 flex flex-col justify-between shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E7C4C5]/30"
             >
               <div>
                 <span className="font-serif text-4xl font-normal text-[#E7C4C5] block mb-3 leading-none">
