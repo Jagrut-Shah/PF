@@ -41,14 +41,17 @@ const OCCASIONS_DATA = [
 
 /**
  * ShopByOccasion Component — Single 4-Column Row Layout
- * Features staggered scroll reveal animations across all 4 occasion cards.
+ * Features noticeable Level 3 diffuse deep-red atmospheric backdrop (.bg-ambient-occasion) and staggered scroll reveal.
  */
 export default function ShopByOccasion() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10" aria-labelledby="shop-by-occasion-heading">
-      <MainContainer>
+    <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10 relative overflow-hidden" aria-labelledby="shop-by-occasion-heading">
+      {/* Noticeable Level 3 Diffuse Red Ambient Light Zone behind occasion cards */}
+      <div className="absolute inset-0 bg-ambient-occasion pointer-events-none" />
+
+      <MainContainer className="relative z-10">
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
             id="shop-by-occasion-heading"

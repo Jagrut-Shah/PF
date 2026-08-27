@@ -4,17 +4,20 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
  * BrandStory Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 story card with editorial staggered scroll reveal.
+ * Deep Black #0B0B0B environment with noticeable Level 3 diffuse deep-red editorial lighting (.bg-ambient-story) and Soft Black #121212 story card.
  */
 export default function BrandStory() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#0B0B0B] text-[#F5F2EE] border-y border-white/10">
-      <MainContainer>
+    <section className="py-12 sm:py-16 md:py-20 bg-[#0B0B0B] text-[#F5F2EE] border-y border-white/10 relative overflow-hidden">
+      {/* Noticeable Level 3 Diffuse Red Ambient Editorial Light Zone */}
+      <div className="absolute inset-0 bg-ambient-story pointer-events-none" />
+
+      <MainContainer className="relative z-10">
         <div
           ref={ref}
-          className={`max-w-4xl mx-auto bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden reveal-init ${
+          className={`max-w-4xl mx-auto bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden reveal-init bg-lacquer-highlight ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >

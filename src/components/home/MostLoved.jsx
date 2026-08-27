@@ -7,8 +7,8 @@ import products from '../../data/products';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * MostLoved Homepage Section — Layered Black & Red Atmosphere & Motion:
- * Soft Black #111111 environment + Level 1 diffuse ambient red wash + Staggered scroll reveal.
+ * MostLoved Homepage Section — Layered Black & Red Atmosphere & Motion V2:
+ * Soft Black #111111 section environment + Level 3 Noticeable Diffuse Deep-Red Ambient Light (.bg-ambient-bestsellers) + Staggered scroll reveal.
  * Bestseller Gold #C6A15B strictly preserved for BESTSELLERS tag.
  */
 export default function MostLoved() {
@@ -16,9 +16,9 @@ export default function MostLoved() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#111111] text-[#F5F2EE] relative overflow-hidden" aria-labelledby="most-loved-heading">
-      {/* Level 1 Diffuse Red Ambient Light */}
-      <div className="absolute inset-0 bg-ambient-red pointer-events-none" />
+    <section className="py-10 sm:py-14 bg-[#111111] text-[#F5F2EE] relative overflow-hidden border-b border-white/10" aria-labelledby="most-loved-heading">
+      {/* Noticeable Level 3 Diffuse Red Ambient Light Zone behind product group */}
+      <div className="absolute inset-0 bg-ambient-bestsellers pointer-events-none" />
 
       <MainContainer className="relative z-10">
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>

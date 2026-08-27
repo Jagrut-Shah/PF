@@ -6,8 +6,8 @@ import { Gift, Share2 } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * ReferralBanner Component — Black & Red Luxury Aesthetic:
- * Featured Hero Red Moment with sequential scroll reveal: panel -> headline -> 3 step cards -> CTA button.
+ * ReferralBanner Component — Layered Black & Red Atmosphere & Motion V2:
+ * Section environment #1C1515 / #161313 with noticeable Deep Red studio ambient lighting (.bg-ambient-referral) and sequential scroll reveal.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -23,17 +23,17 @@ export default function ReferralBanner() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-t border-b border-white/10 relative overflow-hidden">
-      <MainContainer>
+    <section className="py-12 sm:py-16 bg-[#161313] text-[#F5F2EE] border-t border-b border-white/10 relative overflow-hidden">
+      {/* Noticeable Level 3 Diffuse Red Ambient Light Zone */}
+      <div className="absolute inset-0 bg-ambient-referral pointer-events-none" />
+
+      <MainContainer className="relative z-10">
         <div
           ref={ref}
-          className={`bg-[#8F1018] border border-white/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden reveal-init ${
+          className={`bg-[#8F1018] border border-white/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden reveal-init bg-lacquer-highlight ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
-          {/* Level 1 Ambient Red Lighting */}
-          <div className="absolute inset-0 bg-ambient-referral pointer-events-none" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
             {/* Left Content Column */}
@@ -63,7 +63,7 @@ export default function ReferralBanner() {
                 
                 {/* Step 01 */}
                 <div
-                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
+                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init bg-lacquer-highlight ${
                     isVisible ? 'reveal-visible stagger-1' : ''
                   }`}
                 >
@@ -78,7 +78,7 @@ export default function ReferralBanner() {
 
                 {/* Step 02 */}
                 <div
-                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
+                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init bg-lacquer-highlight ${
                     isVisible ? 'reveal-visible stagger-2' : ''
                   }`}
                 >
@@ -93,7 +93,7 @@ export default function ReferralBanner() {
 
                 {/* Step 03 */}
                 <div
-                  className={`bg-[#0B0B0B] border border-[#B4171E]/60 rounded-2xl p-4 space-y-1 shadow-md transition-transform duration-200 hover:-translate-y-0.5 relative overflow-hidden reveal-init ${
+                  className={`bg-[#0B0B0B] border border-[#B4171E]/60 rounded-2xl p-4 space-y-1 shadow-md transition-transform duration-200 hover:-translate-y-0.5 relative overflow-hidden reveal-init bg-lacquer-highlight ${
                     isVisible ? 'reveal-visible stagger-3' : ''
                   }`}
                 >
@@ -124,7 +124,7 @@ export default function ReferralBanner() {
 
             {/* Right Column: Near Black #080808 Card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE] transition-transform duration-300 hover:scale-[1.015]">
+              <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE] transition-transform duration-300 hover:scale-[1.015] bg-lacquer-highlight">
                 <div className="w-16 h-16 rounded-full bg-[#8F1018] border border-white/20 flex items-center justify-center mx-auto text-[#F5F2EE] shadow-inner">
                   <Share2 className="w-7 h-7" />
                 </div>

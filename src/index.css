@@ -4,8 +4,10 @@
 :root {
   /* ÉLAVA Black & Red Luxury Palette with Tonal Background Depth */
   --elava-deep-black: #0B0B0B;       /* Main homepage background base */
-  --elava-dim-black: #101010;         /* Level 2 Section variation */
-  --elava-soft-black: #121212;       /* Soft black for section variation & cards */
+  --elava-dim-black: #101010;        /* Level 2 Section variation */
+  --elava-soft-black: #111111;       /* Soft black for section variation & cards */
+  --elava-dark-warm-black: #161313;   /* Level 2 Promotional section variation */
+  --elava-dark-coffee-black: #1C1515; /* Level 2 Refer & Earn section background */
   --elava-charcoal: #171515;         /* Charcoal for elevated cards & image boxes */
   --elava-dark-surface: #1A1A1A;     /* Elevated dark surface */
   --elava-near-black: #080808;       /* Navbar & Footer background */
@@ -44,7 +46,7 @@
 
 @theme {
   --color-elava-deep-black: #0B0B0B;
-  --color-elava-soft-black: #121212;
+  --color-elava-soft-black: #111111;
   --color-elava-charcoal: #171515;
   --color-elava-near-black: #080808;
   --color-elava-deep-red: #8F1018;
@@ -105,34 +107,56 @@ body {
   font-family: "Alex Brush", cursive;
 }
 
-/* Level 3 — Diffuse Deep Red Ambient Studio Lighting Utilities (5-12% opacity) */
+/* Level 3 — Noticeable Diffuse Deep Red Studio Ambient Lighting Utilities (10-18% Opacity) */
 .bg-ambient-hero {
-  background: radial-gradient(ellipse at 70% 50%, rgba(143, 16, 24, 0.10), transparent 65%);
+  background: radial-gradient(ellipse 80% 60% at 75% 50%, rgba(143, 16, 24, 0.16), transparent 70%);
+}
+
+.bg-ambient-bestsellers {
+  background: radial-gradient(ellipse 70% 50% at 20% 40%, rgba(143, 16, 24, 0.14), transparent 65%);
+}
+
+.bg-ambient-occasion {
+  background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(143, 16, 24, 0.12), transparent 70%);
 }
 
 .bg-ambient-red {
-  background: radial-gradient(ellipse at 50% 50%, rgba(143, 16, 24, 0.07), transparent 70%);
+  background: radial-gradient(ellipse 75% 55% at 50% 50%, rgba(143, 16, 24, 0.12), transparent 70%);
 }
 
 .bg-ambient-card {
-  background: radial-gradient(circle at 50% 100%, rgba(143, 16, 24, 0.08), transparent 60%);
+  background: radial-gradient(circle at 50% 100%, rgba(143, 16, 24, 0.10), transparent 60%);
 }
 
 .bg-ambient-referral {
-  background: radial-gradient(circle at 80% 20%, rgba(199, 42, 53, 0.18), transparent 65%);
+  background: radial-gradient(circle at 80% 30%, rgba(199, 42, 53, 0.25), rgba(143, 16, 24, 0.15) 40%, transparent 70%);
 }
 
-/* Level 1 & 2 — Editorial Vignette & Black Lacquer Sheen Utilities */
-.bg-vignette-overlay {
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+.bg-ambient-quiz {
+  background: radial-gradient(circle at 50% 50%, rgba(143, 16, 24, 0.16), transparent 65%);
+}
+
+.bg-ambient-story {
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(143, 16, 24, 0.14), transparent 70%);
+}
+
+/* Level 1 & 2 — Editorial Vignette & Studio Light Fall-Off Utilities */
+.bg-studio-vignette {
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.60) 100%);
   pointer-events: none;
 }
 
-.bg-lacquer-highlight {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.008) 35%, transparent 60%);
+.bg-vignette-overlay {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
 }
 
-/* Monochromatic Film Grain Texture Layer (1-2.5% Opacity SVG Noise) */
+/* Black Lacquer & Dark Glass Light Sheen */
+.bg-lacquer-highlight {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 35%, transparent 60%);
+}
+
+/* Monochromatic Film Grain Texture Layer (1.5-2.5% Opacity SVG Noise) */
 .bg-grain-texture {
   position: relative;
 }
@@ -142,7 +166,7 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
-  opacity: 0.85;
+  opacity: 0.90;
   pointer-events: none;
   z-index: 1;
 }
