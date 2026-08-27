@@ -118,7 +118,7 @@ export default function WardrobePage() {
                     <div className="min-w-0">
                       <div className="text-[9px] font-bold uppercase tracking-wider text-[#B8C4C2]">FRAGRANCE 01</div>
                       <div className="font-serif text-xs sm:text-sm font-bold uppercase text-[#F5F1EA] truncate">
-                        ÉLAVA {fragrance1.name}
+                        {fragrance1.name}
                       </div>
                       <div className="text-[10px] text-[#B8C4C2] truncate">{fragrance1.scentIdentity}</div>
                     </div>
@@ -134,7 +134,7 @@ export default function WardrobePage() {
                     <div className="min-w-0">
                       <div className="text-[9px] font-bold uppercase tracking-wider text-[#B8C4C2]">FRAGRANCE 02</div>
                       <div className="font-serif text-xs sm:text-sm font-bold uppercase text-[#F5F1EA] truncate">
-                        ÉLAVA {fragrance2.name}
+                        {fragrance2.name}
                       </div>
                       <div className="text-[10px] text-[#B8C4C2] truncate">{fragrance2.scentIdentity}</div>
                     </div>

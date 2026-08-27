@@ -40,7 +40,7 @@ export default function ProductCard({ product, className = '' }) {
       <div className="mt-3 flex flex-col space-y-1 min-w-0">
         {/* Product Name — Bodoni Moda 400 (Section 12) */}
         <h3 className="font-serif text-[18px] sm:text-[21px] font-normal text-[#F6EFE7] leading-snug group-hover:text-[#C94B5B] transition-colors duration-200 min-w-0 break-words">
-          ÉLAVA {product.name}
+          {product.name}
         </h3>
 
         {/* Scent Identity & Gold BESTSELLER Tag — Manrope 500/600 */}

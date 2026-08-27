@@ -772,7 +772,7 @@ export default function ProductDetails() {
                     />
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs uppercase tracking-wide truncate text-[#F5F1EA]">
-                        ÉLAVA {item.name}
+                        {item.name}
                       </div>
                       <div className="text-[11px] text-[#B8C4C2] mt-0.5">
                         {item.size} · ₹{item.price?.toLocaleString()}

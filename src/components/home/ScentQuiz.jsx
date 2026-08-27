@@ -119,7 +119,7 @@ export default function ScentQuiz() {
                       TOP MATCH · ÉLAVA SIGNATURE
                     </span>
                     <h4 className="font-serif text-2xl font-normal text-[#F6EFE7]">
-                      ÉLAVA {displayProducts[0].name}
+                      {displayProducts[0].name}
                     </h4>
                     <p className="font-sans text-xs text-[#E7C4C5]/80 mt-0.5 font-normal">
                       {displayProducts[0].scentIdentity}
@@ -159,7 +159,7 @@ export default function ScentQuiz() {
                         />
                         <div className="min-w-0">
                           <h5 className="font-serif text-base font-normal text-[#F6EFE7] truncate">
-                            ÉLAVA {p.name}
+                            {p.name}
                           </h5>
                           <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate font-normal">{p.scentIdentity}</p>
                         </div>

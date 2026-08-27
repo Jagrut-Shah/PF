@@ -131,7 +131,7 @@ export default function GlobalCartDrawer() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
                         <div className="font-serif text-sm font-normal text-[#F6EFE7] truncate">
-                          {isDuo ? item.name : (item.name?.startsWith('ÉLAVA') ? item.name : `ÉLAVA ${item.name}`)}
+                          {isDuo ? item.name : item.name?.replace(/^ÉLAVA\s+/i, '')}
                         </div>
                         {isDuo && (
                           <span className="bg-[#641D2D] text-[#F6EFE7] border border-[#E7C4C5]/20 text-[9px] font-sans font-semibold uppercase px-2 py-0.5 rounded shrink-0">
