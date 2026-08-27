@@ -2,16 +2,16 @@
 @import "tailwindcss";
 
 :root {
-  /* Variant C Palette Tokens */
-  --elava-espresso: #241817;   /* Primary environmental color */
-  --elava-coffee: #33211E;     /* Secondary surface/depth color */
-  --elava-cherry: #2A0D14;     /* Signature brand accent */
-  --elava-near-black: #0D0A0C; /* Deepest contrast */
-  --elava-cream: #F1E4D2;      /* Warm Cream: primary light surface & light text */
-  --elava-taupe: #CDBBAA;      /* Soft Taupe: subtle secondary neutral */
-  --elava-blush: #D9B8B7;      /* Muted Blush: limited accent */
-  --elava-coral: #C94B5B;      /* Energetic CTA accent */
-  --elava-bestseller-gold: #C6A15B; /* BESTSELLERS ONLY */
+  /* ÉLAVA Black & Red Luxury Fragrance Palette */
+  --elava-deep-black: #0B0B0B;       /* Primary homepage background */
+  --elava-soft-black: #121212;       /* Cards and elevated surfaces */
+  --elava-dark-slate: #1A1A1A;       /* Inner cards, separators, secondary surfaces */
+  --elava-near-black: #080808;       /* Navbar & Footer background, deepest visual areas */
+  --elava-red: #B4171E;              /* Primary Signature Red accent */
+  --elava-deep-crimson: #7A0F15;     /* Hover states & deeper red surfaces */
+  --elava-warm-white: #F5F2EE;       /* Primary light typography */
+  --elava-secondary-text: #B8B3AF;   /* Supporting text & metadata */
+  --elava-bestseller-gold: #C6A15B;  /* BESTSELLERS ONLY */
 
   /* Global Typography System Tokens */
   --font-serif: "Bodoni Moda", "Didot", "Bodoni MT", serif;
@@ -23,22 +23,22 @@
   --font-montecarlo: "MonteCarlo", cursive;
   --font-alex: "Alex Brush", cursive;
 
-  /* Shadow System Hierarchy */
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.12);
-  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.18);
-  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.25);
-  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.45);
+  /* Shadow Hierarchy */
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.18);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 @theme {
-  --color-elava-espresso: #241817;
-  --color-elava-coffee: #33211E;
-  --color-elava-cherry: #2A0D14;
-  --color-elava-black: #0D0A0C;
-  --color-elava-cream: #F1E4D2;
-  --color-elava-taupe: #CDBBAA;
-  --color-elava-blush: #D9B8B7;
-  --color-elava-coral: #C94B5B;
+  --color-elava-deep-black: #0B0B0B;
+  --color-elava-soft-black: #121212;
+  --color-elava-dark-slate: #1A1A1A;
+  --color-elava-near-black: #080808;
+  --color-elava-red: #B4171E;
+  --color-elava-deep-crimson: #7A0F15;
+  --color-elava-warm-white: #F5F2EE;
+  --color-elava-secondary-text: #B8B3AF;
   --color-elava-bestseller-gold: #C6A15B;
 
   --font-serif: "Bodoni Moda", Didot, serif;
@@ -49,8 +49,8 @@
 html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #241817;
-  color: #F1E4D2;
+  background-color: #0B0B0B;
+  color: #F5F2EE;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -92,7 +92,7 @@ body {
   font-family: "Alex Brush", cursive;
 }
 
-/* Prevent iOS auto-zoom on input focus for smooth mobile typing */
+/* Prevent iOS auto-zoom on input focus */
 @media (max-width: 640px) {
   input[type="text"],
   input[type="email"],
@@ -105,7 +105,7 @@ body {
 }
 
 .bg-elava-ivory {
-  background-color: #241817 !important;
+  background-color: #0B0B0B !important;
 }
 
 /* Smooth scrolling */
@@ -176,18 +176,18 @@ html {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0D0A0C;
+  background: #080808;
 }
 ::-webkit-scrollbar-thumb {
-  background: #33211E;
+  background: #1A1A1A;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2A0D14;
+  background: #B4171E;
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(42, 13, 20, 0.6);
-  color: #F1E4D2;
+  background: rgba(180, 23, 30, 0.6);
+  color: #F5F2EE;
 }

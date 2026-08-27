@@ -13,11 +13,12 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * ÉLAVA Homepage Container — Final Color Direction C: Dark Espresso #241918 + Warm Cream #F0E2D0
+ * ÉLAVA Homepage Container — Black & Red Luxury Aesthetic
+ * Base Palette: Deep Black (#0B0B0B), Signature Red (#B4171E), Warm White (#F5F2EE)
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#241918] text-[#F0E2D0] min-h-screen">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."

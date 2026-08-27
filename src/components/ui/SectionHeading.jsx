@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * SectionHeading UI Component — Bodoni Moda Display Title (400) + Manrope Subtitle (400)
- * Final Color Direction C: Warm Cream #F0E2D0 title + Taupe #CDBBAA subtitle.
+ * Black & Red Palette: Warm White #F5F2EE title + Muted Gray #B8B3AF subtitle.
  */
 export default function SectionHeading({
   title,
@@ -17,12 +17,12 @@ export default function SectionHeading({
   return (
     <div className={`${alignmentClass} mb-6 sm:mb-8 ${className}`}>
       {title && (
-        <Component id={id} className="font-serif text-[32px] sm:text-[42px] md:text-[52px] font-normal text-[#F0E2D0] leading-[1.02] tracking-tight">
+        <Component id={id} className="font-serif text-[32px] sm:text-[42px] md:text-[52px] font-normal text-[#F5F2EE] leading-[1.02] tracking-tight">
           {title}
         </Component>
       )}
       {subtitle && (
-        <p className="font-sans text-xs sm:text-sm md:text-base text-[#CDBBAA] mt-2 font-normal leading-relaxed">
+        <p className="font-sans text-xs sm:text-sm md:text-base text-[#B8B3AF] mt-2 font-normal leading-relaxed">
           {subtitle}
         </p>
       )}

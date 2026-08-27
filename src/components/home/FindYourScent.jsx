@@ -32,11 +32,11 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * One single horizontal line across all viewports (mobile & desktop) with compact responsive cards.
+ * One single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment).
  */
 export default function FindYourScent() {
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#241918] text-[#F0E2D0] border-b border-[#CDBBAA]/15" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         {/* Section Heading & Subtitle */}
         <SectionHeading
