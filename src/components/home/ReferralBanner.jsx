@@ -5,7 +5,7 @@ import MainContainer from '../ui/MainContainer';
 import { Gift, Share2 } from 'lucide-react';
 
 /**
- * ReferralBanner Component — Bodoni Moda 400 for Headline & Reward (Section 21), Manrope for Steps & CTA.
+ * ReferralBanner Component — Near-Black #0D0A0C step cards & tactile button response per Section 17 & 23
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function ReferralBanner() {
             <div className="lg:col-span-8 space-y-6">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2A0D14] border border-[#E7C4C5]/25 text-[#E7C4C5] text-[11px] font-sans font-semibold uppercase tracking-[0.18em]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0D0A0C] border border-[#E7C4C5]/25 text-[#E7C4C5] text-[11px] font-sans font-semibold uppercase tracking-[0.18em]">
                 <Gift className="w-3.5 h-3.5 text-[#E7C4C5]" />
                 <span>ÉLAVA Rewards</span>
               </div>
@@ -48,11 +48,11 @@ export default function ReferralBanner() {
                 </p>
               </div>
 
-              {/* 3 Steps: Manrope */}
+              {/* 3 Steps: Near Black #0D0A0C */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
                 {/* Step 01 */}
-                <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1">
+                <div className="bg-[#0D0A0C] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1 shadow-sm">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#E7C4C5]/70 block">
                     01
                   </span>
@@ -63,7 +63,7 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 02 */}
-                <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1">
+                <div className="bg-[#0D0A0C] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1 shadow-sm">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#E7C4C5]/70 block">
                     02
                   </span>
@@ -74,7 +74,7 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 03 */}
-                <div className="bg-[#2A0D14] border border-[#C94B5B]/50 rounded-2xl p-4 space-y-1 shadow-lg relative overflow-hidden">
+                <div className="bg-[#0D0A0C] border border-[#C94B5B]/50 rounded-2xl p-4 space-y-1 shadow-lg relative overflow-hidden">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#C94B5B] block">
                     03 · HERO EARNING
                   </span>
@@ -91,7 +91,7 @@ export default function ReferralBanner() {
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-xl cursor-pointer"
+                  className="w-full sm:w-auto bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-xl cursor-pointer"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>
@@ -100,9 +100,9 @@ export default function ReferralBanner() {
 
             </div>
 
-            {/* Right Column */}
+            {/* Right Column: Near Black #0D0A0C Card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm bg-[#2A0D14] border border-[#E7C4C5]/25 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden">
+              <div className="w-full max-w-sm bg-[#0D0A0C] border border-[#E7C4C5]/25 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden">
                 <div className="w-16 h-16 rounded-full bg-[#641D2D] border border-[#E7C4C5]/30 flex items-center justify-center mx-auto text-[#E7C4C5] shadow-inner">
                   <Share2 className="w-7 h-7" />
                 </div>

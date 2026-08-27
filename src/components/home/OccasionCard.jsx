@@ -77,7 +77,6 @@ function OccasionTitle({ occasion, isDesktop = false }) {
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
 
-  // Title Case fallback for title prop
   const formattedOccasion = {
     ...occasion,
     title: occasion.id === 'date-night' ? 'Date Night' : (occasion.id === 'everyday' ? 'Everyday' : (occasion.id === 'office' ? 'Office' : (occasion.id === 'party' ? 'Party' : occasion.title)))
@@ -88,7 +87,7 @@ export default function OccasionCard({ occasion }) {
       {/* MOBILE */}
       <Link
         to={formattedOccasion.route}
-        className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none"
+        className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none active:scale-[0.98] transition-transform duration-150"
         aria-label={`Shop perfumes for ${formattedOccasion.title}`}
       >
         <div className="relative w-full aspect-[1/0.85] rounded-[6px] sm:rounded-[8px] overflow-hidden border border-[#E7C4C5]/15 transition-transform duration-300 group-hover:scale-[1.02] shadow-sm">
@@ -107,7 +106,7 @@ export default function OccasionCard({ occasion }) {
       {/* DESKTOP */}
       <Link
         to={formattedOccasion.route}
-        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-[#E7C4C5]/15 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E7C4C5]/50"
+        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-[#E7C4C5]/15 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E7C4C5]/50 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
         aria-label={`Shop perfumes for ${formattedOccasion.title}`}
       >
         {/* Background Layer */}

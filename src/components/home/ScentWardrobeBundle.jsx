@@ -51,11 +51,11 @@ export default function ScentWardrobeBundle() {
             <Link
               key={preset.id}
               to={`/wardrobe/${preset.id}`}
-              className="p-6 rounded-2xl border border-[#E7C4C5]/20 bg-[#641D2D] hover:border-[#E7C4C5]/50 transition-all cursor-pointer flex flex-col justify-between group shadow-xl"
+              className="p-6 rounded-2xl border border-[#E7C4C5]/20 bg-[#641D2D] hover:border-[#E7C4C5]/50 active:scale-[0.98] transition-all duration-200 cursor-pointer flex flex-col justify-between group shadow-md hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[10px] font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#2A0D14] text-[#E7C4C5] border border-[#E7C4C5]/15">
+                  <span className="text-[10px] font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#0D0A0C] text-[#E7C4C5] border border-[#E7C4C5]/15">
                     {preset.badge}
                   </span>
                   <span className="text-xs font-sans font-medium text-[#E7C4C5]/80">{preset.subtitle}</span>

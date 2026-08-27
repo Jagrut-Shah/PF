@@ -64,12 +64,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2A0D14] border-t border-[#E7C4C5]/15 text-[#F6EFE7]" aria-label="Site footer">
+    <footer className="bg-[#0D0A0C] border-t border-[#E7C4C5]/15 text-[#F6EFE7]" aria-label="Site footer">
 
       {/* DESKTOP */}
       <div className="hidden md:block">
         <MainContainer>
-          <div className="py-10 grid grid-cols-12 gap-8">
+          <div className="py-12 grid grid-cols-12 gap-8">
 
             {/* Brand Column */}
             <div className="col-span-4 flex flex-col justify-between pr-4">

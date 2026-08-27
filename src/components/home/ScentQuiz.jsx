@@ -1,121 +1,197 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, RotateCcw } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
-import products from '../../data/products';
+import SectionHeading from '../ui/SectionHeading';
+import { products } from '../../data/products';
+import { Sparkles, RotateCcw, Check, ArrowRight } from 'lucide-react';
 
-const SCENT_TYPES = ['Fresh', 'Sweet', 'Woody', 'Oud', 'Spicy', 'Floral'];
-const OCCASIONS = ['Everyday', 'Office', 'Date Night', 'Party'];
+const QUIZ_QUESTIONS = [
+  {
+    id: 'who',
+    title: 'Who is this fragrance for?',
+    options: [
+      { label: 'Men', value: 'men' },
+      { label: 'Women', value: 'women' },
+      { label: 'Unisex', value: 'unisex' },
+    ],
+  },
+  {
+    id: 'occasion',
+    title: 'Primary occasion you are shopping for?',
+    options: [
+      { label: 'Everyday / Casual', value: 'everyday' },
+      { label: 'Office / Work', value: 'office' },
+      { label: 'Date Night / Romantic', value: 'date-night' },
+      { label: 'Evening / Party', value: 'party' },
+    ],
+  },
+  {
+    id: 'vibe',
+    title: 'What scent profile appeals most to you?',
+    options: [
+      { label: 'Fresh Citrus & Green Tea', value: 'fresh' },
+      { label: 'Warm Wood, Oud & Leather', value: 'woody' },
+      { label: 'Soft Florals & Vanilla', value: 'floral' },
+      { label: 'Spiced Amber & Musk', value: 'amber' },
+    ],
+  },
+];
 
 export default function ScentQuiz() {
-  const [scentType, setScentType] = useState('Fresh');
-  const [occasion, setOccasion] = useState('Everyday');
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [isCompleted, setIsCompleted] = useState(false);
 
-  const matchedProducts = products.filter((p) => {
-    if (p.type === 'sample_set') return false;
-    const pScent = (p.scentIdentity || '').toLowerCase();
-    const pNotes = p.notes ? `${p.notes.top} ${p.notes.heart} ${p.notes.base}`.toLowerCase() : '';
-    const targetScent = scentType.toLowerCase();
-    return pScent.includes(targetScent) || pNotes.includes(targetScent);
-  });
+  const handleSelectOption = (questionId, value) => {
+    const nextAnswers = { ...answers, [questionId]: value };
+    setAnswers(nextAnswers);
 
-  const displayProducts = matchedProducts.length > 0 ? matchedProducts.slice(0, 3) : products.filter(p => p.type !== 'sample_set').slice(0, 3);
+    if (currentStep < QUIZ_QUESTIONS.length - 1) {
+      setCurrentStep((prev) => prev + 1);
+    } else {
+      setIsCompleted(true);
+    }
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setCurrentStep(0);
+    setIsCompleted(false);
+  };
+
+  const getRecommendations = () => {
+    const { who, occasion, vibe } = answers;
+    return products.filter((p) => {
+      let score = 0;
+      if (who && (p.gender === who || p.gender === 'unisex')) score += 3;
+      if (occasion && p.occasion === occasion) score += 4;
+      if (vibe) {
+        if (vibe === 'fresh' && p.scentIdentity.toLowerCase().includes('clean')) score += 2;
+        if (vibe === 'woody' && (p.scentIdentity.toLowerCase().includes('smoky') || p.scentIdentity.toLowerCase().includes('earthy'))) score += 2;
+        if (vibe === 'floral' && p.scentIdentity.toLowerCase().includes('floral')) score += 2;
+        if (vibe === 'amber' && p.scentIdentity.toLowerCase().includes('amber')) score += 2;
+      }
+      return score >= 3;
+    }).slice(0, 3);
+  };
+
+  const recommendedProducts = getRecommendations();
+  const displayProducts = recommendedProducts.length > 0 ? recommendedProducts : products.slice(0, 3);
 
   return (
-    <section id="scent-finder" className="py-10 sm:py-14 bg-[#2A0D14] text-[#F6EFE7] scroll-mt-20">
+    <section id="scent-finder" className="py-12 sm:py-16 bg-[#2A0D14] text-[#F6EFE7] border-t border-b border-[#E7C4C5]/15">
       <MainContainer>
-        <div className="bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+        <SectionHeading
+          title="Find Your Signature Scent"
+          subtitle="Answer 3 quick questions to discover your ideal ÉLAVA fragrance signature."
+          centered
+        />
+
+        <div className="max-w-2xl mx-auto mt-8 bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
           
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2A0D14] border border-[#E7C4C5]/20 text-xs font-sans font-semibold tracking-widest uppercase text-[#E7C4C5] mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Perfume Finder</span>
-            </div>
-            
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] mb-2 tracking-tight">
-              Find Your Signature Scent
-            </h2>
-            
-            <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 font-normal leading-relaxed">
-              Select your preferences below to discover fragrances matched to your character.
-            </p>
-          </div>
-
-          {/* Interactive Filters Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {/* Step 1 */}
-            <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-xl p-4">
-              <label className="block font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7] mb-3">
-                1. Preferred Fragrance Profile
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {SCENT_TYPES.map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => setScentType(type)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-sans font-semibold tracking-wide transition-colors ${
-                      scentType === type
-                        ? 'bg-[#C94B5B] text-[#F6EFE7]'
-                        : 'bg-[#641D2D] text-[#E7C4C5]/80 hover:text-[#F6EFE7] border border-[#E7C4C5]/15'
-                    }`}
-                  >
-                    {type}
-                  </button>
-                ))}
+          {!isCompleted ? (
+            <div>
+              {/* Progress Indicator */}
+              <div className="flex items-center justify-between text-xs font-sans text-[#E7C4C5] mb-4">
+                <span className="font-semibold uppercase tracking-wider">
+                  Step {currentStep + 1} of {QUIZ_QUESTIONS.length}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  {QUIZ_QUESTIONS.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentStep
+                          ? 'w-6 bg-[#C94B5B]'
+                          : idx < currentStep
+                          ? 'w-3 bg-[#E7C4C5]'
+                          : 'w-3 bg-[#2A0D14]'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Step 2 */}
-            <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-xl p-4">
-              <label className="block font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7] mb-3">
-                2. Primary Occasion
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {OCCASIONS.map((occ) => (
-                  <button
-                    key={occ}
-                    type="button"
-                    onClick={() => setOccasion(occ)}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-sans font-semibold tracking-wide transition-colors ${
-                      occasion === occ
-                        ? 'bg-[#C94B5B] text-[#F6EFE7]'
-                        : 'bg-[#641D2D] text-[#E7C4C5]/80 hover:text-[#F6EFE7] border border-[#E7C4C5]/15'
-                    }`}
-                  >
-                    {occ}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Results */}
-          <div className="border-t border-[#E7C4C5]/15 pt-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-sans text-xs sm:text-sm text-[#F6EFE7] font-semibold tracking-wider uppercase">
-                Your Signature Match
+              {/* Question Title */}
+              <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#F6EFE7] mb-6">
+                {QUIZ_QUESTIONS[currentStep].title}
               </h3>
-              <button
-                type="button"
-                onClick={() => { setScentType('Fresh'); setOccasion('Everyday'); }}
-                className="inline-flex items-center gap-1.5 text-xs font-sans text-[#E7C4C5]/80 hover:text-[#F6EFE7] transition-colors"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset</span>
-              </button>
-            </div>
 
-            {displayProducts.length > 0 && (
-              <div className="bg-[#2A0D14] border border-[#E7C4C5]/20 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 mb-4 shadow-md">
-                <div className="flex items-center gap-4 min-w-0 w-full sm:w-auto">
+              {/* Options Grid */}
+              <div className="grid grid-cols-1 gap-3">
+                {QUIZ_QUESTIONS[currentStep].options.map((option) => {
+                  const isSelected = answers[QUIZ_QUESTIONS[currentStep].id] === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => handleSelectOption(QUIZ_QUESTIONS[currentStep].id, option.value)}
+                      className={`w-full text-left p-4 rounded-xl font-sans text-sm font-semibold tracking-wide transition-all duration-200 flex items-center justify-between border active:scale-[0.98] cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#C94B5B] border-[#C94B5B] text-[#F6EFE7] shadow-sm'
+                          : 'bg-[#2A0D14] border-[#E7C4C5]/20 text-[#F6EFE7] hover:border-[#E7C4C5]/40 hover:bg-[#2A0D14]/80'
+                      }`}
+                    >
+                      <span>{option.label}</span>
+                      {isSelected && <Check className="w-4 h-4 text-[#F6EFE7]" />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {currentStep > 0 && (
+                <div className="mt-6 pt-4 border-t border-[#E7C4C5]/15 flex justify-between items-center">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep((prev) => prev - 1)}
+                    className="text-xs font-sans font-medium text-[#E7C4C5] hover:text-[#F6EFE7] transition-colors"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="text-xs font-sans text-[#E7C4C5]/60 hover:text-[#E7C4C5] transition-colors flex items-center gap-1"
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                    <span>Reset</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Results View */
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-[#E7C4C5]/15 pb-4">
+                <div>
+                  <span className="text-[10px] font-sans font-semibold tracking-widest text-[#E7C4C5] uppercase block">
+                    MATCH RESULT
+                  </span>
+                  <h3 className="font-serif text-2xl font-normal text-[#F6EFE7]">
+                    Recommended Signatures
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="text-xs font-sans text-[#E7C4C5] hover:text-[#F6EFE7] flex items-center gap-1 border border-[#E7C4C5]/20 px-3 py-1.5 rounded-lg bg-[#2A0D14]"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Retake</span>
+                </button>
+              </div>
+
+              {/* Primary Match */}
+              {displayProducts[0] && (
+                <div className="bg-[#2A0D14] border border-[#E7C4C5]/25 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4">
                   <img
                     src={displayProducts[0].image}
                     alt={displayProducts[0].name}
-                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg shrink-0 bg-[#641D2D] border border-[#E7C4C5]/15"
+                    className="w-24 h-24 object-contain rounded-lg bg-[#641D2D] shrink-0"
                   />
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#E7C4C5]/80 block">
+                  <div className="flex-1 text-center sm:text-left min-w-0">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#C94B5B]/30 text-[#E7C4C5] text-[10px] font-sans font-semibold uppercase tracking-wider mb-1">
+                      <Sparkles className="w-3 h-3" />
                       TOP MATCH · ÉLAVA SIGNATURE
                     </span>
                     <h4 className="font-serif text-2xl font-normal text-[#F6EFE7]">
@@ -128,49 +204,50 @@ export default function ScentQuiz() {
                       ₹{displayProducts[0].price?.toLocaleString()}
                     </span>
                   </div>
-                </div>
 
-                <Link
-                  to={`/product/${displayProducts[0].slug}`}
-                  className="w-full sm:w-auto bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] py-3 px-6 rounded-xl font-sans text-xs font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs"
-                >
-                  <span>View Your Match →</span>
-                </Link>
-              </div>
-            )}
-
-            {displayProducts.length > 1 && (
-              <div className="pt-2">
-                <div className="text-[10.5px] font-sans font-semibold uppercase tracking-wider text-[#E7C4C5]/80 mb-2.5">
-                  Other Good Matches
+                  <Link
+                    to={`/product/${displayProducts[0].slug}`}
+                    className="w-full sm:w-auto bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] py-3 px-6 rounded-xl font-sans text-xs font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs"
+                  >
+                    <span>View Your Match →</span>
+                  </Link>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {displayProducts.slice(1, 3).map((p) => (
-                    <Link
-                      key={p.id}
-                      to={`/product/${p.slug}`}
-                      className="group bg-[#2A0D14]/70 border border-[#E7C4C5]/15 rounded-lg p-3 flex items-center justify-between hover:border-[#F6EFE7]/40 transition-colors"
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          className="w-10 h-10 object-contain rounded bg-[#641D2D] shrink-0"
-                        />
-                        <div className="min-w-0">
-                          <h5 className="font-serif text-base font-normal text-[#F6EFE7] truncate">
-                            {p.name}
-                          </h5>
-                          <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate font-normal">{p.scentIdentity}</p>
+              )}
+
+              {/* Other Matches */}
+              {displayProducts.length > 1 && (
+                <div className="pt-2">
+                  <div className="text-[10.5px] font-sans font-semibold uppercase tracking-wider text-[#E7C4C5]/80 mb-2.5">
+                    Other Good Matches
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {displayProducts.slice(1, 3).map((p) => (
+                      <Link
+                        key={p.id}
+                        to={`/product/${p.slug}`}
+                        className="group bg-[#2A0D14]/70 border border-[#E7C4C5]/15 rounded-lg p-3 flex items-center justify-between hover:border-[#F6EFE7]/40 active:scale-[0.98] transition-all"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={p.image}
+                            alt={p.name}
+                            className="w-10 h-10 object-contain rounded bg-[#641D2D] shrink-0"
+                          />
+                          <div className="min-w-0">
+                            <h5 className="font-serif text-base font-normal text-[#F6EFE7] truncate">
+                              {p.name}
+                            </h5>
+                            <p className="font-sans text-[11px] text-[#E7C4C5]/80 truncate font-normal">{p.scentIdentity}</p>
+                          </div>
                         </div>
-                      </div>
-                      <span className="font-sans text-xs font-semibold text-[#F6EFE7] shrink-0 ml-2">₹{p.price} →</span>
-                    </Link>
-                  ))}
+                        <ArrowRight className="w-4 h-4 text-[#E7C4C5] shrink-0 transform group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
         </div>
       </MainContainer>
