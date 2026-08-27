@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 /**
  * OccasionTitle Component
  * Renders 4 distinct, expressive luxury script fonts (Great Vibes for Date Night, MonteCarlo for Everyday, Italianno for Office, Alex Brush for Party).
- * Date Night stands out the most while using whitespace-nowrap and tuned mobile sizing to guarantee it fits cleanly on a single line on all mobile viewports.
+ * Date Night stands out the most with full soft-blush #E7C4C5 highlighting & drop-shadow glow across both Date and Night.
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
   const shadowStyle = isDesktop ? { textShadow: '0 2px 8px rgba(0,0,0,0.6)' } : {};
@@ -14,13 +14,12 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'date-night':
       return (
         <h3
-          className={`font-great-vibes font-normal leading-none text-center sm:text-left whitespace-nowrap ${
+          className={`font-great-vibes font-normal leading-none text-center sm:text-left whitespace-nowrap text-[#E7C4C5] drop-shadow-[0_2px_8px_rgba(231,196,197,0.35)] ${
             isDesktop ? 'text-[36px] lg:text-[44px]' : 'text-[17px] sm:text-[21px]'
           }`}
           style={shadowStyle}
         >
-          <span className="text-[#E7C4C5] drop-shadow-[0_2px_8px_rgba(231,196,197,0.3)]">Date </span>
-          <span className="text-[#F6EFE7] drop-shadow-[0_2px_8px_rgba(246,239,231,0.3)]">Night</span>
+          Date Night
         </h3>
       );
 
