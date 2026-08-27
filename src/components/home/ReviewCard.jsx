@@ -4,7 +4,8 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Manrope for review quote text, customer name (600), rating (600).
+ * ReviewCard Component — Final Color Direction C:
+ * Warm Cream #F0E2D0 paper cards with crisp Near Black #100D0C review text & Dark Coffee #352522 metadata.
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -21,12 +22,12 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl p-5 md:p-6 text-[#F6EFE7] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm"
+      className="bg-[#F0E2D0] border border-[#352522]/20 rounded-xl p-5 md:p-6 text-[#100D0C] flex flex-col h-full relative overflow-hidden min-w-0 shadow-md"
       role="figure"
     >
       {/* Decorative quotation mark */}
       <span
-        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-[#F6EFE7]/[0.06] select-none pointer-events-none"
+        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-[#241918]/[0.08] select-none pointer-events-none"
         aria-hidden="true"
       >
         "
@@ -34,28 +35,28 @@ export default function ReviewCard({ review }) {
 
       {/* Star rating */}
       <div className="mb-3 flex items-center">
-        <StarRating rating={rating} size={15} starColor="#E7C4C5" />
+        <StarRating rating={rating} size={15} starColor="#C6A15B" />
       </div>
 
       {/* Review Text — Manrope 400 leading-relaxed */}
-      <blockquote className="font-sans text-sm sm:text-base text-[#F6EFE7] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      <blockquote className="font-sans text-sm sm:text-base text-[#100D0C] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
       {/* Customer Name & Product Link — Manrope 600 */}
-      <div className="pt-3 border-t border-[#E7C4C5]/15 flex justify-between items-end gap-2 text-xs">
-        <span className="font-sans text-[#E7C4C5]/90 font-semibold">
+      <div className="pt-3 border-t border-[#352522]/15 flex justify-between items-end gap-2 text-xs">
+        <span className="font-sans text-[#241918] font-semibold">
           {customer} {city ? `· ${city}` : ''}
         </span>
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-sans text-[11px] text-[#F6EFE7] hover:text-[#C94B5B] font-semibold transition-colors uppercase tracking-wider"
+            className="font-sans text-[11px] text-[#352522] hover:text-[#100D0C] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-sans text-[11px] text-[#F6EFE7] font-semibold uppercase tracking-wider">{productName}</span>
+          <span className="font-sans text-[11px] text-[#352522] font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>
