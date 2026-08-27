@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 /**
  * OccasionTitle Component
  * Renders 4 distinct, expressive luxury script fonts (Great Vibes for Date Night, MonteCarlo for Everyday, Italianno for Office, Alex Brush for Party).
- * Date Night stands out the most with a larger size, dual-tone soft blush glow, and romantic calligraphic presence.
+ * Date Night stands out the most while using whitespace-nowrap and tuned mobile sizing to guarantee it fits cleanly on a single line on all mobile viewports.
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
   const shadowStyle = isDesktop ? { textShadow: '0 2px 8px rgba(0,0,0,0.6)' } : {};
@@ -14,8 +14,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'date-night':
       return (
         <h3
-          className={`font-great-vibes font-normal leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[36px] lg:text-[44px]' : 'text-[24px] sm:text-[28px]'
+          className={`font-great-vibes font-normal leading-none text-center sm:text-left whitespace-nowrap ${
+            isDesktop ? 'text-[36px] lg:text-[44px]' : 'text-[17px] sm:text-[21px]'
           }`}
           style={shadowStyle}
         >
@@ -27,8 +27,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'everyday':
       return (
         <h3
-          className={`font-montecarlo font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
+          className={`font-montecarlo font-normal tracking-wide text-[#F6EFE7] leading-none text-center sm:text-left whitespace-nowrap ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[17px] sm:text-[20px]'
           }`}
           style={shadowStyle}
         >
@@ -39,8 +39,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-italianno font-normal tracking-wider text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[32px] lg:text-[38px]' : 'text-[22px] sm:text-[25px]'
+          className={`font-italianno font-normal tracking-wider text-[#F6EFE7] leading-none text-center sm:text-left whitespace-nowrap ${
+            isDesktop ? 'text-[32px] lg:text-[38px]' : 'text-[19px] sm:text-[22px]'
           }`}
           style={shadowStyle}
         >
@@ -51,8 +51,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-alex font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
+          className={`font-alex font-normal tracking-wide text-[#F6EFE7] leading-none text-center sm:text-left whitespace-nowrap ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[17px] sm:text-[20px]'
           }`}
           style={shadowStyle}
         >
@@ -63,8 +63,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-great-vibes font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
+          className={`font-great-vibes font-normal text-[#F6EFE7] leading-none text-center sm:text-left whitespace-nowrap ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[17px] sm:text-[20px]'
           }`}
           style={shadowStyle}
         >
@@ -98,7 +98,7 @@ export default function OccasionCard({ occasion }) {
             loading="lazy"
           />
         </div>
-        <div className="mt-1.5 flex items-center justify-center w-full text-center px-1">
+        <div className="mt-1.5 flex items-center justify-center w-full text-center px-0.5">
           <OccasionTitle occasion={formattedOccasion} isDesktop={false} />
         </div>
       </Link>
