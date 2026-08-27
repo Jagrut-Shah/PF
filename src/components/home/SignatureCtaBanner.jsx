@@ -3,7 +3,7 @@ import { Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * SignatureCtaBanner Component — Compact CTA Banner with Italic Serif Title & Sleek Micro Button
+ * SignatureCtaBanner Component — Compact CTA Banner with Italic Serif Title & Italic CTA Font
  */
 export default function SignatureCtaBanner() {
   const scrollToFinder = (e) => {
@@ -32,7 +32,7 @@ export default function SignatureCtaBanner() {
           <a
             href="#scent-finder"
             onClick={scrollToFinder}
-            className="inline-flex items-center justify-center gap-1.5 bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] px-4 py-1.5 sm:py-2 rounded-lg font-sans text-[11px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-200 shrink-0 shadow-xs w-full sm:w-auto text-center"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] px-4 py-1.5 sm:py-2 rounded-lg font-serif italic text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shrink-0 shadow-xs w-full sm:w-auto text-center"
           >
             <span>Find Your Signature Scent →</span>
           </a>
