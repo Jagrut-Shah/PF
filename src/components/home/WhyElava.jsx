@@ -44,10 +44,10 @@ export default function WhyElava() {
                 <span className="font-serif text-4xl font-normal text-[#0D0A0C] block mb-3 leading-none">
                   {item.number}
                 </span>
-                <h3 className="font-sans text-sm font-bold tracking-wide text-[#2A0D14] mb-2">
+                <h3 className="font-sans text-sm font-bold tracking-wide text-[#0D0A0C] mb-2">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#2A0D14]/80 leading-relaxed font-normal">
+                <p className="font-sans text-xs sm:text-sm text-[#0D0A0C]/90 leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>

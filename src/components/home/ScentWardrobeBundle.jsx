@@ -60,16 +60,16 @@ export default function ScentWardrobeBundle() {
                   </span>
                   <span className="text-xs font-sans font-bold text-[#641D2D]">{preset.subtitle}</span>
                 </div>
-                <h3 className="font-serif text-2xl font-normal text-[#2A0D14] group-hover:text-[#C94B5B] transition-colors leading-snug">
+                <h3 className="font-serif text-2xl font-normal text-[#0D0A0C] group-hover:text-[#C94B5B] transition-colors leading-snug">
                   {preset.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#2A0D14]/80 mt-2 leading-relaxed font-normal">
+                <p className="font-sans text-xs sm:text-sm text-[#0D0A0C]/90 mt-2 leading-relaxed font-normal">
                   {preset.description}
                 </p>
               </div>
 
               {/* Action Link */}
-              <div className="mt-6 pt-4 border-t border-[#641D2D]/15 flex items-center justify-between text-xs font-sans font-bold tracking-wider text-[#641D2D] group-hover:text-[#C94B5B] transition-colors">
+              <div className="mt-6 pt-4 border-t border-[#641D2D]/15 flex items-center justify-between text-xs font-sans font-bold tracking-wider text-[#0D0A0C] group-hover:text-[#C94B5B] transition-colors">
                 <span>Explore Duo</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </div>

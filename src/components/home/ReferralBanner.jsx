@@ -5,7 +5,7 @@ import MainContainer from '../ui/MainContainer';
 import { Gift, Share2 } from 'lucide-react';
 
 /**
- * ReferralBanner Component — Variant B: Warm Ivory #F3E9DD step cards & Near Black #0D0A0C reward panel
+ * ReferralBanner Component — Variant B: Warm Ivory #F3E9DD step cards with crisp Near Black #0D0A0C typography
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export default function ReferralBanner() {
                 </p>
               </div>
 
-              {/* 3 Steps: Warm Ivory #F3E9DD Cards for Variant B Contrast */}
+              {/* 3 Steps: Warm Ivory #F3E9DD Cards with Near Black #0D0A0C Typography */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
                 {/* Step 01 */}
@@ -56,10 +56,10 @@ export default function ReferralBanner() {
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#641D2D] block">
                     01
                   </span>
-                  <div className="font-sans text-sm font-bold text-[#2A0D14]">
+                  <div className="font-sans text-sm font-bold text-[#0D0A0C]">
                     Share Your Link
                   </div>
-                  <p className="text-xs font-sans text-[#2A0D14]/80 font-normal">Send code to your friends</p>
+                  <p className="text-xs font-sans text-[#0D0A0C]/90 font-normal">Send code to your friends</p>
                 </div>
 
                 {/* Step 02 */}
@@ -67,10 +67,10 @@ export default function ReferralBanner() {
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#641D2D] block">
                     02
                   </span>
-                  <div className="font-sans text-sm font-bold text-[#2A0D14]">
+                  <div className="font-sans text-sm font-bold text-[#0D0A0C]">
                     Friend Gets ₹200 Off
                   </div>
-                  <p className="text-xs font-sans text-[#2A0D14]/80 font-normal">Applied on first purchase</p>
+                  <p className="text-xs font-sans text-[#0D0A0C]/90 font-normal">Applied on first purchase</p>
                 </div>
 
                 {/* Step 03 */}
@@ -78,10 +78,10 @@ export default function ReferralBanner() {
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#C94B5B] block">
                     03 · HERO EARNING
                   </span>
-                  <div className="font-sans text-base font-bold text-[#2A0D14]">
+                  <div className="font-sans text-base font-bold text-[#0D0A0C]">
                     You Earn ₹100 Cash
                   </div>
-                  <p className="text-xs font-sans text-[#2A0D14]/85 font-normal">Withdrawable to UPI/Bank</p>
+                  <p className="text-xs font-sans text-[#0D0A0C]/90 font-normal">Withdrawable to UPI/Bank</p>
                 </div>
 
               </div>

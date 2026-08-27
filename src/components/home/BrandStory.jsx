@@ -2,7 +2,7 @@ import React from 'react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * BrandStory Component — Variant B: Warm Ivory (#F3E9DD) Story Card + Near Black (#0D0A0C) Stats Anchor
+ * BrandStory Component — Variant B: Warm Ivory (#F3E9DD) Story Card + Near Black (#0D0A0C) Crisp Typography
  */
 export default function BrandStory() {
   return (
@@ -10,21 +10,21 @@ export default function BrandStory() {
       <MainContainer>
         <div className="max-w-4xl mx-auto bg-[#F3E9DD] border border-[#641D2D]/20 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden">
           
-          <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#641D2D] block mb-3">
+          <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#2A0D14] block mb-3">
             Our Essence & Origin
           </span>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#2A0D14] mb-6 leading-tight tracking-tight">
-            The Story Behind <span className="italic font-normal text-[#641D2D]">Élava</span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#0D0A0C] mb-6 leading-tight tracking-tight">
+            The Story Behind <span className="italic font-normal text-[#2A0D14]">Élava</span>
           </h2>
 
-          <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#2A0D14]/85 leading-relaxed font-normal max-w-2xl mx-auto">
+          <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#0D0A0C]/90 leading-relaxed font-normal max-w-2xl mx-auto">
             <p>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
             {/* Selected Pull Quote — Bodoni Moda Italic 400 */}
-            <blockquote className="my-6 py-4 border-y border-[#641D2D]/15 font-serif italic text-2xl sm:text-3xl text-[#2A0D14] font-normal leading-snug max-w-xl mx-auto">
+            <blockquote className="my-6 py-4 border-y border-[#641D2D]/20 font-serif italic text-2xl sm:text-3xl text-[#0D0A0C] font-normal leading-snug max-w-xl mx-auto">
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
             </blockquote>
 
