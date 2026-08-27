@@ -4,8 +4,8 @@ import { ArrowRight } from 'lucide-react';
 
 /**
  * OccasionTitle Component
- * Renders distinct, unique typographic styling for each of the 4 occasion cards (Date Night, Everyday, Office, Party).
- * Uses Title Case (not all uppercase) and responsive sizing tuned for mobile visibility without clipping.
+ * Renders distinct, unique ITALIC typographic styling for each of the 4 occasion cards (Date Night, Everyday, Office, Party).
+ * Uses Title Case (not all uppercase) with 4 completely distinct font families (Bodoni Moda Italic, Cormorant Garamond Italic, Playfair Display Italic, Alex Brush Cursive/Italiana).
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
   const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
@@ -14,21 +14,21 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'date-night':
       return (
         <h3
-          className={`leading-tight text-center sm:text-left ${
+          className={`font-serif italic font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
             isDesktop ? 'text-[22px] lg:text-[26px]' : 'text-[15px] sm:text-[17px]'
           }`}
           style={shadowStyle}
         >
-          <span className="font-serif italic font-normal text-[#E7C4C5]">Date </span>
-          <span className="font-serif italic font-medium text-[#F6EFE7]">Night</span>
+          <span className="text-[#E7C4C5]">Date </span>
+          <span>Night</span>
         </h3>
       );
 
     case 'everyday':
       return (
         <h3
-          className={`font-sans font-semibold tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[20px] lg:text-[23px]' : 'text-[14px] sm:text-[16px]'
+          className={`font-cormorant italic font-medium tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[24px] lg:text-[28px]' : 'text-[16px] sm:text-[18px]'
           }`}
           style={shadowStyle}
         >
@@ -39,8 +39,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-sans font-medium tracking-[0.14em] text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[18px] lg:text-[21px]' : 'text-[13px] sm:text-[15px]'
+          className={`font-playfair italic font-medium tracking-wider text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[21px] lg:text-[25px]' : 'text-[15px] sm:text-[17px]'
           }`}
           style={shadowStyle}
         >
@@ -51,8 +51,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-serif font-semibold tracking-tight text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[22px] lg:text-[26px]' : 'text-[15px] sm:text-[17px]'
+          className={`font-alex italic font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
           }`}
           style={shadowStyle}
         >
@@ -63,7 +63,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-serif font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
+          className={`font-serif italic font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
             isDesktop ? 'text-[20px] lg:text-[24px]' : 'text-[14px] sm:text-[16px]'
           }`}
           style={shadowStyle}
