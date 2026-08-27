@@ -33,7 +33,8 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * One single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment) with scroll reveal.
+ * Single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment) with scroll reveal.
+ * Descriptors hidden on mobile; slightly reduced card size on desktop.
  */
 export default function FindYourScent() {
   const [ref, isVisible] = useScrollReveal();
@@ -49,8 +50,8 @@ export default function FindYourScent() {
             subtitle="Find a fragrance for the way you feel."
           />
 
-          {/* 3-column single horizontal row across all viewports with staggered reveal */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
+          {/* 3-column single horizontal row with max-w-5xl on desktop to slightly reduce card size */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-5 mt-4 sm:mt-8 w-full max-w-5xl mx-auto">
             {SCENT_CATEGORIES.map((category, idx) => (
               <div
                 key={category.id}
