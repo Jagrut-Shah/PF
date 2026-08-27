@@ -7,7 +7,7 @@ import products from '../../data/products';
 
 /**
  * MostLoved Homepage Section
- * Cormorant Garamond for headline + Manrope 600/700 for BESTSELLERS (gold #C6A15B preserved).
+ * Bodoni Moda 400 for headline + Manrope 600/700 for BESTSELLERS (gold #C6A15B preserved).
  */
 export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);

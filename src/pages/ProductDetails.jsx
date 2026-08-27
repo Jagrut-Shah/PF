@@ -396,7 +396,7 @@ export default function ProductDetails() {
             </div>
           )}
 
-          {/* Product Title — Cormorant Garamond Serif */}
+          {/* Product Title — Bodoni Moda Display Serif */}
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#F6EFE7] leading-tight tracking-tight">
             {product.name}
           </h1>

@@ -8,7 +8,7 @@ import reviews, { reviewAggregate } from '../../data/reviews';
 
 /**
  * WHAT PEOPLE SAY
- * Cormorant Garamond serif heading + Manrope functional UI.
+ * Bodoni Moda 400 heading + Manrope functional UI.
  */
 export default function WhatPeopleSay() {
   const displayedReviews = reviews.slice(0, 3);

@@ -3,7 +3,7 @@ import { Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * SignatureCtaBanner Component — Unique typographic styling for the discovery banner & CTA button.
+ * SignatureCtaBanner Component — Bodoni Moda 400 Title + Manrope 600 CTA Button
  */
 export default function SignatureCtaBanner() {
   const scrollToFinder = (e) => {
@@ -23,7 +23,7 @@ export default function SignatureCtaBanner() {
               <Sparkles className="w-4 h-4 text-[#E7C4C5]" />
             </div>
             <div>
-              <span className="font-serif italic text-base sm:text-lg md:text-xl font-normal tracking-wide text-[#F6EFE7]">
+              <span className="font-serif text-lg sm:text-xl font-normal tracking-wide text-[#F6EFE7]">
                 Not sure which scent is yours?
               </span>
             </div>
@@ -32,9 +32,9 @@ export default function SignatureCtaBanner() {
           <a
             href="#scent-finder"
             onClick={scrollToFinder}
-            className="inline-flex items-center justify-center gap-2 bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] px-6 py-2.5 rounded-xl font-sans text-xs sm:text-xs font-extrabold tracking-[0.18em] uppercase transition-all duration-200 shrink-0 shadow-sm w-full sm:w-auto text-center"
+            className="inline-flex items-center justify-center gap-2 bg-[#C94B5B] hover:bg-[#B03D4C] text-[#F6EFE7] px-6 py-2.5 rounded-xl font-sans text-xs sm:text-[13px] font-semibold tracking-[0.08em] uppercase transition-colors shrink-0 shadow-xs w-full sm:w-auto text-center"
           >
-            <span>FIND YOUR SIGNATURE SCENT →</span>
+            <span>Find Your Signature Scent →</span>
           </a>
         </div>
       </MainContainer>

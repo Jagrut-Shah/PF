@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import StarRating from '../ui/StarRating';
 
 /**
- * ProductCard Component — Manrope 600 for Product Names and Prices, Manrope 400/500 for Supporting Details.
+ * ProductCard Component — Bodoni Moda 400 for Fragrance Names (Section 12), Manrope 600 for Prices (Section 14)
  */
 export default function ProductCard({ product, className = '' }) {
   if (!product) return null;
@@ -20,7 +20,7 @@ export default function ProductCard({ product, className = '' }) {
         {/* Refined Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
-            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C6A15B] text-[#2A0D14] text-[8px] font-sans font-semibold tracking-wider py-0.5 text-center -rotate-45 uppercase shadow-sm">
+            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C6A15B] text-[#2A0D14] text-[8.5px] font-sans font-semibold tracking-wider py-0.5 text-center -rotate-45 uppercase shadow-sm">
               BESTSELLER
             </div>
           </div>
@@ -38,12 +38,12 @@ export default function ProductCard({ product, className = '' }) {
 
       {/* Metadata Section */}
       <div className="mt-3 flex flex-col space-y-1 min-w-0">
-        {/* Product Name — Manrope 600 Title Case */}
-        <h3 className="font-sans text-sm sm:text-base font-semibold text-[#F6EFE7] leading-snug group-hover:text-[#C94B5B] transition-colors duration-200 min-w-0 break-words">
+        {/* Product Name — Bodoni Moda 400 (Section 12) */}
+        <h3 className="font-serif text-[18px] sm:text-[21px] font-normal text-[#F6EFE7] leading-snug group-hover:text-[#C94B5B] transition-colors duration-200 min-w-0 break-words">
           ÉLAVA {product.name}
         </h3>
 
-        {/* Scent Identity & Gold BESTSELLER Tag */}
+        {/* Scent Identity & Gold BESTSELLER Tag — Manrope 500/600 */}
         <p className="font-sans text-xs leading-snug min-w-0 break-words text-[#E7C4C5]/85 font-normal">
           {product.isBestseller ? (
             <>
@@ -63,7 +63,7 @@ export default function ProductCard({ product, className = '' }) {
           <span>{product.reviewCount} reviews</span>
         </div>
 
-        {/* Price & Hover Action Arrow — Manrope 600 */}
+        {/* Price & Hover Action Arrow — Manrope 600 (Section 14) */}
         <div className="flex items-center justify-between pt-1 text-[#F6EFE7]">
           <span className="font-sans text-sm sm:text-base font-semibold tracking-tight text-[#F6EFE7]">
             ₹{product.price?.toLocaleString()}

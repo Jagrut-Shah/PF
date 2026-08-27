@@ -90,7 +90,7 @@ export default function Footer() {
                     </span>
                   </div>
                 </Link>
-                {/* Brand Statement: Cormorant Garamond Serif */}
+                {/* Brand Statement: Bodoni Moda Display Serif */}
                 <p className="font-serif text-base text-[#E7C4C5]/90 leading-relaxed mb-4 font-normal">
                   Artisanal Eau de Parfum signatures crafted for memorable presence across India.
                 </p>

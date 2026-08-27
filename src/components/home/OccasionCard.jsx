@@ -3,68 +3,22 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * OccasionTitle Component
- * Gives distinct, unique typographic personalities to each occasion (Date Night, Everyday, Office, Party).
+ * OccasionTitle Component — Unified Bodoni Moda 400 Title System across all 4 Occasions
+ * Date Night, Everyday, Office, Party all receive identical, unified Bodoni Moda treatment per Section 17.
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
   const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
 
-  switch (occasion.id) {
-    case 'date-night':
-      return (
-        <h3
-          className={`leading-none truncate ${isDesktop ? 'text-base lg:text-lg' : 'text-[10px] sm:text-xs'}`}
-          style={shadowStyle}
-        >
-          <span className="font-serif italic font-normal text-[#E7C4C5] tracking-wide uppercase">DATE </span>
-          <span className="font-serif italic font-semibold text-[#F6EFE7] tracking-wider uppercase">NIGHT</span>
-        </h3>
-      );
-    case 'everyday':
-      return (
-        <h3
-          className={`font-sans font-bold tracking-[0.14em] uppercase text-[#F6EFE7] leading-none truncate ${
-            isDesktop ? 'text-sm lg:text-base' : 'text-[9.5px] sm:text-xs'
-          }`}
-          style={shadowStyle}
-        >
-          EVERYDAY
-        </h3>
-      );
-    case 'office':
-      return (
-        <h3
-          className={`font-sans font-semibold tracking-[0.28em] uppercase text-[#F6EFE7] leading-none truncate ${
-            isDesktop ? 'text-xs lg:text-sm' : 'text-[8.5px] sm:text-[10.5px]'
-          }`}
-          style={shadowStyle}
-        >
-          OFFICE
-        </h3>
-      );
-    case 'party':
-      return (
-        <h3
-          className={`font-sans font-extrabold tracking-[0.18em] uppercase text-[#F6EFE7] leading-none truncate ${
-            isDesktop ? 'text-base lg:text-lg' : 'text-[10.5px] sm:text-xs'
-          }`}
-          style={shadowStyle}
-        >
-          PARTY
-        </h3>
-      );
-    default:
-      return (
-        <h3
-          className={`font-sans font-semibold tracking-wider text-[#F6EFE7] leading-none truncate ${
-            isDesktop ? 'text-sm lg:text-base' : 'text-xs'
-          }`}
-          style={shadowStyle}
-        >
-          {occasion.title}
-        </h3>
-      );
-  }
+  return (
+    <h3
+      className={`font-serif font-normal text-[#F6EFE7] leading-tight truncate ${
+        isDesktop ? 'text-[24px] lg:text-[28px]' : 'text-[21px] sm:text-[24px]'
+      }`}
+      style={shadowStyle}
+    >
+      {occasion.title}
+    </h3>
+  );
 }
 
 export default function OccasionCard({ occasion }) {
@@ -113,7 +67,7 @@ export default function OccasionCard({ occasion }) {
           <div className="flex flex-col min-w-0 pr-3">
             <OccasionTitle occasion={occasion} isDesktop={true} />
             <p
-              className="font-sans text-xs leading-relaxed mt-1 font-normal tracking-wide truncate text-[#E7C4C5]/90"
+              className="font-sans text-xs sm:text-sm leading-relaxed mt-1 font-normal tracking-wide truncate text-[#E7C4C5]/90"
               style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}
             >
               {occasion.description}

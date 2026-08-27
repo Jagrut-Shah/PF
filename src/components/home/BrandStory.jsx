@@ -2,7 +2,7 @@ import React from 'react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * BrandStory Component — Cormorant Garamond title & stats, Manrope body copy.
+ * BrandStory Component — Bodoni Moda Title & Pull Quote (Section 24), Manrope Body Copy.
  */
 export default function BrandStory() {
   return (
@@ -22,6 +22,12 @@ export default function BrandStory() {
             <p>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
+
+            {/* Selected Pull Quote — Bodoni Moda Italic 400 (Section 24) */}
+            <blockquote className="my-6 py-4 border-y border-[#E7C4C5]/15 font-serif italic text-2xl sm:text-3xl text-[#F6EFE7] font-normal leading-snug max-w-xl mx-auto">
+              "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
+            </blockquote>
+
             <p>
               Based in Ahmedabad, Gujarat, we blend fine fragrance oils with precision to create perfumes that feel personal, elevated, and deeply memorable—whether for an intimate date night, daily office wear, or vibrant evening celebrations.
             </p>

@@ -5,7 +5,7 @@ import MainContainer from '../ui/MainContainer';
 import { Gift, Share2 } from 'lucide-react';
 
 /**
- * ReferralBanner Component — Cormorant Garamond for main statement, Manrope for steps & CTA.
+ * ReferralBanner Component — Bodoni Moda 400 for Headline & Reward (Section 21), Manrope for Steps & CTA.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -35,9 +35,9 @@ export default function ReferralBanner() {
                 <span>ÉLAVA Rewards</span>
               </div>
 
-              {/* Major Statement: Cormorant Garamond Serif */}
+              {/* Major Statement: Bodoni Moda 400 (Section 21) */}
               <div className="space-y-3">
-                <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F6EFE7] leading-[1.05] tracking-tight">
+                <h2 className="font-serif text-[32px] sm:text-[44px] lg:text-[54px] font-normal text-[#F6EFE7] leading-[1.02] tracking-tight">
                   Share Élava.<br />
                   <span className="text-[#C94B5B] font-normal">
                     Earn ₹100 Cash.
@@ -53,7 +53,7 @@ export default function ReferralBanner() {
                 
                 {/* Step 01 */}
                 <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1">
-                  <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#E7C4C5]/70 block">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#E7C4C5]/70 block">
                     01
                   </span>
                   <div className="font-sans text-sm font-semibold text-[#F6EFE7]">
@@ -64,7 +64,7 @@ export default function ReferralBanner() {
 
                 {/* Step 02 */}
                 <div className="bg-[#2A0D14] border border-[#E7C4C5]/15 rounded-2xl p-4 space-y-1">
-                  <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#E7C4C5]/70 block">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#E7C4C5]/70 block">
                     02
                   </span>
                   <div className="font-sans text-sm font-semibold text-[#F6EFE7]">
@@ -75,7 +75,7 @@ export default function ReferralBanner() {
 
                 {/* Step 03 */}
                 <div className="bg-[#2A0D14] border border-[#C94B5B]/50 rounded-2xl p-4 space-y-1 shadow-lg relative overflow-hidden">
-                  <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#C94B5B] block">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#C94B5B] block">
                     03 · HERO EARNING
                   </span>
                   <div className="font-sans text-base font-semibold text-[#F6EFE7]">
@@ -110,7 +110,7 @@ export default function ReferralBanner() {
                   <div className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#E7C4C5]">
                     Your Cash Reward
                   </div>
-                  <h3 className="font-serif text-4xl font-normal text-[#F6EFE7]">
+                  <h3 className="font-serif text-4xl font-medium text-[#F6EFE7]">
                     ₹100 Cash
                   </h3>
                   <p className="text-xs font-sans text-[#E7C4C5]/85 leading-relaxed px-2 font-normal">

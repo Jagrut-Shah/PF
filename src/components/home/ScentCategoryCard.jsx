@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- * ScentCategoryCard Component
- * Cormorant Garamond serif for category title, Manrope for descriptors & action link.
+ * ScentCategoryCard Component — Bodoni Moda 400 Titles (24–30px) & Manrope UI per Section 18
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -33,7 +32,7 @@ export default function ScentCategoryCard({ category }) {
           />
         </div>
         <div className="bg-[#2A0D14] px-3 pt-2.5 pb-2 text-left">
-          <h3 className="font-serif text-lg font-normal text-[#F6EFE7] leading-tight">
+          <h3 className="font-serif text-[21px] font-normal text-[#F6EFE7] leading-tight">
             {category.title}
           </h3>
           <div className="mt-1 flex items-center gap-1 text-[11px] font-sans font-semibold tracking-wider text-[#E7C4C5]">
@@ -59,7 +58,7 @@ export default function ScentCategoryCard({ category }) {
 
         <div className="relative z-10 h-full p-5 sm:p-6 flex flex-col justify-between select-none">
           <div>
-            <h3 className="font-serif text-2xl md:text-3xl font-normal text-[#F6EFE7] mb-2 leading-snug">
+            <h3 className="font-serif text-[24px] lg:text-[28px] font-normal text-[#F6EFE7] mb-2 leading-snug">
               {category.title}
             </h3>
             <div className="flex flex-col space-y-1">
@@ -74,7 +73,7 @@ export default function ScentCategoryCard({ category }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#E7C4C5] pt-2">
+          <div className="flex items-center gap-1.5 font-sans text-xs sm:text-[13px] font-semibold tracking-wider text-[#E7C4C5] pt-2">
             <span>Explore</span>
             <span
               className="inline-block transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-250 ease-out"
