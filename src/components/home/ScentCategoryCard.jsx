@@ -1,89 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 /**
- * ScentCategoryCard Component — Bodoni Moda 400 Titles & Manrope UI (Section 18),
- * Near-Black #0D0A0C container base for art-directed contrast.
+ * ScentCategoryCard Component — Variant C: Dark Coffee #33211E background with Warm Cream #F1E4D2 typography
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
 
-  const objectPositions = {
-    'for-him': 'object-[85%_center]',
-    'for-her': 'object-[50%_center]',
-    'unisex': 'object-[80%_center]'
-  };
-
-  const focalPosition = category.objectPosition || objectPositions[category.id] || 'object-center';
-
   return (
     <Link
-      to={category.link}
-      className="group relative block w-full h-auto md:h-[250px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#0D0A0C] border border-[#E7C4C5]/15 focus:outline-none active:scale-[0.98] transition-transform duration-150 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
-      aria-label={`Explore ${category.title} collection`}
+      to={category.route}
+      className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#33211E] border border-[#CDBBAA]/15 hover:border-[#CDBBAA]/40 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 select-none"
+      aria-label={`Explore ${category.name} perfume category`}
     >
-      {/* MOBILE */}
-      <div className="block md:hidden">
-        <div className="overflow-hidden rounded-t-xl bg-[#0D0A0C]">
-          <img
-            src={category.image}
-            alt={category.alt}
-            className="w-full h-[118px] object-cover object-center"
-            loading="eager"
-          />
+      <div>
+        <div className="flex items-center justify-between text-xs font-sans font-semibold tracking-wider text-[#D9B8B7] uppercase mb-4">
+          <span>{category.itemCount || 'Collection'}</span>
+          <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform text-[#F1E4D2]" />
         </div>
-        <div className="bg-[#0D0A0C] px-3 pt-2.5 pb-2 text-left border-t border-[#E7C4C5]/10">
-          <h3 className="font-serif text-[21px] font-normal text-[#F6EFE7] leading-tight">
-            {category.title}
-          </h3>
-          <div className="mt-1 flex items-center gap-1 text-[11px] font-sans font-semibold tracking-wider text-[#E7C4C5]">
-            <span>Explore</span>
-            <span aria-hidden="true">↗</span>
-          </div>
-        </div>
+        <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#F1E4D2] mb-2 group-hover:text-[#D9B8B7] transition-colors">
+          {category.name}
+        </h3>
+        <p className="font-sans text-xs sm:text-sm text-[#CDBBAA] leading-relaxed font-normal">
+          {category.description}
+        </p>
       </div>
 
-      {/* DESKTOP */}
-      <div className="hidden md:block w-full h-full relative">
-        <img
-          src={category.image}
-          alt={category.alt}
-          className={`absolute inset-0 w-full h-full object-cover ${focalPosition} scale-[1.08] origin-[50%_25%] transition-transform duration-300 ease-out group-hover:scale-[1.11] will-change-transform`}
-          loading="eager"
-        />
-
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#0D0A0C]/90 via-[#2A0D14]/50 via-35% to-transparent pointer-events-none"
-          aria-hidden="true"
-        />
-
-        <div className="relative z-10 h-full p-5 sm:p-6 flex flex-col justify-between select-none">
-          <div>
-            <h3 className="font-serif text-[24px] lg:text-[28px] font-normal text-[#F6EFE7] mb-2 leading-snug">
-              {category.title}
-            </h3>
-            <div className="flex flex-col space-y-1">
-              {category.descriptors.map((desc, idx) => (
-                <span
-                  key={idx}
-                  className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 font-normal tracking-wide"
-                >
-                  {desc}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 font-sans text-xs sm:text-[13px] font-semibold tracking-wider text-[#E7C4C5] pt-2">
-            <span>Explore</span>
-            <span
-              className="inline-block transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-250 ease-out"
-              aria-hidden="true"
-            >
-              ↗
-            </span>
-          </div>
-        </div>
+      <div className="mt-6 pt-4 border-t border-[#CDBBAA]/15 flex items-center justify-between text-xs font-sans font-semibold text-[#F1E4D2] group-hover:text-[#D9B8B7]">
+        <span>Discover Family</span>
+        <span className="text-base font-serif italic">→</span>
       </div>
     </Link>
   );

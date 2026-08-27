@@ -27,7 +27,7 @@ const DIFFERENTIATORS = [
 
 export default function WhyElava() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#2A0D14] text-[#F3E9DD]">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#241817] text-[#F1E4D2]">
       <MainContainer>
         <SectionHeading
           title="Why Élava"
@@ -38,7 +38,7 @@ export default function WhyElava() {
           {DIFFERENTIATORS.map((item) => (
             <div
               key={item.number}
-              className="bg-[#F3E9DD] border border-[#641D2D]/20 rounded-xl p-6 flex flex-col justify-between shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="bg-[#F1E4D2] border border-[#33211E]/20 rounded-xl p-6 flex flex-col justify-between shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div>
                 <span className="font-serif text-4xl font-normal text-[#0D0A0C] block mb-3 leading-none">
@@ -47,7 +47,7 @@ export default function WhyElava() {
                 <h3 className="font-sans text-sm font-bold tracking-wide text-[#0D0A0C] mb-2">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#0D0A0C]/90 leading-relaxed font-normal">
+                <p className="font-sans text-xs sm:text-sm text-[#241817]/90 leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>

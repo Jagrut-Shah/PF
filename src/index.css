@@ -2,14 +2,16 @@
 @import "tailwindcss";
 
 :root {
-  --elava-cherry: #2A0D14;
-  --elava-wine: #641D2D;
-  --elava-near-black: #0D0A0C;
-  --elava-cream: #F3E9DD; /* Variant B: Warm Ivory */
-  --elava-blush: #E7C4C5;
-  --elava-charcoal: #171316;
-  --elava-coral: #C94B5B;
-  --elava-bestseller-gold: #C6A15B;
+  /* Variant C Palette Tokens */
+  --elava-espresso: #241817;   /* Primary environmental color */
+  --elava-coffee: #33211E;     /* Secondary surface/depth color */
+  --elava-cherry: #2A0D14;     /* Signature brand accent */
+  --elava-near-black: #0D0A0C; /* Deepest contrast */
+  --elava-cream: #F1E4D2;      /* Warm Cream: primary light surface & light text */
+  --elava-taupe: #CDBBAA;      /* Soft Taupe: subtle secondary neutral */
+  --elava-blush: #D9B8B7;      /* Muted Blush: limited accent */
+  --elava-coral: #C94B5B;      /* Energetic CTA accent */
+  --elava-bestseller-gold: #C6A15B; /* BESTSELLERS ONLY */
 
   /* Global Typography System Tokens */
   --font-serif: "Bodoni Moda", "Didot", "Bodoni MT", serif;
@@ -22,19 +24,20 @@
   --font-alex: "Alex Brush", cursive;
 
   /* Shadow System Hierarchy */
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.18);
-  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.25);
+  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.45);
 }
 
 @theme {
+  --color-elava-espresso: #241817;
+  --color-elava-coffee: #33211E;
   --color-elava-cherry: #2A0D14;
-  --color-elava-wine: #641D2D;
   --color-elava-black: #0D0A0C;
-  --color-elava-cream: #F3E9DD;
-  --color-elava-blush: #E7C4C5;
-  --color-elava-charcoal: #171316;
+  --color-elava-cream: #F1E4D2;
+  --color-elava-taupe: #CDBBAA;
+  --color-elava-blush: #D9B8B7;
   --color-elava-coral: #C94B5B;
   --color-elava-bestseller-gold: #C6A15B;
 
@@ -46,8 +49,8 @@
 html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #2A0D14;
-  color: #F3E9DD;
+  background-color: #241817;
+  color: #F1E4D2;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -102,7 +105,7 @@ body {
 }
 
 .bg-elava-ivory {
-  background-color: #2A0D14 !important;
+  background-color: #241817 !important;
 }
 
 /* Smooth scrolling */
@@ -176,15 +179,15 @@ html {
   background: #0D0A0C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #641D2D;
+  background: #33211E;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C94B5B;
+  background: #2A0D14;
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(100, 29, 45, 0.5);
-  color: #F3E9DD;
+  background: rgba(42, 13, 20, 0.6);
+  color: #F1E4D2;
 }

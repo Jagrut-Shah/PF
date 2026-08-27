@@ -3,7 +3,7 @@ import { Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * SignatureCtaBanner Component — Compact CTA Banner with Italic Serif Title & Italic CTA Font
+ * SignatureCtaBanner Component — Variant C: Dark Espresso #241817 environment + Dark Coffee #33211E banner + Deep Cherry #2A0D14 CTA
  */
 export default function SignatureCtaBanner() {
   const scrollToFinder = (e) => {
@@ -15,15 +15,15 @@ export default function SignatureCtaBanner() {
   };
 
   return (
-    <section className="py-1.5 sm:py-2 bg-[#2A0D14] text-[#F6EFE7]">
+    <section className="py-1.5 sm:py-2 bg-[#241817] text-[#F1E4D2]">
       <MainContainer>
-        <div className="max-w-5xl mx-auto bg-[#641D2D] border border-[#E7C4C5]/20 rounded-lg px-3.5 py-2 sm:px-5 sm:py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5 shadow-sm">
+        <div className="max-w-5xl mx-auto bg-[#33211E] border border-[#CDBBAA]/20 rounded-lg px-3.5 py-2 sm:px-5 sm:py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5 shadow-sm">
           <div className="flex items-center gap-2.5 text-center sm:text-left">
-            <div className="w-7 h-7 rounded-full bg-[#0D0A0C] border border-[#E7C4C5]/20 flex items-center justify-center shrink-0 hidden sm:flex shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#E7C4C5]" />
+            <div className="w-7 h-7 rounded-full bg-[#0D0A0C] border border-[#CDBBAA]/20 flex items-center justify-center shrink-0 hidden sm:flex shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#D9B8B7]" />
             </div>
             <div>
-              <span className="font-serif italic text-base sm:text-[17px] font-normal tracking-wide text-[#F6EFE7]">
+              <span className="font-serif italic text-base sm:text-[17px] font-normal tracking-wide text-[#F1E4D2]">
                 Not sure which scent is yours?
               </span>
             </div>
@@ -32,7 +32,7 @@ export default function SignatureCtaBanner() {
           <a
             href="#scent-finder"
             onClick={scrollToFinder}
-            className="inline-flex items-center justify-center gap-1.5 bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] px-4 py-1.5 sm:py-2 rounded-lg font-serif italic text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shrink-0 shadow-xs w-full sm:w-auto text-center"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#2A0D14] hover:bg-[#3D141E] active:scale-[0.98] text-[#F1E4D2] border border-[#D9B8B7]/30 px-4 py-1.5 sm:py-2 rounded-lg font-serif italic text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shrink-0 shadow-xs w-full sm:w-auto text-center"
           >
             <span>Find Your Signature Scent →</span>
           </a>
