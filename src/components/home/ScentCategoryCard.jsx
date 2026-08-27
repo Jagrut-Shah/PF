@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 /**
  * ScentCategoryCard Component — Layered Black & Red Atmosphere:
  * Compact, responsive, single-line horizontal card for FOR HIM, FOR HER, UNISEX.
- * Soft Black #111111 background, Charcoal #171515 image container, Level 1 diffuse red ambient hover wash.
+ * Soft Black #111111 background, Charcoal #171515 image container with lacquer sheen .bg-lacquer-highlight, Level 1 diffuse red ambient hover wash.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -21,7 +21,7 @@ export default function ScentCategoryCard({ category }) {
   return (
     <Link
       to={route}
-      className="group block relative w-full rounded-lg sm:rounded-xl overflow-hidden border border-white/10 bg-[#111111] transition-all duration-300 hover:border-[#B4171E]/50 hover:-translate-y-0.5 shadow-sm hover:shadow-md select-none"
+      className="group block relative w-full rounded-lg sm:rounded-xl overflow-hidden border border-white/10 bg-[#111111] transition-all duration-300 hover:border-[#B4171E]/50 hover:-translate-y-0.5 shadow-sm hover:shadow-md select-none bg-lacquer-highlight"
       aria-label={`Explore ${title} perfumes`}
     >
       <div className="relative aspect-[1/0.95] sm:aspect-[4/4.2] md:aspect-[4/3.8] w-full overflow-hidden bg-[#171515]">

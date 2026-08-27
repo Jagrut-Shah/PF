@@ -5,7 +5,7 @@ import StarRating from '../ui/StarRating';
 
 /**
  * ProductCard Component — Layered Black & Red Luxury Aesthetic:
- * Charcoal #171515 image container, Warm White #F5F2EE name & price, Muted Gray #B8B3AF metadata.
+ * Charcoal #171515 image container with subtle lacquer sheen .bg-lacquer-highlight, Warm White #F5F2EE name & price, Muted Gray #B8B3AF metadata.
  * Bestseller Gold #C6A15B tag strictly preserved.
  */
 export default function ProductCard({ product, className = '' }) {
@@ -17,8 +17,8 @@ export default function ProductCard({ product, className = '' }) {
       className={`group block w-full select-none focus:outline-none active:scale-[0.98] transition-transform duration-150 ${className}`}
       aria-label={`View ${product.name} perfume`}
     >
-      {/* Compact Charcoal Image Container for Tonal Depth */}
-      <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#171515] border border-white/10 aspect-[4/3.8] md:aspect-[4/4.5] shadow-sm group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:border-[#B4171E]/40">
+      {/* Compact Charcoal Image Container with Lacquer Sheen */}
+      <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#171515] border border-white/10 aspect-[4/3.8] md:aspect-[4/4.5] shadow-sm group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:border-[#B4171E]/40 bg-lacquer-highlight">
         {/* Refined Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">

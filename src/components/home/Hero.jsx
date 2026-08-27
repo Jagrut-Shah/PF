@@ -5,7 +5,8 @@ import MainContainer from '../ui/MainContainer';
 
 /**
  * Hero Component — Black & Red Luxury Studio Atmosphere & Motion System:
- * Cinematic staggered entrance + Desktop micro-parallax mouse follow (max 6px image / 3px light offset).
+ * Deep Black #0B0B0B environment with film grain texture, Level 3 diffuse ambient red studio spotlight,
+ * subtle vignette overlay, and desktop micro-parallax mouse follow.
  */
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -42,9 +43,9 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full bg-[#0B0B0B] text-[#F5F2EE] overflow-hidden border-b border-white/10"
+      className="relative w-full bg-[#0B0B0B] text-[#F5F2EE] overflow-hidden border-b border-white/10 bg-grain-texture"
     >
-      {/* Background Photography with Soft Dark Atmosphere & Diffuse Level 1 Red Studio Light */}
+      {/* Background Photography with Soft Dark Atmosphere & Diffuse Level 3 Red Studio Light */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <img
           src="/images/products/row-1-column-1.png"
@@ -54,7 +55,10 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#0B0B0B]/95 to-[#0B0B0B]/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#080808]/50" />
         
-        {/* Level 1 Diffuse Deep-Red Ambient Light behind hero product with subtle mouse follow */}
+        {/* Subtle Editorial Vignette Overlay */}
+        <div className="absolute inset-0 bg-vignette-overlay" />
+
+        {/* Level 3 Diffuse Deep-Red Ambient Light behind hero product with subtle mouse follow */}
         <div
           className="absolute inset-0 bg-ambient-hero transition-transform duration-300 ease-out"
           style={{ transform: lightTransform }}
@@ -94,7 +98,7 @@ export default function Hero() {
 
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#111111] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 btn-interactive"
+                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 btn-interactive"
               >
                 <span>Explore All</span>
               </Link>
@@ -115,7 +119,7 @@ export default function Hero() {
 
               {/* Product Bottle Container with Subtle Desktop Mouse Follow */}
               <div
-                className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015]"
+                className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015] bg-lacquer-highlight"
                 style={{ transform: bottleTransform }}
               >
                 <img
