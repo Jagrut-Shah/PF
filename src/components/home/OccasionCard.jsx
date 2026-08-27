@@ -4,31 +4,31 @@ import { ArrowRight } from 'lucide-react';
 
 /**
  * OccasionTitle Component
- * Renders distinct, unique ITALIC typographic styling for each of the 4 occasion cards (Date Night, Everyday, Office, Party).
- * Uses Title Case (not all uppercase) with 4 completely distinct font families (Bodoni Moda Italic, Cormorant Garamond Italic, Playfair Display Italic, Alex Brush Cursive/Italiana).
+ * Renders 4 distinct, expressive luxury script fonts (Great Vibes for Date Night, MonteCarlo for Everyday, Italianno for Office, Alex Brush for Party).
+ * Date Night stands out the most with a larger size, dual-tone soft blush glow, and romantic calligraphic presence.
  */
 function OccasionTitle({ occasion, isDesktop = false }) {
-  const shadowStyle = isDesktop ? { textShadow: '0 1px 4px rgba(0,0,0,0.5)' } : {};
+  const shadowStyle = isDesktop ? { textShadow: '0 2px 8px rgba(0,0,0,0.6)' } : {};
 
   switch (occasion.id) {
     case 'date-night':
       return (
         <h3
-          className={`font-serif italic font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[22px] lg:text-[26px]' : 'text-[15px] sm:text-[17px]'
+          className={`font-great-vibes font-normal leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[36px] lg:text-[44px]' : 'text-[24px] sm:text-[28px]'
           }`}
           style={shadowStyle}
         >
-          <span className="text-[#E7C4C5]">Date </span>
-          <span>Night</span>
+          <span className="text-[#E7C4C5] drop-shadow-[0_2px_8px_rgba(231,196,197,0.3)]">Date </span>
+          <span className="text-[#F6EFE7] drop-shadow-[0_2px_8px_rgba(246,239,231,0.3)]">Night</span>
         </h3>
       );
 
     case 'everyday':
       return (
         <h3
-          className={`font-cormorant italic font-medium tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[24px] lg:text-[28px]' : 'text-[16px] sm:text-[18px]'
+          className={`font-montecarlo font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
           }`}
           style={shadowStyle}
         >
@@ -39,8 +39,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'office':
       return (
         <h3
-          className={`font-playfair italic font-medium tracking-wider text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[21px] lg:text-[25px]' : 'text-[15px] sm:text-[17px]'
+          className={`font-italianno font-normal tracking-wider text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[32px] lg:text-[38px]' : 'text-[22px] sm:text-[25px]'
           }`}
           style={shadowStyle}
         >
@@ -51,7 +51,7 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     case 'party':
       return (
         <h3
-          className={`font-alex italic font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
+          className={`font-alex font-normal tracking-wide text-[#F6EFE7] leading-tight text-center sm:text-left ${
             isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
           }`}
           style={shadowStyle}
@@ -63,8 +63,8 @@ function OccasionTitle({ occasion, isDesktop = false }) {
     default:
       return (
         <h3
-          className={`font-serif italic font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
-            isDesktop ? 'text-[20px] lg:text-[24px]' : 'text-[14px] sm:text-[16px]'
+          className={`font-great-vibes font-normal text-[#F6EFE7] leading-tight text-center sm:text-left ${
+            isDesktop ? 'text-[28px] lg:text-[34px]' : 'text-[20px] sm:text-[23px]'
           }`}
           style={shadowStyle}
         >
