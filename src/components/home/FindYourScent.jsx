@@ -31,13 +31,12 @@ const SCENT_CATEGORIES = [
 ];
 
 /**
- * FindYourScent Homepage Section
- * Visual category showcase directly beneath the Navbar.
- * Palette: Deep Cherry (#2A0D14) background, Cream (#F6EFE7) headings.
+ * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
+ * One single horizontal line across all viewports (mobile & desktop) with compact responsive cards.
  */
 export default function FindYourScent() {
   return (
-    <section className="pt-5 sm:pt-8 md:pt-10 pb-5 sm:pb-8 md:pb-10 bg-[#2A0D14] text-[#F6EFE7]" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 md:py-16 bg-[#241918] text-[#F0E2D0] border-b border-[#CDBBAA]/15" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         {/* Section Heading & Subtitle */}
         <SectionHeading
@@ -46,19 +45,12 @@ export default function FindYourScent() {
           subtitle="Find a fragrance for the way you feel."
         />
 
-        {/* Mobile 3-column grid — all three category cards visible */}
-        <div className="grid grid-cols-3 gap-3 md:hidden">
+        {/* 3-column single horizontal row across all viewports */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
           {SCENT_CATEGORIES.map((category) => (
-            <div key={category.id} className="min-w-0">
+            <div key={category.id} className="min-w-0 w-full">
               <ScentCategoryCard category={category} />
             </div>
-          ))}
-        </div>
-
-        {/* Desktop 3-card grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6 min-w-0">
-          {SCENT_CATEGORIES.map((category) => (
-            <ScentCategoryCard key={category.id} category={category} />
           ))}
         </div>
       </MainContainer>

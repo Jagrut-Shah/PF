@@ -6,32 +6,32 @@ import ProductCard from './ProductCard';
 import products from '../../data/products';
 
 /**
- * MostLoved Homepage Section
- * Bodoni Moda 400 for headline + Manrope 600/700 for BESTSELLERS (gold #C6A15B preserved).
+ * MostLoved Homepage Section — Final Color Direction C:
+ * Bodoni Moda 400 headline + Gold #C6A15B exclusively for BESTSELLERS tag.
  */
 export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
 
   return (
-    <section className="py-8 sm:py-12 bg-[#2A0D14] text-[#F6EFE7]" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 bg-[#241918] text-[#F0E2D0]" aria-labelledby="most-loved-heading">
       <MainContainer>
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 pb-1 gap-3">
           <div>
             <h2
               id="most-loved-heading"
-              className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] leading-tight tracking-tight"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F0E2D0] leading-tight tracking-tight"
             >
               Most Loved · <span className="font-sans font-semibold tracking-widest text-[#C6A15B] uppercase text-xl sm:text-2xl md:text-3xl">BESTSELLERS</span>
             </h2>
-            <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 mt-1 font-normal leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-[#CDBBAA] mt-1 font-normal leading-relaxed">
               Our most coveted fragrance signatures.
             </p>
           </div>
 
           <Link
             to="/category/bestsellers"
-            className="group inline-flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#F6EFE7] hover:text-[#C94B5B] transition-colors duration-200 self-start sm:self-end pb-0.5"
+            className="group inline-flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#F0E2D0] hover:text-[#CDBBAA] transition-colors duration-200 self-start sm:self-end pb-0.5"
             aria-label="View all bestsellers"
           >
             <span>View All Bestsellers</span>

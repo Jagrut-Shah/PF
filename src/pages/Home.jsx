@@ -13,12 +13,11 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * ÉLAVA Homepage Container — Deep Cherry / Cherry + Cream Coherent Visual Identity
- * Base Palette: Deep Cherry (#2A0D14), Rich Wine (#641D2D), Cream (#F6EFE7), Soft Blush (#E7C4C5)
+ * ÉLAVA Homepage Container — Final Color Direction C: Dark Espresso #241918 + Warm Cream #F0E2D0
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
+    <div className="w-full bg-[#241918] text-[#F0E2D0] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."
@@ -32,7 +31,7 @@ export default function Home() {
       {/* 2. FIND YOUR SIGNATURE SCENT CTA */}
       <SignatureCtaBanner />
 
-      {/* 3. FIND YOUR SCENT */}
+      {/* 3. FIND YOUR SCENT (FOR HIM, FOR HER, UNISEX) */}
       <FindYourScent />
 
       {/* 4. MOST LOVED (BESTSELLERS) */}
