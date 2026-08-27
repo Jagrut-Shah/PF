@@ -4,13 +4,14 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * Hero Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Deep Red #8F1018 eyebrow badge background, Signature Red #B4171E CTA button.
+ * Hero Component — Black & Red Luxury Studio Atmosphere:
+ * Deep Black #0B0B0B environment, Level 1 diffuse ambient red lighting behind studio bottle,
+ * Deep Red #8F1018 eyebrow badge, Level 3 Signature Red #B4171E CTA button.
  */
 export default function Hero() {
   return (
     <section className="relative w-full bg-[#0B0B0B] text-[#F5F2EE] overflow-hidden border-b border-white/10">
-      {/* Background Photography with Soft Black Atmosphere */}
+      {/* Background Photography with Soft Dark Atmosphere & Diffuse Level 1 Red Studio Light */}
       <div className="absolute inset-0 w-full h-full">
         <img
           src="/images/products/row-1-column-1.png"
@@ -19,6 +20,8 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#0B0B0B]/95 to-[#0B0B0B]/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#080808]/50" />
+        {/* Level 1 Diffuse Deep-Red Ambient Light behind hero product */}
+        <div className="absolute inset-0 bg-ambient-hero pointer-events-none" />
       </div>
 
       <MainContainer className="relative z-10 py-14 sm:py-20 md:py-28 lg:py-32">
@@ -54,7 +57,7 @@ export default function Hero() {
 
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-[#111111] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200"
               >
                 <span>Explore All</span>
               </Link>
@@ -67,6 +70,9 @@ export default function Hero() {
               {/* Soft Grounding Shadow beneath bottle */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-black/80 blur-xl rounded-full pointer-events-none" />
               
+              {/* Diffuse Red Backdrop Glow behind bottle */}
+              <div className="absolute inset-0 bg-radial from-[#8F1018]/20 to-transparent blur-2xl rounded-full pointer-events-none" />
+
               {/* Product Bottle Container */}
               <div className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015]">
                 <img

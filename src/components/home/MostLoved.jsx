@@ -6,16 +6,19 @@ import ProductCard from './ProductCard';
 import products from '../../data/products';
 
 /**
- * MostLoved Homepage Section — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Warm White #F5F2EE headline.
+ * MostLoved Homepage Section — Layered Black & Red Atmosphere:
+ * Soft Black #111111 environment + Level 1 diffuse ambient red wash, Warm White #F5F2EE headline.
  * Bestseller Gold #C6A15B strictly preserved for BESTSELLERS tag.
  */
 export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
 
   return (
-    <section className="py-8 sm:py-12 bg-[#0B0B0B] text-[#F5F2EE]" aria-labelledby="most-loved-heading">
-      <MainContainer>
+    <section className="py-8 sm:py-12 bg-[#111111] text-[#F5F2EE] relative overflow-hidden" aria-labelledby="most-loved-heading">
+      {/* Level 1 Diffuse Red Ambient Light */}
+      <div className="absolute inset-0 bg-ambient-red pointer-events-none" />
+
+      <MainContainer className="relative z-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 pb-1 gap-3">
           <div>

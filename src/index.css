@@ -2,14 +2,17 @@
 @import "tailwindcss";
 
 :root {
-  /* ÉLAVA Complete Black + Red Luxury Palette */
-  --elava-deep-black: #0B0B0B;       /* Primary homepage background (60-70%) */
-  --elava-soft-black: #121212;       /* Secondary black for elevated sections & cards */
-  --elava-charcoal: #1A1A1A;         /* Charcoal for card depth and separation */
-  --elava-deep-red: #8F1018;         /* Deep Red for larger red surfaces & promotional panels */
-  --elava-red: #B4171E;              /* Primary Signature Red accent & CTAs */
-  --elava-bright-red: #C72A35;       /* Brighter Red accent for hover & active states */
-  --elava-near-black: #080808;       /* Navbar & Footer background, deepest visual areas */
+  /* ÉLAVA Black & Red Luxury Palette with Tonal Background Depth */
+  --elava-deep-black: #0B0B0B;       /* Main homepage background */
+  --elava-soft-black: #111111;       /* Soft black for section variation & cards */
+  --elava-charcoal: #171515;         /* Charcoal for elevated cards & image boxes */
+  --elava-coffee-black: #1C1515;     /* Subtle warm black depth */
+  --elava-near-black: #080808;       /* Navbar & Footer background */
+  
+  --elava-deep-red: #8F1018;         /* Level 2 UI Accent & deep red surfaces */
+  --elava-red: #B4171E;              /* Level 3 Action & primary CTAs */
+  --elava-bright-red: #C72A35;       /* Hover & active emphasis */
+  
   --elava-warm-white: #F5F2EE;       /* Primary light typography */
   --elava-muted-white: #B8B3AF;      /* Secondary text & metadata */
   --elava-bestseller-gold: #C6A15B;  /* BESTSELLERS ONLY */
@@ -24,7 +27,7 @@
   --font-montecarlo: "MonteCarlo", cursive;
   --font-alex: "Alex Brush", cursive;
 
-  /* Shadow Hierarchy */
+  /* Softened Shadow Hierarchy */
   --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.20);
   --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.55);
@@ -33,12 +36,13 @@
 
 @theme {
   --color-elava-deep-black: #0B0B0B;
-  --color-elava-soft-black: #121212;
-  --color-elava-charcoal: #1A1A1A;
+  --color-elava-soft-black: #111111;
+  --color-elava-charcoal: #171515;
+  --color-elava-coffee-black: #1C1515;
+  --color-elava-near-black: #080808;
   --color-elava-deep-red: #8F1018;
   --color-elava-red: #B4171E;
   --color-elava-bright-red: #C72A35;
-  --color-elava-near-black: #080808;
   --color-elava-warm-white: #F5F2EE;
   --color-elava-muted-white: #B8B3AF;
   --color-elava-bestseller-gold: #C6A15B;
@@ -92,6 +96,23 @@ body {
 
 .font-alex {
   font-family: "Alex Brush", cursive;
+}
+
+/* Level 1 — Diffuse Deep Red Ambient Lighting Utilities */
+.bg-ambient-hero {
+  background: radial-gradient(ellipse at 70% 50%, rgba(143, 16, 24, 0.12), transparent 65%);
+}
+
+.bg-ambient-red {
+  background: radial-gradient(ellipse at 50% 50%, rgba(143, 16, 24, 0.08), transparent 70%);
+}
+
+.bg-ambient-card {
+  background: radial-gradient(circle at 50% 100%, rgba(143, 16, 24, 0.09), transparent 60%);
+}
+
+.bg-ambient-referral {
+  background: radial-gradient(circle at 80% 20%, rgba(199, 42, 53, 0.22), transparent 65%);
 }
 
 /* Prevent iOS auto-zoom on input focus */
@@ -181,7 +202,7 @@ html {
   background: #080808;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A1A1A;
+  background: #171515;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {

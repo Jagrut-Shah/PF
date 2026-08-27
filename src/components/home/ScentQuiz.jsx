@@ -38,8 +38,8 @@ const QUIZ_QUESTIONS = [
 ];
 
 /**
- * ScentQuiz Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 quiz container, Signature Red #B4171E selection & CTAs.
+ * ScentQuiz Component — Layered Black & Red Luxury Aesthetic:
+ * Soft Black #111111 section environment + Level 1 diffuse red ambient wash, Charcoal #171515 container, Level 3 Signature Red #B4171E selected options & CTAs.
  */
 export default function ScentQuiz() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -83,15 +83,18 @@ export default function ScentQuiz() {
   const displayProducts = recommendedProducts.length > 0 ? recommendedProducts : products.slice(0, 3);
 
   return (
-    <section id="scent-finder" className="py-12 sm:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-t border-b border-white/10">
-      <MainContainer>
+    <section id="scent-finder" className="py-12 sm:py-16 bg-[#111111] text-[#F5F2EE] border-t border-b border-white/10 relative overflow-hidden">
+      {/* Level 1 Diffuse Red Ambient Light */}
+      <div className="absolute inset-0 bg-ambient-red pointer-events-none" />
+
+      <MainContainer className="relative z-10">
         <SectionHeading
           title="Find Your Signature Scent"
           subtitle="Answer 3 quick questions to discover your ideal ÉLAVA fragrance signature."
           centered
         />
 
-        <div className="max-w-2xl mx-auto mt-8 bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div className="max-w-2xl mx-auto mt-8 bg-[#171515] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
           
           {!isCompleted ? (
             <div>
@@ -109,7 +112,7 @@ export default function ScentQuiz() {
                           ? 'w-6 bg-[#B4171E]'
                           : idx < currentStep
                           ? 'w-3 bg-[#B8B3AF]'
-                          : 'w-3 bg-[#1A1A1A]'
+                          : 'w-3 bg-[#111111]'
                       }`}
                     />
                   ))}
@@ -133,7 +136,7 @@ export default function ScentQuiz() {
                       className={`w-full text-left p-4 rounded-xl font-sans text-sm font-semibold tracking-wide transition-all duration-200 flex items-center justify-between border active:scale-[0.98] cursor-pointer ${
                         isSelected
                           ? 'bg-[#B4171E] border-[#B4171E] text-[#F5F2EE] shadow-sm'
-                          : 'bg-[#1A1A1A] border-white/10 text-[#F5F2EE] hover:border-[#B4171E]/40 hover:bg-[#1A1A1A]/80'
+                          : 'bg-[#111111] border-white/10 text-[#F5F2EE] hover:border-[#B4171E]/40 hover:bg-[#111111]/80'
                       }`}
                     >
                       <span>{option.label}</span>
@@ -191,11 +194,11 @@ export default function ScentQuiz() {
                   <img
                     src={displayProducts[0].image}
                     alt={displayProducts[0].name}
-                    className="w-24 h-24 object-contain rounded-lg bg-[#121212] shrink-0"
+                    className="w-24 h-24 object-contain rounded-lg bg-[#111111] shrink-0"
                   />
                   <div className="flex-1 text-center sm:text-left min-w-0">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#B4171E]/25 text-[#B4171E] border border-[#B4171E]/40 text-[10px] font-sans font-semibold uppercase tracking-wider mb-1">
-                      <Sparkles className="w-3 h-3 text-[#B4171E]" />
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#8F1018]/60 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-sans font-semibold uppercase tracking-wider mb-1">
+                      <Sparkles className="w-3 h-3 text-[#F5F2EE]" />
                       TOP MATCH · ÉLAVA SIGNATURE
                     </span>
                     <h4 className="font-serif text-2xl font-normal text-[#F5F2EE]">
@@ -211,7 +214,7 @@ export default function ScentQuiz() {
 
                   <Link
                     to={`/product/${displayProducts[0].slug}`}
-                    className="w-full sm:w-auto bg-[#B4171E] hover:bg-[#7A0F15] active:scale-[0.98] text-[#F5F2EE] border border-white/10 py-3 px-6 rounded-xl font-sans text-xs font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs"
+                    className="w-full sm:w-auto bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 py-3 px-6 rounded-xl font-sans text-xs font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs"
                   >
                     <span>View Your Match →</span>
                   </Link>
@@ -235,7 +238,7 @@ export default function ScentQuiz() {
                           <img
                             src={p.image}
                             alt={p.name}
-                            className="w-10 h-10 object-contain rounded bg-[#121212] shrink-0"
+                            className="w-10 h-10 object-contain rounded bg-[#111111] shrink-0"
                           />
                           <div className="min-w-0">
                             <h5 className="font-serif text-base font-normal text-[#F5F2EE] truncate">
