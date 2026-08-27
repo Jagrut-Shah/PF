@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Truck, CreditCard } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 function WhatsAppIcon({ className = "w-4 h-4" }) {
   return (
@@ -12,13 +13,20 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 
 /**
  * TrustStrip Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 container, Signature Red #B4171E icons.
+ * Deep Black #0B0B0B environment, Soft Black #121212 container with scroll reveal animation.
  */
 export default function TrustStrip() {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
     <section className="py-6 bg-[#0B0B0B] text-[#F5F2EE]">
       <MainContainer>
-        <div className="bg-[#121212] border border-white/10 rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#F5F2EE]">
+        <div
+          ref={ref}
+          className={`bg-[#121212] border border-white/10 rounded-2xl p-4 sm:p-5 md:p-6 shadow-xl text-[#F5F2EE] reveal-init ${
+            isVisible ? 'reveal-visible' : ''
+          }`}
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/10">
             
             {/* 1. Secure Payments */}

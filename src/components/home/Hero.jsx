@@ -1,18 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * Hero Component — Black & Red Luxury Studio Atmosphere:
- * Deep Black #0B0B0B environment, Level 1 diffuse ambient red lighting behind studio bottle,
- * Deep Red #8F1018 eyebrow badge, Level 3 Signature Red #B4171E CTA button.
+ * Hero Component — Black & Red Luxury Studio Atmosphere & Motion System:
+ * Cinematic staggered entrance + Desktop micro-parallax mouse follow (max 6px image / 3px light offset).
  */
 export default function Hero() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 1024;
+    if (!isDesktop) return;
+
+    const handleMouseMove = (e) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+      const y = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+      setMousePos({ x, y });
+    };
+
+    const container = heroRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+
+  // Desktop subtle parallax offsets (5-8px max for bottle, 2-4px max for light)
+  const bottleTransform = `translate3d(${mousePos.x * 12}px, ${mousePos.y * 12}px, 0)`;
+  const lightTransform = `translate3d(${mousePos.x * 6}px, ${mousePos.y * 6}px, 0)`;
+
   return (
-    <section className="relative w-full bg-[#0B0B0B] text-[#F5F2EE] overflow-hidden border-b border-white/10">
+    <section
+      ref={heroRef}
+      className="relative w-full bg-[#0B0B0B] text-[#F5F2EE] overflow-hidden border-b border-white/10"
+    >
       {/* Background Photography with Soft Dark Atmosphere & Diffuse Level 1 Red Studio Light */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
         <img
           src="/images/products/row-1-column-1.png"
           alt="ÉLAVA Luxury Perfume Hero"
@@ -20,8 +53,12 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#0B0B0B]/95 to-[#0B0B0B]/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-[#080808]/50" />
-        {/* Level 1 Diffuse Deep-Red Ambient Light behind hero product */}
-        <div className="absolute inset-0 bg-ambient-hero pointer-events-none" />
+        
+        {/* Level 1 Diffuse Deep-Red Ambient Light behind hero product with subtle mouse follow */}
+        <div
+          className="absolute inset-0 bg-ambient-hero transition-transform duration-300 ease-out"
+          style={{ transform: lightTransform }}
+        />
       </div>
 
       <MainContainer className="relative z-10 py-14 sm:py-20 md:py-28 lg:py-32">
@@ -49,15 +86,15 @@ export default function Hero() {
             <div className="animate-hero-cta flex flex-wrap items-center gap-4">
               <Link
                 to="/category/bestsellers"
-                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none"
+                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none btn-interactive"
               >
                 <span>Discover Your Signature</span>
-                <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1 text-[#F5F2EE]" />
+                <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1.5 text-[#F5F2EE]" />
               </Link>
 
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#111111] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-[#111111] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 btn-interactive"
               >
                 <span>Explore All</span>
               </Link>
@@ -71,14 +108,20 @@ export default function Hero() {
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-black/80 blur-xl rounded-full pointer-events-none" />
               
               {/* Diffuse Red Backdrop Glow behind bottle */}
-              <div className="absolute inset-0 bg-radial from-[#8F1018]/20 to-transparent blur-2xl rounded-full pointer-events-none" />
+              <div
+                className="absolute inset-0 bg-radial from-[#8F1018]/25 to-transparent blur-2xl rounded-full pointer-events-none transition-transform duration-300 ease-out"
+                style={{ transform: lightTransform }}
+              />
 
-              {/* Product Bottle Container */}
-              <div className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015]">
+              {/* Product Bottle Container with Subtle Desktop Mouse Follow */}
+              <div
+                className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015]"
+                style={{ transform: bottleTransform }}
+              >
                 <img
                   src="/images/products/row-1-column-1.png"
                   alt="ÉLAVA Signature Eau de Parfum Bottle"
-                  className="w-full h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                  className="w-full h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import MainContainer from '../ui/MainContainer';
 import SectionHeading from '../ui/SectionHeading';
 import ScentCategoryCard from './ScentCategoryCard';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 const SCENT_CATEGORIES = [
   {
@@ -32,26 +33,35 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * One single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment).
+ * One single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment) with scroll reveal.
  */
 export default function FindYourScent() {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
     <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10" aria-labelledby="find-your-scent-heading">
       <MainContainer>
-        {/* Section Heading & Subtitle */}
-        <SectionHeading
-          id="find-your-scent-heading"
-          title="FIND YOUR SCENT"
-          subtitle="Find a fragrance for the way you feel."
-        />
+        <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
+          {/* Section Heading & Subtitle */}
+          <SectionHeading
+            id="find-your-scent-heading"
+            title="FIND YOUR SCENT"
+            subtitle="Find a fragrance for the way you feel."
+          />
 
-        {/* 3-column single horizontal row across all viewports */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
-          {SCENT_CATEGORIES.map((category) => (
-            <div key={category.id} className="min-w-0 w-full">
-              <ScentCategoryCard category={category} />
-            </div>
-          ))}
+          {/* 3-column single horizontal row across all viewports with staggered reveal */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
+            {SCENT_CATEGORIES.map((category, idx) => (
+              <div
+                key={category.id}
+                className={`min-w-0 w-full reveal-init ${
+                  isVisible ? `reveal-visible stagger-${idx + 1}` : ''
+                }`}
+              >
+                <ScentCategoryCard category={category} />
+              </div>
+            ))}
+          </div>
         </div>
       </MainContainer>
     </section>

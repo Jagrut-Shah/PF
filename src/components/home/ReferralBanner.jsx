@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import MainContainer from '../ui/MainContainer';
 import { Gift, Share2 } from 'lucide-react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
  * ReferralBanner Component — Black & Red Luxury Aesthetic:
- * Featured Hero Red Moment: Deep Red #8F1018 primary surface + Near Black #0B0B0B step cards + Signature Red #B4171E CTA button.
+ * Featured Hero Red Moment with sequential scroll reveal: panel -> headline -> 3 step cards -> CTA button.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [ref, isVisible] = useScrollReveal();
 
   const handleStartEarning = () => {
     if (user) {
@@ -23,9 +25,16 @@ export default function ReferralBanner() {
   return (
     <section className="py-12 sm:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-t border-b border-white/10 relative overflow-hidden">
       <MainContainer>
-        <div className="bg-[#8F1018] border border-white/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div
+          ref={ref}
+          className={`bg-[#8F1018] border border-white/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden reveal-init ${
+            isVisible ? 'reveal-visible' : ''
+          }`}
+        >
+          {/* Level 1 Ambient Red Lighting */}
+          <div className="absolute inset-0 bg-ambient-referral pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
             {/* Left Content Column */}
             <div className="lg:col-span-8 space-y-6">
@@ -49,11 +58,15 @@ export default function ReferralBanner() {
                 </p>
               </div>
 
-              {/* 3 Steps: Near Black #0B0B0B Cards */}
+              {/* 3 Steps: Near Black #0B0B0B Cards with Staggered Reveal */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
                 {/* Step 01 */}
-                <div className="bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm">
+                <div
+                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
+                    isVisible ? 'reveal-visible stagger-1' : ''
+                  }`}
+                >
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     01
                   </span>
@@ -64,7 +77,11 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 02 */}
-                <div className="bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm">
+                <div
+                  className={`bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
+                    isVisible ? 'reveal-visible stagger-2' : ''
+                  }`}
+                >
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     02
                   </span>
@@ -75,7 +92,11 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 03 */}
-                <div className="bg-[#0B0B0B] border border-[#B4171E]/60 rounded-2xl p-4 space-y-1 shadow-md relative overflow-hidden">
+                <div
+                  className={`bg-[#0B0B0B] border border-[#B4171E]/60 rounded-2xl p-4 space-y-1 shadow-md transition-transform duration-200 hover:-translate-y-0.5 relative overflow-hidden reveal-init ${
+                    isVisible ? 'reveal-visible stagger-3' : ''
+                  }`}
+                >
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     03 · HERO EARNING
                   </span>
@@ -87,12 +108,12 @@ export default function ReferralBanner() {
 
               </div>
 
-              {/* CTA Button: Signature Red #B4171E or Near Black #080808 */}
+              {/* CTA Button: Near Black #080808 */}
               <div className="pt-2">
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer"
+                  className="w-full sm:w-auto bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer btn-interactive"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>
@@ -103,7 +124,7 @@ export default function ReferralBanner() {
 
             {/* Right Column: Near Black #080808 Card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE]">
+              <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE] transition-transform duration-300 hover:scale-[1.015]">
                 <div className="w-16 h-16 rounded-full bg-[#8F1018] border border-white/20 flex items-center justify-center mx-auto text-[#F5F2EE] shadow-inner">
                   <Share2 className="w-7 h-7" />
                 </div>

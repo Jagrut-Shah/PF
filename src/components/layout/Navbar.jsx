@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Search, Menu, X, ShoppingBag, User } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 import NavbarSearch from './NavbarSearch';
+import ScrollProgress from '../common/ScrollProgress';
 import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 import { getCartTotals } from '../../utils/cart';
 import { useAuth } from '../../context/AuthContext';
@@ -22,6 +23,7 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 
 /**
  * Navbar Component — Black & Red Luxury Aesthetic:
+ * Includes ultra-thin Signature Red ScrollProgress bar.
  * Container: Deep Black #080808, Text: Warm White #F5F2EE, Active/Hover: Signature Red #B4171E.
  * Logo: STRICTLY LOCKED (Original 2-part emblem).
  */
@@ -84,10 +86,13 @@ export default function Navbar() {
   const whatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodeURIComponent("Hello ÉLAVA, I'd like to explore your collection.")}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full px-2 sm:px-4 pt-2 pb-1 bg-transparent transition-all duration-200">
+    <header className="sticky top-0 z-50 w-full px-2 sm:px-4 pt-2 pb-1 bg-transparent transition-all duration-300">
+      {/* Scroll Progress Bar at top */}
+      <ScrollProgress />
+
       {/* Boxed Deep Black Container #080808 */}
       <div className={`max-w-7xl mx-auto bg-[#080808] border border-white/10 rounded-xl sm:rounded-2xl transition-all duration-300 ${
-        scrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.85)] border-white/15' : 'shadow-xl'
+        scrolled ? 'shadow-[0_6px_24px_rgba(0,0,0,0.85)] border-white/20' : 'shadow-xl'
       }`}>
         <MainContainer>
           <div className="h-[58px] sm:h-[64px] md:h-[72px] flex items-center justify-between">
@@ -100,7 +105,7 @@ export default function Navbar() {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-2 -ml-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none"
+                className="p-2 -ml-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -116,7 +121,7 @@ export default function Navbar() {
             <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
               <Link
                 to="/"
-                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-opacity duration-200 hover:opacity-95 shadow-sm"
+                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-all duration-200 hover:opacity-95 hover:border-[#F5F2EE]/50 shadow-sm"
                 aria-label="ÉLAVA Home"
               >
                 <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
@@ -144,7 +149,7 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={
-                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.16em] font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
+                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.16em] font-semibold px-3 py-2 rounded-md transition-all duration-200 ${
                         isActive
                           ? 'text-[#B4171E] font-bold bg-[#121212] border border-[#B4171E]/30'
                           : 'text-[#F5F2EE]/90 hover:text-[#B4171E] hover:bg-[#121212]'
@@ -162,7 +167,7 @@ export default function Navbar() {
               {/* Account Link */}
               <Link
                 to={user ? "/account" : "/login"}
-                className={`p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none ${
+                className={`p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive ${
                   location.pathname === '/login' || location.pathname === '/account' ? 'text-[#B4171E]' : ''
                 }`}
                 aria-label={user ? "View Account Profile" : "Login or Sign Up"}
@@ -177,7 +182,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none"
+                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label="Search collection"
               >
                 <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -189,7 +194,7 @@ export default function Navbar() {
                 onClick={() => {
                   window.dispatchEvent(new Event('open-cart-drawer'));
                 }}
-                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none relative"
+                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none relative btn-interactive"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
@@ -204,7 +209,7 @@ export default function Navbar() {
               {/* Primary Action Button: SHOP NOW → (Signature Red #B4171E) */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#B4171E] hover:bg-[#7A0F15] active:scale-[0.98] text-[#F5F2EE] border border-white/10 text-[11px] font-sans font-semibold tracking-wider uppercase transition-all duration-200 shadow-md ml-1"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 text-[11px] font-sans font-semibold tracking-wider uppercase transition-all duration-200 shadow-md ml-1 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
@@ -239,7 +244,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1 text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors"
+                  className="p-1 text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors btn-interactive"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
@@ -291,7 +296,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#121212] active:scale-[0.98] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:text-[#B4171E] border border-white/10 transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#121212] active:scale-[0.98] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:text-[#B4171E] border border-white/10 transition-colors btn-interactive"
               >
                 <Search className="w-4 h-4 text-[#B8B3AF] shrink-0" />
                 <span>SEARCH COLLECTION</span>
@@ -301,7 +306,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#080808] active:scale-[0.98] border border-white/15 text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:border-[#B4171E]/50 transition-colors"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#080808] active:scale-[0.98] border border-white/15 text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:border-[#B4171E]/50 transition-colors btn-interactive"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>

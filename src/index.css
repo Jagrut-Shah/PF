@@ -27,11 +27,18 @@
   --font-montecarlo: "MonteCarlo", cursive;
   --font-alex: "Alex Brush", cursive;
 
+  /* Motion & Animation Tokens */
+  --duration-fast: 180ms;
+  --duration-standard: 300ms;
+  --duration-reveal: 650ms;
+  --duration-ambient: 14s;
+  --ease-elava: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* Softened Shadow Hierarchy */
   --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.20);
   --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.80);
+  --shadow-navbar: 0 6px 24px rgba(0, 0, 0, 0.85);
 }
 
 @theme {
@@ -115,6 +122,51 @@ body {
   background: radial-gradient(circle at 80% 20%, rgba(199, 42, 53, 0.22), transparent 65%);
 }
 
+/* Scroll Reveal Animation Classes */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger Delays */
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+
+/* Micro-Interaction Transitions */
+.card-hover-interactive {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-hover-interactive:hover {
+  transform: translateY(-4px);
+}
+
+.btn-interactive {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.btn-interactive:active {
+  transform: scale(0.98);
+}
+
 /* Prevent iOS auto-zoom on input focus */
 @media (max-width: 640px) {
   input[type="text"],
@@ -136,11 +188,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hero Staggered Animations */
+/* Hero Staggered Entrance Animations */
 @keyframes heroFadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -151,7 +203,7 @@ html {
 @keyframes heroBottleEntrance {
   from {
     opacity: 0;
-    transform: translateY(25px) scale(0.97);
+    transform: translateY(28px) scale(0.96);
   }
   to {
     opacity: 1;
@@ -160,23 +212,23 @@ html {
 }
 
 .animate-hero-eyebrow {
-  animation: heroFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms backwards;
+  animation: heroFadeInUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards;
 }
 
 .animate-hero-headline {
-  animation: heroFadeInUp 700ms cubic-bezier(0.16, 1, 0.3, 1) 220ms backwards;
+  animation: heroFadeInUp 750ms cubic-bezier(0.16, 1, 0.3, 1) 240ms backwards;
 }
 
 .animate-hero-subhead {
-  animation: heroFadeInUp 750ms cubic-bezier(0.16, 1, 0.3, 1) 340ms backwards;
+  animation: heroFadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 360ms backwards;
 }
 
 .animate-hero-cta {
-  animation: heroFadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 460ms backwards;
+  animation: heroFadeInUp 850ms cubic-bezier(0.16, 1, 0.3, 1) 480ms backwards;
 }
 
 .animate-hero-bottle {
-  animation: heroBottleEntrance 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms backwards;
+  animation: heroBottleEntrance 950ms cubic-bezier(0.16, 1, 0.3, 1) 320ms backwards;
 }
 
 /* Accessibility: Reduced Motion Support */
@@ -186,9 +238,11 @@ html {
   .animate-hero-subhead,
   .animate-hero-cta,
   .animate-hero-bottle,
-  .reveal-on-scroll {
+  .reveal-init,
+  .card-hover-interactive,
+  .btn-interactive {
     animation: none !important;
-    transition: none !important;
+    transition: opacity 150ms ease !important;
     transform: none !important;
     opacity: 1 !important;
   }

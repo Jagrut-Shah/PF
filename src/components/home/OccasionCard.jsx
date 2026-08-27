@@ -105,7 +105,7 @@ export default function OccasionCard({ occasion }) {
       {/* DESKTOP */}
       <Link
         to={formattedOccasion.route}
-        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-white/10 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B4171E]/50 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] hover:border-white/20"
+        className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[10px] border border-white/10 transition-all duration-300 p-5 lg:p-6 h-[162px] lg:h-[168px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B4171E]/50 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] hover:border-white/20 hover:-translate-y-1"
         aria-label={`Shop perfumes for ${formattedOccasion.title}`}
       >
         {/* Background Layer */}
@@ -113,7 +113,7 @@ export default function OccasionCard({ occasion }) {
           <img
             src={formattedOccasion.image}
             alt={formattedOccasion.alt}
-            className="w-full h-full object-cover object-center pointer-events-none transform transition-transform duration-500 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover object-center pointer-events-none transform transition-transform duration-500 ease-out group-hover:scale-[1.035]"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/90 via-[#0B0B0B]/40 to-transparent transition-colors duration-300" />
@@ -124,7 +124,7 @@ export default function OccasionCard({ occasion }) {
           <div className="flex flex-col min-w-0 pr-3">
             <OccasionTitle occasion={formattedOccasion} isDesktop={true} />
             <p
-              className="font-sans text-xs sm:text-sm leading-relaxed mt-1 font-normal tracking-wide truncate text-[#B8B3AF]"
+              className="font-sans text-xs sm:text-sm leading-relaxed mt-1 font-normal tracking-wide truncate text-[#B8B3AF] group-hover:text-[#F5F2EE] transition-colors"
               style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
             >
               {formattedOccasion.description}
@@ -132,7 +132,7 @@ export default function OccasionCard({ occasion }) {
           </div>
           <div className="shrink-0 flex items-center justify-center pl-2">
             <ArrowRight
-              className="w-[19px] h-[19px] stroke-[1.75] transform transition-transform duration-250 ease-out group-hover:translate-x-1 text-[#F5F2EE] group-hover:text-[#B4171E]"
+              className="w-[19px] h-[19px] stroke-[1.75] transform transition-transform duration-250 ease-out group-hover:translate-x-1.5 text-[#F5F2EE] group-hover:text-[#B4171E]"
               style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.8))' }}
               aria-hidden="true"
             />

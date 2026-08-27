@@ -1,15 +1,23 @@
 import React from 'react';
 import MainContainer from '../ui/MainContainer';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
  * BrandStory Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 story card with Deep Red #8F1018 quote borders and Signature Red #B4171E badge.
+ * Deep Black #0B0B0B environment, Soft Black #121212 story card with editorial staggered scroll reveal.
  */
 export default function BrandStory() {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-[#0B0B0B] text-[#F5F2EE] border-y border-white/10">
       <MainContainer>
-        <div className="max-w-4xl mx-auto bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden">
+        <div
+          ref={ref}
+          className={`max-w-4xl mx-auto bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-10 md:p-14 shadow-xl text-center relative overflow-hidden reveal-init ${
+            isVisible ? 'reveal-visible' : ''
+          }`}
+        >
           
           <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#B4171E] block mb-3">
             Our Essence & Origin
@@ -20,22 +28,24 @@ export default function BrandStory() {
           </h2>
 
           <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#B8B3AF] leading-relaxed font-normal max-w-2xl mx-auto">
-            <p>
+            <p className={`reveal-init ${isVisible ? 'reveal-visible stagger-1' : ''}`}>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
-            {/* Selected Pull Quote with Deep Red #8F1018 Accent Borders */}
-            <blockquote className="my-6 py-4 border-y border-[#8F1018]/60 font-serif italic text-2xl sm:text-3xl text-[#F5F2EE] font-normal leading-snug max-w-xl mx-auto">
+            {/* Selected Pull Quote with Deep Red #8F1018 Accent Borders & Delayed Staggered Reveal */}
+            <blockquote className={`my-6 py-4 border-y border-[#8F1018]/60 font-serif italic text-2xl sm:text-3xl text-[#F5F2EE] font-normal leading-snug max-w-xl mx-auto reveal-init ${
+              isVisible ? 'reveal-visible stagger-2' : ''
+            }`}>
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
             </blockquote>
 
-            <p>
+            <p className={`reveal-init ${isVisible ? 'reveal-visible stagger-3' : ''}`}>
               Based in Ahmedabad, Gujarat, we blend fine fragrance oils with precision to create perfumes that feel personal, elevated, and deeply memorable—whether for an intimate date night, daily office wear, or vibrant evening celebrations.
             </p>
           </div>
 
           {/* Near Black #080808 Stats Anchor Panel */}
-          <div className="mt-8 pt-2">
+          <div className={`mt-8 pt-2 reveal-init ${isVisible ? 'reveal-visible stagger-4' : ''}`}>
             <div className="bg-[#080808] border border-white/10 rounded-xl p-4 max-w-sm mx-auto flex items-center justify-center gap-6 shadow-md text-[#F5F2EE]">
               <div className="text-center">
                 <span className="font-serif text-xl font-normal text-[#F5F2EE] block">60 ml</span>

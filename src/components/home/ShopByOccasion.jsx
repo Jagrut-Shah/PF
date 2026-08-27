@@ -1,20 +1,73 @@
 import React from 'react';
 import MainContainer from '../ui/MainContainer';
+import SectionHeading from '../ui/SectionHeading';
 import OccasionCard from './OccasionCard';
-import occasions from '../../data/occasions';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+
+const OCCASIONS_DATA = [
+  {
+    id: 'date-night',
+    title: 'DATE NIGHT',
+    description: 'Seductive & memorable',
+    route: '/category/unisex',
+    image: '/images/products/row-1-column-1.png',
+    alt: 'Date Night fragrance'
+  },
+  {
+    id: 'everyday',
+    title: 'EVERYDAY',
+    description: 'Effortless signature',
+    route: '/category/bestsellers',
+    image: '/images/products/row-2-column-1.png',
+    alt: 'Everyday fragrance'
+  },
+  {
+    id: 'office',
+    title: 'OFFICE',
+    description: 'Refined & professional',
+    route: '/category/men',
+    image: '/images/products/row-3-column-1.png',
+    alt: 'Office wear fragrance'
+  },
+  {
+    id: 'party',
+    title: 'PARTY',
+    description: 'Vibrant & bold',
+    route: '/category/women',
+    image: '/images/products/row-1-column-2.png',
+    alt: 'Evening party fragrance'
+  }
+];
 
 /**
- * ShopByOccasion Section — Black & Red Luxury Aesthetic (Deep Black #0B0B0B environment)
+ * ShopByOccasion Component — Single 4-Column Row Layout
+ * Features staggered scroll reveal animations across all 4 occasion cards.
  */
 export default function ShopByOccasion() {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
-    <section className="pt-3 sm:pt-4 md:pt-6 pb-3 sm:pb-5 md:pb-6 overflow-visible bg-[#0B0B0B] text-[#F5F2EE]">
+    <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10" aria-labelledby="shop-by-occasion-heading">
       <MainContainer>
-        {/* Single 4-column row across all viewports */}
-        <div className="grid grid-cols-4 gap-1.5 sm:gap-2.5 md:gap-4 lg:gap-5 w-full p-0.5 sm:p-2 md:p-4 overflow-visible">
-          {occasions.map((occasion) => (
-            <OccasionCard key={occasion.id} occasion={occasion} />
-          ))}
+        <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
+          <SectionHeading
+            id="shop-by-occasion-heading"
+            title="SHOP BY OCCASION"
+            subtitle="Find the right scent signature for your moment."
+          />
+
+          <div className="grid grid-cols-4 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
+            {OCCASIONS_DATA.map((occasion, idx) => (
+              <div
+                key={occasion.id}
+                className={`min-w-0 w-full reveal-init ${
+                  isVisible ? `reveal-visible stagger-${idx + 1}` : ''
+                }`}
+              >
+                <OccasionCard occasion={occasion} />
+              </div>
+            ))}
+          </div>
         </div>
       </MainContainer>
     </section>
