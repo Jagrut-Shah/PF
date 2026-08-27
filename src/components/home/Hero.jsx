@@ -5,7 +5,7 @@ import MainContainer from '../ui/MainContainer';
 
 /**
  * Hero Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Warm White #F5F2EE headline, Signature Red #B4171E CTA accent.
+ * Deep Black #0B0B0B environment, Deep Red #8F1018 eyebrow badge background, Signature Red #B4171E CTA button.
  */
 export default function Hero() {
   return (
@@ -26,9 +26,9 @@ export default function Hero() {
           
           {/* Left Hero Content */}
           <div className="lg:col-span-7">
-            {/* Section Label / Badge */}
-            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121212] border border-[#B4171E]/30 mb-6 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[#F5F2EE] shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#B4171E]" />
+            {/* Section Label / Badge in Deep Red #8F1018 Surface */}
+            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8F1018]/60 border border-[#B4171E]/40 mb-6 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[#F5F2EE] shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-[#F5F2EE]" />
               <span>60 ml Eau de Parfum Collection</span>
             </div>
 
@@ -46,7 +46,7 @@ export default function Hero() {
             <div className="animate-hero-cta flex flex-wrap items-center gap-4">
               <Link
                 to="/category/bestsellers"
-                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#7A0F15] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none"
+                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none"
               >
                 <span>Discover Your Signature</span>
                 <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1 text-[#F5F2EE]" />
@@ -54,7 +54,7 @@ export default function Hero() {
 
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#1A1A1A] active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200"
               >
                 <span>Explore All</span>
               </Link>
@@ -67,7 +67,7 @@ export default function Hero() {
               {/* Soft Grounding Shadow beneath bottle */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-black/80 blur-xl rounded-full pointer-events-none" />
               
-              {/* Product Bottle */}
+              {/* Product Bottle Container */}
               <div className="relative rounded-2xl overflow-hidden bg-[#080808] border border-white/15 p-4 sm:p-6 shadow-2xl transition-transform duration-300 group-hover:scale-[1.015]">
                 <img
                   src="/images/products/row-1-column-1.png"

@@ -6,7 +6,7 @@ import { Gift, Share2 } from 'lucide-react';
 
 /**
  * ReferralBanner Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 frame, Signature Red #B4171E CTA button.
+ * Featured Hero Red Moment: Deep Red #8F1018 primary surface + Near Black #0B0B0B step cards + Signature Red #B4171E CTA button.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function ReferralBanner() {
   return (
     <section className="py-12 sm:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-t border-b border-white/10 relative overflow-hidden">
       <MainContainer>
-        <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden">
+        <div className="bg-[#8F1018] border border-white/20 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative z-10 overflow-hidden">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -31,8 +31,8 @@ export default function ReferralBanner() {
             <div className="lg:col-span-8 space-y-6">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080808] border border-[#B4171E]/30 text-[#F5F2EE] text-[11px] font-sans font-semibold uppercase tracking-[0.18em]">
-                <Gift className="w-3.5 h-3.5 text-[#B4171E]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080808] border border-white/15 text-[#F5F2EE] text-[11px] font-sans font-semibold uppercase tracking-[0.18em]">
+                <Gift className="w-3.5 h-3.5 text-[#F5F2EE]" />
                 <span>ÉLAVA Rewards</span>
               </div>
 
@@ -40,20 +40,20 @@ export default function ReferralBanner() {
               <div className="space-y-3">
                 <h2 className="font-serif text-[32px] sm:text-[44px] lg:text-[54px] font-normal text-[#F5F2EE] leading-[1.02] tracking-tight">
                   Share Élava.<br />
-                  <span className="text-[#B4171E] font-normal">
+                  <span className="text-[#F5F2EE] font-normal opacity-95">
                     Earn ₹100 Cash.
                   </span>
                 </h2>
-                <p className="font-sans text-sm sm:text-base text-[#B8B3AF] max-w-xl leading-relaxed font-normal">
-                  Your friends get <strong className="text-[#F5F2EE] font-semibold">₹200 OFF</strong>. You get <strong className="text-[#B4171E] font-semibold">₹100 CASH</strong> when their qualifying order is completed.
+                <p className="font-sans text-sm sm:text-base text-[#F5F2EE]/90 max-w-xl leading-relaxed font-normal">
+                  Your friends get <strong className="text-[#F5F2EE] font-bold">₹200 OFF</strong>. You get <strong className="text-[#F5F2EE] font-bold">₹100 CASH</strong> when their qualifying order is completed.
                 </p>
               </div>
 
-              {/* 3 Steps */}
+              {/* 3 Steps: Near Black #0B0B0B Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
                 {/* Step 01 */}
-                <div className="bg-[#1A1A1A] border border-white/10 rounded-2xl p-4 space-y-1 shadow-sm">
+                <div className="bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     01
                   </span>
@@ -64,7 +64,7 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 02 */}
-                <div className="bg-[#1A1A1A] border border-white/10 rounded-2xl p-4 space-y-1 shadow-sm">
+                <div className="bg-[#0B0B0B] border border-white/15 rounded-2xl p-4 space-y-1 shadow-sm">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     02
                   </span>
@@ -75,7 +75,7 @@ export default function ReferralBanner() {
                 </div>
 
                 {/* Step 03 */}
-                <div className="bg-[#1A1A1A] border border-[#B4171E]/40 rounded-2xl p-4 space-y-1 shadow-md relative overflow-hidden">
+                <div className="bg-[#0B0B0B] border border-[#B4171E]/60 rounded-2xl p-4 space-y-1 shadow-md relative overflow-hidden">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
                     03 · HERO EARNING
                   </span>
@@ -87,12 +87,12 @@ export default function ReferralBanner() {
 
               </div>
 
-              {/* CTA Button: Signature Red #B4171E */}
+              {/* CTA Button: Signature Red #B4171E or Near Black #080808 */}
               <div className="pt-2">
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#B4171E] hover:bg-[#7A0F15] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-xl cursor-pointer"
+                  className="w-full sm:w-auto bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>
@@ -103,8 +103,8 @@ export default function ReferralBanner() {
 
             {/* Right Column: Near Black #080808 Card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm bg-[#080808] border border-white/15 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE]">
-                <div className="w-16 h-16 rounded-full bg-[#121212] border border-[#B4171E]/30 flex items-center justify-center mx-auto text-[#B4171E] shadow-inner">
+              <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE]">
+                <div className="w-16 h-16 rounded-full bg-[#8F1018] border border-white/20 flex items-center justify-center mx-auto text-[#F5F2EE] shadow-inner">
                   <Share2 className="w-7 h-7" />
                 </div>
                 <div className="space-y-1">
@@ -120,7 +120,7 @@ export default function ReferralBanner() {
                 </div>
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-sans font-semibold text-[#B8B3AF]">
                   <span>Friend: ₹200 OFF</span>
-                  <span className="text-[#B4171E]">You: ₹100 CASH</span>
+                  <span className="text-[#F5F2EE]">You: ₹100 CASH</span>
                 </div>
               </div>
             </div>

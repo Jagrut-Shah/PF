@@ -3,7 +3,7 @@ import MainContainer from '../ui/MainContainer';
 
 /**
  * BrandStory Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment, Soft Black #121212 story card, Signature Red #B4171E subtle accents.
+ * Deep Black #0B0B0B environment, Soft Black #121212 story card with Deep Red #8F1018 quote borders and Signature Red #B4171E badge.
  */
 export default function BrandStory() {
   return (
@@ -24,8 +24,8 @@ export default function BrandStory() {
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
-            {/* Selected Pull Quote */}
-            <blockquote className="my-6 py-4 border-y border-white/10 font-serif italic text-2xl sm:text-3xl text-[#F5F2EE] font-normal leading-snug max-w-xl mx-auto">
+            {/* Selected Pull Quote with Deep Red #8F1018 Accent Borders */}
+            <blockquote className="my-6 py-4 border-y border-[#8F1018]/60 font-serif italic text-2xl sm:text-3xl text-[#F5F2EE] font-normal leading-snug max-w-xl mx-auto">
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
             </blockquote>
 

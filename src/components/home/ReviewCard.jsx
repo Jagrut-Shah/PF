@@ -4,8 +4,8 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Final Color Direction C:
- * Warm Cream #F0E2D0 paper cards with crisp Near Black #100D0C review text & Dark Coffee #352522 metadata.
+ * ReviewCard Component — Black & Red Luxury Aesthetic:
+ * Soft Black #121212 cards, Warm White #F5F2EE text, Deep Red #8F1018 accent lines.
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -22,41 +22,44 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#F0E2D0] border border-[#352522]/20 rounded-xl p-5 md:p-6 text-[#100D0C] flex flex-col h-full relative overflow-hidden min-w-0 shadow-md"
+      className="bg-[#121212] border border-white/10 rounded-xl p-5 md:p-6 text-[#F5F2EE] flex flex-col h-full relative overflow-hidden min-w-0 shadow-md hover:border-[#B4171E]/40 transition-colors"
       role="figure"
     >
+      {/* Subtle Deep Red Top Accent Line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-[#8F1018]" />
+
       {/* Decorative quotation mark */}
       <span
-        className="absolute top-0 right-3 font-serif text-[96px] leading-none text-[#241918]/[0.08] select-none pointer-events-none"
+        className="absolute top-1 right-3 font-serif text-[96px] leading-none text-white/[0.04] select-none pointer-events-none"
         aria-hidden="true"
       >
         "
       </span>
 
       {/* Star rating */}
-      <div className="mb-3 flex items-center">
+      <div className="mb-3 flex items-center pt-1">
         <StarRating rating={rating} size={15} starColor="#C6A15B" />
       </div>
 
       {/* Review Text — Manrope 400 leading-relaxed */}
-      <blockquote className="font-sans text-sm sm:text-base text-[#100D0C] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      <blockquote className="font-sans text-sm sm:text-base text-[#F5F2EE] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
       {/* Customer Name & Product Link — Manrope 600 */}
-      <div className="pt-3 border-t border-[#352522]/15 flex justify-between items-end gap-2 text-xs">
-        <span className="font-sans text-[#241918] font-semibold">
+      <div className="pt-3 border-t border-white/10 flex justify-between items-end gap-2 text-xs">
+        <span className="font-sans text-[#B8B3AF] font-semibold">
           {customer} {city ? `· ${city}` : ''}
         </span>
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-sans text-[11px] text-[#352522] hover:text-[#100D0C] font-semibold transition-colors uppercase tracking-wider"
+            className="font-sans text-[11px] text-[#F5F2EE] hover:text-[#B4171E] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-sans text-[11px] text-[#352522] font-semibold uppercase tracking-wider">{productName}</span>
+          <span className="font-sans text-[11px] text-[#F5F2EE] font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>

@@ -2,15 +2,16 @@
 @import "tailwindcss";
 
 :root {
-  /* ÉLAVA Black & Red Luxury Fragrance Palette */
-  --elava-deep-black: #0B0B0B;       /* Primary homepage background */
-  --elava-soft-black: #121212;       /* Cards and elevated surfaces */
-  --elava-dark-slate: #1A1A1A;       /* Inner cards, separators, secondary surfaces */
+  /* ÉLAVA Complete Black + Red Luxury Palette */
+  --elava-deep-black: #0B0B0B;       /* Primary homepage background (60-70%) */
+  --elava-soft-black: #121212;       /* Secondary black for elevated sections & cards */
+  --elava-charcoal: #1A1A1A;         /* Charcoal for card depth and separation */
+  --elava-deep-red: #8F1018;         /* Deep Red for larger red surfaces & promotional panels */
+  --elava-red: #B4171E;              /* Primary Signature Red accent & CTAs */
+  --elava-bright-red: #C72A35;       /* Brighter Red accent for hover & active states */
   --elava-near-black: #080808;       /* Navbar & Footer background, deepest visual areas */
-  --elava-red: #B4171E;              /* Primary Signature Red accent */
-  --elava-deep-crimson: #7A0F15;     /* Hover states & deeper red surfaces */
   --elava-warm-white: #F5F2EE;       /* Primary light typography */
-  --elava-secondary-text: #B8B3AF;   /* Supporting text & metadata */
+  --elava-muted-white: #B8B3AF;      /* Secondary text & metadata */
   --elava-bestseller-gold: #C6A15B;  /* BESTSELLERS ONLY */
 
   /* Global Typography System Tokens */
@@ -24,21 +25,22 @@
   --font-alex: "Alex Brush", cursive;
 
   /* Shadow Hierarchy */
-  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.18);
-  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.25);
-  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.45);
-  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.20);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-deep: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-navbar: 0 4px 20px rgba(0, 0, 0, 0.80);
 }
 
 @theme {
   --color-elava-deep-black: #0B0B0B;
   --color-elava-soft-black: #121212;
-  --color-elava-dark-slate: #1A1A1A;
-  --color-elava-near-black: #080808;
+  --color-elava-charcoal: #1A1A1A;
+  --color-elava-deep-red: #8F1018;
   --color-elava-red: #B4171E;
-  --color-elava-deep-crimson: #7A0F15;
+  --color-elava-bright-red: #C72A35;
+  --color-elava-near-black: #080808;
   --color-elava-warm-white: #F5F2EE;
-  --color-elava-secondary-text: #B8B3AF;
+  --color-elava-muted-white: #B8B3AF;
   --color-elava-bestseller-gold: #C6A15B;
 
   --font-serif: "Bodoni Moda", Didot, serif;
@@ -188,6 +190,6 @@ html {
 
 /* Selection color */
 ::selection {
-  background: rgba(180, 23, 30, 0.6);
+  background: rgba(180, 23, 30, 0.65);
   color: #F5F2EE;
 }
