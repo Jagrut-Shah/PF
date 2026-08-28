@@ -15,7 +15,7 @@ export default function MostLoved() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#FBF8F2] text-[#2A211F] relative overflow-hidden border-b border-[#D9C9B8]" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 bg-[#FAF6EF] text-[#241A18] relative overflow-hidden border-b border-[#D9C9B8]" aria-labelledby="most-loved-heading">
       {/* Subtle Champagne Ambient Light Zone */}
       <div className="absolute inset-0 bg-ambient-bestsellers pointer-events-none" />
 
@@ -26,7 +26,7 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#2A211F] leading-[1.05] tracking-[-0.015em]"
+                className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#241A18] leading-[1.05] tracking-[-0.015em]"
               >
                 Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[15px] sm:text-[18px] md:text-[20px]">BESTSELLERS</span>
               </h2>
@@ -37,7 +37,7 @@ export default function MostLoved() {
 
             <Link
               to="/category/bestsellers"
-              className="group inline-flex items-center gap-1.5 font-manrope text-[13px] font-semibold text-[#2A211F] hover:text-[#8B1E2D] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
+              className="group inline-flex items-center gap-1.5 font-manrope text-[13px] font-semibold text-[#241A18] hover:text-[#7F1D2D] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
               aria-label="View all bestsellers"
             >
               <span>View All Bestsellers</span>

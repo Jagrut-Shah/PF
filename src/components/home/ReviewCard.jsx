@@ -5,7 +5,7 @@ import products from '../../data/products';
 
 /**
  * ReviewCard Component — Light Luxury Cream Surface
- * Manrope 400 Review Text + Manrope 600 Reviewer Name + Deep Espresso Typography
+ * Manrope 400 Review Text + Manrope 600 Reviewer Name + Cream Typography
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -22,11 +22,11 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#FBF8F2] border border-[#D9C9B8] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:border-[#8B1E2D]/30 hover:shadow-[0_6px_18px_rgba(139,30,45,0.08)] transition-all"
+      className="bg-[#7F1D2D] border border-[#F3E8D8]/20 rounded-xl p-4 md:p-5 text-[#FAF6EF] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:border-[#F3E8D8]/40 hover:shadow-[0_6px_18px_rgba(74,16,25,0.2)] transition-all"
       role="figure"
     >
-      {/* Cherry top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#8B1E2D]" />
+      {/* Cream top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#F3E8D8]" />
 
       {/* Star rating */}
       <div className="mb-3 flex items-center pt-1">
@@ -34,18 +34,18 @@ export default function ReviewCard({ review }) {
       </div>
 
       {/* Review Text — Manrope 400 */}
-      <blockquote className="font-manrope text-[13px] sm:text-[14px] text-[#2A211F] leading-[1.6] mb-3 flex-1 relative z-10 min-w-0 break-words font-normal">
+      <blockquote className="font-manrope text-[13px] sm:text-[14px] text-[#FAF6EF] leading-[1.6] mb-3 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
       {/* Customer Name & Product Link — Manrope 600 & 400 */}
-      <div className="pt-2.5 border-t border-[#D9C9B8] flex justify-between items-end gap-2 text-[13px]">
+      <div className="pt-2.5 border-t border-[#F3E8D8]/20 flex justify-between items-end gap-2 text-[13px]">
         <div>
-          <span className="font-manrope text-[#2A211F] font-semibold block text-[13px]">
+          <span className="font-manrope text-[#FAF6EF] font-semibold block text-[13px]">
             {customer}
           </span>
           {city && (
-            <span className="font-manrope text-[#A89A8B] font-normal text-[12px]">
+            <span className="font-manrope text-[#F3E8D8]/70 font-normal text-[12px]">
               {city}
             </span>
           )}
@@ -53,12 +53,12 @@ export default function ReviewCard({ review }) {
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-manrope text-[11px] text-[#2A211F] hover:text-[#8B1E2D] font-semibold transition-colors uppercase tracking-wider"
+            className="font-manrope text-[11px] text-[#F3E8D8]/80 hover:text-[#F3E8D8] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-manrope text-[11px] text-[#2A211F] font-semibold uppercase tracking-wider">{productName}</span>
+          <span className="font-manrope text-[11px] text-[#F3E8D8]/80 font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>

@@ -6,21 +6,18 @@
      ÉLAVA — Cherry + Cream Luxury Fragrance Palette
   ============================================================ */
 
-  /* Primary Environment */
-  --elava-cream: #F4EBDD;           /* Dominant page background */
-  --elava-cream-deep: #EEE2D2;      /* Mid-tone section surfaces */
-  --elava-warm-white: #FBF8F2;      /* Lighter card/panel surfaces */
-  --elava-blush: #E8C9C5;           /* Sparingly — soft tonal variation */
+  /* Primary Environment — FULL CHERRY */
+  --elava-cherry: #7F1D2D;          /* Signature Cherry — Dominant Background */
+  --elava-cherry-deep: #4A1019;     /* Deep Cherry / Oxblood — Depth & Luxury */
+  --elava-cherry-light: #963044;    /* Slightly lighter Cherry for tonal variation */
 
-  /* Typography */
-  --elava-espresso: #2A211F;        /* Primary text — dark, warm */
-  --elava-taupe: #A89A8B;           /* Secondary/muted text */
-  --elava-border: #D9C9B8;          /* Subtle warm neutral border */
+  /* Luxury Contrast & Surfaces */
+  --elava-cream: #F3E8D8;           /* Rare luxury highlight, selected states, CTA */
+  --elava-warm-white: #FAF6EF;      /* Clean product/shopping surfaces */
 
-  /* Signature Cherry */
-  --elava-cherry: #8B1E2D;          /* Primary CTA, active states, key accents */
-  --elava-cherry-deep: #64141F;     /* Hover, footer, deeper surfaces */
-  --elava-cherry-hover: #741929;    /* Mid-hover state */
+  /* Typography & Grounding */
+  --elava-espresso: #241A18;        /* Dark text on light, Footer */
+  --elava-border: rgba(243, 232, 216, 0.15); /* Cream with opacity for borders on Cherry */
 
   /* Exclusive Accents */
   --elava-gold: #C6A15B;            /* Bestseller tag & stars ONLY */
@@ -47,15 +44,13 @@
 }
 
 @theme {
-  --color-elava-cream: #F4EBDD;
-  --color-elava-cream-deep: #EEE2D2;
-  --color-elava-warm-white: #FBF8F2;
-  --color-elava-blush: #E8C9C5;
-  --color-elava-espresso: #2A211F;
-  --color-elava-taupe: #A89A8B;
-  --color-elava-border: #D9C9B8;
-  --color-elava-cherry: #8B1E2D;
-  --color-elava-cherry-deep: #64141F;
+  --color-elava-cherry: #7F1D2D;
+  --color-elava-cherry-deep: #4A1019;
+  --color-elava-cherry-light: #963044;
+  --color-elava-cream: #F3E8D8;
+  --color-elava-warm-white: #FAF6EF;
+  --color-elava-espresso: #241A18;
+  --color-elava-border: rgba(243, 232, 216, 0.15);
   --color-elava-gold: #C6A15B;
 
   --font-bodoni: "Bodoni Moda", serif;
@@ -68,8 +63,8 @@
 html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #F4EBDD;
-  color: #2A211F;
+  background-color: #7F1D2D;
+  color: #FAF6EF;
   font-family: var(--font-manrope);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -230,43 +225,23 @@ body {
    Subtle studio-quality cherry illumination at very low opacity
 ============================================================ */
 
-/* Hero — subtle cherry warmth behind product */
+/* Hero — subtle deep cherry atmospheric depth */
 .bg-ambient-hero {
-  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(139, 30, 45, 0.07), rgba(244, 235, 221, 0.3) 50%, transparent 75%);
+  background: radial-gradient(ellipse 75% 55% at 70% 50%, #4A1019 0%, transparent 80%);
 }
 
-/* Bestsellers — warm cherry glow */
-.bg-ambient-bestsellers {
-  background: radial-gradient(ellipse 65% 45% at 18% 42%, rgba(139, 30, 45, 0.06), transparent 65%);
-}
-
-/* Occasion — soft cherry illumination */
+/* Occasion — soft cherry tonal variations */
 .bg-ambient-occasion {
-  background: radial-gradient(ellipse 75% 50% at 50% 50%, rgba(139, 30, 45, 0.04), transparent 70%);
-}
-
-/* Deprecated — keep for compatibility */
-.bg-ambient-red {
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139, 30, 45, 0.05), transparent 70%);
+  background: radial-gradient(ellipse 75% 50% at 50% 50%, #963044 0%, transparent 60%);
 }
 
 .bg-ambient-card {
-  background: radial-gradient(circle at 50% 100%, rgba(232, 201, 197, 0.35), transparent 60%);
-}
-
-/* Referral — strong cherry atmosphere */
-.bg-ambient-referral {
-  background: radial-gradient(circle at 75% 30%, rgba(139, 30, 45, 0.12), rgba(100, 20, 31, 0.08) 40%, transparent 70%);
-}
-
-/* Quiz */
-.bg-ambient-quiz {
-  background: radial-gradient(circle at 50% 45%, rgba(139, 30, 45, 0.05), transparent 65%);
+  background: radial-gradient(circle at 50% 100%, #963044 0%, transparent 65%);
 }
 
 /* Story */
 .bg-ambient-story {
-  background: radial-gradient(ellipse 65% 55% at 50% 38%, rgba(232, 201, 197, 0.3), transparent 70%);
+  background: radial-gradient(ellipse 65% 55% at 50% 38%, #4A1019 0%, transparent 70%);
 }
 
 /* ============================================================
@@ -393,14 +368,14 @@ html {
    SCROLLBAR — Cherry accent
 ============================================================ */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #EEE2D2; }
-::-webkit-scrollbar-thumb { background: #D9C9B8; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #8B1E2D; }
+::-webkit-scrollbar-track { background: #4A1019; }
+::-webkit-scrollbar-thumb { background: #963044; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #F3E8D8; }
 
 /* ============================================================
    TEXT SELECTION — Cherry
 ============================================================ */
 ::selection {
-  background: rgba(139, 30, 45, 0.18);
-  color: #2A211F;
+  background: rgba(243, 232, 216, 0.25);
+  color: #FAF6EF;
 }

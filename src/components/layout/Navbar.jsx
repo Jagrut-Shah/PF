@@ -17,7 +17,7 @@ function WhatsAppIcon({ className = "w-[18px] h-[18px]" }) {
 }
 
 /**
- * Navbar — CHERRY-FIRST (#8B1E2D background)
+ * Navbar — CHERRY-FIRST (#4A1019 background)
  * Cream/Warm White text. LOCKED logo unchanged.
  * Compact scale maintained.
  */
@@ -80,8 +80,8 @@ export default function Navbar() {
       <ScrollProgress />
 
       {/* CHERRY navbar container — primary brand color */}
-      <div className={`max-w-7xl mx-auto bg-[#8B1E2D] border border-[#741929] rounded-xl sm:rounded-2xl transition-all duration-300 ${
-        scrolled ? 'shadow-[0_4px_24px_rgba(100,20,31,0.35)] border-[#64141F]' : 'shadow-[0_2px_12px_rgba(100,20,31,0.20)]'
+      <div className={`max-w-7xl mx-auto bg-[#4A1019] border border-[#7F1D2D] rounded-xl sm:rounded-2xl transition-all duration-300 ${
+        scrolled ? 'shadow-[0_4px_24px_rgba(74,16,25,0.35)] border-[#4A1019]' : 'shadow-[0_2px_12px_rgba(74,16,25,0.20)]'
       }`}>
         <MainContainer>
           <div className="h-[54px] sm:h-[60px] md:h-[68px] flex items-center justify-between">
@@ -140,8 +140,8 @@ export default function Navbar() {
                     className={
                       `font-manrope text-[12px] lg:text-[13px] font-medium px-3 py-1.5 rounded-md transition-all duration-200 ${
                         isActive
-                          ? 'text-[#FBF8F2] font-semibold bg-[#64141F]/60 border border-[#FBF8F2]/20'
-                          : 'text-[#FBF8F2]/75 hover:text-[#FBF8F2] hover:bg-[#64141F]/40'
+                          ? 'text-[#FBF8F2] font-semibold bg-[#7F1D2D]/60 border border-[#FBF8F2]/20'
+                          : 'text-[#FBF8F2]/75 hover:text-[#FBF8F2] hover:bg-[#7F1D2D]/40'
                       }`
                     }
                   >
@@ -184,7 +184,7 @@ export default function Navbar() {
               >
                 <ShoppingBag className="w-[17px] h-[17px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 bg-[#F4EBDD] text-[#8B1E2D] text-[8.5px] font-sans font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">
+                  <span className="absolute top-0.5 right-0.5 bg-[#F3E8D8] text-[#4A1019] text-[8.5px] font-sans font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">
                     {cartCount}
                   </span>
                 )}
@@ -193,7 +193,7 @@ export default function Navbar() {
               {/* CTA: Cream surface with Cherry text — strong contrast */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#F3E8D8] hover:bg-[#FAF6EF] active:scale-[0.98] text-[#4A1019] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
@@ -216,7 +216,7 @@ export default function Navbar() {
           />
 
           <aside
-            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[320px] bg-[#64141F] border border-[#8B1E2D] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-4 text-[#FBF8F2] transition-transform duration-200 ease-out"
+            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[320px] bg-[#4A1019] border border-[#7F1D2D] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-4 text-[#FBF8F2] transition-transform duration-200 ease-out"
             aria-label="Mobile Navigation Panel"
           >
             <div>
@@ -247,8 +247,8 @@ export default function Navbar() {
                       className={
                         `w-full text-left font-sans text-[11px] uppercase tracking-wider h-[42px] px-3 flex items-center border-b border-[#FBF8F2]/10 transition-colors ${
                           isActive
-                            ? 'text-[#F4EBDD] font-bold bg-[#8B1E2D]/50'
-                            : 'text-[#FBF8F2]/75 hover:bg-[#8B1E2D]/30 hover:text-[#FBF8F2] font-medium'
+                            ? 'text-[#F3E8D8] font-bold bg-[#7F1D2D]/50'
+                            : 'text-[#FBF8F2]/75 hover:bg-[#7F1D2D]/30 hover:text-[#FBF8F2] font-medium'
                         }`
                       }
                     >
@@ -262,8 +262,8 @@ export default function Navbar() {
                   className={
                     `w-full text-left font-sans text-[11px] uppercase tracking-wider h-[42px] px-3 flex items-center border-b border-[#FBF8F2]/10 transition-colors ${
                       location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
-                        ? 'text-[#F4EBDD] font-bold bg-[#8B1E2D]/50'
-                        : 'text-[#FBF8F2]/75 hover:bg-[#8B1E2D]/30 hover:text-[#FBF8F2] font-medium'
+                        ? 'text-[#F3E8D8] font-bold bg-[#7F1D2D]/50'
+                        : 'text-[#FBF8F2]/75 hover:bg-[#7F1D2D]/30 hover:text-[#FBF8F2] font-medium'
                     }`
                   }
                 >
@@ -279,9 +279,9 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#8B1E2D]/40 active:scale-[0.98] text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#8B1E2D]/60 border border-[#FBF8F2]/10 transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#7F1D2D]/40 active:scale-[0.98] text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#7F1D2D]/60 border border-[#FBF8F2]/10 transition-colors btn-interactive"
               >
-                <Search className="w-3.5 h-3.5 text-[#F4EBDD]/70 shrink-0" />
+                <Search className="w-3.5 h-3.5 text-[#F3E8D8]/70 shrink-0" />
                 <span>SEARCH COLLECTION</span>
               </button>
 
@@ -289,7 +289,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#8B1E2D]/40 active:scale-[0.98] border border-[#FBF8F2]/10 text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#8B1E2D]/60 transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#7F1D2D]/40 active:scale-[0.98] border border-[#FBF8F2]/10 text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#7F1D2D]/60 transition-colors btn-interactive"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>
