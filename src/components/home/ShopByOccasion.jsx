@@ -1,6 +1,5 @@
 import React from 'react';
 import MainContainer from '../ui/MainContainer';
-import SectionHeading from '../ui/SectionHeading';
 import OccasionCard from './OccasionCard';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
@@ -40,26 +39,20 @@ const OCCASIONS_DATA = [
 ];
 
 /**
- * ShopByOccasion Component — Single 4-Column Row Layout
+ * ShopByOccasion Component — Single 4-Column Row Layout (No heading text)
  * Light Luxury Perfume Aesthetic: Warm Ivory #F6F2EA backdrop, subtle champagne illumination, and staggered scroll reveal.
  */
 export default function ShopByOccasion() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#F6F2EA] text-[#201C19] border-b border-[#D9D1C6] relative overflow-hidden" aria-labelledby="shop-by-occasion-heading">
+    <section className="py-5 sm:py-7 md:py-10 bg-[#F6F2EA] text-[#201C19] border-b border-[#D9D1C6] relative overflow-hidden" aria-label="Shop by occasion">
       {/* Subtle Champagne Ambient Light Zone behind occasion cards */}
       <div className="absolute inset-0 bg-ambient-occasion pointer-events-none" />
 
       <MainContainer className="relative z-10">
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
-          <SectionHeading
-            id="shop-by-occasion-heading"
-            title="SHOP BY OCCASION"
-            subtitle="Find the right scent signature for your moment."
-          />
-
-          <div className="grid grid-cols-4 gap-2 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 w-full">
+          <div className="grid grid-cols-4 gap-2 sm:gap-3 lg:gap-5 w-full">
             {OCCASIONS_DATA.map((occasion, idx) => (
               <div
                 key={occasion.id}
