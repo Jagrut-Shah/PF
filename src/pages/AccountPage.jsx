@@ -575,7 +575,7 @@ export default function AccountPage() {
             <div className="bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-xl relative overflow-hidden">
               
               {/* User Avatar */}
-              <div className="w-20 h-20 rounded-full bg-[#2A0D14] border border-[#E7C4C5]/20 flex items-center justify-center text-[#E7C4C5] font-sora text-3xl font-normal shrink-0 select-none overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-[#2A0D14] border border-[#E7C4C5]/20 flex items-center justify-center text-[#E7C4C5] font-bodoni text-3xl font-normal shrink-0 select-none overflow-hidden">
                 {profile?.avatar_url ? (
                   <img src={profile.avatar_url} alt={profile?.name || user?.email} className="w-full h-full object-cover" />
                 ) : (
@@ -588,7 +588,7 @@ export default function AccountPage() {
                 <span className="font-manrope text-[11px] font-semibold uppercase tracking-widest text-[#E7C4C5]">
                   My Élava
                 </span>
-                <h1 className="font-sora text-3xl sm:text-4xl font-normal text-[#F6EFE7]">
+                <h1 className="font-bodoni text-3xl sm:text-4xl font-medium text-[#F6EFE7]">
                   {profile?.name || 'Valued Customer'}
                 </h1>
                 <p className="font-manrope text-xs text-[#E7C4C5]/85 font-normal">
@@ -647,7 +647,7 @@ export default function AccountPage() {
                   <div className="space-y-6">
                     {/* Welcome banner */}
                     <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm">
-                      <h2 className="font-sora text-xl sm:text-2xl font-bold uppercase text-[#F5F1EA] tracking-wide mb-1">
+                      <h2 className="font-bodoni text-xl sm:text-2xl font-medium uppercase text-[#F5F1EA] tracking-wide mb-1">
                         WELCOME BACK, {profile?.name || 'MEMBER'}
                       </h2>
                       <p className="font-manrope text-xs text-[#B8C4C2]">
@@ -662,7 +662,7 @@ export default function AccountPage() {
                         <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           ORDERS
                         </span>
-                        <h3 className="font-sora text-3xl font-bold text-[#F5F1EA]">{ordersList.length}</h3>
+                        <h3 className="font-manrope text-3xl font-bold text-[#F5F1EA]">{ordersList.length}</h3>
                         <p className="font-manrope text-[11px] text-[#B8C4C2]">Total number of orders</p>
                       </div>
 
@@ -671,7 +671,7 @@ export default function AccountPage() {
                         <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           REWARDS
                         </span>
-                        <h3 className="font-sora text-3xl font-bold text-[#C5A15A]">₹{referralSummary.availableRewards}</h3>
+                        <h3 className="font-manrope text-3xl font-bold text-[#C5A15A]">₹{referralSummary.availableRewards}</h3>
                         <p className="font-manrope text-[11px] text-[#B8C4C2]">Current available rewards</p>
                       </div>
 
@@ -680,7 +680,7 @@ export default function AccountPage() {
                         <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                           PENDING
                         </span>
-                        <h3 className="font-sora text-3xl font-bold text-[#B8C4C2]">₹{referralSummary.pendingRewards}</h3>
+                        <h3 className="font-manrope text-3xl font-bold text-[#B8C4C2]">₹{referralSummary.pendingRewards}</h3>
                         <p className="font-manrope text-[11px] text-[#B8C4C2]">Pending rewards</p>
                       </div>
                     </div>
@@ -725,7 +725,7 @@ export default function AccountPage() {
                         <span className="font-manrope text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
                           PURCHASE HISTORY
                         </span>
-                        <h2 className="font-sora text-2xl sm:text-3xl font-bold uppercase text-[#F5F1EA] tracking-wide">
+                        <h2 className="font-bodoni text-2xl sm:text-3xl font-medium uppercase text-[#F5F1EA] tracking-wide">
                           MY ORDERS ({ordersList.length})
                         </h2>
                       </div>
@@ -759,7 +759,7 @@ export default function AccountPage() {
                           <ShoppingBag className="w-6 h-6" />
                         </div>
                         <div className="space-y-1">
-                          <h3 className="font-sora text-2xl font-bold uppercase text-[#F5F1EA]">NO ORDERS YET</h3>
+                          <h3 className="font-bodoni text-2xl font-medium uppercase text-[#F5F1EA]">NO ORDERS YET</h3>
                           <p className="font-manrope text-xs text-[#B8C4C2] max-w-sm mx-auto leading-relaxed">
                             Your next signature scent is waiting. Explore our luxury collection and order online or directly on WhatsApp.
                           </p>
@@ -861,7 +861,7 @@ export default function AccountPage() {
                               <div className="flex items-center justify-between pt-3 border-t border-[rgba(243,235,221,0.12)]">
                                 <div className="space-y-0.5">
                                   <span className="text-[10px] text-[#B8C4C2] uppercase block">TOTAL AMOUNT</span>
-                                  <span className="font-sora text-lg font-bold text-[#F5F1EA]">
+                                  <span className="font-manrope text-lg font-semibold text-[#F5F1EA]">
                                     ₹{ord.totalAmount.toLocaleString()}
                                   </span>
                                 </div>
@@ -1059,7 +1059,7 @@ export default function AccountPage() {
                     {/* Header Bar */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#1C4A55] border border-[rgba(243,235,221,0.14)] rounded-2xl p-6 shadow-sm">
                       <div className="space-y-1">
-                        <h2 className="font-sora text-2xl font-bold uppercase text-[#F5F1EA]">SAVED ADDRESSES</h2>
+                        <h2 className="font-bodoni text-2xl font-medium uppercase text-[#F5F1EA]">SAVED ADDRESSES</h2>
                         <p className="font-manrope text-xs text-[#B8C4C2]">
                           Manage your delivery addresses for seamless ÉLAVA checkout.
                         </p>
@@ -1096,7 +1096,7 @@ export default function AccountPage() {
                           <MapPin className="w-6 h-6" />
                         </div>
                         <div className="space-y-1">
-                          <h3 className="font-sora text-2xl font-bold uppercase text-[#F5F1EA]">NO SAVED ADDRESSES YET</h3>
+                          <h3 className="font-bodoni text-2xl font-medium uppercase text-[#F5F1EA]">NO SAVED ADDRESSES YET</h3>
                           <p className="font-manrope text-xs text-[#B8C4C2] max-w-sm mx-auto leading-relaxed">
                             Save your delivery addresses to speed up checkout and order placements.
                           </p>
@@ -1123,7 +1123,7 @@ export default function AccountPage() {
                             {/* Card Header & Default Badge */}
                             <div className="flex items-start justify-between gap-2 border-b border-[rgba(243,235,221,0.12)] pb-3">
                               <div className="space-y-0.5">
-                                <h4 className="font-sora text-lg font-bold text-[#F5F1EA]">{addr.fullName}</h4>
+                                <h4 className="font-manrope text-lg font-bold text-[#F5F1EA]">{addr.fullName}</h4>
                                 <p className="text-xs text-[#B8C4C2] font-mono">{addr.phone}</p>
                               </div>
                               {addr.isDefault && (
@@ -1200,7 +1200,7 @@ export default function AccountPage() {
                       <span className="font-manrope text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">
                         EXCLUSIVE REWARDS PROGRAM
                       </span>
-                      <h2 className="font-sora text-2xl sm:text-3xl font-bold uppercase text-[#F5F1EA] tracking-wide">
+                      <h2 className="font-bodoni text-2xl sm:text-3xl font-medium uppercase text-[#F5F1EA] tracking-wide">
                         GIVE ₹200. EARN ₹100 CASH.
                       </h2>
                       <p className="font-manrope text-xs text-[#B8C4C2] max-w-xl leading-relaxed">
@@ -1287,7 +1287,7 @@ export default function AccountPage() {
                           <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#C5A15A] uppercase">
                             AVAILABLE TO WITHDRAW
                           </span>
-                          <h3 className="font-sora text-3xl font-bold text-[#C5A15A]">
+                          <h3 className="font-manrope text-3xl font-bold text-[#C5A15A]">
                             ₹{(referralSummary?.availableToWithdraw || 0).toLocaleString()}
                           </h3>
                           <p className="font-manrope text-[11px] text-[#B8C4C2]">Ready to cash out</p>
@@ -1316,7 +1316,7 @@ export default function AccountPage() {
                           <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                             PENDING REWARDS
                           </span>
-                          <h3 className="font-sora text-3xl font-bold text-[#B8C4C2]">
+                          <h3 className="font-manrope text-3xl font-bold text-[#B8C4C2]">
                             ₹{(referralSummary?.pendingRewards || 0).toLocaleString()}
                           </h3>
                           <p className="font-manrope text-[11px] text-[#B8C4C2]">Awaiting order fulfillment</p>
@@ -1332,7 +1332,7 @@ export default function AccountPage() {
                           <span className="font-manrope text-[10px] font-extrabold tracking-widest text-[#B8C4C2] uppercase">
                             SUCCESSFUL REFERRALS
                           </span>
-                          <h3 className="font-sora text-3xl font-bold text-[#F5F1EA]">
+                          <h3 className="font-manrope text-3xl font-bold text-[#F5F1EA]">
                             {referralSummary?.successfulReferrals || 0}
                           </h3>
                           <p className="font-manrope text-[11px] text-[#B8C4C2]">Friends who ordered</p>
@@ -1351,7 +1351,7 @@ export default function AccountPage() {
 
                       {!referralSummary?.rewardHistory || referralSummary.rewardHistory.length === 0 ? (
                         <div className="text-center py-8 space-y-2">
-                          <p className="font-sora text-base text-[#F5F1EA]">No transactions recorded yet</p>
+                          <p className="font-manrope text-base text-[#F5F1EA]">No transactions recorded yet</p>
                           <p className="font-manrope text-xs text-[#B8C4C2] max-w-md mx-auto">
                             Share your referral code <strong className="text-[#C5A15A] font-mono">{referralSummary?.code || getActiveReferralCode()}</strong> with your friends to earn ₹100 cash for every completed purchase.
                           </p>
@@ -1440,7 +1440,7 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
                         <div className="flex items-center gap-2">
                           <Wallet className="w-5 h-5 text-[#C5A15A]" />
-                          <h3 className="font-sora text-lg font-bold uppercase tracking-wider text-[#F5F1EA]">
+                          <h3 className="font-bodoni text-lg font-medium uppercase tracking-wider text-[#F5F1EA]">
                             WITHDRAW CASH
                           </h3>
                         </div>
@@ -1768,7 +1768,7 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
                         <div className="flex items-center gap-2">
                           <MapPin className="w-5 h-5 text-[#C5A15A]" />
-                          <h3 className="font-sora text-xl font-bold uppercase">
+                          <h3 className="font-bodoni text-xl font-medium uppercase">
                             {editingAddress ? 'EDIT ADDRESS' : 'ADD NEW ADDRESS'}
                           </h3>
                         </div>

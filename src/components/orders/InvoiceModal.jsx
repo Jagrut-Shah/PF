@@ -26,7 +26,7 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
         <div className="print:hidden flex items-center justify-between border-b border-white/10 p-4 sm:p-5 shrink-0 bg-[#080808]">
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-[#B4171E]" />
-            <h3 className="font-sora text-lg sm:text-xl font-semibold text-[#F5F2EE]">
+            <h3 className="font-bodoni text-lg sm:text-xl font-medium text-[#F5F2EE]">
               ÉLAVA ELECTRONIC INVOICE
             </h3>
           </div>
@@ -77,7 +77,7 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
           {/* Invoice Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-neutral-200 pb-6 gap-4">
             <div>
-              <h1 className="font-sora text-2xl font-semibold tracking-tight text-neutral-900">
+              <h1 className="font-bodoni text-2xl font-medium tracking-tight text-neutral-900">
                 ÉLAVA PERFUMES
               </h1>
               <p className="text-xs text-neutral-500 font-medium mt-1 font-manrope">

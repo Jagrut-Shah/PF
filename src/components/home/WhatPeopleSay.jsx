@@ -25,7 +25,7 @@ export default function WhatPeopleSay() {
           <div className="mb-6 sm:mb-8">
             <h2
               id="what-people-say-heading"
-              className="font-sora text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]"
+              className="font-bodoni text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em]"
             >
               What People Say
             </h2>

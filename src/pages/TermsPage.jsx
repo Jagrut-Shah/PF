@@ -16,7 +16,7 @@ export default function TermsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-3">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-3">
             TERMS & CONDITIONS
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal leading-relaxed">
@@ -36,7 +36,7 @@ export default function TermsPage() {
 
           {/* 1. About ÉLAVA */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               1. ABOUT ÉLAVA
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -46,7 +46,7 @@ export default function TermsPage() {
 
           {/* 2. Use of the Website */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               2. USE OF THE WEBSITE
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -56,7 +56,7 @@ export default function TermsPage() {
 
           {/* 3. Product Information */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               3. PRODUCT INFORMATION
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -66,7 +66,7 @@ export default function TermsPage() {
 
           {/* 4. Pricing */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               4. PRICING
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -76,7 +76,7 @@ export default function TermsPage() {
 
           {/* 5. Product Availability */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               5. PRODUCT AVAILABILITY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -86,7 +86,7 @@ export default function TermsPage() {
 
           {/* 6. Orders Through WhatsApp */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               6. ORDERS THROUGH WHATSAPP
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -96,7 +96,7 @@ export default function TermsPage() {
 
           {/* 7. Order Acceptance */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               7. ORDER ACCEPTANCE
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
           {/* 8. Payment */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               8. PAYMENT
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -116,7 +116,7 @@ export default function TermsPage() {
 
           {/* 9. Delivery */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               9. DELIVERY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -126,7 +126,7 @@ export default function TermsPage() {
 
           {/* 10. Returns & Refunds */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               10. RETURNS & REFUNDS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -136,7 +136,7 @@ export default function TermsPage() {
 
           {/* 11. Cancellations */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               11. CANCELLATIONS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -146,7 +146,7 @@ export default function TermsPage() {
 
           {/* 12. Intellectual Property */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               12. INTELLECTUAL PROPERTY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -156,7 +156,7 @@ export default function TermsPage() {
 
           {/* 13. Website Accuracy */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               13. WEBSITE ACCURACY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -166,7 +166,7 @@ export default function TermsPage() {
 
           {/* 14. Limitation of Liability */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               14. LIMITATION OF LIABILITY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -176,7 +176,7 @@ export default function TermsPage() {
 
           {/* 15. Changes to These Terms */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               15. CHANGES TO THESE TERMS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -186,7 +186,7 @@ export default function TermsPage() {
 
           {/* 16. Governing Law */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               16. GOVERNING LAW
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -196,7 +196,7 @@ export default function TermsPage() {
 
           {/* 17. Contact */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               17. CONTACT
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-2">

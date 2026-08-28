@@ -58,7 +58,7 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
           <div className="space-y-0.5">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#B4171E]" />
-              <h3 className="font-sora text-lg font-semibold text-[#F5F2EE]">
+              <h3 className="font-bodoni text-lg font-medium text-[#F5F2EE]">
                 CHOOSE YOUR FREE 10ML SAMPLE
               </h3>
             </div>
@@ -100,7 +100,7 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
                 />
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center justify-between">
-                    <h4 className="font-sora text-[15px] font-semibold text-[#F5F2EE]">{sample.name}</h4>
+                    <h4 className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">{sample.name}</h4>
                     <span className="font-manrope text-[11px] font-semibold text-[#B4171E] uppercase tracking-wider">FREE 10ML · ₹0</span>
                   </div>
                   <p className="font-manrope text-[11px] text-[#B8B3AF] font-semibold tracking-wide uppercase">{sample.family}</p>

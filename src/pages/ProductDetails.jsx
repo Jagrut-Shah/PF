@@ -396,8 +396,8 @@ export default function ProductDetails() {
             </div>
           )}
 
-          {/* Product Title — Sora 600 */}
-          <h1 className="font-sora text-[28px] sm:text-[36px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]">
+          {/* Product Title — Bodoni Moda 500-600 */}
+          <h1 className="font-bodoni text-[28px] sm:text-[36px] lg:text-[44px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
             {product.name}
           </h1>
 
@@ -554,7 +554,7 @@ export default function ProductDetails() {
             <section className="bg-[#121212] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-md space-y-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#B4171E]" />
-                <h2 className="font-sora text-xl sm:text-2xl font-semibold tracking-[-0.025em] text-[#F5F2EE]">
+                <h2 className="font-bodoni text-xl sm:text-2xl font-medium tracking-[-0.015em] text-[#F5F2EE]">
                   WHAT IT FEELS LIKE
                 </h2>
               </div>

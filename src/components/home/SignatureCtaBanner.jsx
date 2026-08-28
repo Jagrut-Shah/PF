@@ -31,7 +31,7 @@ export default function SignatureCtaBanner() {
               <Sparkles className="w-3.5 h-3.5 text-[#F5F2EE]" />
             </div>
             <div>
-              <span className="font-sora text-[16px] sm:text-[18px] font-semibold tracking-[-0.015em] text-[#F5F2EE]">
+              <span className="font-bodoni text-[16px] sm:text-[19px] font-medium tracking-[-0.01em] text-[#F5F2EE]">
                 Not sure which scent is yours?
               </span>
             </div>

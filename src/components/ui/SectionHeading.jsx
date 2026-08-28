@@ -1,8 +1,8 @@
 import React from 'react';
 
 /**
- * SectionHeading UI Component — Sora 600 Heading + Manrope 500 Subhead
- * Two-Font System: Sora for section headings (-0.025em tracking), Manrope for subheads.
+ * SectionHeading UI Component — Bodoni Moda 500-600 Heading + Manrope 500 Subhead
+ * Two-Font System: Bodoni Moda for section headings, Manrope for subheads and eyebrows.
  */
 export default function SectionHeading({
   title,
@@ -23,7 +23,7 @@ export default function SectionHeading({
         </span>
       )}
       {title && (
-        <Component id={id} className="font-sora text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]">
+        <Component id={id} className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
           {title}
         </Component>
       )}

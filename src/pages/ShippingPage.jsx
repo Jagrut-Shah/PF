@@ -15,7 +15,7 @@ export default function ShippingPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-3">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-3">
             SHIPPING & DELIVERY
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal leading-relaxed">
@@ -28,7 +28,7 @@ export default function ShippingPage() {
 
           {/* 1. HOW ORDERING WORKS */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-4">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-4">
               HOW ORDERING WORKS
             </h2>
             <ol className="space-y-3 font-manrope text-[14px] text-[#B8B3AF] list-decimal list-inside leading-[1.6]">
@@ -44,7 +44,7 @@ export default function ShippingPage() {
           {/* 2. DELIVERY AREAS & TIMELINES GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 DELIVERY AREAS
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -53,7 +53,7 @@ export default function ShippingPage() {
             </div>
 
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 DELIVERY TIMELINES
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -65,7 +65,7 @@ export default function ShippingPage() {
           {/* 3. CHARGES & DISPATCH */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 SHIPPING CHARGES
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -74,7 +74,7 @@ export default function ShippingPage() {
             </div>
 
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 ORDER DISPATCH
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -85,7 +85,7 @@ export default function ShippingPage() {
 
           {/* 4. DELIVERY ISSUES */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               DELIVERY ISSUES
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">

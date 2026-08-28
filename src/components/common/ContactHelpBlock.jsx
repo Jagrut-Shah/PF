@@ -13,7 +13,7 @@ export default function ContactHelpBlock() {
 
   return (
     <section className="mt-12 pt-10 border-t border-white/10 text-center max-w-xl mx-auto">
-      <h2 className="font-sora text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#F5F2EE] mb-2">
+      <h2 className="font-bodoni text-2xl sm:text-3xl font-medium tracking-[-0.015em] text-[#F5F2EE] mb-2">
         NEED HELP?
       </h2>
       <p className="font-manrope text-[14px] text-[#B8B3AF] leading-relaxed mb-6">

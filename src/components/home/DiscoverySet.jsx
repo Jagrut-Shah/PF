@@ -45,8 +45,8 @@ export default function DiscoverySet() {
                 <span>ÉLAVA DISCOVERY SET</span>
               </div>
 
-              <h2 className="font-sora text-[24px] sm:text-[28px] md:text-[34px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]">
-                Sample ÉLAVA Fragrances <span className="font-semibold text-[#B8B3AF]">At Home</span>
+              <h2 className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
+                Sample ÉLAVA Fragrances <span className="font-medium text-[#B8B3AF] italic">At Home</span>
               </h2>
 
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">

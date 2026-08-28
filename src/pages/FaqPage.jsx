@@ -123,7 +123,7 @@ export default function FaqPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-2">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-2">
             FREQUENTLY ASKED QUESTIONS
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal">

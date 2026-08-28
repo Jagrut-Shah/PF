@@ -77,7 +77,7 @@ export default function DiscoverySetPage() {
               <span>THE ÉLAVA SAMPLE EXPERIENCE</span>
             </div>
 
-            <h1 className="font-sora text-[32px] sm:text-[42px] lg:text-[50px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.035em]">
+            <h1 className="font-bodoni text-[32px] sm:text-[42px] lg:text-[50px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em]">
               TRY ANY ÉLAVA FRAGRANCE
             </h1>
             <p className="font-manrope text-[16px] sm:text-[18px] text-[#B8B3AF] max-w-xl mx-auto leading-[1.5]">
@@ -88,19 +88,19 @@ export default function DiscoverySetPage() {
           {/* ── THREE KEY FEATURES HIGHLIGHT ── */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-8 sm:mt-10">
             <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
-              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">FULL 60ML BOTTLE</span>
+              <span className="font-bodoni text-[18px] font-medium text-[#F5F2EE] block">FULL 60ML BOTTLE</span>
               <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 No tiny 5ml or 10ml vials. You receive the complete signature 60ml bottle to wear and evaluate.
               </p>
             </div>
             <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
-              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">ANY FRAGRANCE</span>
+              <span className="font-bodoni text-[18px] font-medium text-[#F5F2EE] block">ANY FRAGRANCE</span>
               <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 Pick your preferred fragrance from our entire premium Eau de Parfum collection.
               </p>
             </div>
             <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
-              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">TRY IT AT HOME</span>
+              <span className="font-bodoni text-[18px] font-medium text-[#F5F2EE] block">TRY IT AT HOME</span>
               <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 Experience its projection, sillage, and skin chemistry in your daily routine over weeks.
               </p>
@@ -113,7 +113,7 @@ export default function DiscoverySetPage() {
       <section className="py-12 sm:py-16">
         <MainContainer>
           <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="font-sora text-[28px] sm:text-[36px] font-semibold tracking-[-0.025em] text-[#F5F2EE]">
+            <h2 className="font-bodoni text-[28px] sm:text-[36px] font-medium tracking-[-0.015em] text-[#F5F2EE]">
               SELECT YOUR SCENT
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] mt-1">
@@ -161,7 +161,7 @@ export default function DiscoverySetPage() {
                       <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#B8B3AF]">
                         {product.scentIdentity}
                       </div>
-                      <h3 className="font-sora text-[20px] font-semibold text-[#F5F2EE]">
+                      <h3 className="font-manrope text-[18px] font-semibold text-[#F5F2EE]">
                         ÉLAVA {product.name}
                       </h3>
                       <p className="font-manrope text-[13px] text-[#B8B3AF] leading-[1.5] line-clamp-3">
@@ -192,7 +192,7 @@ export default function DiscoverySetPage() {
               </div>
               
               <div>
-                <h3 className="font-sora text-[24px] font-semibold text-[#F5F2EE]">
+                <h3 className="font-bodoni text-[24px] font-medium text-[#F5F2EE]">
                   ÉLAVA {selectedProduct.name}
                 </h3>
                 <p className="font-manrope text-[14px] text-[#B8B3AF] mt-0.5">

@@ -15,7 +15,7 @@ export default function ReturnsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-3">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-3">
             RETURNS & REFUNDS
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal leading-relaxed">
@@ -28,7 +28,7 @@ export default function ReturnsPage() {
 
           {/* 1. DAMAGED OR INCORRECT PRODUCTS */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               DAMAGED OR INCORRECT PRODUCTS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -39,7 +39,7 @@ export default function ReturnsPage() {
           {/* 2. ELIGIBILITY & CANCELLATIONS GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 ELIGIBILITY
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -48,7 +48,7 @@ export default function ReturnsPage() {
             </div>
 
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 CANCELLATIONS
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -59,7 +59,7 @@ export default function ReturnsPage() {
 
           {/* 3. RETURN REQUESTS */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-3">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-3">
               RETURN REQUESTS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-3">
@@ -78,7 +78,7 @@ export default function ReturnsPage() {
           {/* 4. REFUNDS & RETURN SHIPPING GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 REFUNDS
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -87,7 +87,7 @@ export default function ReturnsPage() {
             </div>
 
             <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-              <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+              <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
                 RETURN SHIPPING
               </h2>
               <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">

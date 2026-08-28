@@ -50,7 +50,7 @@ export default function GiftSection() {
 
               {/* Title & Subtitle */}
               <div>
-                <h2 className="font-sora text-[24px] sm:text-[30px] lg:text-[36px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]">
+                <h2 className="font-bodoni text-[26px] sm:text-[32px] lg:text-[38px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
                   Find The Perfect Gift
                 </h2>
                 <p className="font-manrope text-[15px] sm:text-[17px] text-[#B8B3AF] mt-2 font-medium">

@@ -76,9 +76,9 @@ export default function Hero() {
               <span>60 ml Eau de Parfum Collection</span>
             </div>
 
-            {/* Hero Display Headline — Sora 600 (Desktop: 52-68px, Mobile: 36-44px, Line height: 1.02, Letter spacing: -0.04em) */}
-            <h1 className="animate-hero-headline font-sora text-[36px] sm:text-[44px] md:text-[56px] lg:text-[66px] font-semibold tracking-[-0.04em] text-[#F5F2EE] leading-[1.02] mb-6">
-              Scents that become <span className="font-semibold text-[#B8B3AF]">part of you.</span>
+            {/* Hero Display Headline — Bodoni Moda 500-600 (Desktop: 56-72px, Mobile: 38-48px, Line height: 0.98, Letter spacing: -0.02em) */}
+            <h1 className="animate-hero-headline font-bodoni text-[38px] sm:text-[48px] md:text-[60px] lg:text-[72px] font-medium tracking-[-0.02em] text-[#F5F2EE] leading-[0.98] mb-6">
+              Scents that become <span className="font-medium text-[#B8B3AF] italic">part of you.</span>
             </h1>
 
             {/* Hero Subheading — Manrope 500 (Desktop: 18-21px, Mobile: 17-19px, Line height: 1.4) */}

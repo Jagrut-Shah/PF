@@ -51,7 +51,7 @@ export default function WhyElava() {
                 }`}
               >
                 <div>
-                  <span className="font-sora text-3xl sm:text-4xl font-semibold text-[#B4171E] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
+                  <span className="font-bodoni text-3xl sm:text-4xl font-medium text-[#B4171E] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
                     {item.number}
                   </span>
                   <h3 className="font-manrope text-[16px] font-semibold text-[#F5F2EE] mb-2 group-hover:text-[#B4171E] transition-colors">

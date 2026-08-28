@@ -79,7 +79,7 @@ export default function ReviewsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-12">
         {/* 1. PAGE HERO */}
         <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.035em] mb-2">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[48px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-2">
             {heroTitle}
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] mb-5 font-normal">
@@ -88,7 +88,7 @@ export default function ReviewsPage() {
 
           {/* Rating Display */}
           <div className="inline-flex flex-col items-center justify-center p-4 bg-[#121212] border border-white/10 rounded-2xl shadow-sm">
-            <div className="font-sora text-[32px] sm:text-[40px] font-semibold text-[#F5F2EE] tracking-tight mb-1">
+            <div className="font-bodoni text-[32px] sm:text-[40px] font-medium text-[#F5F2EE] tracking-tight mb-1">
               {displayRating} <span className="font-manrope text-[18px] text-[#B8B3AF]">/ 5</span>
             </div>
             <div className="mb-1.5">

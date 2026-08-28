@@ -122,8 +122,8 @@ export default function ScentQuiz() {
                   </div>
                 </div>
 
-                {/* Question Title — Sora 600 */}
-                <h3 className="font-sora text-[22px] sm:text-[26px] md:text-[28px] font-semibold text-[#F5F2EE] mb-6 leading-tight tracking-[-0.02em]">
+                {/* Question Title — Bodoni Moda 500-600 */}
+                <h3 className="font-bodoni text-[22px] sm:text-[26px] md:text-[28px] font-medium text-[#F5F2EE] mb-6 leading-tight tracking-[-0.015em]">
                   {QUIZ_QUESTIONS[currentStep].title}
                 </h3>
 
@@ -175,7 +175,7 @@ export default function ScentQuiz() {
                     <span className="text-[12px] font-manrope font-semibold tracking-[0.09em] text-[#B8B3AF] uppercase block">
                       MATCH RESULT
                     </span>
-                    <h3 className="font-sora text-[22px] sm:text-[26px] font-semibold text-[#F5F2EE]">
+                    <h3 className="font-bodoni text-[22px] sm:text-[26px] font-medium text-[#F5F2EE]">
                       Recommended Signatures
                     </h3>
                   </div>

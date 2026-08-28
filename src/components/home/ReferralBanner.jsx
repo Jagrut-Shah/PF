@@ -48,9 +48,9 @@ export default function ReferralBanner() {
 
               {/* Major Statement */}
               <div className="space-y-3">
-                <h2 className="font-sora text-[32px] sm:text-[44px] lg:text-[54px] font-semibold text-[#F5F2EE] leading-[1.05] tracking-[-0.035em]">
+                <h2 className="font-bodoni text-[32px] sm:text-[44px] lg:text-[54px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em]">
                   Share Élava.<br />
-                  <span className="text-[#F5F2EE] font-semibold opacity-95">
+                  <span className="text-[#F5F2EE] font-medium opacity-95">
                     Earn ₹100 Cash.
                   </span>
                 </h2>
@@ -68,7 +68,7 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-1' : ''
                   }`}
                 >
-                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
+                  <span className="text-[12px] font-bodoni font-medium text-[#B4171E] block">
                     01
                   </span>
                   <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
@@ -83,7 +83,7 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-2' : ''
                   }`}
                 >
-                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
+                  <span className="text-[12px] font-bodoni font-medium text-[#B4171E] block">
                     02
                   </span>
                   <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
@@ -98,7 +98,7 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-3' : ''
                   }`}
                 >
-                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
+                  <span className="text-[12px] font-bodoni font-medium text-[#B4171E] block">
                     03 · HERO EARNING
                   </span>
                   <div className="font-manrope text-[16px] font-semibold text-[#F5F2EE]">
@@ -133,7 +133,7 @@ export default function ReferralBanner() {
                   <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#B8B3AF]">
                     Your Cash Reward
                   </div>
-                  <h3 className="font-sora text-[36px] font-semibold text-[#F5F2EE]">
+                  <h3 className="font-bodoni text-[36px] font-medium text-[#F5F2EE]">
                     ₹100 Cash
                   </h3>
                   <p className="text-[14px] font-manrope text-[#B8B3AF] leading-[1.5] px-2 font-normal">

@@ -170,7 +170,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                         className="w-11 h-11 object-cover rounded-lg bg-[#080808] shrink-0 border border-white/15"
                       />
                       <div className="min-w-0">
-                        <div className="font-sora text-sm font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors truncate">
+                        <div className="font-manrope text-sm font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors truncate">
                           {prod.name}
                         </div>
                         <div className="font-manrope text-[12px] text-[#B8B3AF] truncate">
@@ -190,7 +190,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
           {/* STATE 3: NO MATCHING RESULTS */}
           {hasQuery && results.length === 0 && (
             <div className="py-8 text-center bg-[#121212] border border-white/15 rounded-xl my-2 px-4">
-              <h4 className="font-sora text-base font-semibold text-[#F5F2EE] mb-1">
+              <h4 className="font-bodoni text-base font-medium text-[#F5F2EE] mb-1">
                 NO FRAGRANCES FOUND
               </h4>
               <p className="font-manrope text-xs text-[#B8B3AF] mb-4">

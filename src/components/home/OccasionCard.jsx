@@ -7,6 +7,13 @@ import { ArrowRight } from 'lucide-react';
  * Section 16 Requirement: DATE NIGHT, EVERYDAY, OFFICE, PARTY all four use exactly the same typography system.
  * Title: Sora 600 (20-26px), Supporting copy: Manrope 400 (14-16px), CTA: Manrope 600.
  */
+/**
+ * OccasionCard Component — Bodoni Moda 500-600 Title + Manrope 400 Description
+ * Sections 14-17 & 35 Requirements:
+ * - Titles: Bodoni Moda 500-600 (Desktop 22-28px, Mobile 19-23px).
+ * - "DATE NIGHT" MUST FIT ON ONE LINE on both mobile and desktop.
+ * - Subtitles: Visible on desktop, HIDDEN ON MOBILE (deliberate responsive rule).
+ */
 export default function OccasionCard({ occasion }) {
   if (!occasion) return null;
 
@@ -14,7 +21,7 @@ export default function OccasionCard({ occasion }) {
 
   return (
     <div className="relative w-full">
-      {/* MOBILE */}
+      {/* MOBILE — Subtitles HIDDEN on mobile per Section 15 & 35 */}
       <Link
         to={occasion.route}
         className="group md:hidden flex flex-col items-center w-full select-none focus:outline-none active:scale-[0.98] transition-transform duration-150"
@@ -29,16 +36,13 @@ export default function OccasionCard({ occasion }) {
           />
         </div>
         <div className="mt-2 text-center w-full px-1">
-          <h3 className="font-sora font-semibold text-[20px] sm:text-[22px] text-[#F5F2EE] leading-tight">
+          <h3 className="font-bodoni font-medium text-[19px] sm:text-[22px] text-[#F5F2EE] leading-none whitespace-nowrap tracking-[-0.01em]">
             {titleText}
           </h3>
-          <p className="font-manrope font-normal text-[14px] text-[#B8B3AF] mt-0.5 line-clamp-1">
-            {occasion.description}
-          </p>
         </div>
       </Link>
 
-      {/* DESKTOP */}
+      {/* DESKTOP — Subtitles enabled on desktop */}
       <Link
         to={occasion.route}
         className="hidden md:flex group relative z-10 flex-col justify-end w-full select-none overflow-hidden rounded-[12px] border border-white/10 transition-all duration-300 p-5 lg:p-6 h-[170px] lg:h-[180px] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B4171E]/50 shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] hover:border-white/20 hover:-translate-y-1"
@@ -58,10 +62,11 @@ export default function OccasionCard({ occasion }) {
         {/* Content Layer */}
         <div className="relative z-10 flex items-end justify-between w-full">
           <div className="flex flex-col min-w-0 pr-3">
-            <h3 className="font-sora font-semibold text-[20px] md:text-[23px] lg:text-[26px] text-[#F5F2EE] leading-tight tracking-[-0.02em]">
+            <h3 className="font-bodoni font-medium text-[22px] md:text-[25px] lg:text-[28px] text-[#F5F2EE] leading-none tracking-[-0.01em] whitespace-nowrap">
               {titleText}
             </h3>
-            <p className="font-manrope font-normal text-[14px] lg:text-[15px] leading-relaxed mt-1 text-[#B8B3AF] group-hover:text-[#F5F2EE] transition-colors truncate">
+            {/* Desktop Subtitle */}
+            <p className="hidden md:block font-manrope font-normal text-[14px] lg:text-[15px] leading-relaxed mt-1 text-[#B8B3AF] group-hover:text-[#F5F2EE] transition-colors truncate">
               {occasion.description}
             </p>
           </div>

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * ScentCategoryCard Component — Sora 600 Titles + Manrope 400 Copy + Manrope 600 CTA
- * Section 17 Requirement: FOR HIM, FOR HER, UNISEX
- * Titles: Sora 600. Supporting copy: Manrope 400. CTA: Manrope 600.
+ * ScentCategoryCard Component — Bodoni Moda Titles + Manrope Copy + Manrope CTA
+ * Section 18 Requirement: FOR HIM, FOR HER, UNISEX
+ * Titles: Bodoni Moda 500-600. Supporting copy: Manrope 400. CTA: Manrope 600.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -35,7 +35,7 @@ export default function ScentCategoryCard({ category }) {
         <div className="absolute inset-0 bg-ambient-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         
         <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 flex flex-col justify-end text-left z-10">
-          <h3 className="font-sora text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-[#F5F2EE] tracking-[-0.015em] leading-tight group-hover:text-[#B4171E] transition-colors">
+          <h3 className="font-bodoni text-[18px] sm:text-[21px] md:text-[24px] font-medium text-[#F5F2EE] tracking-[-0.01em] leading-tight group-hover:text-[#B4171E] transition-colors">
             {title}
           </h3>
 

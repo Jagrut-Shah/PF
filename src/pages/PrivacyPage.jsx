@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-3">
+          <h1 className="font-bodoni text-[32px] sm:text-[40px] md:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em] mb-3">
             PRIVACY POLICY
           </h1>
           <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal leading-relaxed">
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
 
           {/* Section 1: Information We Collect */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-3">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-3">
               1. INFORMATION WE COLLECT
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-3">
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
 
           {/* Section 2: How We Use Information */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-3">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-3">
               2. HOW WE USE INFORMATION
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-3">
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
 
           {/* Section 3: WhatsApp Communications */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               3. WHATSAPP COMMUNICATIONS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
 
           {/* Section 4: Sharing Information */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               4. SHARING INFORMATION
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-2">
@@ -101,7 +101,7 @@ export default function PrivacyPage() {
 
           {/* Section 5: Data Retention */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               5. DATA RETENTION
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
 
           {/* Section 6: Data Security */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               6. DATA SECURITY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
 
           {/* Section 7: Your Choices and Rights */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               7. YOUR CHOICES AND RIGHTS
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
 
           {/* Section 8: Third-Party Services */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               8. THIRD-PARTY SERVICES
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
 
           {/* Section 9: Children's Privacy */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               9. CHILDREN'S PRIVACY
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -151,7 +151,7 @@ export default function PrivacyPage() {
 
           {/* Section 10: Policy Updates */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               10. POLICY UPDATES
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6]">
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
 
           {/* Section 11: Contact Us */}
           <div className="bg-[#121212] border border-white/10 rounded-xl p-6 shadow-sm">
-            <h2 className="font-sora text-[18px] font-semibold text-[#F5F2EE] mb-2">
+            <h2 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] mb-2">
               11. CONTACT US
             </h2>
             <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-2">

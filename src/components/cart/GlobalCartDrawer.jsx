@@ -92,7 +92,7 @@ export default function GlobalCartDrawer() {
         <div className="p-4 border-b border-white/10 flex items-center justify-between bg-[#121212]">
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-4 h-4 text-[#F5F2EE]" />
-            <h3 className="font-sora text-[18px] font-semibold text-[#F5F2EE] tracking-[-0.02em]">
+            <h3 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] tracking-[-0.015em]">
               Your Cart ({cartTotals.itemCount || 0} {(cartTotals.itemCount || 0) === 1 ? 'Item' : 'Items'})
             </h3>
           </div>

@@ -45,7 +45,7 @@ export default function ScentWardrobeBundle() {
               <Layers className="w-3.5 h-3.5 text-[#F5F2EE]" />
               <span>Fragrance Curation</span>
             </div>
-            <h2 className="font-sora text-[28px] sm:text-[36px] lg:text-[44px] font-semibold text-[#F5F2EE] tracking-[-0.025em] leading-[1.08]">
+            <h2 className="font-bodoni text-[28px] sm:text-[36px] lg:text-[44px] font-medium text-[#F5F2EE] tracking-[-0.015em] leading-[1.05]">
               Build Your Scent Wardrobe
             </h2>
             <p className="font-manrope text-[17px] sm:text-[18px] text-[#B8B3AF] mt-2 font-medium leading-[1.4]">
@@ -71,7 +71,7 @@ export default function ScentWardrobeBundle() {
                     </span>
                     <span className="text-[13px] font-manrope font-semibold text-[#B8B3AF]">{preset.subtitle}</span>
                   </div>
-                  <h3 className="font-sora text-[20px] sm:text-[22px] font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors leading-snug">
+                  <h3 className="font-bodoni text-[20px] sm:text-[22px] font-medium text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors leading-snug">
                     {preset.title}
                   </h3>
                   <p className="font-manrope text-[14px] text-[#B8B3AF] mt-2 leading-[1.6] font-normal">

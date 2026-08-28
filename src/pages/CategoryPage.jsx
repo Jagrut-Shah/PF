@@ -95,7 +95,7 @@ export default function CategoryPage() {
           description="The requested fragrance collection does not exist."
           canonicalPath={`/category/${categorySlug || ''}`}
         />
-        <h1 className="font-sora text-3xl font-semibold text-[#F5F2EE] mb-3">
+        <h1 className="font-bodoni text-3xl font-medium text-[#F5F2EE] mb-3">
           Collection Not Found
         </h1>
         <p className="font-manrope text-sm text-[#B8B3AF] mb-6 font-normal">

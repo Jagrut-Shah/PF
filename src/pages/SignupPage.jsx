@@ -102,7 +102,7 @@ export default function SignupPage() {
       <MainContainer className="flex justify-center items-center">
         <div className="bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
           <div className="text-center space-y-1.5">
-            <h1 className="font-sora text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#F5F2EE]">
+            <h1 className="font-bodoni text-2xl sm:text-3xl font-medium tracking-[-0.015em] text-[#F5F2EE]">
               CREATE YOUR ÉLAVA ACCOUNT
             </h1>
             <p className="font-manrope text-[14px] text-[#B8B3AF]">

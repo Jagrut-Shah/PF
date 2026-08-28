@@ -27,7 +27,7 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-sora text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]"
+                className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]"
               >
                 Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[18px] sm:text-[22px] md:text-[26px]">BESTSELLERS</span>
               </h2>

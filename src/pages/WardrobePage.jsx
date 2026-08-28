@@ -82,7 +82,7 @@ export default function WardrobePage() {
 
               {/* Title & Tagline */}
               <div>
-                <h1 className="font-sora text-[32px] sm:text-[42px] lg:text-[50px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.035em]">
+                <h1 className="font-bodoni text-[32px] sm:text-[42px] lg:text-[50px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em]">
                   {bundle.title}
                 </h1>
                 <p className="font-manrope text-[18px] sm:text-[20px] text-[#B8B3AF] mt-1 font-semibold">
@@ -219,7 +219,7 @@ export default function WardrobePage() {
                 <Sparkles className="w-4 h-4 text-[#B4171E]" />
                 <span>WHY THIS COMBINATION</span>
               </div>
-              <h3 className="font-sora text-[20px] font-semibold text-[#F5F2EE]">
+              <h3 className="font-bodoni text-[20px] font-medium text-[#F5F2EE]">
                 Curated Scent Synergy
               </h3>
               <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
@@ -233,7 +233,7 @@ export default function WardrobePage() {
                 <Layers className="w-4 h-4 text-[#B4171E]" />
                 <span>WHEN TO WEAR</span>
               </div>
-              <h3 className="font-sora text-[20px] font-semibold text-[#F5F2EE]">
+              <h3 className="font-bodoni text-[20px] font-medium text-[#F5F2EE]">
                 Sensory Wearing Guide
               </h3>
               <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
