@@ -33,14 +33,13 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * Single horizontal line across all viewports in Black & Red Luxury Palette (#0B0B0B environment) with scroll reveal.
- * Descriptors hidden on mobile; slightly reduced card size on desktop.
+ * Light Luxury Perfume Aesthetic: Secondary Cream #EEE8DD background for elegant visual rhythm.
  */
 export default function FindYourScent() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#0B0B0B] text-[#F5F2EE] border-b border-white/10" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 md:py-16 bg-[#EEE8DD] text-[#201C19] border-b border-[#D9D1C6]" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Heading & Subtitle */}

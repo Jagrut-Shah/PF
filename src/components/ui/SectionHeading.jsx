@@ -18,17 +18,17 @@ export default function SectionHeading({
   return (
     <div className={`${alignmentClass} mb-6 sm:mb-8 ${className}`}>
       {eyebrow && (
-        <span className="font-manrope font-semibold text-[12px] sm:text-[13px] text-[#B4171E] tracking-[0.09em] uppercase block mb-2">
+        <span className="font-manrope font-semibold text-[12px] sm:text-[13px] text-[#721C24] tracking-[0.09em] uppercase block mb-2">
           {eyebrow}
         </span>
       )}
       {title && (
-        <Component id={id} className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
+        <Component id={id} className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#201C19] leading-[1.05] tracking-[-0.015em]">
           {title}
         </Component>
       )}
       {subtitle && (
-        <p className="font-manrope text-[17px] sm:text-[18px] md:text-[19px] lg:text-[21px] text-[#B8B3AF] mt-2 sm:mt-3 font-medium leading-[1.4]">
+        <p className="font-manrope text-[17px] sm:text-[18px] md:text-[19px] lg:text-[21px] text-[#625C55] mt-2 sm:mt-3 font-medium leading-[1.4]">
           {subtitle}
         </p>
       )}

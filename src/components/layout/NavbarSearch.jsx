@@ -51,8 +51,8 @@ export function filterProducts(query, allProducts) {
 }
 
 /**
- * NavbarSearch Component — Black & Red Luxury Aesthetic:
- * Deep Black #080808 container, Soft Black #121212 input bar, Signature Red #B4171E accents.
+ * NavbarSearch Component — Light Luxury Perfume Aesthetic:
+ * Warm Ivory #F6F2EA container, Cream #EEE8DD input bar, Deep Burgundy #721C24 accents.
  */
 export default function NavbarSearch({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
@@ -81,26 +81,26 @@ export default function NavbarSearch({ isOpen, onClose }) {
   };
 
   return (
-    <div className="absolute top-full left-0 w-full bg-[#080808] border-b border-white/15 shadow-2xl z-50 animate-fadeIn text-[#F5F2EE]">
+    <div className="absolute top-full left-0 w-full bg-[#F6F2EA] border-b border-[#D9D1C6] shadow-xl z-50 animate-fadeIn text-[#201C19]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
         
         {/* Search Input Bar */}
-        <div className="relative flex items-center bg-[#121212] border border-white/15 rounded-xl px-3.5 py-2.5 focus-within:border-[#B4171E] transition-colors">
-          <Search className="w-4 h-4 text-[#B8B3AF] shrink-0 mr-2.5 stroke-[1.75]" aria-hidden="true" />
+        <div className="relative flex items-center bg-[#EEE8DD] border border-[#D9D1C6] rounded-xl px-3.5 py-2.5 focus-within:border-[#721C24] transition-colors">
+          <Search className="w-4 h-4 text-[#625C55] shrink-0 mr-2.5 stroke-[1.75]" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search fragrances..."
-            className="w-full bg-transparent font-sans text-xs sm:text-sm text-[#F5F2EE] placeholder:text-[#B8B3AF]/70 focus:outline-none tracking-wide"
+            className="w-full bg-transparent font-sans text-xs sm:text-sm text-[#201C19] placeholder:text-[#625C55]/70 focus:outline-none tracking-wide"
             aria-label="Search fragrances"
           />
           {hasQuery && (
             <button
               type="button"
               onClick={() => setQuery('')}
-              className="p-1 text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors mr-1"
+              className="p-1 text-[#625C55] hover:text-[#201C19] transition-colors mr-1"
               aria-label="Clear search query"
             >
               <X className="w-3.5 h-3.5" />
@@ -112,7 +112,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
               setQuery('');
               onClose();
             }}
-            className="p-1 text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors text-xs font-medium uppercase tracking-wider pl-2 border-l border-white/15"
+            className="p-1 text-[#625C55] hover:text-[#201C19] transition-colors text-xs font-medium uppercase tracking-wider pl-2 border-l border-[#D9D1C6]"
             aria-label="Close search"
           >
             Close
@@ -125,7 +125,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
           {/* STATE 1: EMPTY QUERY */}
           {!hasQuery && (
             <div className="py-5 text-center">
-              <p className="font-sans text-xs text-[#B8B3AF] mb-3">
+              <p className="font-sans text-xs text-[#625C55] mb-3">
                 Search by fragrance, mood or occasion.
               </p>
               <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -134,7 +134,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                     key={tag}
                     type="button"
                     onClick={() => handleQuickTagClick(tag)}
-                    className="px-3 py-1 bg-[#1A1A1A] hover:bg-[#B4171E] text-[#F5F2EE] border border-white/15 rounded text-[11px] font-bold tracking-[0.14em] uppercase transition-colors"
+                    className="px-3 py-1 bg-[#EEE8DD] hover:bg-[#721C24] hover:text-[#F6F2EA] text-[#201C19] border border-[#D9D1C6] rounded text-[11px] font-bold tracking-[0.14em] uppercase transition-colors cursor-pointer"
                   >
                     {tag}
                   </button>
@@ -145,8 +145,8 @@ export default function NavbarSearch({ isOpen, onClose }) {
 
           {/* STATE 2: MATCHING RESULTS */}
           {hasQuery && results.length > 0 && (
-            <div className="divide-y divide-white/10">
-              <div className="pb-2 font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#B8B3AF]">
+            <div className="divide-y divide-[#D9D1C6]/60">
+              <div className="pb-2 font-sans text-[10px] font-bold tracking-[0.2em] uppercase text-[#625C55]">
                 {results.length} {results.length === 1 ? 'FRAGRANCE' : 'FRAGRANCES'} FOUND
               </div>
               <div className="space-y-1 pt-1">
@@ -154,7 +154,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                   <div
                     key={prod.id}
                     onClick={() => handleSelectProduct(prod.slug)}
-                    className="group flex items-center justify-between p-2.5 rounded-lg hover:bg-[#121212] transition-colors cursor-pointer"
+                    className="group flex items-center justify-between p-2.5 rounded-lg hover:bg-[#EEE8DD] transition-colors cursor-pointer"
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => {
@@ -167,18 +167,18 @@ export default function NavbarSearch({ isOpen, onClose }) {
                       <img
                         src={prod.image}
                         alt={`ÉLAVA ${prod.name}`}
-                        className="w-11 h-11 object-cover rounded-lg bg-[#080808] shrink-0 border border-white/15"
+                        className="w-11 h-11 object-cover rounded-lg bg-[#EEE8DD] shrink-0 border border-[#D9D1C6]"
                       />
                       <div className="min-w-0">
-                        <div className="font-manrope text-sm font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors truncate">
+                        <div className="font-manrope text-sm font-semibold text-[#201C19] group-hover:text-[#721C24] transition-colors truncate">
                           {prod.name}
                         </div>
-                        <div className="font-manrope text-[12px] text-[#B8B3AF] truncate">
+                        <div className="font-manrope text-[12px] text-[#625C55] truncate">
                           {prod.scentIdentity}
                         </div>
                       </div>
                     </div>
-                    <div className="font-manrope text-xs font-semibold text-[#F5F2EE] shrink-0 pl-2">
+                    <div className="font-manrope text-xs font-semibold text-[#201C19] shrink-0 pl-2">
                       ₹{prod.price?.toLocaleString()}
                     </div>
                   </div>
@@ -189,11 +189,11 @@ export default function NavbarSearch({ isOpen, onClose }) {
 
           {/* STATE 3: NO MATCHING RESULTS */}
           {hasQuery && results.length === 0 && (
-            <div className="py-8 text-center bg-[#121212] border border-white/15 rounded-xl my-2 px-4">
-              <h4 className="font-bodoni text-base font-medium text-[#F5F2EE] mb-1">
+            <div className="py-8 text-center bg-[#EEE8DD] border border-[#D9D1C6] rounded-xl my-2 px-4">
+              <h4 className="font-bodoni text-base font-medium text-[#201C19] mb-1">
                 NO FRAGRANCES FOUND
               </h4>
-              <p className="font-manrope text-xs text-[#B8B3AF] mb-4">
+              <p className="font-manrope text-xs text-[#625C55] mb-4">
                 Try searching by fragrance name, mood, gender or occasion.
               </p>
               <Link
@@ -202,7 +202,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                   onClose();
                   setQuery('');
                 }}
-                className="inline-flex items-center gap-1.5 font-manrope text-xs font-semibold uppercase tracking-[0.09em] text-[#F5F2EE] hover:text-[#B4171E] transition-colors"
+                className="inline-flex items-center gap-1.5 font-manrope text-xs font-semibold uppercase tracking-[0.09em] text-[#721C24] hover:text-[#5A161C] transition-colors"
               >
                 <span>EXPLORE ALL FRAGRANCES</span>
                 <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />

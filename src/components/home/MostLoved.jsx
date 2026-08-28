@@ -7,17 +7,16 @@ import products from '../../data/products';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * MostLoved Homepage Section — Layered Black & Red Atmosphere & Motion V2:
- * Soft Black #111111 section environment + Level 3 Noticeable Diffuse Deep-Red Ambient Light (.bg-ambient-bestsellers) + Staggered scroll reveal.
- * Bestseller Gold #C6A15B strictly preserved for BESTSELLERS tag.
+ * MostLoved Homepage Section — Light Luxury Palette (Exact Original Layout)
+ * Warm Ivory #F6F2EA section environment + Bestseller Gold #C6A15B highlight.
  */
 export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-10 sm:py-14 bg-[#111111] text-[#F5F2EE] relative overflow-hidden border-b border-white/10" aria-labelledby="most-loved-heading">
-      {/* Noticeable Level 3 Diffuse Red Ambient Light Zone behind product group */}
+    <section className="py-10 sm:py-14 bg-[#F6F2EA] text-[#201C19] relative overflow-hidden border-b border-[#D9D1C6]" aria-labelledby="most-loved-heading">
+      {/* Subtle Champagne Ambient Light Zone */}
       <div className="absolute inset-0 bg-ambient-bestsellers pointer-events-none" />
 
       <MainContainer className="relative z-10">
@@ -27,18 +26,18 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]"
+                className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#201C19] leading-[1.05] tracking-[-0.015em]"
               >
                 Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[18px] sm:text-[22px] md:text-[26px]">BESTSELLERS</span>
               </h2>
-              <p className="font-manrope text-[17px] sm:text-[18px] text-[#B8B3AF] mt-1 font-medium leading-[1.4]">
+              <p className="font-manrope text-[17px] sm:text-[18px] text-[#625C55] mt-1 font-medium leading-[1.4]">
                 Our most coveted fragrance signatures.
               </p>
             </div>
 
             <Link
               to="/category/bestsellers"
-              className="group inline-flex items-center gap-2 font-manrope text-[14px] font-semibold text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
+              className="group inline-flex items-center gap-2 font-manrope text-[14px] font-semibold text-[#201C19] hover:text-[#721C24] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
               aria-label="View all bestsellers"
             >
               <span>View All Bestsellers</span>

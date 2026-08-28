@@ -27,14 +27,15 @@ const DIFFERENTIATORS = [
 ];
 
 /**
- * WhyElava Component — Layered Black & Red Luxury Aesthetic & Motion:
- * Soft Black #111111 section background, Charcoal #171515 cards with staggered scroll reveal.
+ * WhyElava Component — Light Luxury Perfume Aesthetic:
+ * Slightly darker Cream / Stone #EEE8DD background, Warm Ivory #F6F2EA cards,
+ * Deep Espresso #201C19 text, and Deep Burgundy #721C24 numerals.
  */
 export default function WhyElava() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#111111] text-[#F5F2EE] border-t border-b border-white/10">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#EEE8DD] text-[#201C19] border-t border-b border-[#D9D1C6]">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
@@ -46,18 +47,18 @@ export default function WhyElava() {
             {DIFFERENTIATORS.map((item, idx) => (
               <div
                 key={item.number}
-                className={`bg-[#171515] border border-white/10 rounded-xl p-6 flex flex-col justify-between shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:border-[#B4171E]/50 hover:shadow-xl group card-hover-interactive reveal-init ${
+                className={`bg-[#F6F2EA] border border-[#D9D1C6] rounded-xl p-6 flex flex-col justify-between shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-[#721C24]/50 hover:shadow-[0_10px_28px_rgba(60,45,30,0.08)] group card-hover-interactive reveal-init ${
                   isVisible ? `reveal-visible stagger-${idx + 1}` : ''
                 }`}
               >
                 <div>
-                  <span className="font-bodoni text-3xl sm:text-4xl font-medium text-[#B4171E] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
+                  <span className="font-bodoni text-3xl sm:text-4xl font-medium text-[#721C24] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
                     {item.number}
                   </span>
-                  <h3 className="font-manrope text-[16px] font-semibold text-[#F5F2EE] mb-2 group-hover:text-[#B4171E] transition-colors">
+                  <h3 className="font-manrope text-[16px] font-semibold text-[#201C19] mb-2 group-hover:text-[#721C24] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.6] font-normal">
+                  <p className="font-manrope text-[14px] text-[#625C55] leading-[1.6] font-normal">
                     {item.description}
                   </p>
                 </div>

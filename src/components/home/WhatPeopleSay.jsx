@@ -8,8 +8,8 @@ import reviews, { reviewAggregate } from '../../data/reviews';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * WHAT PEOPLE SAY — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B section environment + Warm White #F5F2EE typography + Scroll reveal.
+ * WHAT PEOPLE SAY — Light Luxury Perfume Aesthetic:
+ * Warm Ivory #F6F2EA section environment, Deep Espresso #201C19 typography, and soft studio lighting.
  */
 export default function WhatPeopleSay() {
   const displayedReviews = reviews.slice(0, 3);
@@ -17,7 +17,7 @@ export default function WhatPeopleSay() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#0B0B0B] text-[#F5F2EE]" aria-labelledby="what-people-say-heading">
+    <section className="py-8 sm:py-12 bg-[#F6F2EA] text-[#201C19]" aria-labelledby="what-people-say-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
 
@@ -25,11 +25,11 @@ export default function WhatPeopleSay() {
           <div className="mb-6 sm:mb-8">
             <h2
               id="what-people-say-heading"
-              className="font-bodoni text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-medium text-[#F5F2EE] leading-[1.02] tracking-[-0.02em]"
+              className="font-bodoni text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-medium text-[#201C19] leading-[1.02] tracking-[-0.02em]"
             >
               What People Say
             </h2>
-            <p className="font-manrope text-[17px] sm:text-[18px] text-[#B8B3AF] mt-1 font-medium leading-[1.4]">
+            <p className="font-manrope text-[17px] sm:text-[18px] text-[#625C55] mt-1 font-medium leading-[1.4]">
               Words from our fragrance collective.
             </p>
           </div>
@@ -59,14 +59,14 @@ export default function WhatPeopleSay() {
           </div>
 
           {/* Rating Summary row below cards */}
-          <div className="flex flex-col gap-3 pt-3 md:pt-4 md:flex-row md:items-center md:justify-between border-t border-white/10 mt-2">
+          <div className="flex flex-col gap-3 pt-3 md:pt-4 md:flex-row md:items-center md:justify-between border-t border-[#D9D1C6] mt-2">
             <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
-              <StarRating rating={rating} size={15} starColor="#C6A15B" />
+              <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#D8D0C4" />
               <div className="flex flex-wrap items-center gap-1.5 font-sans">
-                <span className="text-xs sm:text-sm font-semibold text-[#F5F2EE]">
+                <span className="text-xs sm:text-sm font-semibold text-[#201C19]">
                   {rating} out of 5
                 </span>
-                <span className="text-xs text-[#B8B3AF] font-normal">
+                <span className="text-xs text-[#625C55] font-normal">
                   · {totalReviews.toLocaleString()} Total Reviews
                 </span>
               </div>
@@ -74,7 +74,7 @@ export default function WhatPeopleSay() {
 
             <Link
               to="/reviews"
-              className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 btn-interactive"
+              className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold tracking-wider text-[#201C19] hover:text-[#721C24] transition-colors duration-200 btn-interactive"
               aria-label="View more reviews"
             >
               <span>View More Reviews</span>

@@ -7,7 +7,6 @@ import {
   getCart,
   updateCartItemQuantity,
   getCartTotals,
-  createCartWhatsAppOrderUrl,
 } from '../../utils/cart';
 
 export default function GlobalCartDrawer() {
@@ -82,24 +81,24 @@ export default function GlobalCartDrawer() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/85 md:bg-black/80 md:backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end bg-black/40 backdrop-blur-xs p-0 sm:p-4 animate-in fade-in duration-200"
       role="dialog"
       aria-label="Your Shopping Cart"
     >
-      <div className="bg-[#080808] border border-white/15 sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F2EE] overflow-hidden">
+      <div className="bg-[#F6F2EA] border border-[#D9D1C6] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#201C19] overflow-hidden">
         
         {/* Header */}
-        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-[#121212]">
+        <div className="p-4 border-b border-[#D9D1C6] flex items-center justify-between bg-[#EEE8DD]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#F5F2EE]" />
-            <h3 className="font-bodoni text-[18px] font-medium text-[#F5F2EE] tracking-[-0.015em]">
+            <ShoppingBag className="w-4 h-4 text-[#721C24]" />
+            <h3 className="font-bodoni text-[18px] font-medium text-[#201C19] tracking-[-0.015em]">
               Your Cart ({cartTotals.itemCount || 0} {(cartTotals.itemCount || 0) === 1 ? 'Item' : 'Items'})
             </h3>
           </div>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-[#B8B3AF] hover:text-[#F5F2EE] p-1 rounded-full hover:bg-white/10 transition-colors btn-interactive"
+            className="text-[#625C55] hover:text-[#201C19] p-1 rounded-full hover:bg-[#D9D1C6]/40 transition-colors btn-interactive"
             aria-label="Close cart drawer"
             id="global-close-cart-btn"
           >
@@ -108,9 +107,9 @@ export default function GlobalCartDrawer() {
         </div>
 
         {/* Cart Items List */}
-        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-white/10 max-h-[50vh]">
+        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-[#D9D1C6] max-h-[50vh]">
           {safeCartItems.length === 0 ? (
-            <div className="py-10 text-center text-[#B8B3AF] font-manrope text-[14px] font-normal">
+            <div className="py-10 text-center text-[#625C55] font-manrope text-[14px] font-normal">
               Your cart is currently empty.
             </div>
           ) : (
@@ -126,58 +125,58 @@ export default function GlobalCartDrawer() {
                     <img
                       src={item.image || '/images/products/row-1-column-1.png'}
                       alt={item.name || 'Perfume'}
-                      className="w-14 h-14 object-contain rounded-lg bg-[#111111] border border-white/10 shrink-0"
+                      className="w-14 h-14 object-contain rounded-lg bg-[#EEE8DD] border border-[#D9D1C6] shrink-0 p-1"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE] truncate">
+                        <div className="font-manrope text-[15px] font-semibold text-[#201C19] truncate">
                           {isDuo ? item.name : item.name?.replace(/^ÉLAVA\s+/i, '')}
                         </div>
                         {isDuo && (
-                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#721C24] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             DUO BUNDLE
                           </span>
                         )}
                         {isSample && (
-                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#721C24] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE SET
                           </span>
                         )}
                         {isSingleSample && (
-                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#721C24] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE BOTTLE
                           </span>
                         )}
                       </div>
 
-                      <div className="text-[13px] font-manrope text-[#B8B3AF] font-normal">
+                      <div className="text-[13px] font-manrope text-[#625C55] font-normal">
                         Size: {item.size || '60 ML'}
                       </div>
 
                       <div className="flex items-center justify-between mt-2">
-                        <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
+                        <div className="font-manrope text-[15px] font-semibold text-[#201C19]">
                           ₹{((item.price || 0) * (item.quantity || 1)).toLocaleString()}
                         </div>
-                        <div className="flex items-center border border-white/15 rounded-lg overflow-hidden bg-[#111111]">
+                        <div className="flex items-center border border-[#D9D1C6] rounded-lg overflow-hidden bg-[#EEE8DD]">
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, (item.quantity || 1) - 1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-[#F5F2EE] hover:bg-white/10 cursor-pointer"
+                            className="px-2 py-1 text-[#201C19] hover:bg-[#D9D1C6]/50 cursor-pointer"
                             aria-label="Decrease quantity"
                           >
                             <Minus className="w-3 h-3" />
                           </button>
-                          <span className="px-2 font-manrope text-[13px] font-semibold text-[#F5F2EE]">{item.quantity || 1}</span>
+                          <span className="px-2 font-manrope text-[13px] font-semibold text-[#201C19]">{item.quantity || 1}</span>
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, (item.quantity || 1) + 1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-[#F5F2EE] hover:bg-white/10 cursor-pointer"
+                            className="px-2 py-1 text-[#201C19] hover:bg-[#D9D1C6]/50 cursor-pointer"
                             aria-label="Increase quantity"
                           >
                             <Plus className="w-3 h-3" />
@@ -194,19 +193,19 @@ export default function GlobalCartDrawer() {
 
         {/* Footer Summary & Checkout Actions */}
         {safeCartItems.length > 0 && (
-          <div className="p-4 border-t border-white/10 bg-[#121212] space-y-3">
+          <div className="p-4 border-t border-[#D9D1C6] bg-[#EEE8DD] space-y-3">
             <div className="space-y-1 font-manrope text-[14px]">
-              <div className="flex justify-between text-[#B8B3AF]">
+              <div className="flex justify-between text-[#625C55]">
                 <span>Subtotal</span>
-                <span className="font-semibold text-[#F5F2EE]">₹{subtotalVal.toLocaleString()}</span>
+                <span className="font-semibold text-[#201C19]">₹{subtotalVal.toLocaleString()}</span>
               </div>
               {discountVal > 0 && (
-                <div className="flex justify-between text-[#B4171E]">
+                <div className="flex justify-between text-[#721C24]">
                   <span>Discount {cartTotals.referralCode ? `(${cartTotals.referralCode})` : ''}</span>
                   <span className="font-semibold">-₹{discountVal.toLocaleString()}</span>
                 </div>
               )}
-              <div className="flex justify-between font-semibold text-[16px] text-[#F5F2EE] pt-1.5 border-t border-white/10">
+              <div className="flex justify-between font-semibold text-[16px] text-[#201C19] pt-1.5 border-t border-[#D9D1C6]">
                 <span>Total</span>
                 <span>₹{totalVal.toLocaleString()}</span>
               </div>
@@ -215,7 +214,7 @@ export default function GlobalCartDrawer() {
             <button
               type="button"
               onClick={handleCheckoutClick}
-              className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3.5 px-4 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer btn-interactive"
+              className="w-full bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] py-3.5 px-4 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer btn-interactive"
               id="global-cart-checkout-btn"
             >
               <CreditCard className="w-4 h-4" />

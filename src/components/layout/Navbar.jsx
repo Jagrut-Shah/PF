@@ -22,9 +22,8 @@ function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
 }
 
 /**
- * Navbar Component — Black & Red Luxury Aesthetic:
- * Includes ultra-thin Signature Red ScrollProgress bar.
- * Container: Deep Black #080808, Text: Warm White #F5F2EE, Active/Hover: Signature Red #B4171E.
+ * Navbar Component — Light Luxury Perfume Aesthetic:
+ * Container: Warm Ivory #F6F2EA / Cream #EEE8DD, Text: Deep Espresso #201C19, Active/Accent: Deep Burgundy #721C24.
  * Logo: STRICTLY LOCKED (Original 2-part emblem).
  */
 export default function Navbar() {
@@ -90,9 +89,9 @@ export default function Navbar() {
       {/* Scroll Progress Bar at top */}
       <ScrollProgress />
 
-      {/* Boxed Deep Black Container #080808 */}
-      <div className={`max-w-7xl mx-auto bg-[#080808] border border-white/10 rounded-xl sm:rounded-2xl transition-all duration-300 ${
-        scrolled ? 'shadow-[0_6px_24px_rgba(0,0,0,0.85)] border-white/20' : 'shadow-xl'
+      {/* Boxed Warm Ivory Container */}
+      <div className={`max-w-7xl mx-auto bg-[#F6F2EA] border border-[#D9D1C6] rounded-xl sm:rounded-2xl transition-all duration-300 ${
+        scrolled ? 'shadow-[0_6px_24px_rgba(60,45,30,0.08)] border-[#D8D0C4]' : 'shadow-sm'
       }`}>
         <MainContainer>
           <div className="h-[58px] sm:h-[64px] md:h-[72px] flex items-center justify-between">
@@ -105,7 +104,7 @@ export default function Navbar() {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-2 -ml-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-2 -ml-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -121,7 +120,7 @@ export default function Navbar() {
             <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
               <Link
                 to="/"
-                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-all duration-200 hover:opacity-95 hover:border-[#F5F2EE]/50 shadow-sm"
+                className="inline-flex items-stretch border border-[#C8A45A] rounded-sm overflow-hidden select-none group transition-all duration-200 hover:opacity-95 shadow-xs"
                 aria-label="ÉLAVA Home"
               >
                 <div className="bg-[#0D2D1B] text-[#C8A45A] px-2.5 sm:px-3 py-1 flex items-center justify-center border-r border-[#C8A45A]/40">
@@ -137,7 +136,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* NAVIGATION LINKS — Warm White #F5F2EE + Signature Red #B4171E Active */}
+            {/* NAVIGATION LINKS — Deep Espresso #201C19 + Deep Burgundy #721C24 Active */}
             <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => {
                 const isActive = link.path === '/'
@@ -151,8 +150,8 @@ export default function Navbar() {
                     className={
                       `font-manrope text-[14px] lg:text-[15px] font-medium px-3 py-2 rounded-md transition-all duration-200 ${
                         isActive
-                          ? 'text-[#B4171E] font-semibold bg-[#121212] border border-[#B4171E]/30'
-                          : 'text-[#F5F2EE]/90 hover:text-[#B4171E] hover:bg-[#121212]'
+                          ? 'text-[#721C24] font-semibold bg-[#EEE8DD] border border-[#721C24]/20'
+                          : 'text-[#201C19]/85 hover:text-[#721C24] hover:bg-[#EEE8DD]/70'
                       }`
                     }
                   >
@@ -167,8 +166,8 @@ export default function Navbar() {
               {/* Account Link */}
               <Link
                 to={user ? "/account" : "/login"}
-                className={`p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive ${
-                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#B4171E]' : ''
+                className={`p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive ${
+                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#721C24]' : ''
                 }`}
                 aria-label={user ? "View Account Profile" : "Login or Sign Up"}
               >
@@ -182,7 +181,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label="Search collection"
               >
                 <Search className="w-[19px] h-[19px] stroke-[1.5]" />
@@ -194,22 +193,22 @@ export default function Navbar() {
                 onClick={() => {
                   window.dispatchEvent(new Event('open-cart-drawer'));
                 }}
-                className="p-2 text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 focus:outline-none relative btn-interactive"
+                className="p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none relative btn-interactive"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
                 <ShoppingBag className="w-[19px] h-[19px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-[#B4171E] text-[#F5F2EE] text-[9.5px] font-sans font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
+                  <span className="absolute top-1 right-1 bg-[#721C24] text-[#F6F2EA] text-[9.5px] font-sans font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              {/* Primary Action Button: SHOP NOW → (Signature Red #B4171E) */}
+              {/* Primary Action Button: SHOP NOW → (Deep Burgundy #721C24) */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 text-[14px] font-manrope font-semibold transition-all duration-200 shadow-md ml-1 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] text-[14px] font-manrope font-semibold transition-all duration-200 shadow-sm ml-1 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
@@ -223,28 +222,28 @@ export default function Navbar() {
         </MainContainer>
       </div>
 
-      {/* COMPACT FLOATING MOBILE MENU PANEL — DEEP BLACK #080808 */}
+      {/* COMPACT FLOATING MOBILE MENU PANEL — WARM IVORY #F6F2EA */}
       {isMobileMenuOpen && (
         <div className="md:hidden">
           <div
-            className="fixed inset-0 bg-black/85 z-40 transition-opacity duration-200"
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           <aside
-            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#080808] border border-white/15 rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#F5F2EE] transition-transform duration-200 ease-out"
+            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#201C19] transition-transform duration-200 ease-out"
             aria-label="Mobile Navigation Panel"
           >
             <div>
-              <div className="flex items-center justify-between pb-3.5 border-b border-white/10 mb-3">
-                <span className="font-sans text-xs tracking-wider font-semibold text-[#B8B3AF] uppercase">
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#D9D1C6] mb-3">
+                <span className="font-sans text-xs tracking-wider font-semibold text-[#625C55] uppercase">
                   ÉLAVA NAVIGATION
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1 text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors btn-interactive"
+                  className="p-1 text-[#625C55] hover:text-[#201C19] transition-colors btn-interactive"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
@@ -262,10 +261,10 @@ export default function Navbar() {
                       key={link.path}
                       to={link.path}
                       className={
-                        `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-white/10 transition-colors ${
+                        `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#D9D1C6]/60 transition-colors ${
                           isActive
-                            ? 'text-[#B4171E] font-bold bg-[#121212]'
-                            : 'text-[#F5F2EE]/90 hover:bg-[#121212] hover:text-[#B4171E] font-medium'
+                            ? 'text-[#721C24] font-bold bg-[#EEE8DD]'
+                            : 'text-[#201C19]/90 hover:bg-[#EEE8DD]/70 hover:text-[#721C24] font-medium'
                         }`
                       }
                     >
@@ -277,10 +276,10 @@ export default function Navbar() {
                 <NavLink
                   to={user ? "/account" : "/login"}
                   className={
-                    `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-white/10 transition-colors ${
+                    `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#D9D1C6]/60 transition-colors ${
                       location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
-                        ? 'text-[#B4171E] font-bold bg-[#121212]'
-                        : 'text-[#F5F2EE]/90 hover:bg-[#121212] hover:text-[#B4171E] font-medium'
+                        ? 'text-[#721C24] font-bold bg-[#EEE8DD]'
+                        : 'text-[#201C19]/90 hover:bg-[#EEE8DD]/70 hover:text-[#721C24] font-medium'
                     }`
                   }
                 >
@@ -289,16 +288,16 @@ export default function Navbar() {
               </nav>
             </div>
 
-            <div className="pt-3 border-t border-white/10 space-y-2">
+            <div className="pt-3 border-t border-[#D9D1C6] space-y-2">
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#121212] active:scale-[0.98] text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:text-[#B4171E] border border-white/10 transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#EEE8DD] active:scale-[0.98] text-xs font-sans font-semibold uppercase tracking-wider text-[#201C19] hover:text-[#721C24] border border-[#D9D1C6] transition-colors btn-interactive"
               >
-                <Search className="w-4 h-4 text-[#B8B3AF] shrink-0" />
+                <Search className="w-4 h-4 text-[#625C55] shrink-0" />
                 <span>SEARCH COLLECTION</span>
               </button>
 
@@ -306,7 +305,7 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#080808] active:scale-[0.98] border border-white/15 text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] hover:border-[#B4171E]/50 transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#EEE8DD] active:scale-[0.98] border border-[#D9D1C6] text-xs font-sans font-semibold uppercase tracking-wider text-[#201C19] hover:border-[#721C24]/50 transition-colors btn-interactive"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>

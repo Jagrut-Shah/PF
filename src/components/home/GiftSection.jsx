@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MainContainer from '../ui/MainContainer';
 import { Gift, ArrowRight, Sparkles } from 'lucide-react';
 
@@ -30,38 +30,35 @@ export default function GiftSection() {
   };
 
   return (
-    <section className="py-10 sm:py-14 bg-[#102F38] text-[#F5F1EA] border-t border-b border-[rgba(243,235,221,0.12)]">
+    <section className="py-10 sm:py-14 bg-[#EEE8DD] text-[#201C19] border-t border-b border-[#D9D1C6]">
       <MainContainer>
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xs relative overflow-hidden">
           
-          {/* Subtle Background Glow */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#7A2929]/10 rounded-full blur-3xl pointer-events-none" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
             {/* Left Content (Text & Controls) */}
             <div className="lg:col-span-7 space-y-6">
               
               {/* Header Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#102F38] border border-white/15 text-[#B8B3AF] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em]">
-                <Gift className="w-3.5 h-3.5 text-[#B8B3AF]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEE8DD] border border-[#D9D1C6] text-[#721C24] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em]">
+                <Gift className="w-3.5 h-3.5 text-[#721C24]" />
                 <span>CURATED GIFTING</span>
               </div>
 
               {/* Title & Subtitle */}
               <div>
-                <h2 className="font-bodoni text-[26px] sm:text-[32px] lg:text-[38px] font-medium text-[#F5F2EE] leading-[1.05] tracking-[-0.015em]">
+                <h2 className="font-bodoni text-[26px] sm:text-[32px] lg:text-[38px] font-medium text-[#201C19] leading-[1.05] tracking-[-0.015em]">
                   Find The Perfect Gift
                 </h2>
-                <p className="font-manrope text-[15px] sm:text-[17px] text-[#B8B3AF] mt-2 font-medium">
+                <p className="font-manrope text-[15px] sm:text-[17px] text-[#625C55] mt-2 font-medium">
                   Give them a scent they'll remember.
                 </p>
               </div>
 
               {/* Discovery Group 1: WHO ARE YOU GIFTING? */}
               <div className="space-y-2">
-                <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F5F2EE]/90 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#B8B3AF]" />
+                <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#625C55] flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#721C24]" />
                   <span>WHO ARE YOU GIFTING?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -72,8 +69,8 @@ export default function GiftSection() {
                       onClick={() => setSelectedRecipient(item.label)}
                       className={`px-4 py-2 rounded-xl text-[14px] font-manrope font-semibold transition-all cursor-pointer ${
                         selectedRecipient === item.label
-                          ? 'bg-[#102F38] text-[#F5F2EE] border border-[#F5F2EE] shadow-sm'
-                          : 'bg-[#102F38]/40 text-[#B8B3AF] border border-white/15 hover:border-[#F5F2EE]/50'
+                          ? 'bg-[#721C24] text-[#F6F2EA] border border-[#721C24] shadow-xs'
+                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#721C24]/40'
                       }`}
                     >
                       {item.label}
@@ -84,8 +81,8 @@ export default function GiftSection() {
 
               {/* Discovery Group 2: WHAT'S THE OCCASION? */}
               <div className="space-y-2">
-                <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F5F2EE]/90 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#B8B3AF]" />
+                <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#625C55] flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#721C24]" />
                   <span>WHAT'S THE OCCASION?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -96,8 +93,8 @@ export default function GiftSection() {
                       onClick={() => setSelectedOccasion(item.label)}
                       className={`px-4 py-2 rounded-xl text-[14px] font-manrope font-semibold transition-all cursor-pointer ${
                         selectedOccasion === item.label
-                          ? 'bg-[#102F38] text-[#F5F2EE] border border-[#F5F2EE] shadow-sm'
-                          : 'bg-[#102F38]/40 text-[#B8B3AF] border border-white/15 hover:border-[#F5F2EE]/50'
+                          ? 'bg-[#721C24] text-[#F6F2EA] border border-[#721C24] shadow-xs'
+                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#721C24]/40'
                       }`}
                     >
                       {item.label}
@@ -111,11 +108,11 @@ export default function GiftSection() {
                 <button
                   type="button"
                   onClick={handleExploreGifts}
-                  className="bg-[#000000] hover:bg-[#151515] text-[#F5F2EE] border border-white/25 px-7 py-3.5 rounded-xl font-manrope font-semibold text-[14px] sm:text-[15px] inline-flex items-center gap-2 transition-all duration-200 shadow-md hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                  className="bg-[#721C24] hover:bg-[#5A161C] text-[#F6F2EA] border border-[#721C24] px-7 py-3.5 rounded-xl font-manrope font-semibold text-[14px] sm:text-[15px] inline-flex items-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.99] cursor-pointer"
                   id="explore-gifts-btn"
                 >
                   <span>Explore Gifts</span>
-                  <ArrowRight className="w-4 h-4 text-[#F5F2EE]" />
+                  <ArrowRight className="w-4 h-4 text-[#F6F2EA]" />
                 </button>
               </div>
 
@@ -123,7 +120,7 @@ export default function GiftSection() {
 
             {/* Right Column: Lifestyle Gifting Image */}
             <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-white/20 shadow-lg bg-[#102F38] group">
+              <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-[#D9D1C6] shadow-xs bg-[#EEE8DD] group">
                 <img
                   src="/images/gifting-lifestyle.jpg"
                   alt="ÉLAVA luxury fragrance gift box"
@@ -132,12 +129,12 @@ export default function GiftSection() {
                     e.currentTarget.src = "/images/products/row-1-column-1.png";
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#102F38] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#201C19]/80 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 right-4 text-center">
-                  <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F5F2EE]">
+                  <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F6F2EA]">
                     SIGNATURE GIFT BOXING
                   </div>
-                  <div className="font-manrope text-[13px] text-[#B8B3AF] mt-0.5 font-normal">
+                  <div className="font-manrope text-[13px] text-[#E5DCCF] mt-0.5 font-normal">
                     Optional gift box & handwritten card message available
                   </div>
                 </div>
