@@ -396,36 +396,36 @@ export default function ProductDetails() {
             </div>
           )}
 
-          {/* Product Title — Bodoni Moda Display Serif */}
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] font-normal text-[#F6EFE7] leading-tight tracking-tight">
+          {/* Product Title — Sora 600 */}
+          <h1 className="font-sora text-[28px] sm:text-[36px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]">
             {product.name}
           </h1>
 
           {/* Product Type + Gender */}
-          <div className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 tracking-wide font-normal mt-1">
+          <div className="font-manrope text-[14px] text-[#B8B3AF] font-medium mt-1">
             Eau de Parfum · {genderTarget}
           </div>
 
           {/* Rating + Review Count */}
-          <div className="mt-3 flex items-center gap-2.5 font-sans">
+          <div className="mt-3 flex items-center gap-2.5 font-manrope">
             <StarRating rating={product.rating} size={14} starColor="#C6A15B" />
-            <span className="text-xs font-semibold text-[#F6EFE7]">{product.rating}</span>
-            <span className="text-xs text-[#E7C4C5]/85 font-normal">({product.reviewCount} reviews)</span>
+            <span className="text-[13px] font-semibold text-[#F5F2EE]">{product.rating}</span>
+            <span className="text-[13px] text-[#B8B3AF] font-normal">({product.reviewCount} reviews)</span>
           </div>
 
           {/* Price & Size Selection — Manrope 600 */}
           <div className="mt-4">
-            <div className="font-sans text-2xl sm:text-3xl font-semibold text-[#F6EFE7] tracking-tight">
+            <div className="font-manrope text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#F5F2EE] tracking-tight">
               ₹{product.price?.toLocaleString()}
             </div>
             <div className="mt-2 flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setSelectedSize(product.size || '60 ML')}
-                className={`font-sans text-xs font-semibold tracking-wider uppercase px-3 py-1.5 rounded-lg border transition-colors ${
+                className={`font-manrope text-[13px] font-semibold uppercase px-3.5 py-1.5 rounded-lg border transition-colors ${
                   selectedSize === (product.size || '60 ML')
-                    ? 'border-[#F6EFE7] bg-[#641D2D] text-[#F6EFE7]'
-                    : 'border-[#E7C4C5]/20 text-[#E7C4C5]/80'
+                    ? 'border-[#F5F2EE] bg-[#8F1018] text-[#F5F2EE]'
+                    : 'border-white/20 text-[#B8B3AF]'
                 }`}
               >
                 {product.size || '60 ML'}
@@ -448,23 +448,23 @@ export default function ProductDetails() {
                     id="product-gift-checkbox"
                   />
                   <span className="flex items-center gap-1.5">
-                    <Gift className="w-4 h-4 text-[#B8C4C2]" />
-                    <span className="font-serif tracking-wide text-[#F5F1EA]">GITING THIS?</span>
+                    <Gift className="w-4 h-4 text-[#B8B3AF]" />
+                    <span className="font-manrope text-[14px] font-semibold text-[#F5F2EE]">GIFTING THIS?</span>
                   </span>
                 </label>
-                <span className="text-[10.5px] text-[#B8C4C2] font-sans">
+                <span className="text-[12px] text-[#B8B3AF] font-manrope">
                   Optional Gifting
                 </span>
               </div>
 
-              <p className="text-[11.5px] text-[#B8C4C2] font-sans leading-snug pl-6">
+              <p className="text-[13px] text-[#B8B3AF] font-manrope leading-snug pl-6">
                 Include a complimentary personal gift message with your fragrance order.
               </p>
 
               {isGift && (
-                <div className="pl-6 pt-2.5 space-y-2 border-t border-[rgba(243,235,221,0.12)] text-[#B8C4C2]">
+                <div className="pl-6 pt-2.5 space-y-2 border-t border-white/10 text-[#B8B3AF]">
                   <div>
-                    <label className="block text-[10.5px] uppercase font-semibold text-[#B8C4C2] mb-1">
+                    <label className="block text-[12px] uppercase font-semibold text-[#B8B3AF] mb-1 font-manrope">
                       Personal Gift Message (Optional)
                     </label>
                     <input
@@ -472,7 +472,7 @@ export default function ProductDetails() {
                       value={giftMessage}
                       onChange={(e) => setGiftMessage(e.target.value)}
                       placeholder="e.g. Happy Birthday! Enjoy this signature scent."
-                      className="w-full bg-[#1C4A55] border border-[rgba(243,235,221,0.2)] rounded-lg px-3 py-2 text-xs text-[#F5F1EA] placeholder-[#B8C4C2]/60 focus:outline-none focus:border-[#7A2929]"
+                      className="w-full bg-[#080808] border border-white/15 rounded-lg px-3 py-2 text-xs text-[#F5F2EE] placeholder-[#B8B3AF]/60 focus:outline-none focus:border-[#B4171E] font-manrope"
                       maxLength={150}
                       id="product-gift-message-input"
                     />
@@ -485,7 +485,7 @@ export default function ProductDetails() {
             <button
               type="button"
               onClick={handleAddToCart}
-              className="w-full bg-black hover:bg-neutral-900 active:bg-neutral-800 text-white rounded-xl py-4 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-lg active:scale-[0.99] group"
+              className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] rounded-xl py-4 px-5 font-manrope font-semibold text-[14px] sm:text-[15px] tracking-[0.01em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-lg group btn-interactive"
               id="main-add-to-cart-btn"
             >
               {addedToCart ? (
@@ -495,7 +495,7 @@ export default function ProductDetails() {
                 </>
               ) : (
                 <>
-                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5F2EE]" />
                   <span>ADD TO CART</span>
                 </>
               )}
@@ -508,15 +508,15 @@ export default function ProductDetails() {
                 addToCartItem(product, selectedSize);
                 navigate('/checkout');
               }}
-              className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] rounded-xl py-3.5 px-5 font-bold uppercase text-xs sm:text-sm tracking-[0.16em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-md active:scale-[0.99]"
+              className="w-full bg-[#121212] hover:bg-[#8F1018]/40 text-[#F5F2EE] border border-white/15 rounded-xl py-3.5 px-5 font-manrope font-semibold text-[14px] sm:text-[15px] tracking-[0.01em] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer shadow-md active:scale-[0.99] btn-interactive"
               id="main-checkout-direct-btn"
             >
-              <CreditCard className="w-4 h-4 text-[#102F38]" />
-              <span>CHECKOUT →</span>
+              <CreditCard className="w-4 h-4 text-[#F5F2EE]" />
+              <span>CHECKOUT NOW →</span>
             </button>
 
             {/* Secondary WhatsApp Contact Option */}
-            <div className="mt-1 flex items-center justify-between gap-1.5 text-[11px] text-[#B8C4C2] font-sans">
+            <div className="mt-1 flex items-center justify-between gap-1.5 text-[11px] text-[#B8B3AF] font-manrope">
               <div className="flex items-center gap-1.5">
                 <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366] shrink-0" />
                 <span>Questions? <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Chat on WhatsApp</a></span>
@@ -525,7 +525,7 @@ export default function ProductDetails() {
                 <button
                   type="button"
                   onClick={handleWhatsAppProductShare}
-                  className="px-2 py-1 rounded bg-[#102F38] hover:bg-white/10 text-[#F5F1EA] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-[rgba(243,235,221,0.12)]"
+                  className="px-2 py-1 rounded bg-[#080808] hover:bg-white/10 text-[#F5F2EE] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-white/10 font-manrope"
                   title="Share via WhatsApp"
                 >
                   <WhatsAppIcon className="w-3 h-3 text-[#25D366] fill-[#25D366]" />
@@ -534,10 +534,10 @@ export default function ProductDetails() {
                 <button
                   type="button"
                   onClick={handleProductShare}
-                  className="px-2 py-1 rounded bg-[#102F38] hover:bg-white/10 text-[#C5A15A] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-[rgba(243,235,221,0.12)]"
+                  className="px-2 py-1 rounded bg-[#080808] hover:bg-white/10 text-[#F5F2EE] text-[10px] font-bold uppercase transition-colors flex items-center gap-1 cursor-pointer border border-white/10 font-manrope"
                   title="Share or Copy Link"
                 >
-                  <Share2 className="w-3 h-3 text-[#C5A15A]" />
+                  <Share2 className="w-3 h-3 text-[#B4171E]" />
                   <span>{copiedProductShare ? 'Copied' : 'Link'}</span>
                 </button>
               </div>
@@ -551,10 +551,10 @@ export default function ProductDetails() {
           <div className="mt-8 space-y-6">
             
             {/* REDESIGNED "WHAT IT FEELS LIKE" */}
-            <section className="bg-[#102F38] border border-[rgba(243,235,221,0.15)] rounded-2xl p-5 sm:p-6 shadow-md space-y-4">
+            <section className="bg-[#121212] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-md space-y-4">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#B8C4C2]" />
-                <h2 className="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+                <Sparkles className="w-4 h-4 text-[#B4171E]" />
+                <h2 className="font-sora text-xl sm:text-2xl font-semibold tracking-[-0.025em] text-[#F5F2EE]">
                   WHAT IT FEELS LIKE
                 </h2>
               </div>

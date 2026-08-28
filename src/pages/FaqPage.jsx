@@ -88,22 +88,22 @@ function FaqItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-[rgba(243,235,221,0.12)] last:border-b-0">
+    <div className="border-b border-white/10 last:border-b-0">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between py-4 text-left font-sans text-sm font-semibold text-[#F3EBDD] hover:text-[#C5A15A] transition-colors gap-4"
+        className="w-full flex items-center justify-between py-4 text-left font-manrope text-[15px] font-semibold text-[#F5F2EE] hover:text-[#B4171E] transition-colors gap-4"
       >
         <span>{question}</span>
         {isOpen ? (
-          <Minus className="w-4 h-4 text-[#C8C1B5] shrink-0" aria-hidden="true" />
+          <Minus className="w-4 h-4 text-[#B8B3AF] shrink-0" aria-hidden="true" />
         ) : (
-          <Plus className="w-4 h-4 text-[#C8C1B5] shrink-0" aria-hidden="true" />
+          <Plus className="w-4 h-4 text-[#B8B3AF] shrink-0" aria-hidden="true" />
         )}
       </button>
       {isOpen && (
-        <div className="pb-4 font-sans text-xs sm:text-sm text-[#C8C1B5] leading-relaxed pr-6">
+        <div className="pb-4 font-manrope text-[14px] text-[#B8B3AF] leading-[1.6] pr-6">
           {answer}
         </div>
       )}
@@ -113,7 +113,7 @@ function FaqItem({ question, answer }) {
 
 export default function FaqPage() {
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-screen">
       <SEO
         title="FAQ | ÉLAVA Perfumes"
         description="Everything you need to know about ÉLAVA fragrances, ordering through WhatsApp, shipping and delivery."
@@ -123,19 +123,19 @@ export default function FaqPage() {
       <MainContainer className="py-8 sm:py-10 md:py-14">
         {/* HERO */}
         <section className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal uppercase tracking-[0.06em] text-[#F3EBDD] leading-tight mb-2">
+          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em] mb-2">
             FREQUENTLY ASKED QUESTIONS
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#C8C1B5] tracking-wide font-normal">
-            "Everything you need to know about ÉLAVA fragrances, ordering and delivery."
+          <p className="font-manrope text-[16px] text-[#B8B3AF] font-normal">
+            Everything you need to know about ÉLAVA fragrances, ordering and delivery.
           </p>
         </section>
 
         {/* ACCORDIONS CONTAINER */}
         <div className="max-w-3xl mx-auto space-y-8">
           {FAQ_DATA.map((sec) => (
-            <div key={sec.category} className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 sm:p-6 shadow-sm">
-              <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#F3EBDD] pb-3 border-b border-[rgba(243,235,221,0.15)]">
+            <div key={sec.category} className="bg-[#121212] border border-white/10 rounded-xl p-5 sm:p-6 shadow-sm">
+              <h2 className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F5F2EE] pb-3 border-b border-white/10">
                 {sec.category}
               </h2>
               <div className="mt-1">

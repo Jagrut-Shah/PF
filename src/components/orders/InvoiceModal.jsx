@@ -20,27 +20,27 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xs p-4 animate-in fade-in duration-200 overflow-y-auto">
-      <div className="bg-[#163E49] border border-[rgba(243,235,221,0.2)] rounded-3xl shadow-2xl w-full max-w-3xl text-[#F5F1EA] max-h-[92vh] flex flex-col overflow-hidden my-auto">
+      <div className="bg-[#121212] border border-white/15 rounded-3xl shadow-2xl w-full max-w-3xl text-[#F5F2EE] max-h-[92vh] flex flex-col overflow-hidden my-auto">
         
         {/* Modal Top Actions (Hidden on Print) */}
-        <div className="print:hidden flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] p-4 sm:p-5 shrink-0 bg-[#102F38]">
+        <div className="print:hidden flex items-center justify-between border-b border-white/10 p-4 sm:p-5 shrink-0 bg-[#080808]">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-[#C5A15A]" />
-            <h3 className="font-serif text-lg sm:text-xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+            <FileText className="w-5 h-5 text-[#B4171E]" />
+            <h3 className="font-sora text-lg sm:text-xl font-semibold text-[#F5F2EE]">
               ÉLAVA ELECTRONIC INVOICE
             </h3>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 font-manrope">
             <button
               onClick={handlePrint}
-              className="bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer shadow-md"
+              className="bg-[#B4171E] hover:bg-[#C72A35] text-[#F5F2EE] px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer shadow-md btn-interactive"
             >
               <Printer className="w-4 h-4" />
               <span>PRINT / DOWNLOAD PDF</span>
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 text-[#B8C4C2] hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+              className="p-1.5 text-[#B8B3AF] hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -48,7 +48,7 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
         </div>
 
         {/* Invoice Printable Document Sheet */}
-        <div id="printable-invoice" className="p-6 sm:p-10 overflow-y-auto flex-1 bg-white text-neutral-900 font-sans space-y-6">
+        <div id="printable-invoice" className="p-6 sm:p-10 overflow-y-auto flex-1 bg-white text-neutral-900 font-manrope space-y-6">
           
           {/* Document CSS for Print */}
           <style>{`
@@ -77,18 +77,18 @@ export default function InvoiceModal({ isOpen, onClose, order }) {
           {/* Invoice Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-neutral-200 pb-6 gap-4">
             <div>
-              <h1 className="font-serif text-3xl font-bold tracking-tight text-neutral-900 uppercase">
+              <h1 className="font-sora text-2xl font-semibold tracking-tight text-neutral-900">
                 ÉLAVA PERFUMES
               </h1>
-              <p className="text-xs text-neutral-500 font-medium mt-1">
+              <p className="text-xs text-neutral-500 font-medium mt-1 font-manrope">
                 Artisanal Eau de Parfum Collection · Ahmedabad, Gujarat, India
               </p>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 font-manrope">
                 Support: support@elavaperfumes.com
               </p>
             </div>
 
-            <div className="text-left sm:text-right space-y-1">
+            <div className="text-left sm:text-right space-y-1 font-manrope">
               <div className="inline-block bg-neutral-900 text-white font-mono text-xs px-3 py-1 rounded uppercase font-bold tracking-wider">
                 TAX INVOICE
               </div>

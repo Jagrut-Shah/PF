@@ -53,7 +53,7 @@ export default function DiscoverySetPage() {
   };
 
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen pb-16">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-screen pb-16">
       <SEO
         title="ÉLAVA Samples — Try Any 60ml Eau de Parfum Signature at Home"
         description="Select any fragrance from our collection and experience the full 60ml bottle before deciding if it's your signature scent."
@@ -62,46 +62,46 @@ export default function DiscoverySetPage() {
       />
 
       {/* ── 1. HERO SECTION ── */}
-      <section className="py-10 sm:py-14 bg-[#102F38] border-b border-[rgba(243,235,221,0.12)]">
+      <section className="py-10 sm:py-14 bg-[#121212] border-b border-white/10">
         <MainContainer>
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs text-[#B8C4C2] mb-6 uppercase tracking-wider font-sans">
-            <Link to="/" className="hover:text-[#F5F1EA] transition-colors">HOME</Link>
+          <div className="flex items-center gap-2 text-xs text-[#B8B3AF] mb-6 uppercase tracking-wider font-manrope font-medium">
+            <Link to="/" className="hover:text-[#F5F2EE] transition-colors">HOME</Link>
             <span>/</span>
-            <span className="text-[#F5F1EA]">SAMPLES</span>
+            <span className="text-[#F5F2EE]">SAMPLES</span>
           </div>
 
           <div className="max-w-3xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] text-[#B8C4C2] text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#B8C4C2]" />
-              <span>THE ELAVA SAMPLE EXPERIENCE</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A1A1A] border border-white/15 text-[#F5F2EE] font-manrope text-[12px] font-semibold tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#B4171E]" />
+              <span>THE ÉLAVA SAMPLE EXPERIENCE</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-[#F5F1EA] leading-tight">
-              TRY ANY ELAVA FRAGRANCE
+            <h1 className="font-sora text-[32px] sm:text-[42px] lg:text-[50px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.035em]">
+              TRY ANY ÉLAVA FRAGRANCE
             </h1>
-            <p className="font-sans text-sm sm:text-base text-[#B8C4C2] max-w-xl mx-auto leading-relaxed">
+            <p className="font-manrope text-[16px] sm:text-[18px] text-[#B8B3AF] max-w-xl mx-auto leading-[1.5]">
               Choose any fragrance from our collection and experience the full 60ml bottle before deciding if it's your signature scent.
             </p>
           </div>
 
           {/* ── THREE KEY FEATURES HIGHLIGHT ── */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-8 sm:mt-10">
-            <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 text-center space-y-2">
-              <span className="font-serif text-lg font-bold text-[#F5F1EA] block">FULL 60ML BOTTLE</span>
-              <p className="text-xs text-[#B8C4C2] leading-relaxed">
+            <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
+              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">FULL 60ML BOTTLE</span>
+              <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 No tiny 5ml or 10ml vials. You receive the complete signature 60ml bottle to wear and evaluate.
               </p>
             </div>
-            <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 text-center space-y-2">
-              <span className="font-serif text-lg font-bold text-[#F5F1EA] block">ANY FRAGRANCE</span>
-              <p className="text-xs text-[#B8C4C2] leading-relaxed">
+            <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
+              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">ANY FRAGRANCE</span>
+              <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 Pick your preferred fragrance from our entire premium Eau de Parfum collection.
               </p>
             </div>
-            <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-xl p-5 text-center space-y-2">
-              <span className="font-serif text-lg font-bold text-[#F5F1EA] block">TRY IT AT HOME</span>
-              <p className="text-xs text-[#B8C4C2] leading-relaxed">
+            <div className="bg-[#121212] border border-white/10 rounded-xl p-5 text-center space-y-2">
+              <span className="font-sora text-[18px] font-semibold text-[#F5F2EE] block">TRY IT AT HOME</span>
+              <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5]">
                 Experience its projection, sillage, and skin chemistry in your daily routine over weeks.
               </p>
             </div>
@@ -113,10 +113,10 @@ export default function DiscoverySetPage() {
       <section className="py-12 sm:py-16">
         <MainContainer>
           <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+            <h2 className="font-sora text-[28px] sm:text-[36px] font-semibold tracking-[-0.025em] text-[#F5F2EE]">
               SELECT YOUR SCENT
             </h2>
-            <p className="font-sans text-xs sm:text-sm text-[#B8C4C2] mt-1">
+            <p className="font-manrope text-[15px] text-[#B8B3AF] mt-1">
               Choose one fragrance below to receive as your 60ml sample purchase.
             </p>
           </div>
@@ -130,13 +130,13 @@ export default function DiscoverySetPage() {
                   onClick={() => setSelectedProduct(product)}
                   className={`relative rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all duration-200 cursor-pointer group border ${
                     isSelected
-                      ? 'bg-[#102F38] border-white/60 shadow-xl shadow-[#102F38]/40 scale-[1.01]'
-                      : 'bg-[#1C4A55] border-[rgba(243,235,221,0.15)] hover:border-[rgba(243,235,221,0.30)]'
+                      ? 'bg-[#121212] border-[#B4171E] shadow-xl scale-[1.01]'
+                      : 'bg-[#121212] border-white/10 hover:border-white/20'
                   }`}
                 >
                   <div>
                     {/* Image Area */}
-                    <div className="relative aspect-square rounded-xl bg-[#102F38]/60 border border-[rgba(243,235,221,0.12)] overflow-hidden mb-4 flex items-center justify-center">
+                    <div className="relative aspect-square rounded-xl bg-[#080808] border border-white/10 overflow-hidden mb-4 flex items-center justify-center">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -146,35 +146,35 @@ export default function DiscoverySetPage() {
                       {/* Checkbox indicator */}
                       <div className={`absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${
                         isSelected 
-                          ? 'bg-black border-white/60 text-white' 
-                          : 'bg-[#102F38]/80 border-[rgba(243,235,221,0.2)] text-transparent'
+                          ? 'bg-[#B4171E] border-[#B4171E] text-[#F5F2EE]' 
+                          : 'bg-[#080808]/80 border-white/20 text-transparent'
                       }`}>
                         <Check className="w-3.5 h-3.5 stroke-[3]" />
                       </div>
 
-                      <span className="absolute bottom-3 left-3 bg-[#102F38]/90 text-[#F5F1EA] text-[10px] font-bold px-2.5 py-0.5 rounded border border-[rgba(243,235,221,0.12)]">
+                      <span className="absolute bottom-3 left-3 bg-[#080808]/90 text-[#F5F2EE] font-manrope text-[11px] font-semibold px-2.5 py-0.5 rounded border border-white/10">
                         60 ML BOTTLE
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#B8C4C2]">
+                      <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#B8B3AF]">
                         {product.scentIdentity}
                       </div>
-                      <h3 className="font-serif text-xl font-bold uppercase text-[#F5F1EA]">
+                      <h3 className="font-sora text-[20px] font-semibold text-[#F5F2EE]">
                         ÉLAVA {product.name}
                       </h3>
-                      <p className="text-xs text-[#B8C4C2] font-sans leading-relaxed line-clamp-3">
+                      <p className="font-manrope text-[13px] text-[#B8B3AF] leading-[1.5] line-clamp-3">
                         {product.description}
                       </p>
                     </div>
                   </div>
 
-                  <div className="pt-2 flex items-center justify-between border-t border-[rgba(243,235,221,0.10)]">
-                    <span className="font-sans text-sm font-semibold text-[#B8C4C2]">
+                  <div className="pt-2 flex items-center justify-between border-t border-white/10">
+                    <span className="font-manrope text-[13px] font-medium text-[#B8B3AF]">
                       Sample Price:
                     </span>
-                    <span className="font-sans text-base font-bold text-[#F5F1EA]">
+                    <span className="font-manrope text-[16px] font-semibold text-[#F5F2EE]">
                       ₹{product.price.toLocaleString()}
                     </span>
                   </div>
@@ -185,17 +185,17 @@ export default function DiscoverySetPage() {
 
           {/* ── Sticky/Curated Bottom Actions Card ── */}
           {selectedProduct && (
-            <div className="max-w-xl mx-auto mt-12 bg-[#102F38] border border-[rgba(243,235,221,0.18)] rounded-2xl p-5 sm:p-6 shadow-2xl text-center space-y-4">
-              <div className="flex items-center justify-center gap-1.5 text-xs text-[#B8C4C2] uppercase font-bold tracking-wider">
-                <Sparkle className="w-3.5 h-3.5 text-[#B8C4C2]" />
+            <div className="max-w-xl mx-auto mt-12 bg-[#121212] border border-white/15 rounded-2xl p-5 sm:p-6 shadow-2xl text-center space-y-4">
+              <div className="flex items-center justify-center gap-1.5 font-manrope text-[13px] text-[#B8B3AF] font-semibold tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-[#B4171E]" />
                 <span>Selected Sample Scent</span>
               </div>
               
               <div>
-                <h3 className="font-serif text-2xl font-bold text-[#F5F1EA] uppercase">
+                <h3 className="font-sora text-[24px] font-semibold text-[#F5F2EE]">
                   ÉLAVA {selectedProduct.name}
                 </h3>
-                <p className="font-sans text-xs text-[#B8C4C2] mt-0.5">
+                <p className="font-manrope text-[14px] text-[#B8B3AF] mt-0.5">
                   Complete 60ml Sample Bottle • ₹{selectedProduct.price.toLocaleString()}
                 </p>
               </div>
@@ -204,7 +204,7 @@ export default function DiscoverySetPage() {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  className="flex-1 bg-black hover:bg-neutral-900 active:bg-neutral-800 text-[#F5F1EA] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-md"
+                  className="flex-1 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3.5 px-6 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-md btn-interactive"
                 >
                   {addedToCart ? (
                     <>
@@ -213,7 +213,7 @@ export default function DiscoverySetPage() {
                     </>
                   ) : (
                     <>
-                      <ShoppingBag className="w-4 h-4 text-white" />
+                      <ShoppingBag className="w-4 h-4 text-[#F5F2EE]" />
                       <span>ADD SAMPLE TO CART</span>
                     </>
                   )}
@@ -222,14 +222,14 @@ export default function DiscoverySetPage() {
                 <button
                   type="button"
                   onClick={handleCheckoutDirect}
-                  className="flex-1 bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-md"
+                  className="flex-1 bg-[#080808] hover:bg-[#1a1a1a] text-[#F5F2EE] border border-white/20 py-3.5 px-6 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-md btn-interactive"
                 >
-                  <CreditCard className="w-4 h-4 text-[#102F38]" />
+                  <CreditCard className="w-4 h-4 text-[#F5F2EE]" />
                   <span>CHECKOUT →</span>
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-4 text-[10px] text-[#B8C4C2] pt-1">
+              <div className="flex items-center justify-center gap-4 font-manrope text-[12px] text-[#B8B3AF] pt-1">
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 shrink-0" /> Free Express Delivery
                 </span>

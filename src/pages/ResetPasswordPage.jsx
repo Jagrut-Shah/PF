@@ -62,7 +62,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-[80vh] flex items-center py-12 sm:py-16">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-[80vh] flex items-center py-12 sm:py-16">
       <SEO
         title="Reset Password — ÉLAVA Perfumes"
         description="Set a new password for your ÉLAVA customer account."
@@ -71,31 +71,31 @@ export default function ResetPasswordPage() {
       />
 
       <MainContainer className="flex justify-center items-center">
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
+        <div className="bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
           <div className="text-center space-y-1.5">
-            <h1 className="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+            <h1 className="font-sora text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#F5F2EE]">
               SET NEW PASSWORD
             </h1>
-            <p className="font-sans text-xs text-[#B8C4C2] uppercase tracking-wider">
+            <p className="font-manrope text-[14px] text-[#B8B3AF]">
               Enter your new credentials below.
             </p>
           </div>
 
           {error && (
-            <div className="bg-[#7A2929]/20 border border-[#7A2929]/50 text-[#F5F1EA] text-xs px-4 py-3 rounded-lg text-center font-medium leading-relaxed">
+            <div className="bg-[#8F1018]/20 border border-[#B4171E]/50 text-[#F5F2EE] font-manrope text-[13px] px-4 py-3 rounded-xl text-center font-medium leading-relaxed">
               {error}
             </div>
           )}
 
           {successMsg && (
-            <div className="bg-[#102F38] border border-green-500/30 text-green-300 text-xs px-4 py-3 rounded-lg text-center font-medium leading-relaxed">
+            <div className="bg-[#121212] border border-green-500/30 text-green-300 font-manrope text-[13px] px-4 py-3 rounded-xl text-center font-medium leading-relaxed">
               {successMsg}
             </div>
           )}
 
           <form onSubmit={handleUpdatePassword} className="space-y-4">
-            <div className="space-y-1">
-              <label htmlFor="reset-new-password" className="block text-[10px] font-bold uppercase tracking-wider text-[#B8C4C2]">
+            <div className="space-y-1.5">
+              <label htmlFor="reset-new-password" className="block font-manrope text-[14px] font-medium text-[#F5F2EE]">
                 New Password
               </label>
               <input
@@ -106,12 +106,12 @@ export default function ResetPasswordPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Choose a new password"
-                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#F5F1EA] rounded-xl px-4 py-3 focus:outline-none focus:border-white/50 text-sm transition-colors"
+                className="w-full bg-[#080808] border border-white/15 text-[#F5F2EE] rounded-xl px-4 py-3 font-manrope text-[15px] focus:outline-none focus:border-[#B4171E] transition-colors"
               />
             </div>
 
-            <div className="space-y-1">
-              <label htmlFor="reset-confirm-password" className="block text-[10px] font-bold uppercase tracking-wider text-[#B8C4C2]">
+            <div className="space-y-1.5">
+              <label htmlFor="reset-confirm-password" className="block font-manrope text-[14px] font-medium text-[#F5F2EE]">
                 Confirm New Password
               </label>
               <input
@@ -122,14 +122,14 @@ export default function ResetPasswordPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm your new password"
-                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#F5F1EA] rounded-xl px-4 py-3 focus:outline-none focus:border-white/50 text-sm transition-colors"
+                className="w-full bg-[#080808] border border-white/15 text-[#F5F2EE] rounded-xl px-4 py-3 font-manrope text-[15px] focus:outline-none focus:border-[#B4171E] transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-black hover:bg-neutral-900 active:bg-neutral-800 text-[#F5F1EA] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-[0.16em] flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 mt-2"
+              className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3.5 px-6 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 mt-2 btn-interactive"
             >
               {loading ? 'UPDATING...' : 'UPDATE PASSWORD'}
             </button>

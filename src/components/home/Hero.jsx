@@ -71,26 +71,26 @@ export default function Hero() {
           {/* Left Hero Content */}
           <div className="lg:col-span-7">
             {/* Section Label / Badge in Deep Red #8F1018 Surface */}
-            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8F1018]/60 border border-[#B4171E]/40 mb-6 text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] uppercase text-[#F5F2EE] shadow-sm">
+            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8F1018]/60 border border-[#B4171E]/40 mb-6 text-[12px] sm:text-[13px] font-manrope font-semibold tracking-[0.09em] uppercase text-[#F5F2EE] shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#F5F2EE]" />
               <span>60 ml Eau de Parfum Collection</span>
             </div>
 
-            {/* Editorial Display Headline */}
-            <h1 className="animate-hero-headline font-serif text-[40px] sm:text-[60px] md:text-[72px] lg:text-[84px] font-normal tracking-tight text-[#F5F2EE] leading-[0.98] mb-6">
-              Scents that become <span className="italic font-normal text-[#B8B3AF]">part of you.</span>
+            {/* Hero Display Headline — Sora 600 (Desktop: 52-68px, Mobile: 36-44px, Line height: 1.02, Letter spacing: -0.04em) */}
+            <h1 className="animate-hero-headline font-sora text-[36px] sm:text-[44px] md:text-[56px] lg:text-[66px] font-semibold tracking-[-0.04em] text-[#F5F2EE] leading-[1.02] mb-6">
+              Scents that become <span className="font-semibold text-[#B8B3AF]">part of you.</span>
             </h1>
 
-            {/* Supporting Copy */}
-            <p className="animate-hero-subhead font-sans text-sm sm:text-base md:text-[17px] text-[#B8B3AF] font-normal leading-[1.55] mb-8 max-w-xl">
+            {/* Hero Subheading — Manrope 500 (Desktop: 18-21px, Mobile: 17-19px, Line height: 1.4) */}
+            <p className="animate-hero-subhead font-manrope text-[17px] sm:text-[19px] md:text-[21px] text-[#B8B3AF] font-medium leading-[1.4] mb-8 max-w-xl">
               Crafted for the moments you will remember. Long-lasting Eau de Parfum formulations designed to subtly express your presence.
             </p>
 
-            {/* Primary & Secondary CTAs */}
+            {/* Primary & Secondary CTAs — Manrope 600 (14-16px) */}
             <div className="animate-hero-cta flex flex-wrap items-center gap-4">
               <Link
                 to="/category/bestsellers"
-                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none btn-interactive"
+                className="group inline-flex items-center gap-2.5 bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 px-7 py-3.5 rounded-xl font-manrope text-[14px] sm:text-[15px] md:text-[16px] font-semibold tracking-[0.01em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none btn-interactive"
               >
                 <span>Discover Your Signature</span>
                 <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1.5 text-[#F5F2EE]" />
@@ -98,7 +98,7 @@ export default function Hero() {
 
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-sans text-[14px] sm:text-[15px] font-semibold tracking-[0.08em] transition-all duration-200 btn-interactive"
+                className="inline-flex items-center gap-2 bg-[#121212] hover:bg-[#8F1018]/40 active:scale-[0.98] text-[#F5F2EE] border border-white/15 px-6 py-3.5 rounded-xl font-manrope text-[14px] sm:text-[15px] md:text-[16px] font-semibold tracking-[0.01em] transition-all duration-200 btn-interactive"
               >
                 <span>Explore All</span>
               </Link>

@@ -3,8 +3,9 @@ import MainContainer from '../ui/MainContainer';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * BrandStory Component — Black & Red Luxury Aesthetic:
- * Deep Black #0B0B0B environment with noticeable Level 3 diffuse deep-red editorial lighting (.bg-ambient-story) and Soft Black #121212 story card.
+ * BrandStory Component — Sora 600 Story Heading & Quote + Manrope 400 Body
+ * Section 23 Requirement:
+ * Story heading: Sora 600. Body: Manrope 400. Quote: Sora 500-600 (editorial through typography rather than old-fashioned serif).
  */
 export default function BrandStory() {
   const [ref, isVisible] = useScrollReveal();
@@ -22,21 +23,21 @@ export default function BrandStory() {
           }`}
         >
           
-          <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#B4171E] block mb-3">
+          <span className="font-manrope text-[13px] font-semibold uppercase tracking-[0.09em] text-[#B4171E] block mb-3">
             Our Essence & Origin
           </span>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F5F2EE] mb-6 leading-tight tracking-tight">
-            The Story Behind <span className="italic font-normal text-[#B8B3AF]">Élava</span>
+          <h2 className="font-sora text-[28px] sm:text-[36px] md:text-[44px] font-semibold text-[#F5F2EE] mb-6 leading-[1.08] tracking-[-0.025em]">
+            The Story Behind <span className="font-semibold text-[#B8B3AF]">Élava</span>
           </h2>
 
-          <div className="space-y-4 font-sans text-xs sm:text-sm md:text-base text-[#B8B3AF] leading-relaxed font-normal max-w-2xl mx-auto">
+          <div className="space-y-4 font-manrope text-[15px] sm:text-[16px] text-[#B8B3AF] leading-[1.6] font-normal max-w-2xl mx-auto">
             <p className={`reveal-init ${isVisible ? 'reveal-visible stagger-1' : ''}`}>
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
-            {/* Selected Pull Quote with Deep Red #8F1018 Accent Borders & Delayed Staggered Reveal */}
-            <blockquote className={`my-6 py-4 border-y border-[#8F1018]/60 font-serif italic text-2xl sm:text-3xl text-[#F5F2EE] font-normal leading-snug max-w-xl mx-auto reveal-init ${
+            {/* Selected Pull Quote with Sora 600 Editorial Typography */}
+            <blockquote className={`my-6 py-5 border-y border-[#8F1018]/60 font-sora font-semibold text-[20px] sm:text-[26px] md:text-[30px] text-[#F5F2EE] leading-[1.2] tracking-[-0.02em] max-w-xl mx-auto reveal-init ${
               isVisible ? 'reveal-visible stagger-2' : ''
             }`}>
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."
@@ -51,13 +52,13 @@ export default function BrandStory() {
           <div className={`mt-8 pt-2 reveal-init ${isVisible ? 'reveal-visible stagger-4' : ''}`}>
             <div className="bg-[#080808] border border-white/10 rounded-xl p-4 max-w-sm mx-auto flex items-center justify-center gap-6 shadow-md text-[#F5F2EE]">
               <div className="text-center">
-                <span className="font-serif text-xl font-normal text-[#F5F2EE] block">60 ml</span>
-                <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#B8B3AF]">Eau de Parfum</span>
+                <span className="font-sora text-[20px] font-semibold text-[#F5F2EE] block">60 ml</span>
+                <span className="font-manrope text-[12px] font-semibold tracking-[0.09em] uppercase text-[#B8B3AF]">Eau de Parfum</span>
               </div>
               <div className="w-px h-8 bg-white/10" />
               <div className="text-center">
-                <span className="font-serif text-xl font-normal text-[#F5F2EE] block">India</span>
-                <span className="font-sans text-[11px] font-medium tracking-wider uppercase text-[#B8B3AF]">Crafted Origin</span>
+                <span className="font-sora text-[20px] font-semibold text-[#F5F2EE] block">India</span>
+                <span className="font-manrope text-[12px] font-semibold tracking-[0.09em] uppercase text-[#B8B3AF]">Crafted Origin</span>
               </div>
             </div>
           </div>
@@ -66,3 +67,4 @@ export default function BrandStory() {
     </section>
   );
 }
+

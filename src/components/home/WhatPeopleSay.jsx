@@ -25,11 +25,11 @@ export default function WhatPeopleSay() {
           <div className="mb-6 sm:mb-8">
             <h2
               id="what-people-say-heading"
-              className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F5F2EE] tracking-tight leading-tight"
+              className="font-sora text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]"
             >
               What People Say
             </h2>
-            <p className="font-sans text-xs sm:text-sm text-[#B8B3AF] mt-1 font-normal leading-relaxed">
+            <p className="font-manrope text-[17px] sm:text-[18px] text-[#B8B3AF] mt-1 font-medium leading-[1.4]">
               Words from our fragrance collective.
             </p>
           </div>

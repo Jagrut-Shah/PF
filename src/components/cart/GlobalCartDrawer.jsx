@@ -86,20 +86,20 @@ export default function GlobalCartDrawer() {
       role="dialog"
       aria-label="Your Shopping Cart"
     >
-      <div className="bg-[#2A0D14] border border-[#E7C4C5]/20 sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F6EFE7] overflow-hidden">
+      <div className="bg-[#080808] border border-white/15 sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#F5F2EE] overflow-hidden">
         
         {/* Header */}
-        <div className="p-4 border-b border-[#E7C4C5]/15 flex items-center justify-between bg-[#641D2D]">
+        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-[#121212]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#F6EFE7]" />
-            <span className="font-sans text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#F6EFE7]">
+            <ShoppingBag className="w-4 h-4 text-[#F5F2EE]" />
+            <h3 className="font-sora text-[18px] font-semibold text-[#F5F2EE] tracking-[-0.02em]">
               Your Cart ({cartTotals.itemCount || 0} {(cartTotals.itemCount || 0) === 1 ? 'Item' : 'Items'})
-            </span>
+            </h3>
           </div>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-[#E7C4C5] hover:text-[#F6EFE7] p-1 rounded-full hover:bg-white/10 transition-colors"
+            className="text-[#B8B3AF] hover:text-[#F5F2EE] p-1 rounded-full hover:bg-white/10 transition-colors btn-interactive"
             aria-label="Close cart drawer"
             id="global-close-cart-btn"
           >
@@ -108,9 +108,9 @@ export default function GlobalCartDrawer() {
         </div>
 
         {/* Cart Items List */}
-        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-[#E7C4C5]/15 max-h-[50vh]">
+        <div className="p-4 space-y-4 overflow-y-auto flex-1 divide-y divide-white/10 max-h-[50vh]">
           {safeCartItems.length === 0 ? (
-            <div className="py-10 text-center text-[#E7C4C5]/80 font-sans text-xs font-normal">
+            <div className="py-10 text-center text-[#B8B3AF] font-manrope text-[14px] font-normal">
               Your cart is currently empty.
             </div>
           ) : (
@@ -126,58 +126,58 @@ export default function GlobalCartDrawer() {
                     <img
                       src={item.image || '/images/products/row-1-column-1.png'}
                       alt={item.name || 'Perfume'}
-                      className="w-14 h-14 object-contain rounded-lg bg-[#641D2D] border border-[#E7C4C5]/15 shrink-0"
+                      className="w-14 h-14 object-contain rounded-lg bg-[#111111] border border-white/10 shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <div className="font-serif text-sm font-normal text-[#F6EFE7] truncate">
+                        <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE] truncate">
                           {isDuo ? item.name : item.name?.replace(/^ÉLAVA\s+/i, '')}
                         </div>
                         {isDuo && (
-                          <span className="bg-[#641D2D] text-[#F6EFE7] border border-[#E7C4C5]/20 text-[9px] font-sans font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             DUO BUNDLE
                           </span>
                         )}
                         {isSample && (
-                          <span className="bg-[#641D2D] text-[#F6EFE7] border border-[#E7C4C5]/20 text-[9px] font-sans font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE SET
                           </span>
                         )}
                         {isSingleSample && (
-                          <span className="bg-[#641D2D] text-[#F6EFE7] border border-[#E7C4C5]/20 text-[9px] font-sans font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#8F1018]/50 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE BOTTLE
                           </span>
                         )}
                       </div>
 
-                      <div className="text-[11px] font-sans text-[#E7C4C5]/80 font-normal">
+                      <div className="text-[13px] font-manrope text-[#B8B3AF] font-normal">
                         Size: {item.size || '60 ML'}
                       </div>
 
                       <div className="flex items-center justify-between mt-2">
-                        <div className="font-sans text-xs font-semibold text-[#F6EFE7]">
+                        <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
                           ₹{((item.price || 0) * (item.quantity || 1)).toLocaleString()}
                         </div>
-                        <div className="flex items-center border border-[#E7C4C5]/20 rounded-lg overflow-hidden bg-[#641D2D]">
+                        <div className="flex items-center border border-white/15 rounded-lg overflow-hidden bg-[#111111]">
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, (item.quantity || 1) - 1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-[#F6EFE7] hover:bg-white/10 cursor-pointer"
+                            className="px-2 py-1 text-[#F5F2EE] hover:bg-white/10 cursor-pointer"
                             aria-label="Decrease quantity"
                           >
                             <Minus className="w-3 h-3" />
                           </button>
-                          <span className="px-2 font-sans text-xs font-semibold text-[#F6EFE7]">{item.quantity || 1}</span>
+                          <span className="px-2 font-manrope text-[13px] font-semibold text-[#F5F2EE]">{item.quantity || 1}</span>
                           <button
                             type="button"
                             onClick={() => {
                               const updated = updateCartItemQuantity(item.id, item.size, (item.quantity || 1) + 1);
                               setCartItems(updated);
                             }}
-                            className="px-2 py-1 text-[#F6EFE7] hover:bg-white/10 cursor-pointer"
+                            className="px-2 py-1 text-[#F5F2EE] hover:bg-white/10 cursor-pointer"
                             aria-label="Increase quantity"
                           >
                             <Plus className="w-3 h-3" />
@@ -194,19 +194,19 @@ export default function GlobalCartDrawer() {
 
         {/* Footer Summary & Checkout Actions */}
         {safeCartItems.length > 0 && (
-          <div className="p-4 border-t border-[#E7C4C5]/15 bg-[#641D2D] space-y-3">
-            <div className="space-y-1 font-sans text-xs">
-              <div className="flex justify-between text-[#E7C4C5]/85">
+          <div className="p-4 border-t border-white/10 bg-[#121212] space-y-3">
+            <div className="space-y-1 font-manrope text-[14px]">
+              <div className="flex justify-between text-[#B8B3AF]">
                 <span>Subtotal</span>
-                <span className="font-semibold text-[#F6EFE7]">₹{subtotalVal.toLocaleString()}</span>
+                <span className="font-semibold text-[#F5F2EE]">₹{subtotalVal.toLocaleString()}</span>
               </div>
               {discountVal > 0 && (
-                <div className="flex justify-between text-[#C94B5B]">
+                <div className="flex justify-between text-[#B4171E]">
                   <span>Discount {cartTotals.referralCode ? `(${cartTotals.referralCode})` : ''}</span>
                   <span className="font-semibold">-₹{discountVal.toLocaleString()}</span>
                 </div>
               )}
-              <div className="flex justify-between font-semibold text-sm text-[#F6EFE7] pt-1 border-t border-[#E7C4C5]/15">
+              <div className="flex justify-between font-semibold text-[16px] text-[#F5F2EE] pt-1.5 border-t border-white/10">
                 <span>Total</span>
                 <span>₹{totalVal.toLocaleString()}</span>
               </div>
@@ -215,11 +215,11 @@ export default function GlobalCartDrawer() {
             <button
               type="button"
               onClick={handleCheckoutClick}
-              className="w-full bg-[#C94B5B] hover:bg-[#B03D4C] active:scale-[0.98] text-[#F6EFE7] py-3.5 px-4 rounded-xl font-sans font-semibold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+              className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3.5 px-4 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer btn-interactive"
               id="global-cart-checkout-btn"
             >
               <CreditCard className="w-4 h-4" />
-              <span>PROCEED TO CHECKOUT →</span>
+              <span>Proceed to Checkout →</span>
             </button>
           </div>
         )}

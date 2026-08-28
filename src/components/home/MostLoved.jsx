@@ -27,23 +27,23 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F5F2EE] leading-tight tracking-tight"
+                className="font-sora text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.025em]"
               >
-                Most Loved · <span className="font-sans font-semibold tracking-widest text-[#C6A15B] uppercase text-xl sm:text-2xl md:text-3xl">BESTSELLERS</span>
+                Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[18px] sm:text-[22px] md:text-[26px]">BESTSELLERS</span>
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#B8B3AF] mt-1 font-normal leading-relaxed">
+              <p className="font-manrope text-[17px] sm:text-[18px] text-[#B8B3AF] mt-1 font-medium leading-[1.4]">
                 Our most coveted fragrance signatures.
               </p>
             </div>
 
             <Link
               to="/category/bestsellers"
-              className="group inline-flex items-center gap-2 font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
+              className="group inline-flex items-center gap-2 font-manrope text-[14px] font-semibold text-[#F5F2EE] hover:text-[#B4171E] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
               aria-label="View all bestsellers"
             >
               <span>View All Bestsellers</span>
               <ArrowRight
-                className="w-3.5 h-3.5 stroke-[1.75] transform transition-transform duration-200 group-hover:translate-x-1.5"
+                className="w-4 h-4 stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1.5"
                 aria-hidden="true"
               />
             </Link>

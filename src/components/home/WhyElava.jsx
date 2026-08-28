@@ -51,13 +51,13 @@ export default function WhyElava() {
                 }`}
               >
                 <div>
-                  <span className="font-serif text-4xl font-normal text-[#B4171E] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
+                  <span className="font-sora text-3xl sm:text-4xl font-semibold text-[#B4171E] block mb-3 leading-none transform group-hover:scale-105 transition-transform origin-left">
                     {item.number}
                   </span>
-                  <h3 className="font-sans text-sm font-bold tracking-wide text-[#F5F2EE] mb-2 group-hover:text-[#B4171E] transition-colors">
+                  <h3 className="font-manrope text-[16px] font-semibold text-[#F5F2EE] mb-2 group-hover:text-[#B4171E] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-sans text-xs sm:text-sm text-[#B8B3AF] leading-relaxed font-normal">
+                  <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.6] font-normal">
                     {item.description}
                   </p>
                 </div>

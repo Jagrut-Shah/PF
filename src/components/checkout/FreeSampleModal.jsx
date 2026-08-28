@@ -51,24 +51,24 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-      <div className="bg-[#163E49] border border-[rgba(243,235,221,0.2)] rounded-3xl p-6 shadow-2xl w-full max-w-xl text-[#F5F1EA] max-h-[90vh] flex flex-col overflow-hidden">
+      <div className="bg-[#121212] border border-white/15 rounded-3xl p-6 shadow-2xl w-full max-w-xl text-[#F5F2EE] max-h-[90vh] flex flex-col overflow-hidden">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-4 shrink-0">
+        <div className="flex items-center justify-between border-b border-white/10 pb-4 shrink-0">
           <div className="space-y-0.5">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#C5A15A]" />
-              <h3 className="font-serif text-xl font-bold uppercase text-[#F5F1EA]">
+              <Sparkles className="w-4 h-4 text-[#B4171E]" />
+              <h3 className="font-sora text-lg font-semibold text-[#F5F2EE]">
                 CHOOSE YOUR FREE 10ML SAMPLE
               </h3>
             </div>
-            <p className="text-xs text-[#B8C4C2]">
+            <p className="font-manrope text-[13px] text-[#B8B3AF]">
               Complimentary 10ML Eau de Parfum spray included with your order.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-[#B8C4C2] hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+            className="p-1.5 text-[#B8B3AF] hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -84,8 +84,8 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
                 onClick={() => onSelectSample(sample)}
                 className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-4 ${
                   isSelected
-                    ? 'bg-[#1C4A55] border-[#C5A15A] shadow-md'
-                    : 'bg-[#102F38] border-[rgba(243,235,221,0.12)] hover:border-[rgba(243,235,221,0.25)]'
+                    ? 'bg-[#121212] border-[#B4171E] shadow-md'
+                    : 'bg-[#080808] border-white/10 hover:border-white/20'
                 }`}
               >
                 <img
@@ -93,22 +93,22 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
                   alt={sample.name}
                   loading="lazy"
                   decoding="async"
-                  className="w-14 h-14 object-cover rounded-xl border border-[rgba(243,235,221,0.15)] shrink-0"
+                  className="w-14 h-14 object-cover rounded-xl border border-white/10 shrink-0"
                   onError={(e) => {
                     e.currentTarget.src = '/images/products/row-1-column-1.png';
                   }}
                 />
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center justify-between">
-                    <h4 className="font-serif text-sm font-bold text-[#F5F1EA] uppercase">{sample.name}</h4>
-                    <span className="text-[10px] font-bold text-[#C5A15A] uppercase tracking-wider">FREE 10ML · ₹0</span>
+                    <h4 className="font-sora text-[15px] font-semibold text-[#F5F2EE]">{sample.name}</h4>
+                    <span className="font-manrope text-[11px] font-semibold text-[#B4171E] uppercase tracking-wider">FREE 10ML · ₹0</span>
                   </div>
-                  <p className="text-[10px] text-[#C5A15A] font-medium tracking-wide uppercase">{sample.family}</p>
-                  <p className="text-[11px] text-[#B8C4C2] leading-snug line-clamp-2">{sample.description}</p>
+                  <p className="font-manrope text-[11px] text-[#B8B3AF] font-semibold tracking-wide uppercase">{sample.family}</p>
+                  <p className="font-manrope text-[12px] text-[#B8B3AF] leading-snug line-clamp-2">{sample.description}</p>
                 </div>
                 <div className="shrink-0 pl-2">
                   <div className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${
-                    isSelected ? 'bg-[#C5A15A] border-[#C5A15A] text-[#102F38]' : 'border-[rgba(243,235,221,0.25)] text-transparent'
+                    isSelected ? 'bg-[#B4171E] border-[#B4171E] text-[#F5F2EE]' : 'border-white/20 text-transparent'
                   }`}>
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
@@ -119,11 +119,11 @@ export default function FreeSampleModal({ isOpen, onClose, selectedSample, onSel
         </div>
 
         {/* Footer Action */}
-        <div className="pt-4 border-t border-[rgba(243,235,221,0.12)] shrink-0">
+        <div className="pt-4 border-t border-white/10 shrink-0">
           <button
             onClick={onClose}
             disabled={!selectedSample}
-            className="w-full bg-[#C5A15A] hover:bg-[#D4B26B] text-[#102F38] py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3 rounded-xl font-manrope font-semibold text-[14px] uppercase tracking-wider transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md btn-interactive"
           >
             {selectedSample ? `ADD ${selectedSample.name} SAMPLE →` : 'SELECT A FREE SAMPLE'}
           </button>

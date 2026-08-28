@@ -122,12 +122,12 @@ export default function ScentQuiz() {
                   </div>
                 </div>
 
-                {/* Question Title */}
-                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#F5F2EE] mb-6">
+                {/* Question Title — Sora 600 */}
+                <h3 className="font-sora text-[22px] sm:text-[26px] md:text-[28px] font-semibold text-[#F5F2EE] mb-6 leading-tight tracking-[-0.02em]">
                   {QUIZ_QUESTIONS[currentStep].title}
                 </h3>
 
-                {/* Options Grid */}
+                {/* Options Grid — Manrope 500 / 600 */}
                 <div className="grid grid-cols-1 gap-3">
                   {QUIZ_QUESTIONS[currentStep].options.map((option) => {
                     const isSelected = answers[QUIZ_QUESTIONS[currentStep].id] === option.value;
@@ -136,11 +136,9 @@ export default function ScentQuiz() {
                         key={option.value}
                         type="button"
                         onClick={() => handleSelectOption(QUIZ_QUESTIONS[currentStep].id, option.value)}
-                        className={`w-full text-left p-4 rounded-xl font-sans text-sm font-semibold tracking-wide transition-all duration-200 flex items-center justify-between border active:scale-[0.98] cursor-pointer btn-interactive ${
-                          isSelected
-                            ? 'bg-[#B4171E] border-[#B4171E] text-[#F5F2EE] shadow-sm'
-                            : 'bg-[#111111] border-white/10 text-[#F5F2EE] hover:border-[#B4171E]/40 hover:bg-[#111111]/80'
-                        }`}
+                        className={`w-full text-left p-4 rounded-xl font-manrope text-[15px] ${
+                          isSelected ? 'font-semibold bg-[#B4171E] border-[#B4171E] text-[#F5F2EE] shadow-sm' : 'font-medium bg-[#111111] border-white/10 text-[#F5F2EE] hover:border-[#B4171E]/40 hover:bg-[#111111]/80'
+                        } tracking-wide transition-all duration-200 flex items-center justify-between border active:scale-[0.98] cursor-pointer btn-interactive`}
                       >
                         <span>{option.label}</span>
                         {isSelected && <Check className="w-4 h-4 text-[#F5F2EE]" />}
@@ -154,14 +152,14 @@ export default function ScentQuiz() {
                     <button
                       type="button"
                       onClick={() => setCurrentStep((prev) => prev - 1)}
-                      className="text-xs font-sans font-medium text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors btn-interactive"
+                      className="text-xs font-manrope font-medium text-[#B8B3AF] hover:text-[#F5F2EE] transition-colors btn-interactive"
                     >
                       ← Back
                     </button>
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="text-xs font-sans text-[#B8B3AF]/60 hover:text-[#B8B3AF] transition-colors flex items-center gap-1 btn-interactive"
+                      className="text-xs font-manrope text-[#B8B3AF]/60 hover:text-[#B8B3AF] transition-colors flex items-center gap-1 btn-interactive"
                     >
                       <RotateCcw className="w-3 h-3" />
                       <span>Reset</span>
@@ -174,17 +172,17 @@ export default function ScentQuiz() {
               <div className="space-y-6 animate-fadeIn transition-opacity duration-300">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
-                    <span className="text-[10px] font-sans font-semibold tracking-widest text-[#B8B3AF] uppercase block">
+                    <span className="text-[12px] font-manrope font-semibold tracking-[0.09em] text-[#B8B3AF] uppercase block">
                       MATCH RESULT
                     </span>
-                    <h3 className="font-serif text-2xl font-normal text-[#F5F2EE]">
+                    <h3 className="font-sora text-[22px] sm:text-[26px] font-semibold text-[#F5F2EE]">
                       Recommended Signatures
                     </h3>
                   </div>
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="text-xs font-sans text-[#B8B3AF] hover:text-[#F5F2EE] flex items-center gap-1 border border-white/10 px-3 py-1.5 rounded-lg bg-[#080808] btn-interactive"
+                    className="text-xs font-manrope font-semibold text-[#B8B3AF] hover:text-[#F5F2EE] flex items-center gap-1 border border-white/10 px-3 py-1.5 rounded-lg bg-[#080808] btn-interactive"
                   >
                     <RotateCcw className="w-3 h-3" />
                     <span>Retake</span>
@@ -200,24 +198,24 @@ export default function ScentQuiz() {
                       className="w-24 h-24 object-contain rounded-lg bg-[#111111] shrink-0"
                     />
                     <div className="flex-1 text-center sm:text-left min-w-0">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#8F1018]/60 text-[#F5F2EE] border border-[#B4171E]/40 text-[10px] font-sans font-semibold uppercase tracking-wider mb-1">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#8F1018]/60 text-[#F5F2EE] border border-[#B4171E]/40 text-[11px] font-manrope font-semibold uppercase tracking-wider mb-1">
                         <Sparkles className="w-3 h-3 text-[#F5F2EE]" />
                         TOP MATCH · ÉLAVA SIGNATURE
                       </span>
-                      <h4 className="font-serif text-2xl font-normal text-[#F5F2EE]">
+                      <h4 className="font-manrope text-[18px] sm:text-[20px] font-semibold text-[#F5F2EE]">
                         {displayProducts[0].name}
                       </h4>
-                      <p className="font-sans text-xs text-[#B8B3AF] mt-0.5 font-normal">
+                      <p className="font-manrope text-[14px] text-[#B8B3AF] mt-0.5 font-normal">
                         {displayProducts[0].scentIdentity}
                       </p>
-                      <span className="font-sans text-sm font-semibold text-[#F5F2EE] mt-1 block">
+                      <span className="font-manrope text-[16px] font-semibold text-[#F5F2EE] mt-1 block">
                         ₹{displayProducts[0].price?.toLocaleString()}
                       </span>
                     </div>
 
                     <Link
                       to={`/product/${displayProducts[0].slug}`}
-                      className="w-full sm:w-auto bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 py-3 px-6 rounded-xl font-sans text-xs font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
+                      className="w-full sm:w-auto bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 py-3 px-6 rounded-xl font-manrope text-[14px] font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
                     >
                       <span>View Your Match →</span>
                     </Link>
@@ -227,7 +225,7 @@ export default function ScentQuiz() {
                 {/* Other Matches */}
                 {displayProducts.length > 1 && (
                   <div className="pt-2">
-                    <div className="text-[10.5px] font-sans font-semibold uppercase tracking-wider text-[#B8B3AF] mb-2.5">
+                    <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#B8B3AF] mb-2.5">
                       Other Good Matches
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -244,10 +242,10 @@ export default function ScentQuiz() {
                               className="w-10 h-10 object-contain rounded bg-[#111111] shrink-0"
                             />
                             <div className="min-w-0">
-                              <h5 className="font-serif text-base font-normal text-[#F5F2EE] truncate">
+                              <h5 className="font-manrope text-[16px] font-semibold text-[#F5F2EE] truncate">
                                 {p.name}
                               </h5>
-                              <p className="font-sans text-[11px] text-[#B8B3AF] truncate font-normal">{p.scentIdentity}</p>
+                              <p className="font-manrope text-[13px] text-[#B8B3AF] truncate font-normal">{p.scentIdentity}</p>
                             </div>
                           </div>
                           <ArrowRight className="w-4 h-4 text-[#B8B3AF] shrink-0 transform group-hover:translate-x-1 group-hover:text-[#B4171E] transition-transform" />

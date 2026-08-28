@@ -68,7 +68,7 @@ export default function ReviewsPage() {
   const displayReviewCount = currentProduct ? currentProduct.reviewCount : reviewAggregate.totalReviews;
 
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-screen">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-screen">
       <SEO
         title={seoTitle}
         description={seoDescription}
@@ -79,22 +79,22 @@ export default function ReviewsPage() {
       <MainContainer className="py-8 sm:py-10 md:py-12">
         {/* 1. PAGE HERO */}
         <section className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 md:mb-9">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F6EFE7] leading-tight mb-2">
+          <h1 className="font-sora text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-[#F5F2EE] leading-[1.08] tracking-[-0.035em] mb-2">
             {heroTitle}
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#E7C4C5]/85 tracking-wide mb-5 font-normal leading-relaxed">
-            "{heroSubtitle}"
+          <p className="font-manrope text-[16px] text-[#B8B3AF] mb-5 font-normal">
+            {heroSubtitle}
           </p>
 
           {/* Rating Display */}
-          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#641D2D] border border-[#E7C4C5]/20 rounded-2xl shadow-sm">
-            <div className="font-serif text-3xl sm:text-4xl font-normal text-[#F6EFE7] tracking-tight mb-1">
-              {displayRating} <span className="text-xl text-[#E7C4C5]">/ 5</span>
+          <div className="inline-flex flex-col items-center justify-center p-4 bg-[#121212] border border-white/10 rounded-2xl shadow-sm">
+            <div className="font-sora text-[32px] sm:text-[40px] font-semibold text-[#F5F2EE] tracking-tight mb-1">
+              {displayRating} <span className="font-manrope text-[18px] text-[#B8B3AF]">/ 5</span>
             </div>
             <div className="mb-1.5">
               <StarRating rating={displayRating} starColor="#C6A15B" />
             </div>
-            <div className="font-sans text-xs text-[#E7C4C5] font-semibold tracking-wider uppercase">
+            <div className="font-manrope text-[12px] text-[#B8B3AF] font-semibold tracking-[0.09em] uppercase">
               {displayReviewCount.toLocaleString()} Verified Reviews
             </div>
           </div>
@@ -102,13 +102,13 @@ export default function ReviewsPage() {
 
         {/* 2. SUBSECTION & FILTER BAR */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#E7C4C5]/15">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
             <div>
-              <h2 className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7]">
+              <h2 className="font-manrope text-[14px] font-semibold uppercase tracking-[0.09em] text-[#F5F2EE]">
                 A few words from our community
               </h2>
               {currentProduct && (
-                <p className="font-sans text-xs text-[#E7C4C5]/85 mt-0.5 font-normal">
+                <p className="font-manrope text-[13px] text-[#B8B3AF] mt-0.5 font-normal">
                   Filtered by {currentProduct.name}
                 </p>
               )}
@@ -117,12 +117,12 @@ export default function ReviewsPage() {
             {currentProduct ? (
               <Link
                 to="/reviews"
-                className="font-sans text-xs font-semibold uppercase tracking-wider text-[#F6EFE7] hover:text-[#C94B5B] transition-colors"
+                className="font-manrope text-[14px] font-semibold text-[#F5F2EE] hover:text-[#B4171E] transition-colors"
               >
                 ← View All Reviews
               </Link>
             ) : (
-              <div className="flex items-center gap-2 sm:gap-3 flex-wrap font-sans">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap font-manrope">
                 {['ALL', 'MEN', 'WOMEN', 'UNISEX'].map((gender) => (
                   <button
                     key={gender}
@@ -131,10 +131,10 @@ export default function ReviewsPage() {
                       setActiveGender(gender);
                       setVisibleLimit(6);
                     }}
-                    className={`px-3 py-1 rounded-lg text-xs font-semibold tracking-wide uppercase transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold tracking-wider uppercase transition-colors cursor-pointer ${
                       activeGender === gender
-                        ? 'bg-[#C94B5B] text-[#F6EFE7]'
-                        : 'bg-[#641D2D] text-[#E7C4C5]/80 hover:text-[#F6EFE7] border border-[#E7C4C5]/15'
+                        ? 'bg-[#B4171E] text-[#F5F2EE]'
+                        : 'bg-[#121212] text-[#B8B3AF] hover:text-[#F5F2EE] border border-white/10'
                     }`}
                   >
                     {gender}
@@ -148,7 +148,7 @@ export default function ReviewsPage() {
         {/* 3. REVIEWS GRID */}
         <section aria-label="Customer reviews grid">
           {visibleReviews.length === 0 ? (
-            <div className="py-12 text-center text-[#E7C4C5]/80 font-sans text-xs font-normal">
+            <div className="py-12 text-center text-[#B8B3AF] font-manrope text-[14px] font-normal">
               No reviews found for this selection.
             </div>
           ) : (
@@ -165,7 +165,7 @@ export default function ReviewsPage() {
               <button
                 type="button"
                 onClick={handleShowMore}
-                className="bg-[#641D2D] hover:bg-[#7A2437] text-[#F6EFE7] border border-[#E7C4C5]/20 font-sans text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-xl transition-colors shadow-sm"
+                className="bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] font-manrope text-[14px] font-semibold px-6 py-3 rounded-xl transition-all cursor-pointer shadow-sm btn-interactive"
               >
                 Show More Reviews
               </button>

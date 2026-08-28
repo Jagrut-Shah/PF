@@ -35,8 +35,8 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const linkCls = 'block font-sans text-xs text-[#B8B3AF] hover:text-[#B4171E] transition-colors duration-150 py-1 font-normal';
-const headingCls = 'font-sans text-xs font-semibold tracking-wider uppercase text-[#F5F2EE] mb-3.5';
+const linkCls = 'block font-manrope text-[14px] text-[#B8B3AF] hover:text-[#B4171E] transition-colors duration-150 py-1 font-normal';
+const headingCls = 'font-manrope text-[13px] font-semibold tracking-[0.09em] uppercase text-[#F5F2EE] mb-3.5';
 
 function Accordion({ title, children }) {
   const [open, setOpen] = useState(false);
@@ -97,7 +97,7 @@ export default function Footer() {
                   </div>
                 </Link>
                 {/* Brand Statement */}
-                <p className="font-serif text-base text-[#B8B3AF] leading-relaxed mb-4 font-normal">
+                <p className="font-manrope text-[15px] text-[#B8B3AF] leading-[1.6] mb-4 font-normal">
                   Artisanal Eau de Parfum signatures crafted for memorable presence across India.
                 </p>
               </div>
@@ -118,7 +118,7 @@ export default function Footer() {
             {/* Customer Care Column */}
             <div className="col-span-3">
               <p className={headingCls}>Customer Care</p>
-              <div className="space-y-2 text-xs font-sans text-[#B8B3AF] font-normal">
+              <div className="space-y-2 text-[14px] font-manrope text-[#B8B3AF] font-normal">
                 <a
                   href={waUrl}
                   target="_blank"
@@ -137,8 +137,8 @@ export default function Footer() {
                   <InstagramIcon />
                   <span>Connect on Instagram</span>
                 </a>
-                <p className="text-[11px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
-                <p className="text-[11px]">Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
+                <p className="text-[13px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
+                <p className="text-[13px]">Hours: {DEMO_COMPANY_INFO.customerCareHours}</p>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10">
           <MainContainer>
-            <div className="py-4 flex items-center justify-between font-sans text-xs text-[#B8B3AF]">
+            <div className="py-4 flex items-center justify-between font-manrope text-[13px] text-[#B8B3AF]">
               <p>© {year} ÉLAVA Perfumes. All rights reserved.</p>
               <div className="flex items-center gap-4">
                 <Link to="/privacy" className="hover:text-[#F5F2EE] transition-colors font-normal">Privacy Policy</Link>
@@ -181,7 +181,7 @@ export default function Footer() {
                   </span>
                 </div>
               </Link>
-              <p className="font-serif text-sm text-[#B8B3AF] leading-snug font-normal">
+              <p className="font-manrope text-[14px] text-[#B8B3AF] leading-[1.5] font-normal">
                 Artisanal Eau de Parfum signatures crafted for memorable presence.
               </p>
             </div>
@@ -194,14 +194,14 @@ export default function Footer() {
                 <ul>{HELP.map(i => <li key={i.to}><Link to={i.to} className={linkCls}>{i.label}</Link></li>)}</ul>
               </Accordion>
               <Accordion title="Customer Care">
-                <div className="space-y-2 pt-1 text-xs font-sans text-[#B8B3AF]">
+                <div className="space-y-2 pt-1 text-[13px] font-manrope text-[#B8B3AF]">
                   <a href={waUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F5F2EE] font-semibold">
                     <WhatsAppIcon /> Connect on WhatsApp
                   </a>
                   <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#F5F2EE] font-semibold">
                     <InstagramIcon /> Connect on Instagram
                   </a>
-                  <p className="text-[11px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
+                  <p className="text-[12px] pt-1">Email: {DEMO_COMPANY_INFO.supportEmail}</p>
                 </div>
               </Accordion>
             </nav>
@@ -211,7 +211,7 @@ export default function Footer() {
         {/* Legal Bottom */}
         <div className="border-t border-white/10 mt-2">
           <MainContainer>
-            <div className="py-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-xs text-[#B8B3AF]">
+            <div className="py-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-manrope text-[12px] text-[#B8B3AF]">
               <p>© {year} ÉLAVA Perfumes.</p>
               <Link to="/privacy" className="hover:text-[#F5F2EE]">Privacy Policy</Link>
               <span className="text-[#B8B3AF]/40">·</span>

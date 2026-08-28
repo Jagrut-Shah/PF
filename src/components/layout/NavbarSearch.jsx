@@ -170,15 +170,15 @@ export default function NavbarSearch({ isOpen, onClose }) {
                         className="w-11 h-11 object-cover rounded-lg bg-[#080808] shrink-0 border border-white/15"
                       />
                       <div className="min-w-0">
-                        <div className="font-serif text-sm font-medium tracking-[0.08em] uppercase text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors truncate">
+                        <div className="font-sora text-sm font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors truncate">
                           {prod.name}
                         </div>
-                        <div className="font-sans text-[11px] text-[#B8B3AF] truncate">
+                        <div className="font-manrope text-[12px] text-[#B8B3AF] truncate">
                           {prod.scentIdentity}
                         </div>
                       </div>
                     </div>
-                    <div className="font-sans text-xs font-semibold text-[#F5F2EE] shrink-0 pl-2">
+                    <div className="font-manrope text-xs font-semibold text-[#F5F2EE] shrink-0 pl-2">
                       ₹{prod.price?.toLocaleString()}
                     </div>
                   </div>
@@ -190,11 +190,11 @@ export default function NavbarSearch({ isOpen, onClose }) {
           {/* STATE 3: NO MATCHING RESULTS */}
           {hasQuery && results.length === 0 && (
             <div className="py-8 text-center bg-[#121212] border border-white/15 rounded-xl my-2 px-4">
-              <h4 className="font-serif text-base font-medium uppercase tracking-[0.08em] text-[#F5F2EE] mb-1">
+              <h4 className="font-sora text-base font-semibold text-[#F5F2EE] mb-1">
                 NO FRAGRANCES FOUND
               </h4>
-              <p className="font-sans text-xs text-[#B8B3AF] mb-4">
-                "Try searching by fragrance name, mood, gender or occasion."
+              <p className="font-manrope text-xs text-[#B8B3AF] mb-4">
+                Try searching by fragrance name, mood, gender or occasion.
               </p>
               <Link
                 to="/category/bestsellers"
@@ -202,7 +202,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                   onClose();
                   setQuery('');
                 }}
-                className="inline-flex items-center gap-1.5 font-sans text-xs font-bold uppercase tracking-[0.16em] text-[#F5F2EE] hover:text-[#B4171E] transition-colors"
+                className="inline-flex items-center gap-1.5 font-manrope text-xs font-semibold uppercase tracking-[0.09em] text-[#F5F2EE] hover:text-[#B4171E] transition-colors"
               >
                 <span>EXPLORE ALL FRAGRANCES</span>
                 <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />

@@ -6,8 +6,9 @@ import { Gift, Share2 } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * ReferralBanner Component — Layered Black & Red Atmosphere & Motion V2:
- * Section environment #1C1515 / #161313 with noticeable Deep Red studio ambient lighting (.bg-ambient-referral) and sequential scroll reveal.
+ * ReferralBanner Component — Sora 600 Headings & Numbers + Manrope 400 Copy + Manrope 600 CTA
+ * Section 19 Requirement:
+ * Main heading: Sora 600. Supporting copy: Manrope 400. Important reward/value: Manrope 600. Large numbers: Sora 600. CTA: Manrope 600.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -40,25 +41,25 @@ export default function ReferralBanner() {
             <div className="lg:col-span-8 space-y-6">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080808] border border-white/15 text-[#F5F2EE] text-[11px] font-sans font-semibold uppercase tracking-[0.18em]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080808] border border-white/15 text-[#F5F2EE] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em]">
                 <Gift className="w-3.5 h-3.5 text-[#F5F2EE]" />
                 <span>ÉLAVA Rewards</span>
               </div>
 
               {/* Major Statement */}
               <div className="space-y-3">
-                <h2 className="font-serif text-[32px] sm:text-[44px] lg:text-[54px] font-normal text-[#F5F2EE] leading-[1.02] tracking-tight">
+                <h2 className="font-sora text-[32px] sm:text-[44px] lg:text-[54px] font-semibold text-[#F5F2EE] leading-[1.05] tracking-[-0.035em]">
                   Share Élava.<br />
-                  <span className="text-[#F5F2EE] font-normal opacity-95">
+                  <span className="text-[#F5F2EE] font-semibold opacity-95">
                     Earn ₹100 Cash.
                   </span>
                 </h2>
-                <p className="font-sans text-sm sm:text-base text-[#F5F2EE]/90 max-w-xl leading-relaxed font-normal">
-                  Your friends get <strong className="text-[#F5F2EE] font-bold">₹200 OFF</strong>. You get <strong className="text-[#F5F2EE] font-bold">₹100 CASH</strong> when their qualifying order is completed.
+                <p className="font-manrope text-[15px] sm:text-[17px] text-[#F5F2EE]/90 max-w-xl leading-[1.6] font-normal">
+                  Your friends get <strong className="text-[#F5F2EE] font-semibold">₹200 OFF</strong>. You get <strong className="text-[#F5F2EE] font-semibold">₹100 CASH</strong> when their qualifying order is completed.
                 </p>
               </div>
 
-              {/* 3 Steps: Near Black #0B0B0B Cards with Staggered Reveal */}
+              {/* 3 Steps */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 
                 {/* Step 01 */}
@@ -67,13 +68,13 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-1' : ''
                   }`}
                 >
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
+                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
                     01
                   </span>
-                  <div className="font-sans text-sm font-bold text-[#F5F2EE]">
+                  <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
                     Share Your Link
                   </div>
-                  <p className="text-xs font-sans text-[#B8B3AF] font-normal">Send code to your friends</p>
+                  <p className="text-[14px] font-manrope text-[#B8B3AF] font-normal">Send code to your friends</p>
                 </div>
 
                 {/* Step 02 */}
@@ -82,13 +83,13 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-2' : ''
                   }`}
                 >
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
+                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
                     02
                   </span>
-                  <div className="font-sans text-sm font-bold text-[#F5F2EE]">
+                  <div className="font-manrope text-[15px] font-semibold text-[#F5F2EE]">
                     Friend Gets ₹200 Off
                   </div>
-                  <p className="text-xs font-sans text-[#B8B3AF] font-normal">Applied on first purchase</p>
+                  <p className="text-[14px] font-manrope text-[#B8B3AF] font-normal">Applied on first purchase</p>
                 </div>
 
                 {/* Step 03 */}
@@ -97,23 +98,23 @@ export default function ReferralBanner() {
                     isVisible ? 'reveal-visible stagger-3' : ''
                   }`}
                 >
-                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#B4171E] block">
+                  <span className="text-[12px] font-sora font-semibold text-[#B4171E] block">
                     03 · HERO EARNING
                   </span>
-                  <div className="font-sans text-base font-bold text-[#F5F2EE]">
+                  <div className="font-manrope text-[16px] font-semibold text-[#F5F2EE]">
                     You Earn ₹100 Cash
                   </div>
-                  <p className="text-xs font-sans text-[#B8B3AF] font-normal">Withdrawable to UPI/Bank</p>
+                  <p className="text-[14px] font-manrope text-[#B8B3AF] font-normal">Withdrawable to UPI/Bank</p>
                 </div>
 
               </div>
 
-              {/* CTA Button: Near Black #080808 */}
+              {/* CTA Button */}
               <div className="pt-2">
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-8 py-4 rounded-xl font-sans font-semibold text-xs sm:text-sm tracking-wider inline-flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer btn-interactive"
+                  className="w-full sm:w-auto bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-8 py-4 rounded-xl font-manrope font-semibold text-[15px] sm:text-[16px] tracking-[0.01em] inline-flex items-center justify-center transition-all duration-200 shadow-2xl cursor-pointer btn-interactive"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>
@@ -122,24 +123,24 @@ export default function ReferralBanner() {
 
             </div>
 
-            {/* Right Column: Near Black #080808 Card */}
+            {/* Right Column */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="w-full max-w-sm bg-[#080808] border border-white/20 rounded-2xl p-6 shadow-2xl space-y-4 text-center relative overflow-hidden text-[#F5F2EE] transition-transform duration-300 hover:scale-[1.015] bg-lacquer-highlight">
                 <div className="w-16 h-16 rounded-full bg-[#8F1018] border border-white/20 flex items-center justify-center mx-auto text-[#F5F2EE] shadow-inner">
                   <Share2 className="w-7 h-7" />
                 </div>
                 <div className="space-y-1">
-                  <div className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#B8B3AF]">
+                  <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#B8B3AF]">
                     Your Cash Reward
                   </div>
-                  <h3 className="font-serif text-4xl font-medium text-[#F5F2EE]">
+                  <h3 className="font-sora text-[36px] font-semibold text-[#F5F2EE]">
                     ₹100 Cash
                   </h3>
-                  <p className="text-xs font-sans text-[#B8B3AF] leading-relaxed px-2 font-normal">
+                  <p className="text-[14px] font-manrope text-[#B8B3AF] leading-[1.5] px-2 font-normal">
                     Direct payout to your UPI ID or Bank account upon qualifying friend purchase.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-sans font-semibold text-[#B8B3AF]">
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[14px] font-manrope font-semibold text-[#B8B3AF]">
                   <span>Friend: ₹200 OFF</span>
                   <span className="text-[#F5F2EE]">You: ₹100 CASH</span>
                 </div>
@@ -153,3 +154,4 @@ export default function ReferralBanner() {
     </section>
   );
 }
+

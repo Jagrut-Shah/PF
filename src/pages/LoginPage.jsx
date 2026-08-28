@@ -71,7 +71,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full bg-[#2A0D14] text-[#F6EFE7] min-h-[85vh] flex items-center py-12 sm:py-16">
+    <div className="w-full bg-[#0B0B0B] text-[#F5F2EE] min-h-[85vh] flex items-center py-12 sm:py-16">
       <SEO
         title="Sign In — ÉLAVA Perfumes"
         description="Sign in to your premium ÉLAVA customer account."
@@ -80,18 +80,18 @@ export default function LoginPage() {
       />
 
       <MainContainer className="flex justify-center items-center">
-        <div className="bg-[#1C4A55] border border-[rgba(243,235,221,0.15)] rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
+        <div className="bg-[#121212] border border-white/10 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
           <div className="text-center space-y-1.5">
-            <h1 className="font-serif text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#F5F1EA]">
+            <h1 className="font-sora text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#F5F2EE]">
               WELCOME BACK
             </h1>
-            <p className="font-sans text-xs text-[#B8C4C2] uppercase tracking-wider">
+            <p className="font-manrope text-[14px] text-[#B8B3AF]">
               Sign in to your ÉLAVA account.
             </p>
           </div>
 
           {error && (
-            <div className="bg-[#7A2929]/20 border border-[#7A2929]/50 text-[#F5F1EA] text-xs px-4 py-3 rounded-lg text-center font-medium leading-relaxed">
+            <div className="bg-[#8F1018]/20 border border-[#B4171E]/50 text-[#F5F2EE] font-manrope text-[13px] px-4 py-3 rounded-xl text-center font-medium leading-relaxed">
               {error}
             </div>
           )}
@@ -102,7 +102,7 @@ export default function LoginPage() {
               type="button"
               disabled={loading}
               onClick={handleGoogleLogin}
-              className="w-full flex items-center justify-center gap-3 bg-[#102F38] hover:bg-[#0c242c] active:bg-[#07191f] text-[#F5F1EA] border border-[rgba(243,235,221,0.15)] rounded-xl py-3 px-4 text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-3 bg-[#080808] hover:bg-[#1a1a1a] active:scale-[0.98] text-[#F5F2EE] border border-white/15 rounded-xl py-3 px-4 font-manrope text-[14px] font-semibold transition-colors disabled:opacity-50 cursor-pointer btn-interactive"
             >
               {/* Google SVG Icon */}
               <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -117,15 +117,15 @@ export default function LoginPage() {
 
           {/* Divider */}
           <div className="flex items-center justify-center gap-3">
-            <div className="h-px bg-[rgba(243,235,221,0.15)] flex-1" />
-            <span className="text-[10px] text-[#B8C4C2] font-bold tracking-widest uppercase">OR</span>
-            <div className="h-px bg-[rgba(243,235,221,0.15)] flex-1" />
+            <div className="h-px bg-white/10 flex-1" />
+            <span className="font-manrope text-[12px] text-[#B8B3AF] font-semibold uppercase">OR</span>
+            <div className="h-px bg-white/10 flex-1" />
           </div>
 
           {/* Email Login Form */}
           <form onSubmit={handleEmailLogin} className="space-y-4">
-            <div className="space-y-1">
-              <label htmlFor="login-email" className="block text-[10px] font-bold uppercase tracking-wider text-[#B8C4C2]">
+            <div className="space-y-1.5">
+              <label htmlFor="login-email" className="block font-manrope text-[14px] font-medium text-[#F5F2EE]">
                 Email
               </label>
               <input
@@ -136,18 +136,18 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#F5F1EA] rounded-xl px-4 py-3 focus:outline-none focus:border-white/50 text-sm transition-colors"
+                className="w-full bg-[#080808] border border-white/15 text-[#F5F2EE] rounded-xl px-4 py-3 font-manrope text-[15px] focus:outline-none focus:border-[#B4171E] transition-colors"
               />
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label htmlFor="login-password" className="block text-[10px] font-bold uppercase tracking-wider text-[#B8C4C2]">
+                <label htmlFor="login-password" className="block font-manrope text-[14px] font-medium text-[#F5F2EE]">
                   Password
                 </label>
                 <Link
                   to="/forgot-password"
-                  className="text-[10px] font-bold uppercase tracking-wider text-[#B8C4C2] hover:text-[#F5F1EA] transition-colors"
+                  className="font-manrope text-[13px] text-[#B8B3AF] hover:text-[#B4171E] transition-colors"
                 >
                   Forgot password?
                 </Link>
@@ -160,26 +160,26 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full bg-[#102F38] border border-[rgba(243,235,221,0.15)] text-[#F5F1EA] rounded-xl px-4 py-3 focus:outline-none focus:border-white/50 text-sm transition-colors"
+                className="w-full bg-[#080808] border border-white/15 text-[#F5F2EE] rounded-xl px-4 py-3 font-manrope text-[15px] focus:outline-none focus:border-[#B4171E] transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-black hover:bg-neutral-900 active:bg-neutral-800 text-[#F5F1EA] py-3.5 px-6 rounded-xl font-bold uppercase text-xs tracking-[0.16em] flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 mt-2"
+              className="w-full bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] py-3.5 px-6 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 mt-2 btn-interactive"
             >
               {loading ? 'SIGNING IN...' : 'SIGN IN'}
             </button>
           </form>
 
-          <div className="text-center pt-2 border-t border-[rgba(243,235,221,0.10)]">
-            <span className="text-xs text-[#B8C4C2]">Don't have an account? </span>
+          <div className="text-center pt-2 border-t border-white/10">
+            <span className="font-manrope text-[14px] text-[#B8B3AF]">Don't have an account? </span>
             <Link
               to="/signup"
-              className="text-xs font-bold uppercase tracking-wider text-[#F5F1EA] hover:underline"
+              className="font-manrope text-[14px] font-semibold text-[#F5F2EE] hover:text-[#B4171E] transition-colors"
             >
-              CREATE ACCOUNT
+              Create Account
             </Link>
           </div>
         </div>

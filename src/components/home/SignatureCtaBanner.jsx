@@ -4,8 +4,7 @@ import MainContainer from '../ui/MainContainer';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * SignatureCtaBanner Component — Black & Red Luxury Aesthetic:
- * Featured Dark Red #8F1018 surface moment with Scroll Reveal & Near Black #080808 CTA button.
+ * SignatureCtaBanner Component — Sora 600 Headline + Manrope 600 CTA
  */
 export default function SignatureCtaBanner() {
   const [ref, isVisible] = useScrollReveal();
@@ -32,7 +31,7 @@ export default function SignatureCtaBanner() {
               <Sparkles className="w-3.5 h-3.5 text-[#F5F2EE]" />
             </div>
             <div>
-              <span className="font-serif italic text-base sm:text-[18px] font-normal tracking-wide text-[#F5F2EE]">
+              <span className="font-sora text-[16px] sm:text-[18px] font-semibold tracking-[-0.015em] text-[#F5F2EE]">
                 Not sure which scent is yours?
               </span>
             </div>
@@ -41,7 +40,7 @@ export default function SignatureCtaBanner() {
           <a
             href="#scent-finder"
             onClick={scrollToFinder}
-            className="inline-flex items-center justify-center gap-1.5 bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-5 py-2 sm:py-2.5 rounded-lg font-serif italic text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 shrink-0 shadow-md w-full sm:w-auto text-center btn-interactive"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#080808] hover:bg-[#121212] active:scale-[0.98] text-[#F5F2EE] hover:text-[#B4171E] border border-white/20 px-5 py-2 sm:py-2.5 rounded-lg font-manrope text-[14px] font-semibold transition-all duration-200 shrink-0 shadow-md w-full sm:w-auto text-center btn-interactive"
           >
             <span>Find Your Signature Scent →</span>
           </a>
@@ -50,3 +49,4 @@ export default function SignatureCtaBanner() {
     </section>
   );
 }
+

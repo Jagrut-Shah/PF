@@ -95,15 +95,15 @@ export default function CategoryPage() {
           description="The requested fragrance collection does not exist."
           canonicalPath={`/category/${categorySlug || ''}`}
         />
-        <h1 className="font-serif text-3xl font-normal text-[#F6EFE7] mb-3">
+        <h1 className="font-sora text-3xl font-semibold text-[#F5F2EE] mb-3">
           Collection Not Found
         </h1>
-        <p className="font-sans text-sm text-[#E7C4C5]/85 mb-6 font-normal">
+        <p className="font-manrope text-sm text-[#B8B3AF] mb-6 font-normal">
           The requested fragrance collection does not exist.
         </p>
         <Link
           to="/"
-          className="inline-block bg-[#C94B5B] text-[#F6EFE7] px-6 py-2.5 rounded-xl font-sans text-xs font-semibold tracking-wider hover:bg-[#B03D4C] transition-colors"
+          className="inline-block bg-[#B4171E] hover:bg-[#C72A35] text-[#F5F2EE] px-6 py-2.5 rounded-xl font-manrope text-[14px] font-semibold transition-colors btn-interactive"
         >
           Return to Homepage
         </Link>
@@ -130,14 +130,14 @@ export default function CategoryPage() {
       <SectionHeading as="h1" title={config.title} subtitle={config.subtitle} />
 
       {/* Results Count */}
-      <div className="mt-6 mb-2 font-sans text-xs text-[#E7C4C5]/85 font-normal">
+      <div className="mt-6 mb-2 font-manrope text-[14px] text-[#B8B3AF] font-medium">
         <span>Showing {categoryProducts.length} {categoryProducts.length === 1 ? 'fragrance' : 'fragrances'}</span>
       </div>
 
       {/* Product Grid */}
       {categoryProducts.length === 0 ? (
-        <div className="mt-6 text-center py-12 bg-[#641D2D] border border-[#E7C4C5]/15 rounded-xl">
-          <p className="font-sans text-sm text-[#E7C4C5]/85 font-normal">No fragrances in this collection yet.</p>
+        <div className="mt-6 text-center py-12 bg-[#121212] border border-white/10 rounded-xl">
+          <p className="font-manrope text-[14px] text-[#B8B3AF] font-normal">No fragrances in this collection yet.</p>
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">

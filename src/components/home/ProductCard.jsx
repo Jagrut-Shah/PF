@@ -4,9 +4,9 @@ import { ArrowUpRight } from 'lucide-react';
 import StarRating from '../ui/StarRating';
 
 /**
- * ProductCard Component — Layered Black & Red Luxury Aesthetic:
- * Charcoal #171515 image container with subtle lacquer sheen .bg-lacquer-highlight, Warm White #F5F2EE name & price, Muted Gray #B8B3AF metadata.
+ * ProductCard Component — Strict Manrope 600 Product Name & Price + Manrope 400 Metadata
  * Bestseller Gold #C6A15B tag strictly preserved.
+ * Section 10 & 18: Product Name Manrope 600 (16-19px), Description Manrope 400 (14-15px), Price Manrope 600.
  */
 export default function ProductCard({ product, className = '' }) {
   if (!product) return null;
@@ -22,7 +22,7 @@ export default function ProductCard({ product, className = '' }) {
         {/* Refined Gold Bestseller Corner Ribbon */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
-            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C6A15B] text-[#080808] text-[8.5px] font-sans font-bold tracking-wider py-0.5 text-center -rotate-45 uppercase shadow-sm">
+            <div className="absolute top-[13px] -left-[29px] w-28 bg-[#C6A15B] text-[#080808] text-[9px] font-manrope font-semibold tracking-wider py-0.5 text-center -rotate-45 uppercase shadow-sm">
               BESTSELLER
             </div>
           </div>
@@ -40,16 +40,16 @@ export default function ProductCard({ product, className = '' }) {
 
       {/* Metadata Section */}
       <div className="mt-3 flex flex-col space-y-1 min-w-0">
-        {/* Product Name — Bodoni Moda 400 */}
-        <h3 className="font-serif text-[18px] sm:text-[21px] font-normal text-[#F5F2EE] leading-snug group-hover:text-[#B4171E] transition-colors duration-200 min-w-0 break-words">
+        {/* Product Name — Manrope 600 (16-19px) */}
+        <h3 className="font-manrope text-[16px] sm:text-[18px] md:text-[19px] font-semibold text-[#F5F2EE] leading-[1.3] group-hover:text-[#B4171E] transition-colors duration-200 min-w-0 break-words">
           {product.name}
         </h3>
 
-        {/* Scent Identity & Gold BESTSELLER Tag */}
-        <p className="font-sans text-xs leading-snug min-w-0 break-words text-[#B8B3AF] font-normal">
+        {/* Scent Identity & Gold BESTSELLER Tag — Manrope 400 (14-15px) */}
+        <p className="font-manrope text-[14px] sm:text-[15px] leading-[1.5] min-w-0 break-words text-[#B8B3AF] font-normal">
           {product.isBestseller ? (
             <>
-              <span className="font-sans font-semibold text-[#C6A15B] tracking-wider text-[10.5px] uppercase">BESTSELLER</span>
+              <span className="font-manrope font-semibold text-[#C6A15B] tracking-wider text-[12px] uppercase">BESTSELLER</span>
               <span> · {product.scentIdentity}</span>
             </>
           ) : (
@@ -57,17 +57,17 @@ export default function ProductCard({ product, className = '' }) {
           )}
         </p>
 
-        {/* Ratings & Reviews */}
-        <div className="flex items-center gap-1.5 text-xs text-[#B8B3AF] font-normal">
+        {/* Ratings & Reviews — Manrope 400 */}
+        <div className="flex items-center gap-1.5 text-[13px] text-[#B8B3AF] font-manrope font-normal">
           <StarRating rating={product.rating} size={13} starColor="#C6A15B" />
           <span className="font-semibold text-[#F5F2EE]">{product.rating}</span>
           <span>·</span>
           <span>{product.reviewCount} reviews</span>
         </div>
 
-        {/* Price & Hover Action Arrow */}
+        {/* Price & Hover Action Arrow — Manrope 600 (16-19px) */}
         <div className="flex items-center justify-between pt-1 text-[#F5F2EE]">
-          <span className="font-sans text-sm sm:text-base font-semibold tracking-tight text-[#F5F2EE]">
+          <span className="font-manrope text-[16px] sm:text-[18px] md:text-[19px] font-semibold text-[#F5F2EE]">
             ₹{product.price?.toLocaleString()}
           </span>
           <ArrowUpRight
@@ -79,3 +79,4 @@ export default function ProductCard({ product, className = '' }) {
     </Link>
   );
 }
+

@@ -4,8 +4,9 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Black & Red Luxury Aesthetic:
- * Soft Black #121212 cards, Warm White #F5F2EE text, Deep Red #8F1018 accent lines.
+ * ReviewCard Component — Manrope 400 Review Text + Manrope 600 Reviewer Name + Manrope 400 Metadata
+ * Section 22 Requirement:
+ * Review text: Manrope 400. Reviewer name: Manrope 600. Metadata: Manrope 400.
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -28,40 +29,40 @@ export default function ReviewCard({ review }) {
       {/* Subtle Deep Red Top Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-[#8F1018]" />
 
-      {/* Decorative quotation mark */}
-      <span
-        className="absolute top-1 right-3 font-serif text-[96px] leading-none text-white/[0.04] select-none pointer-events-none"
-        aria-hidden="true"
-      >
-        "
-      </span>
-
       {/* Star rating */}
       <div className="mb-3 flex items-center pt-1">
         <StarRating rating={rating} size={15} starColor="#C6A15B" />
       </div>
 
-      {/* Review Text — Manrope 400 leading-relaxed */}
-      <blockquote className="font-sans text-sm sm:text-base text-[#F5F2EE] leading-relaxed mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      {/* Review Text — Manrope 400 (15-17px, line-height 1.6) */}
+      <blockquote className="font-manrope text-[15px] sm:text-[16px] text-[#F5F2EE] leading-[1.6] mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
-      {/* Customer Name & Product Link — Manrope 600 */}
-      <div className="pt-3 border-t border-white/10 flex justify-between items-end gap-2 text-xs">
-        <span className="font-sans text-[#B8B3AF] font-semibold">
-          {customer} {city ? `· ${city}` : ''}
-        </span>
+      {/* Customer Name & Product Link — Manrope 600 & 400 */}
+      <div className="pt-3 border-t border-white/10 flex justify-between items-end gap-2 text-[14px]">
+        <div>
+          <span className="font-manrope text-[#F5F2EE] font-semibold block">
+            {customer}
+          </span>
+          {city && (
+            <span className="font-manrope text-[#B8B3AF] font-normal text-[13px]">
+              {city}
+            </span>
+          )}
+        </div>
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-sans text-[11px] text-[#F5F2EE] hover:text-[#B4171E] font-semibold transition-colors uppercase tracking-wider"
+            className="font-manrope text-[13px] text-[#F5F2EE] hover:text-[#B4171E] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-sans text-[11px] text-[#F5F2EE] font-semibold uppercase tracking-wider">{productName}</span>
+          <span className="font-manrope text-[13px] text-[#F5F2EE] font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>
   );
 }
+

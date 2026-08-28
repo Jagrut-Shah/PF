@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * ScentCategoryCard Component — Layered Black & Red Atmosphere:
- * Compact single-line horizontal card for FOR HIM, FOR HER, UNISEX.
- * Descriptors ("Confidence · Presence · Attraction") hidden on MOBILE, visible only on DESKTOP.
+ * ScentCategoryCard Component — Sora 600 Titles + Manrope 400 Copy + Manrope 600 CTA
+ * Section 17 Requirement: FOR HIM, FOR HER, UNISEX
+ * Titles: Sora 600. Supporting copy: Manrope 400. CTA: Manrope 600.
  */
 export default function ScentCategoryCard({ category }) {
   if (!category) return null;
@@ -34,24 +34,25 @@ export default function ScentCategoryCard({ category }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/90 via-[#0B0B0B]/40 to-transparent" />
         <div className="absolute inset-0 bg-ambient-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         
-        <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3.5 md:p-4 flex flex-col justify-end text-left z-10">
-          <h3 className="font-serif text-xs sm:text-base md:text-lg font-normal text-[#F5F2EE] tracking-wider uppercase leading-tight group-hover:text-[#B4171E] transition-colors">
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 flex flex-col justify-end text-left z-10">
+          <h3 className="font-sora text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-[#F5F2EE] tracking-[-0.015em] leading-tight group-hover:text-[#B4171E] transition-colors">
             {title}
           </h3>
 
-          {/* Descriptors: HIDDEN ON MOBILE (< md), SHOWN ONLY ON DESKTOP (md+) */}
+          {/* Descriptors */}
           {descriptorsStr && (
-            <p className="hidden md:block font-sans text-[10.5px] text-[#B8B3AF] font-normal leading-tight mt-0.5 line-clamp-1">
+            <p className="hidden md:block font-manrope text-[13px] text-[#B8B3AF] font-normal leading-tight mt-1 line-clamp-1">
               {descriptorsStr}
             </p>
           )}
 
-          <div className="mt-1 sm:mt-1.5 inline-flex items-center gap-1 text-[9px] sm:text-xs font-sans font-semibold uppercase tracking-wider text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors">
+          <div className="mt-1.5 sm:mt-2 inline-flex items-center gap-1.5 text-[12px] sm:text-[13px] font-manrope font-semibold text-[#F5F2EE] group-hover:text-[#B4171E] transition-colors">
             <span>Explore</span>
-            <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-0.5 transition-transform text-[#F5F2EE] group-hover:text-[#B4171E]" />
+            <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform text-[#F5F2EE] group-hover:text-[#B4171E]" />
           </div>
         </div>
       </div>
     </Link>
   );
 }
+

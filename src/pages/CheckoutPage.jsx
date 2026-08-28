@@ -466,11 +466,11 @@ export default function CheckoutPage() {
           
           {/* Header & Back Link */}
           <div className="flex items-center justify-between border-b border-[#E7C4C5]/15 pb-4">
-            <Link to="/" className="inline-flex items-center gap-1.5 font-sans text-xs text-[#E7C4C5]/85 hover:text-white uppercase tracking-wider font-semibold transition-colors">
+            <Link to="/" className="inline-flex items-center gap-1.5 font-manrope text-xs text-[#E7C4C5]/85 hover:text-white uppercase tracking-wider font-semibold transition-colors">
               <ArrowLeft className="w-4 h-4 text-[#C94B5B]" />
               <span>RETURN TO SHOP</span>
             </Link>
-            <h1 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-[#F6EFE7]">
+            <h1 className="font-sora text-2xl sm:text-3xl font-normal tracking-tight text-[#F6EFE7]">
               ÉLAVA Checkout
             </h1>
           </div>
@@ -551,7 +551,7 @@ export default function CheckoutPage() {
                     <div className="space-y-1 border-b border-[rgba(243,235,221,0.12)] pb-4">
                       <div className="flex items-center gap-2 text-[#C5A15A]">
                         <MapPin className="w-5 h-5" />
-                        <h2 className="font-serif text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
+                        <h2 className="font-sora text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
                           WHERE SHOULD WE DELIVER?
                         </h2>
                       </div>
@@ -735,7 +735,7 @@ export default function CheckoutPage() {
                     <div className="space-y-1 border-b border-[rgba(243,235,221,0.12)] pb-4">
                       <div className="flex items-center gap-2 text-[#C5A15A]">
                         <Gift className="w-5 h-5" />
-                        <h2 className="font-serif text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
+                        <h2 className="font-sora text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
                           MAKE IT PERSONAL
                         </h2>
                       </div>
@@ -755,7 +755,7 @@ export default function CheckoutPage() {
                             onChange={(e) => setIsGift(e.target.checked)}
                             className="w-5 h-5 accent-[#C5A15A] rounded cursor-pointer"
                           />
-                          <label htmlFor="is-gift-toggle" className="font-serif text-base font-bold text-[#F5F1EA] cursor-pointer select-none">
+                          <label htmlFor="is-gift-toggle" className="font-sora text-base font-bold text-[#F5F1EA] cursor-pointer select-none">
                             IS THIS ORDER A GIFT?
                           </label>
                         </div>
@@ -809,7 +809,7 @@ export default function CheckoutPage() {
                       <div className="flex items-center justify-between">
                         <div className="space-y-0.5">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#C5A15A]">COMPLIMENTARY GIFT</span>
-                          <h3 className="font-serif text-lg font-bold text-[#F5F1EA]">TRY ANOTHER SCENT — FREE</h3>
+                          <h3 className="font-sora text-lg font-bold text-[#F5F1EA]">TRY ANOTHER SCENT — FREE</h3>
                         </div>
                         <Sparkles className="w-5 h-5 text-[#C5A15A]" />
                       </div>
@@ -878,7 +878,7 @@ export default function CheckoutPage() {
                     <div className="space-y-1 border-b border-[rgba(243,235,221,0.12)] pb-4">
                       <div className="flex items-center gap-2 text-[#C5A15A]">
                         <CreditCard className="w-5 h-5" />
-                        <h2 className="font-serif text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
+                        <h2 className="font-sora text-2xl font-bold uppercase tracking-tight text-[#F5F1EA]">
                           REVIEW & PAYMENT
                         </h2>
                       </div>
@@ -1017,7 +1017,7 @@ export default function CheckoutPage() {
                 <div className="flex items-center justify-between border-b border-[rgba(243,235,221,0.12)] pb-3">
                   <div className="flex items-center gap-2">
                     <ShoppingBag className="w-4 h-4 text-[#C5A15A]" />
-                    <h3 className="font-serif text-lg font-bold uppercase text-[#F5F1EA]">
+                    <h3 className="font-sora text-lg font-bold uppercase text-[#F5F1EA]">
                       ORDER SUMMARY
                     </h3>
                   </div>
@@ -1116,7 +1116,7 @@ export default function CheckoutPage() {
 
               <div className="space-y-2">
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#C5A15A]">PAYMENT VERIFIED</span>
-                <h1 className="font-serif text-3xl sm:text-4xl font-bold uppercase tracking-tight text-[#F5F1EA]">
+                <h1 className="font-sora text-3xl sm:text-4xl font-bold uppercase tracking-tight text-[#F5F1EA]">
                   ORDER CONFIRMED
                 </h1>
                 <p className="text-sm text-[#B8C4C2]">
@@ -1132,7 +1132,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[#B8C4C2] uppercase font-bold">TOTAL PAID</span>
-                  <span className="font-serif text-base font-bold text-[#F5F1EA]">₹{confirmedOrder.total_amount.toLocaleString()}</span>
+                  <span className="font-sora text-base font-bold text-[#F5F1EA]">₹{confirmedOrder.total_amount.toLocaleString()}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[#B8C4C2] uppercase font-bold">PAYMENT STATUS</span>

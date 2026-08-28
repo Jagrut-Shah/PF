@@ -149,9 +149,9 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={
-                      `font-sans text-[12px] lg:text-[12.5px] uppercase tracking-[0.16em] font-semibold px-3 py-2 rounded-md transition-all duration-200 ${
+                      `font-manrope text-[14px] lg:text-[15px] font-medium px-3 py-2 rounded-md transition-all duration-200 ${
                         isActive
-                          ? 'text-[#B4171E] font-bold bg-[#121212] border border-[#B4171E]/30'
+                          ? 'text-[#B4171E] font-semibold bg-[#121212] border border-[#B4171E]/30'
                           : 'text-[#F5F2EE]/90 hover:text-[#B4171E] hover:bg-[#121212]'
                       }`
                     }
@@ -209,7 +209,7 @@ export default function Navbar() {
               {/* Primary Action Button: SHOP NOW → (Signature Red #B4171E) */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 text-[11px] font-sans font-semibold tracking-wider uppercase transition-all duration-200 shadow-md ml-1 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#B4171E] hover:bg-[#C72A35] active:scale-[0.98] text-[#F5F2EE] border border-white/10 text-[14px] font-manrope font-semibold transition-all duration-200 shadow-md ml-1 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
