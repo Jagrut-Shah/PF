@@ -13,32 +13,32 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 
 /**
  * TrustStrip Component:
- * Primary Cherry base, Deep Cherry inner panel, Cream icon accents.
+ * Cream #F4EBDD base, Deep Cream #EEE2D2 inner panel, Cherry #8B1E2D icon accents.
  */
 export default function TrustStrip() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-5 bg-[#7F1D2D] text-[#FAF6EF]">
+    <section className="py-5 bg-[#F4EBDD] text-[#2A211F]">
       <MainContainer>
         <div
           ref={ref}
-          className={`bg-[#4A1019] border border-[#7F1D2D] rounded-xl p-3.5 sm:p-4 md:p-5 shadow-xs text-[#FAF6EF] reveal-init ${
+          className={`bg-[#EEE2D2] border border-[#D9C9B8] rounded-xl p-3.5 sm:p-4 md:p-5 shadow-xs text-[#2A211F] reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 divide-y md:divide-y-0 md:divide-x divide-[#7F1D2D]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 divide-y md:divide-y-0 md:divide-x divide-[#D9C9B8]">
             
             {/* 1. Secure Payments */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
-              <div className="w-8 h-8 rounded-lg bg-[#7F1D2D] border border-[#7F1D2D] flex items-center justify-center shrink-0 shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-[#F3E8D8]" />
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <ShieldCheck className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#FAF6EF]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Secure Payments
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#F3E8D8]/70 truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   UPI, Cards & Net Banking
                 </p>
               </div>
@@ -46,14 +46,14 @@ export default function TrustStrip() {
 
             {/* 2. COD Available */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4 first:pt-0">
-              <div className="w-8 h-8 rounded-lg bg-[#7F1D2D] border border-[#7F1D2D] flex items-center justify-center shrink-0 shadow-xs">
-                <CreditCard className="w-4 h-4 text-[#F3E8D8]" />
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <CreditCard className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#FAF6EF]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   COD Available
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#F3E8D8]/70 truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Pay cash on delivery
                 </p>
               </div>
@@ -61,14 +61,14 @@ export default function TrustStrip() {
 
             {/* 3. Tracked Delivery */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
-              <div className="w-8 h-8 rounded-lg bg-[#7F1D2D] border border-[#7F1D2D] flex items-center justify-center shrink-0 shadow-xs">
-                <Truck className="w-4 h-4 text-[#F3E8D8]" />
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <Truck className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#FAF6EF]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Tracked Delivery
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#F3E8D8]/70 truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Dispatched across India
                 </p>
               </div>
@@ -76,14 +76,14 @@ export default function TrustStrip() {
 
             {/* 4. Customer Support */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
-              <div className="w-8 h-8 rounded-lg bg-[#7F1D2D] border border-[#7F1D2D] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
                 <WhatsAppIcon className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#FAF6EF]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Customer Support
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#F3E8D8]/70 truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Direct help via WhatsApp
                 </p>
               </div>

@@ -40,7 +40,8 @@ const QUIZ_QUESTIONS = [
 
 /**
  * ScentQuiz Component — Light Luxury Scent Finder:
- * Primary Cherry section, Deep Cherry card surface, Cream selected controls.
+ * Warm Ivory #F6F2EA section, Cream #EEE8DD card surface, Deep Burgundy #721C24 selected controls,
+ * and Soft Stone / Cream unselected controls for tactile editorial feel.
  */
 export default function ScentQuiz() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -86,7 +87,7 @@ export default function ScentQuiz() {
   const currentQuestion = QUIZ_QUESTIONS[currentStep];
 
   return (
-    <section id="scent-finder" className="py-10 sm:py-14 bg-[#7F1D2D] text-[#FAF6EF] border-b border-[#4A1019]" aria-labelledby="scent-finder-heading">
+    <section id="scent-finder" className="py-10 sm:py-14 bg-[#F4EBDD] text-[#2A211F] border-b border-[#D9C9B8]" aria-labelledby="scent-finder-heading">
       <MainContainer>
         <div ref={ref} className={`max-w-3xl mx-auto reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
@@ -97,12 +98,12 @@ export default function ScentQuiz() {
             eyebrow="Personalized Guidance"
           />
 
-          <div className="bg-[#4A1019] border border-[#4A1019] rounded-2xl p-5 sm:p-8 shadow-[0_10px_32px_rgba(74,16,25,0.2)] relative overflow-hidden transition-all duration-300">
+          <div className="bg-[#EEE2D2] border border-[#D9C9B8] rounded-2xl p-5 sm:p-8 shadow-[0_10px_32px_rgba(60,45,30,0.06)] relative overflow-hidden transition-all duration-300">
             
             {!isCompleted ? (
               <div className="transition-opacity duration-300">
                 {/* Progress Indicator */}
-                <div className="flex items-center justify-between text-xs font-sans text-[#F3E8D8]/70 mb-4">
+                <div className="flex items-center justify-between text-xs font-sans text-[#625C55] mb-4">
                   <span className="font-semibold uppercase tracking-wider">
                     Step {currentStep + 1} of {QUIZ_QUESTIONS.length}
                   </span>
@@ -112,10 +113,10 @@ export default function ScentQuiz() {
                         key={idx}
                         className={`h-1.5 rounded-full transition-all duration-300 ${
                           idx === currentStep
-                            ? 'w-6 bg-[#F3E8D8]'
+                            ? 'w-6 bg-[#8B1E2D]'
                             : idx < currentStep
-                            ? 'w-3 bg-[#F3E8D8]/50'
-                            : 'w-3 bg-[#7F1D2D]'
+                            ? 'w-3 bg-[#625C55]'
+                            : 'w-3 bg-[#D9C9B8]'
                         }`}
                       />
                     ))}
@@ -123,7 +124,7 @@ export default function ScentQuiz() {
                 </div>
 
                 {/* Question Title */}
-                <h3 className="font-bodoni text-[22px] sm:text-[26px] md:text-[28px] font-medium text-[#FAF6EF] mb-6 leading-tight tracking-[-0.015em]">
+                <h3 className="font-bodoni text-[22px] sm:text-[26px] md:text-[28px] font-medium text-[#2A211F] mb-6 leading-tight tracking-[-0.015em]">
                   {currentQuestion.title}
                 </h3>
 
@@ -138,30 +139,30 @@ export default function ScentQuiz() {
                         onClick={() => handleSelectOption(currentQuestion.id, opt.value)}
                         className={`w-full text-left p-3.5 sm:p-4 rounded-xl border font-manrope text-[14px] font-semibold flex items-center justify-between transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-[#F3E8D8] border-[#F3E8D8] text-[#4A1019] shadow-sm'
-                            : 'bg-[#7F1D2D] border-[#4A1019] text-[#FAF6EF] hover:border-[#F3E8D8]/40 hover:bg-[#963044]'
+                            ? 'bg-[#8B1E2D] border-[#64141F] text-[#FBF8F2] shadow-sm'
+                            : 'bg-[#FBF8F2] border-[#D9C9B8] text-[#2A211F] hover:border-[#8B1E2D]/40 hover:bg-[#FBF8F2]'
                         }`}
                       >
                         <span>{opt.label}</span>
-                        {isSelected && <Check className="w-4 h-4 text-[#4A1019] shrink-0" />}
+                        {isSelected && <Check className="w-4 h-4 text-[#FBF8F2] shrink-0" />}
                       </button>
                     );
                   })}
                 </div>
 
                 {currentStep > 0 && (
-                  <div className="mt-6 pt-4 border-t border-[#7F1D2D] flex justify-between items-center">
+                  <div className="mt-6 pt-4 border-t border-[#D9D1C6] flex justify-between items-center">
                     <button
                       type="button"
                       onClick={() => setCurrentStep((prev) => prev - 1)}
-                      className="text-xs font-manrope font-medium text-[#F3E8D8]/70 hover:text-[#FAF6EF] transition-colors btn-interactive"
+                      className="text-xs font-manrope font-medium text-[#625C55] hover:text-[#201C19] transition-colors btn-interactive"
                     >
                       ← Back
                     </button>
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="text-xs font-manrope text-[#F3E8D8]/50 hover:text-[#FAF6EF] transition-colors flex items-center gap-1 btn-interactive"
+                      className="text-xs font-manrope text-[#625C55]/80 hover:text-[#201C19] transition-colors flex items-center gap-1 btn-interactive"
                     >
                       <RotateCcw className="w-3 h-3" />
                       <span>Reset</span>
@@ -172,19 +173,19 @@ export default function ScentQuiz() {
             ) : (
               /* Results View with Smooth Entrance */
               <div className="space-y-6 animate-fadeIn transition-opacity duration-300">
-                <div className="flex items-center justify-between border-b border-[#7F1D2D] pb-4">
+                <div className="flex items-center justify-between border-b border-[#D9D1C6] pb-4">
                   <div>
-                    <span className="text-[12px] font-manrope font-semibold tracking-[0.09em] text-[#F3E8D8]/70 uppercase block">
+                    <span className="text-[12px] font-manrope font-semibold tracking-[0.09em] text-[#625C55] uppercase block">
                       MATCH RESULT
                     </span>
-                    <h3 className="font-bodoni text-[22px] sm:text-[26px] font-medium text-[#FAF6EF]">
+                    <h3 className="font-bodoni text-[22px] sm:text-[26px] font-medium text-[#201C19]">
                       Recommended Signatures
                     </h3>
                   </div>
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="text-xs font-manrope font-semibold text-[#F3E8D8] hover:text-[#FAF6EF] flex items-center gap-1 border border-[#7F1D2D] px-3 py-1.5 rounded-lg bg-[#7F1D2D] btn-interactive"
+                    className="text-xs font-manrope font-semibold text-[#625C55] hover:text-[#201C19] flex items-center gap-1 border border-[#D9D1C6] px-3 py-1.5 rounded-lg bg-[#F6F2EA] btn-interactive"
                   >
                     <RotateCcw className="w-3 h-3" />
                     <span>Retake</span>
@@ -193,31 +194,31 @@ export default function ScentQuiz() {
 
                 {/* Primary Match */}
                 {displayProducts[0] && (
-                  <div className="bg-[#7F1D2D] border border-[#4A1019] rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4 shadow-xs transition-transform duration-200 hover:scale-[1.01]">
+                  <div className="bg-[#F6F2EA] border border-[#D9D1C6] rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4 shadow-xs transition-transform duration-200 hover:scale-[1.01]">
                     <img
                       src={displayProducts[0].image}
                       alt={displayProducts[0].name}
-                      className="w-24 h-24 object-contain rounded-lg bg-[#4A1019] shrink-0 p-1"
+                      className="w-24 h-24 object-contain rounded-lg bg-[#EEE8DD] shrink-0 p-1"
                     />
                     <div className="flex-1 text-center sm:text-left min-w-0">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#4A1019] text-[#F3E8D8] border border-[#7F1D2D] text-[11px] font-manrope font-semibold uppercase tracking-wider mb-1">
-                        <Sparkles className="w-3 h-3 text-[#F3E8D8]" />
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#E5DCCF] text-[#721C24] border border-[#D9D1C6] text-[11px] font-manrope font-semibold uppercase tracking-wider mb-1">
+                        <Sparkles className="w-3 h-3 text-[#721C24]" />
                         TOP MATCH · ÉLAVA SIGNATURE
                       </span>
-                      <h4 className="font-manrope text-[18px] sm:text-[20px] font-semibold text-[#FAF6EF]">
+                      <h4 className="font-manrope text-[18px] sm:text-[20px] font-semibold text-[#201C19]">
                         {displayProducts[0].name}
                       </h4>
-                      <p className="font-manrope text-[14px] text-[#F3E8D8]/70 mt-0.5 font-normal">
+                      <p className="font-manrope text-[14px] text-[#625C55] mt-0.5 font-normal">
                         {displayProducts[0].scentIdentity}
                       </p>
-                      <span className="font-manrope text-[16px] font-semibold text-[#FAF6EF] mt-1 block">
+                      <span className="font-manrope text-[16px] font-semibold text-[#201C19] mt-1 block">
                         ₹{displayProducts[0].price?.toLocaleString()}
                       </span>
                     </div>
 
                     <Link
                       to={`/product/${displayProducts[0].slug}`}
-                      className="w-full sm:w-auto bg-[#F3E8D8] hover:bg-[#FAF6EF] active:scale-[0.98] text-[#4A1019] py-3 px-6 rounded-xl font-manrope text-[14px] font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
+                      className="w-full sm:w-auto bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] py-3 px-6 rounded-xl font-manrope text-[14px] font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
                     >
                       <span>View Your Match →</span>
                     </Link>
@@ -227,7 +228,7 @@ export default function ScentQuiz() {
                 {/* Other Matches */}
                 {displayProducts.length > 1 && (
                   <div className="pt-2">
-                    <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#F3E8D8]/70 mb-2.5">
+                    <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#625C55] mb-2.5">
                       Other Good Matches
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -235,22 +236,22 @@ export default function ScentQuiz() {
                         <Link
                           key={p.id}
                           to={`/product/${p.slug}`}
-                          className="group bg-[#7F1D2D] border border-[#4A1019] rounded-lg p-3 flex items-center justify-between hover:border-[#F3E8D8]/40 active:scale-[0.98] transition-all btn-interactive"
+                          className="group bg-[#F6F2EA] border border-[#D9D1C6] rounded-lg p-3 flex items-center justify-between hover:border-[#721C24]/40 active:scale-[0.98] transition-all btn-interactive"
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <img
                               src={p.image}
                               alt={p.name}
-                              className="w-10 h-10 object-contain rounded bg-[#4A1019] shrink-0 p-1"
+                              className="w-10 h-10 object-contain rounded bg-[#EEE8DD] shrink-0 p-1"
                             />
                             <div className="min-w-0">
-                              <h5 className="font-manrope text-[16px] font-semibold text-[#FAF6EF] truncate">
+                              <h5 className="font-manrope text-[16px] font-semibold text-[#201C19] truncate">
                                 {p.name}
                               </h5>
-                              <p className="font-manrope text-[13px] text-[#F3E8D8]/70 truncate font-normal">{p.scentIdentity}</p>
+                              <p className="font-manrope text-[13px] text-[#625C55] truncate font-normal">{p.scentIdentity}</p>
                             </div>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-[#F3E8D8]/70 shrink-0 transform group-hover:translate-x-1 group-hover:text-[#F3E8D8] transition-transform" />
+                          <ArrowRight className="w-4 h-4 text-[#625C55] shrink-0 transform group-hover:translate-x-1 group-hover:text-[#721C24] transition-transform" />
                         </Link>
                       ))}
                     </div>

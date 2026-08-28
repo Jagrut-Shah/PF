@@ -6,17 +6,17 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
  * DiscoverySet Component ("TRY BEFORE YOU BUY — ÉLAVA DISCOVERY SET")
- * Primary Cherry section, Deep Cherry card surface, Cream selected controls.
+ * Light Luxury Perfume Aesthetic: Warm Ivory #F6F2EA and Cream #EEE8DD surfaces.
  */
 export default function DiscoverySet() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-7 sm:py-9 bg-[#7F1D2D] text-[#FAF6EF]">
+    <section className="py-7 sm:py-9 bg-[#F4EBDD] text-[#2A211F]">
       <MainContainer>
         <div
           ref={ref}
-          className={`bg-[#4A1019] border border-[#7F1D2D] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs relative overflow-hidden reveal-init ${
+          className={`bg-[#EEE2D2] border border-[#D9C9B8] rounded-2xl p-5 sm:p-7 md:p-8 shadow-xs relative overflow-hidden reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
@@ -25,14 +25,14 @@ export default function DiscoverySet() {
             
             {/* Left Column: Visual */}
             <div className="md:col-span-5 lg:col-span-4">
-              <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden border border-[#7F1D2D] bg-[#4A1019] shadow-xs group">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden border border-[#D9D1C6] bg-[#F6F2EA] shadow-xs group">
                 <img
                   src="/images/products/row-1-column-1.png"
                   alt="ÉLAVA Discovery Set"
                   className="w-full h-full object-contain p-2 transform transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
-                <div className="absolute top-2.5 left-2.5 bg-[#7F1D2D] text-[#F3E8D8] text-[10px] font-manrope font-semibold tracking-[0.09em] uppercase px-2.5 py-1 rounded shadow-xs">
+                <div className="absolute top-2.5 left-2.5 bg-[#8B1E2D] text-[#FBF8F2] text-[10px] font-manrope font-semibold tracking-[0.09em] uppercase px-2.5 py-1 rounded shadow-xs">
                   TRY BEFORE YOU BUY
                 </div>
               </div>
@@ -40,27 +40,27 @@ export default function DiscoverySet() {
 
             {/* Right Column */}
             <div className="md:col-span-7 lg:col-span-8 space-y-3">
-              <div className="inline-flex items-center gap-1.5 text-[12px] font-manrope tracking-[0.09em] uppercase text-[#F3E8D8] font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-[#F3E8D8]" />
+              <div className="inline-flex items-center gap-1.5 text-[12px] font-manrope tracking-[0.09em] uppercase text-[#8B1E2D] font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-[#8B1E2D]" />
                 <span>ÉLAVA DISCOVERY SET</span>
               </div>
 
-              <h2 className="font-bodoni text-[22px] sm:text-[28px] md:text-[32px] font-medium text-[#FAF6EF] leading-[1.05] tracking-[-0.015em]">
-                Sample ÉLAVA Fragrances <span className="font-medium text-[#F3E8D8]/70 italic">At Home</span>
+              <h2 className="font-bodoni text-[22px] sm:text-[28px] md:text-[32px] font-medium text-[#2A211F] leading-[1.05] tracking-[-0.015em]">
+                Sample ÉLAVA Fragrances <span className="font-medium text-[#A89A8B] italic">At Home</span>
               </h2>
 
-              <p className="font-manrope text-[14px] text-[#F3E8D8]/70 leading-[1.6]">
+              <p className="font-manrope text-[14px] text-[#A89A8B] leading-[1.6]">
                 Experience our handcrafted 60 ML Eau de Parfum collection before choosing your full-size signature bottle.
               </p>
 
               {/* What You Receive */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[13px] font-manrope text-[#F3E8D8]/70">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[13px] font-manrope text-[#A89A8B]">
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#F3E8D8]" />
+                  <Check className="w-4 h-4 text-[#8B1E2D] shrink-0" />
                   <span>Curated 60ml Eau de Parfum bottles</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#F3E8D8]" />
+                  <Check className="w-4 h-4 text-[#8B1E2D] shrink-0" />
                   <span>Top, Heart & Base note breakdown</span>
                 </div>
               </div>
@@ -69,7 +69,7 @@ export default function DiscoverySet() {
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <RouterLink
                   to="/discovery-set"
-                  className="inline-flex items-center gap-2 bg-[#F3E8D8] hover:bg-[#FAF6EF] text-[#4A1019] px-5 py-2.5 rounded-lg font-manrope text-[13px] font-semibold tracking-[0.01em] transition-all duration-200 shadow-xs btn-interactive"
+                  className="inline-flex items-center gap-2 bg-[#8B1E2D] hover:bg-[#741929] text-[#FBF8F2] px-5 py-2.5 rounded-lg font-manrope text-[13px] font-semibold tracking-[0.01em] transition-all duration-200 shadow-xs btn-interactive"
                 >
                   <span>Explore Discovery Set</span>
                   <ArrowRight className="w-3.5 h-3.5" />
