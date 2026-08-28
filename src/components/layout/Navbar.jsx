@@ -80,8 +80,8 @@ export default function Navbar() {
       <ScrollProgress />
 
       {/* CHERRY navbar container — primary brand color */}
-      <div className={`max-w-7xl mx-auto bg-[#4A1019] border border-[#7F1D2D] rounded-xl sm:rounded-2xl transition-all duration-300 ${
-        scrolled ? 'shadow-[0_4px_24px_rgba(74,16,25,0.35)] border-[#4A1019]' : 'shadow-[0_2px_12px_rgba(74,16,25,0.20)]'
+      <div className={`max-w-7xl mx-auto bg-[#7F1D2D] border border-[#7F1D2D] rounded-xl sm:rounded-2xl transition-all duration-300 ${
+        scrolled ? 'shadow-[0_4px_24px_rgba(127,29,45,0.35)] border-[#7F1D2D]' : 'shadow-[0_2px_12px_rgba(127,29,45,0.20)]'
       }`}>
         <MainContainer>
           <div className="h-[54px] sm:h-[60px] md:h-[68px] flex items-center justify-between">
@@ -94,7 +94,7 @@ export default function Navbar() {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-1.5 -ml-1.5 text-[#FBF8F2]/80 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-1.5 -ml-1.5 text-[#2A211F]/80 hover:text-[#2A211F] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -140,8 +140,8 @@ export default function Navbar() {
                     className={
                       `font-manrope text-[12px] lg:text-[13px] font-medium px-3 py-1.5 rounded-md transition-all duration-200 ${
                         isActive
-                          ? 'text-[#FBF8F2] font-semibold bg-[#7F1D2D]/60 border border-[#FBF8F2]/20'
-                          : 'text-[#FBF8F2]/75 hover:text-[#FBF8F2] hover:bg-[#7F1D2D]/40'
+                          ? 'text-[#2A211F] font-bold bg-[#2A211F]/10 border border-[#2A211F]/20'
+                          : 'text-[#2A211F]/80 hover:text-[#2A211F] hover:bg-[#2A211F]/5'
                       }`
                     }
                   >
@@ -155,8 +155,8 @@ export default function Navbar() {
             <div className="flex items-center justify-end space-x-1 w-auto">
               <Link
                 to={user ? "/account" : "/login"}
-                className={`p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive ${
-                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#FBF8F2]' : ''
+                className={`p-2 text-[#2A211F]/80 hover:text-[#2A211F] transition-colors duration-200 focus:outline-none btn-interactive ${
+                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#2A211F]' : ''
                 }`}
                 aria-label={user ? "View Account Profile" : "Login or Sign Up"}
               >
@@ -169,7 +169,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-2 text-[#2A211F]/80 hover:text-[#2A211F] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label="Search collection"
               >
                 <Search className="w-[17px] h-[17px] stroke-[1.5]" />
@@ -178,22 +178,22 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new Event('open-cart-drawer'))}
-                className="p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none relative btn-interactive"
+                className="p-2 text-[#2A211F]/80 hover:text-[#2A211F] transition-colors duration-200 focus:outline-none relative btn-interactive"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
                 <ShoppingBag className="w-[17px] h-[17px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 bg-[#F3E8D8] text-[#4A1019] text-[8.5px] font-sans font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">
+                  <span className="absolute top-0.5 right-0.5 bg-[#2A211F] text-[#F3E8D8] text-[8.5px] font-sans font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              {/* CTA: Cream surface with Cherry text — strong contrast */}
+              {/* CTA: Black surface with Cream text */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#F3E8D8] hover:bg-[#FAF6EF] active:scale-[0.98] text-[#4A1019] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#2A211F] hover:bg-[#000000] active:scale-[0.98] text-[#F3E8D8] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
