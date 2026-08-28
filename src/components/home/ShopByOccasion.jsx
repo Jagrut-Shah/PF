@@ -39,15 +39,15 @@ const OCCASIONS_DATA = [
 ];
 
 /**
- * ShopByOccasion Component — Single 4-Column Row Layout (No heading text)
- * Light Luxury Perfume Aesthetic: Warm Ivory #F6F2EA backdrop, subtle champagne illumination, and staggered scroll reveal.
+ * ShopByOccasion Component — Single 4-Column Row Layout
+ * Cream background #F4EBDD, controlled vertical scale.
  */
 export default function ShopByOccasion() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-5 sm:py-7 md:py-10 bg-[#F6F2EA] text-[#201C19] border-b border-[#D9D1C6] relative overflow-hidden" aria-label="Shop by occasion">
-      {/* Subtle Champagne Ambient Light Zone behind occasion cards */}
+    <section className="py-4 sm:py-6 md:py-8 bg-[#F4EBDD] text-[#2A211F] border-b border-[#D9C9B8] relative overflow-hidden" aria-label="Shop by occasion">
+      {/* Subtle Ambient Light Zone behind occasion cards */}
       <div className="absolute inset-0 bg-ambient-occasion pointer-events-none" />
 
       <MainContainer className="relative z-10">

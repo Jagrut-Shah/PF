@@ -85,22 +85,21 @@ export default function GlobalCartDrawer() {
       role="dialog"
       aria-label="Your Shopping Cart"
     >
-      <div className="bg-[#F6F2EA] border border-[#D9D1C6] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#201C19] overflow-hidden">
+      <div className="bg-[#FBF8F2] border border-[#D9C9B8] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#2A211F] overflow-hidden">
         
-        {/* Header */}
-        <div className="p-4 border-b border-[#D9D1C6] flex items-center justify-between bg-[#EEE8DD]">
+        {/* Header — Cherry #8B1E2D */}
+        <div className="p-4 border-b border-[#64141F] flex items-center justify-between bg-[#8B1E2D] text-[#FBF8F2]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-[#721C24]" />
-            <h3 className="font-bodoni text-[18px] font-medium text-[#201C19] tracking-[-0.015em]">
+            <ShoppingBag className="w-4 h-4 text-[#F4EBDD]" />
+            <h3 className="font-bodoni text-[17px] font-medium text-[#FBF8F2] tracking-[-0.015em]">
               Your Cart ({cartTotals.itemCount || 0} {(cartTotals.itemCount || 0) === 1 ? 'Item' : 'Items'})
             </h3>
           </div>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-[#625C55] hover:text-[#201C19] p-1 rounded-full hover:bg-[#D9D1C6]/40 transition-colors btn-interactive"
-            aria-label="Close cart drawer"
-            id="global-close-cart-btn"
+            className="p-1 text-[#F4EBDD]/70 hover:text-[#FBF8F2] transition-colors"
+            aria-label="Close cart"
           >
             <X className="w-5 h-5" />
           </button>

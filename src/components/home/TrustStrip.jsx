@@ -12,78 +12,78 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 }
 
 /**
- * TrustStrip Component — Light Luxury Palette:
- * Warm Ivory #F6F2EA base, Cream #EEE8DD inner panel, Deep Espresso #201C19 typography.
+ * TrustStrip Component:
+ * Cream #F4EBDD base, Deep Cream #EEE2D2 inner panel, Cherry #8B1E2D icon accents.
  */
 export default function TrustStrip() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-6 bg-[#F6F2EA] text-[#201C19]">
+    <section className="py-5 bg-[#F4EBDD] text-[#2A211F]">
       <MainContainer>
         <div
           ref={ref}
-          className={`bg-[#EEE8DD] border border-[#D9D1C6] rounded-2xl p-4 sm:p-5 md:p-6 shadow-xs text-[#201C19] reveal-init ${
+          className={`bg-[#EEE2D2] border border-[#D9C9B8] rounded-xl p-3.5 sm:p-4 md:p-5 shadow-xs text-[#2A211F] reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[#D9D1C6]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 divide-y md:divide-y-0 md:divide-x divide-[#D9C9B8]">
             
             {/* 1. Secure Payments */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
-              <div className="w-10 h-10 rounded-xl bg-[#F6F2EA] border border-[#D9D1C6] flex items-center justify-center shrink-0 shadow-xs">
-                <ShieldCheck className="w-5 h-5 text-[#721C24]" />
+            <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <ShieldCheck className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[14px] font-semibold tracking-wide text-[#201C19]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Secure Payments
                 </h4>
-                <p className="font-manrope text-[13px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   UPI, Cards & Net Banking
                 </p>
               </div>
             </div>
 
             {/* 2. COD Available */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4 first:pt-0">
-              <div className="w-10 h-10 rounded-xl bg-[#F6F2EA] border border-[#D9D1C6] flex items-center justify-center shrink-0 shadow-xs">
-                <CreditCard className="w-5 h-5 text-[#201C19]" />
+            <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4 first:pt-0">
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <CreditCard className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[14px] font-semibold tracking-wide text-[#201C19]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   COD Available
                 </h4>
-                <p className="font-manrope text-[13px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Pay cash on delivery
                 </p>
               </div>
             </div>
 
             {/* 3. Tracked Delivery */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#F6F2EA] border border-[#D9D1C6] flex items-center justify-center shrink-0 shadow-xs">
-                <Truck className="w-5 h-5 text-[#201C19]" />
+            <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <Truck className="w-4 h-4 text-[#8B1E2D]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[14px] font-semibold tracking-wide text-[#201C19]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Tracked Delivery
                 </h4>
-                <p className="font-manrope text-[13px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Dispatched across India
                 </p>
               </div>
             </div>
 
             {/* 4. Customer Support */}
-            <div className="flex items-center gap-3 pt-2 md:pt-0 md:pl-4">
-              <div className="w-10 h-10 rounded-xl bg-[#F6F2EA] border border-[#D9D1C6] flex items-center justify-center shrink-0 shadow-xs">
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+            <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
+              <div className="w-8 h-8 rounded-lg bg-[#FBF8F2] border border-[#D9C9B8] flex items-center justify-center shrink-0 shadow-xs">
+                <WhatsAppIcon className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[14px] font-semibold tracking-wide text-[#201C19]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
                   Customer Support
                 </h4>
-                <p className="font-manrope text-[13px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#A89A8B] truncate font-normal">
                   Direct help via WhatsApp
                 </p>
               </div>

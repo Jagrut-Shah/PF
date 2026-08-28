@@ -33,13 +33,13 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * Light Luxury Perfume Aesthetic: Secondary Cream #EEE8DD background for elegant visual rhythm.
+ * Deep Cream #EEE2D2 background for elegant contrast against Cherry sections.
  */
 export default function FindYourScent() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#EEE8DD] text-[#201C19] border-b border-[#D9D1C6]" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 bg-[#EEE2D2] text-[#2A211F] border-b border-[#D9C9B8]" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Heading & Subtitle */}
@@ -47,10 +47,11 @@ export default function FindYourScent() {
             id="find-your-scent-heading"
             title="FIND YOUR SCENT"
             subtitle="Find a fragrance for the way you feel."
+            eyebrow="Curated Categories"
           />
 
-          {/* 3-column single horizontal row with max-w-5xl on desktop to slightly reduce card size */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-5 mt-4 sm:mt-8 w-full max-w-5xl mx-auto">
+          {/* 3-column single horizontal row */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-5 mt-4 sm:mt-6 w-full max-w-5xl mx-auto">
             {SCENT_CATEGORIES.map((category, idx) => (
               <div
                 key={category.id}

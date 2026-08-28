@@ -15,7 +15,7 @@ export default function MostLoved() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-10 sm:py-14 bg-[#F6F2EA] text-[#201C19] relative overflow-hidden border-b border-[#D9D1C6]" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 bg-[#FBF8F2] text-[#2A211F] relative overflow-hidden border-b border-[#D9C9B8]" aria-labelledby="most-loved-heading">
       {/* Subtle Champagne Ambient Light Zone */}
       <div className="absolute inset-0 bg-ambient-bestsellers pointer-events-none" />
 
@@ -26,23 +26,23 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-bodoni text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-medium text-[#201C19] leading-[1.05] tracking-[-0.015em]"
+                className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#2A211F] leading-[1.05] tracking-[-0.015em]"
               >
-                Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[18px] sm:text-[22px] md:text-[26px]">BESTSELLERS</span>
+                Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[15px] sm:text-[18px] md:text-[20px]">BESTSELLERS</span>
               </h2>
-              <p className="font-manrope text-[17px] sm:text-[18px] text-[#625C55] mt-1 font-medium leading-[1.4]">
+              <p className="font-manrope text-[13px] sm:text-[14px] text-[#A89A8B] mt-1 font-normal leading-[1.4]">
                 Our most coveted fragrance signatures.
               </p>
             </div>
 
             <Link
               to="/category/bestsellers"
-              className="group inline-flex items-center gap-2 font-manrope text-[14px] font-semibold text-[#201C19] hover:text-[#721C24] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
+              className="group inline-flex items-center gap-1.5 font-manrope text-[13px] font-semibold text-[#2A211F] hover:text-[#8B1E2D] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
               aria-label="View all bestsellers"
             >
               <span>View All Bestsellers</span>
               <ArrowRight
-                className="w-4 h-4 stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1.5"
+                className="w-3.5 h-3.5 stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1"
                 aria-hidden="true"
               />
             </Link>

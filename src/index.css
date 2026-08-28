@@ -2,51 +2,61 @@
 @import "tailwindcss";
 
 :root {
-  /* ÉLAVA Light Luxury Perfume Palette */
-  --elava-ivory: #F6F2EA;          /* Primary Warm Ivory Background */
-  --elava-cream: #EEE8DD;          /* Secondary Cream */
-  --elava-champagne: #E5DCCF;      /* Light Champagne */
-  --elava-stone: #D8D0C4;          /* Soft Stone */
-  --elava-espresso: #201C19;       /* Primary Deep Espresso Typography */
-  --elava-charcoal: #625C55;       /* Secondary Warm Charcoal Typography */
-  --elava-border: #D9D1C6;         /* Subtle Border */
-  --elava-burgundy: #721C24;       /* Deep Burgundy Accent (Restrained) */
-  --elava-burgundy-hover: #5A161C; /* Darker Burgundy for hover */
-  --elava-gold: #C6A15B;           /* Bestseller Gold Tag & Stars */
-  --elava-footer-bg: #1A1614;      /* Deep Espresso / Warm Charcoal for Footer */
-  
-  /* Global Two-Font System Tokens (Bodoni Moda for Brand/Display, Manrope for Body/UI) */
+  /* ============================================================
+     ÉLAVA — Cherry + Cream Luxury Fragrance Palette
+  ============================================================ */
+
+  /* Primary Environment */
+  --elava-cream: #F4EBDD;           /* Dominant page background */
+  --elava-cream-deep: #EEE2D2;      /* Mid-tone section surfaces */
+  --elava-warm-white: #FBF8F2;      /* Lighter card/panel surfaces */
+  --elava-blush: #E8C9C5;           /* Sparingly — soft tonal variation */
+
+  /* Typography */
+  --elava-espresso: #2A211F;        /* Primary text — dark, warm */
+  --elava-taupe: #A89A8B;           /* Secondary/muted text */
+  --elava-border: #D9C9B8;          /* Subtle warm neutral border */
+
+  /* Signature Cherry */
+  --elava-cherry: #8B1E2D;          /* Primary CTA, active states, key accents */
+  --elava-cherry-deep: #64141F;     /* Hover, footer, deeper surfaces */
+  --elava-cherry-hover: #741929;    /* Mid-hover state */
+
+  /* Exclusive Accents */
+  --elava-gold: #C6A15B;            /* Bestseller tag & stars ONLY */
+
+  /* Global Two-Font System */
   --font-bodoni: "Bodoni Moda", serif;
   --font-display: "Bodoni Moda", serif;
   --font-serif: "Bodoni Moda", serif;
   --font-manrope: "Manrope", sans-serif;
   --font-sans: "Manrope", sans-serif;
 
-  /* Motion & Animation Tokens */
+  /* Motion Tokens */
   --duration-fast: 180ms;
   --duration-standard: 300ms;
   --duration-reveal: 650ms;
   --duration-ambient: 14s;
   --ease-elava: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Warm Studio Lighting Shadow Hierarchy */
-  --shadow-subtle: 0 2px 10px rgba(60, 45, 30, 0.04);
-  --shadow-medium: 0 6px 20px rgba(60, 45, 30, 0.07);
-  --shadow-deep: 0 12px 32px rgba(60, 45, 30, 0.10);
-  --shadow-navbar: 0 4px 20px rgba(60, 45, 30, 0.06);
+  /* Warm Shadow Hierarchy (brown/espresso based — no black) */
+  --shadow-subtle: 0 2px 8px rgba(42, 33, 31, 0.05);
+  --shadow-medium: 0 5px 18px rgba(42, 33, 31, 0.08);
+  --shadow-deep: 0 10px 28px rgba(42, 33, 31, 0.11);
+  --shadow-navbar: 0 3px 16px rgba(42, 33, 31, 0.07);
 }
 
 @theme {
-  --color-elava-ivory: #F6F2EA;
-  --color-elava-cream: #EEE8DD;
-  --color-elava-champagne: #E5DCCF;
-  --color-elava-stone: #D8D0C4;
-  --color-elava-espresso: #201C19;
-  --color-elava-charcoal: #625C55;
-  --color-elava-border: #D9D1C6;
-  --color-elava-burgundy: #721C24;
+  --color-elava-cream: #F4EBDD;
+  --color-elava-cream-deep: #EEE2D2;
+  --color-elava-warm-white: #FBF8F2;
+  --color-elava-blush: #E8C9C5;
+  --color-elava-espresso: #2A211F;
+  --color-elava-taupe: #A89A8B;
+  --color-elava-border: #D9C9B8;
+  --color-elava-cherry: #8B1E2D;
+  --color-elava-cherry-deep: #64141F;
   --color-elava-gold: #C6A15B;
-  --color-elava-footer-bg: #1A1614;
 
   --font-bodoni: "Bodoni Moda", serif;
   --font-display: "Bodoni Moda", serif;
@@ -58,8 +68,8 @@
 html, body, #root, main {
   margin: 0;
   padding: 0;
-  background-color: #F6F2EA;
-  color: #201C19;
+  background-color: #F4EBDD;
+  color: #2A211F;
   font-family: var(--font-manrope);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,12 +77,13 @@ html, body, #root, main {
   max-width: 100vw;
 }
 
-/* Mobile overflow protection & tap optimization */
 body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Custom typography utility classes */
+/* ============================================================
+   TYPOGRAPHY UTILITY CLASSES
+============================================================ */
 .font-bodoni, .font-display, .font-serif, .font-sora {
   font-family: var(--font-bodoni);
 }
@@ -86,178 +97,191 @@ body {
   font-family: var(--font-bodoni);
 }
 
-/* Centralized Typography Design Tokens */
+/* ============================================================
+   CORRECTED TYPOGRAPHY SCALE — Controlled, Premium, Not Oversized
+============================================================ */
+
+/* Hero display: max 52px desktop, 28px minimum — confident, not enormous */
 .elava-display-hero {
   font-family: var(--font-bodoni);
   font-weight: 500;
-  font-size: clamp(32px, 4.5vw, 60px);
-  line-height: 0.98;
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.0;
   letter-spacing: -0.02em;
-  color: #201C19;
+  color: #2A211F;
 }
 
+/* Section heading: max 36px — visible hierarchy without dominating */
 .elava-heading-section {
   font-family: var(--font-bodoni);
   font-weight: 500;
-  font-size: clamp(22px, 3vw, 40px);
-  line-height: 1.05;
+  font-size: clamp(20px, 2.5vw, 36px);
+  line-height: 1.06;
   letter-spacing: -0.015em;
-  color: #201C19;
+  color: #2A211F;
 }
 
+/* Editorial heading: max 42px */
 .elava-heading-editorial {
   font-family: var(--font-bodoni);
   font-weight: 500;
-  font-size: clamp(26px, 3.5vw, 46px);
+  font-size: clamp(22px, 2.8vw, 42px);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: #201C19;
+  color: #2A211F;
 }
 
+/* Card heading: max 24px */
 .elava-heading-card {
   font-family: var(--font-bodoni);
   font-weight: 500;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(18px, 1.8vw, 24px);
   line-height: 1.12;
   letter-spacing: -0.01em;
-  color: #201C19;
+  color: #2A211F;
 }
 
+/* Modal heading */
 .elava-heading-modal {
   font-family: var(--font-bodoni);
   font-weight: 500;
-  font-size: clamp(22px, 2.5vw, 28px);
+  font-size: clamp(18px, 2vw, 26px);
   line-height: 1.12;
   letter-spacing: -0.015em;
-  color: #201C19;
+  color: #2A211F;
 }
 
+/* Subheading: max 17px */
 .elava-subheading {
   font-family: var(--font-manrope);
   font-weight: 500;
-  font-size: clamp(17px, 1.8vw, 21px);
-  line-height: 1.4;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.45;
   letter-spacing: 0;
-  color: #625C55;
+  color: #A89A8B;
 }
 
+/* Body: max 15px */
 .elava-body {
   font-family: var(--font-manrope);
   font-weight: 400;
-  font-size: clamp(15px, 1.5vw, 17px);
+  font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.6;
   letter-spacing: 0;
-  color: #625C55;
+  color: #A89A8B;
 }
 
 .elava-body-sm {
   font-family: var(--font-manrope);
   font-weight: 400;
-  font-size: clamp(14px, 1.4vw, 15px);
+  font-size: clamp(12px, 1.1vw, 14px);
   line-height: 1.5;
   letter-spacing: 0;
-  color: #625C55;
+  color: #A89A8B;
 }
 
+/* Product name: max 17px */
 .elava-product-name {
   font-family: var(--font-manrope);
   font-weight: 600;
-  font-size: clamp(16px, 1.8vw, 19px);
+  font-size: clamp(14px, 1.5vw, 17px);
   line-height: 1.3;
   letter-spacing: 0;
-  color: #201C19;
+  color: #2A211F;
 }
 
 .elava-product-price {
   font-family: var(--font-manrope);
   font-weight: 600;
-  font-size: clamp(16px, 1.8vw, 19px);
+  font-size: clamp(14px, 1.5vw, 17px);
   line-height: 1.2;
-  color: #201C19;
+  color: #2A211F;
 }
 
 .elava-product-desc {
   font-family: var(--font-manrope);
   font-weight: 400;
-  font-size: clamp(14px, 1.4vw, 15px);
+  font-size: clamp(12px, 1.2vw, 14px);
   line-height: 1.5;
-  color: #625C55;
+  color: #A89A8B;
 }
 
+/* Eyebrow: Cherry accent */
 .elava-eyebrow {
   font-family: var(--font-manrope);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #721C24;
+  color: #8B1E2D;
 }
 
+/* Button text: max 15px */
 .elava-btn-text {
   font-family: var(--font-manrope);
   font-weight: 600;
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: clamp(13px, 1.3vw, 15px);
   line-height: 1.2;
   letter-spacing: 0.01em;
 }
 
-/* Subtle Warm Champagne & Studio Ambient Illumination Utilities */
+/* ============================================================
+   CHERRY ATMOSPHERIC AMBIENT LIGHT UTILITIES
+   Subtle studio-quality cherry illumination at very low opacity
+============================================================ */
+
+/* Hero — subtle cherry warmth behind product */
 .bg-ambient-hero {
-  background: radial-gradient(ellipse 80% 60% at 75% 50%, rgba(229, 220, 207, 0.7), transparent 70%);
+  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(139, 30, 45, 0.07), rgba(244, 235, 221, 0.3) 50%, transparent 75%);
 }
 
+/* Bestsellers — warm cherry glow */
 .bg-ambient-bestsellers {
-  background: radial-gradient(ellipse 70% 50% at 20% 40%, rgba(229, 220, 207, 0.45), transparent 65%);
+  background: radial-gradient(ellipse 65% 45% at 18% 42%, rgba(139, 30, 45, 0.06), transparent 65%);
 }
 
+/* Occasion — soft cherry illumination */
 .bg-ambient-occasion {
-  background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(229, 220, 207, 0.4), transparent 70%);
+  background: radial-gradient(ellipse 75% 50% at 50% 50%, rgba(139, 30, 45, 0.04), transparent 70%);
 }
 
+/* Deprecated — keep for compatibility */
 .bg-ambient-red {
-  background: radial-gradient(ellipse 75% 55% at 50% 50%, rgba(229, 220, 207, 0.4), transparent 70%);
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139, 30, 45, 0.05), transparent 70%);
 }
 
 .bg-ambient-card {
-  background: radial-gradient(circle at 50% 100%, rgba(229, 220, 207, 0.45), transparent 60%);
+  background: radial-gradient(circle at 50% 100%, rgba(232, 201, 197, 0.35), transparent 60%);
 }
 
+/* Referral — strong cherry atmosphere */
 .bg-ambient-referral {
-  background: radial-gradient(circle at 80% 30%, rgba(229, 220, 207, 0.6), rgba(238, 232, 221, 0.4) 40%, transparent 70%);
+  background: radial-gradient(circle at 75% 30%, rgba(139, 30, 45, 0.12), rgba(100, 20, 31, 0.08) 40%, transparent 70%);
 }
 
+/* Quiz */
 .bg-ambient-quiz {
-  background: radial-gradient(circle at 50% 50%, rgba(229, 220, 207, 0.5), transparent 65%);
+  background: radial-gradient(circle at 50% 45%, rgba(139, 30, 45, 0.05), transparent 65%);
 }
 
+/* Story */
 .bg-ambient-story {
-  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(229, 220, 207, 0.5), transparent 70%);
+  background: radial-gradient(ellipse 65% 55% at 50% 38%, rgba(232, 201, 197, 0.3), transparent 70%);
 }
 
-/* Subtle Matte Studio Sheen */
+/* ============================================================
+   MATTE SURFACE SHEEN
+============================================================ */
 .bg-matte-highlight {
-  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 35%, transparent 60%);
+  background-image: linear-gradient(135deg, rgba(251, 248, 242, 0.5) 0%, rgba(251, 248, 242, 0.15) 40%, transparent 65%);
 }
 
-/* Monochromatic Warm Studio Texture Layer */
-.bg-grain-texture {
-  position: relative;
-}
-
-.bg-grain-texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Scroll Reveal Animation Classes */
+/* ============================================================
+   SCROLL REVEAL ANIMATIONS — Unchanged
+============================================================ */
 .reveal-init {
   opacity: 0;
-  transform: translateY(22px) scale(0.985);
+  transform: translateY(20px) scale(0.987);
   transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
               transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
@@ -274,7 +298,9 @@ body {
 .stagger-3 { transition-delay: 240ms; }
 .stagger-4 { transition-delay: 320ms; }
 
-/* Micro-Interaction Transitions */
+/* ============================================================
+   MICRO-INTERACTION CLASSES — Unchanged
+============================================================ */
 .card-hover-interactive {
   transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
               border-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -284,7 +310,7 @@ body {
 
 .card-hover-interactive:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(60, 45, 30, 0.09);
+  box-shadow: 0 10px 26px rgba(42, 33, 31, 0.09);
 }
 
 .btn-interactive {
@@ -300,7 +326,9 @@ body {
   transform: scale(0.98);
 }
 
-/* Prevent iOS auto-zoom on input focus */
+/* ============================================================
+   MOBILE — Prevent iOS auto-zoom
+============================================================ */
 @media (max-width: 640px) {
   input[type="text"],
   input[type="email"],
@@ -312,59 +340,39 @@ body {
   }
 }
 
-.bg-elava-ivory {
-  background-color: #F6F2EA !important;
+/* ============================================================
+   UTILITY
+============================================================ */
+.bg-elava-cream {
+  background-color: #F4EBDD !important;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Hero Staggered Entrance Animations */
+/* ============================================================
+   HERO ENTRANCE ANIMATIONS — Unchanged
+============================================================ */
 @keyframes heroFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes heroBottleEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.animate-hero-eyebrow {
-  animation: heroFadeInUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards;
-}
+.animate-hero-eyebrow  { animation: heroFadeInUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards; }
+.animate-hero-headline { animation: heroFadeInUp 750ms cubic-bezier(0.16, 1, 0.3, 1) 240ms backwards; }
+.animate-hero-subhead  { animation: heroFadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 360ms backwards; }
+.animate-hero-cta      { animation: heroFadeInUp 850ms cubic-bezier(0.16, 1, 0.3, 1) 480ms backwards; }
+.animate-hero-bottle   { animation: heroBottleEntrance 950ms cubic-bezier(0.16, 1, 0.3, 1) 320ms backwards; }
 
-.animate-hero-headline {
-  animation: heroFadeInUp 750ms cubic-bezier(0.16, 1, 0.3, 1) 240ms backwards;
-}
-
-.animate-hero-subhead {
-  animation: heroFadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 360ms backwards;
-}
-
-.animate-hero-cta {
-  animation: heroFadeInUp 850ms cubic-bezier(0.16, 1, 0.3, 1) 480ms backwards;
-}
-
-.animate-hero-bottle {
-  animation: heroBottleEntrance 950ms cubic-bezier(0.16, 1, 0.3, 1) 320ms backwards;
-}
-
-/* Accessibility: Reduced Motion Support */
+/* ============================================================
+   REDUCED MOTION SUPPORT — Unchanged
+============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-eyebrow,
   .animate-hero-headline,
@@ -381,23 +389,18 @@ html {
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #EEE8DD;
-}
-::-webkit-scrollbar-thumb {
-  background: #D8D0C4;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #721C24;
-}
+/* ============================================================
+   SCROLLBAR — Cherry accent
+============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #EEE2D2; }
+::-webkit-scrollbar-thumb { background: #D9C9B8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #8B1E2D; }
 
-/* Selection color */
+/* ============================================================
+   TEXT SELECTION — Cherry
+============================================================ */
 ::selection {
-  background: rgba(114, 28, 36, 0.20);
-  color: #201C19;
+  background: rgba(139, 30, 45, 0.18);
+  color: #2A211F;
 }

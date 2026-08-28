@@ -22,11 +22,11 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#EEE8DD] border border-[#D9D1C6] rounded-xl p-5 md:p-6 text-[#201C19] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:border-[#721C24]/40 hover:shadow-[0_6px_20px_rgba(60,45,30,0.06)] transition-all"
+      className="bg-[#FBF8F2] border border-[#D9C9B8] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:border-[#8B1E2D]/30 hover:shadow-[0_6px_18px_rgba(139,30,45,0.08)] transition-all"
       role="figure"
     >
-      {/* Subtle Deep Burgundy Top Accent Line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-[#721C24]" />
+      {/* Cherry top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#8B1E2D]" />
 
       {/* Star rating */}
       <div className="mb-3 flex items-center pt-1">
@@ -34,18 +34,18 @@ export default function ReviewCard({ review }) {
       </div>
 
       {/* Review Text — Manrope 400 */}
-      <blockquote className="font-manrope text-[15px] sm:text-[16px] text-[#201C19] leading-[1.6] mb-4 flex-1 relative z-10 min-w-0 break-words font-normal">
+      <blockquote className="font-manrope text-[13px] sm:text-[14px] text-[#2A211F] leading-[1.6] mb-3 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
       {/* Customer Name & Product Link — Manrope 600 & 400 */}
-      <div className="pt-3 border-t border-[#D9D1C6] flex justify-between items-end gap-2 text-[14px]">
+      <div className="pt-2.5 border-t border-[#D9C9B8] flex justify-between items-end gap-2 text-[13px]">
         <div>
-          <span className="font-manrope text-[#201C19] font-semibold block">
+          <span className="font-manrope text-[#2A211F] font-semibold block text-[13px]">
             {customer}
           </span>
           {city && (
-            <span className="font-manrope text-[#625C55] font-normal text-[13px]">
+            <span className="font-manrope text-[#A89A8B] font-normal text-[12px]">
               {city}
             </span>
           )}
@@ -53,12 +53,12 @@ export default function ReviewCard({ review }) {
         {matchedProduct ? (
           <Link
             to={`/product/${matchedProduct.slug}`}
-            className="font-manrope text-[13px] text-[#201C19] hover:text-[#721C24] font-semibold transition-colors uppercase tracking-wider"
+            className="font-manrope text-[11px] text-[#2A211F] hover:text-[#8B1E2D] font-semibold transition-colors uppercase tracking-wider"
           >
             {productName}
           </Link>
         ) : (
-          <span className="font-manrope text-[13px] text-[#201C19] font-semibold uppercase tracking-wider">{productName}</span>
+          <span className="font-manrope text-[11px] text-[#2A211F] font-semibold uppercase tracking-wider">{productName}</span>
         )}
       </div>
     </div>

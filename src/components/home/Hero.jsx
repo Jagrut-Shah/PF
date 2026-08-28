@@ -4,9 +4,11 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * Hero Component — Light Luxury Perfume Studio Atmosphere:
- * Warm Ivory #F6F2EA environment with subtle warm champagne illumination,
- * refined editorial Bodoni Moda typography, and soft studio product lighting.
+ * Hero — CHERRY-FIRST
+ * Deep Cherry → Cherry gradient background.
+ * Cream/Warm White typography for contrast.
+ * Product bottle on a Cream surface — physical, present, premium.
+ * Controlled scale: 75-85vh feel, no oversized headings.
  */
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -19,110 +21,113 @@ export default function Hero() {
     const handleMouseMove = (e) => {
       if (!heroRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
-      const y = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       setMousePos({ x, y });
     };
 
     const container = heroRef.current;
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove, { passive: true });
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener('mousemove', handleMouseMove);
-      }
-    };
+    if (container) container.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => { if (container) container.removeEventListener('mousemove', handleMouseMove); };
   }, []);
 
-  // Desktop subtle parallax offsets (5-8px max for bottle, 2-4px max for light)
-  const bottleTransform = `translate3d(${mousePos.x * 10}px, ${mousePos.y * 10}px, 0)`;
-  const lightTransform = `translate3d(${mousePos.x * 5}px, ${mousePos.y * 5}px, 0)`;
+  const bottleTransform = `translate3d(${mousePos.x * 8}px, ${mousePos.y * 8}px, 0)`;
+  const lightTransform  = `translate3d(${mousePos.x * 4}px, ${mousePos.y * 4}px, 0)`;
 
   return (
     <section
       ref={heroRef}
-      className="relative w-full bg-[#F6F2EA] text-[#201C19] overflow-hidden border-b border-[#D9D1C6] bg-grain-texture"
+      className="relative w-full overflow-hidden border-b border-[#64141F]"
+      style={{ background: 'linear-gradient(135deg, #64141F 0%, #8B1E2D 45%, #741929 100%)' }}
     >
-      {/* Background Atmosphere with Subtle Warm Champagne Illumination */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none">
-        <img
-          src="/images/products/row-1-column-1.png"
-          alt="ÉLAVA Luxury Perfume Hero"
-          className="w-full h-full object-cover object-center opacity-10 mix-blend-multiply scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F6F2EA] via-[#F6F2EA]/95 to-[#EEE8DD]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F6F2EA] via-transparent to-[#F6F2EA]/60" />
-        
-        {/* Subtle Warm Champagne Studio Light */}
-        <div
-          className="absolute inset-0 bg-ambient-hero transition-transform duration-300 ease-out"
-          style={{ transform: lightTransform }}
-        />
-      </div>
+      {/* Subtle tonal texture overlay — depth without pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#64141F]/60 via-transparent to-[#8B1E2D]/30 pointer-events-none" />
 
-      <MainContainer className="relative z-10 py-12 sm:py-18 md:py-24 lg:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Hero Content */}
+      {/* Very soft cream atmospheric bloom — right side behind bottle */}
+      <div
+        className="absolute right-0 top-0 w-1/2 h-full pointer-events-none opacity-10"
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 80% 45%, #F4EBDD, transparent)' }}
+      />
+
+      {/* Subtle grain texture for premium depth */}
+      <div className="absolute inset-0 bg-grain-texture pointer-events-none opacity-30" />
+
+      <MainContainer className="relative z-10 py-10 sm:py-14 md:py-18 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+
+          {/* LEFT — Content */}
           <div className="lg:col-span-7">
-            {/* Section Label / Badge in Cream Surface */}
-            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEE8DD] border border-[#D9D1C6] mb-6 text-[12px] sm:text-[13px] font-manrope font-semibold tracking-[0.09em] uppercase text-[#721C24] shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#721C24]" />
-              <span>60 ml Eau de Parfum Collection</span>
+
+            {/* Eyebrow badge — Cream on Cherry */}
+            <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4EBDD]/15 border border-[#F4EBDD]/25 mb-4">
+              <Sparkles className="w-3 h-3 text-[#F4EBDD]/80" />
+              <span className="font-manrope text-[11px] sm:text-[12px] font-semibold tracking-[0.09em] uppercase text-[#F4EBDD]/90">
+                60 ml Eau de Parfum Collection
+              </span>
             </div>
 
-            {/* Hero Display Headline — Bodoni Moda 500-600 */}
-            <h1 className="animate-hero-headline font-bodoni text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] font-medium tracking-[-0.02em] text-[#201C19] leading-[0.98] mb-6">
-              Scents that become <span className="font-medium text-[#625C55] italic">part of you.</span>
+            {/* Hero Headline — Warm White on Cherry, controlled scale */}
+            <h1 className="animate-hero-headline font-bodoni text-[30px] sm:text-[38px] md:text-[46px] lg:text-[52px] font-medium tracking-[-0.02em] text-[#FBF8F2] leading-[1.0] mb-4">
+              Scents that become{' '}
+              <span className="italic text-[#F4EBDD]/80 font-medium">part of you.</span>
             </h1>
 
-            {/* Hero Subheading — Manrope 400/500 */}
-            <p className="animate-hero-subhead font-manrope text-[17px] sm:text-[19px] md:text-[21px] text-[#625C55] font-normal leading-[1.45] mb-8 max-w-xl">
-              Crafted for the moments you will remember. Long-lasting Eau de Parfum formulations designed to subtly express your presence.
+            {/* Subheading — muted cream */}
+            <p className="animate-hero-subhead font-manrope text-[13px] sm:text-[15px] md:text-[16px] text-[#F4EBDD]/65 font-normal leading-[1.55] mb-6 max-w-md">
+              Crafted for the moments you will remember. Long-lasting Eau de Parfum designed to subtly express your presence.
             </p>
 
-            {/* Primary & Secondary CTAs — Manrope 600 */}
-            <div className="animate-hero-cta flex flex-wrap items-center gap-4">
+            {/* CTAs */}
+            <div className="animate-hero-cta flex flex-wrap items-center gap-3">
+              {/* Primary: Cream on Cherry — strong contrast */}
               <Link
                 to="/category/bestsellers"
-                className="group inline-flex items-center gap-2.5 bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] px-7 py-3.5 rounded-xl font-manrope text-[14px] sm:text-[15px] md:text-[16px] font-semibold tracking-[0.01em] transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none btn-interactive"
+                className="group inline-flex items-center gap-2 bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] px-6 py-2.5 rounded-lg font-manrope text-[13px] sm:text-[14px] font-bold tracking-[0.01em] transition-all duration-200 shadow-md hover:shadow-lg btn-interactive"
               >
                 <span>Discover Your Signature</span>
-                <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1.5 text-[#F6F2EA]" />
+                <ArrowRight className="w-3.5 h-3.5 transform transition-transform duration-200 group-hover:translate-x-1.5" />
               </Link>
 
+              {/* Secondary: Ghost / outlined cream */}
               <Link
                 to="/category/unisex"
-                className="inline-flex items-center gap-2 bg-[#EEE8DD] hover:bg-[#E5DCCF] active:scale-[0.98] text-[#201C19] border border-[#D9D1C6] px-6 py-3.5 rounded-xl font-manrope text-[14px] sm:text-[15px] md:text-[16px] font-semibold tracking-[0.01em] transition-all duration-200 shadow-xs btn-interactive"
+                className="inline-flex items-center gap-2 bg-transparent hover:bg-[#F4EBDD]/10 active:scale-[0.98] text-[#F4EBDD]/85 border border-[#F4EBDD]/30 hover:border-[#F4EBDD]/60 px-5 py-2.5 rounded-lg font-manrope text-[13px] sm:text-[14px] font-semibold tracking-[0.01em] transition-all duration-200 btn-interactive"
               >
                 <span>Explore All</span>
               </Link>
             </div>
+
+            {/* Trust micro-line */}
+            <p className="animate-hero-cta mt-4 font-manrope text-[11px] text-[#F4EBDD]/45 font-normal tracking-wide">
+              Free shipping on orders above ₹999 · COD available
+            </p>
           </div>
 
-          {/* Right Hero Product Image */}
+          {/* RIGHT — Product on Cream Surface */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="animate-hero-bottle relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] group">
-              {/* Soft Warm Grounding Shadow beneath bottle */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[75%] h-8 bg-[#3C2D1E]/15 blur-xl rounded-full pointer-events-none" />
-              
-              {/* Subtle Champagne Glow behind bottle */}
+            <div className="animate-hero-bottle relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] group">
+
+              {/* Warm grounding shadow */}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-[65%] h-5 bg-[#2A211F]/25 blur-xl rounded-full pointer-events-none" />
+
+              {/* Cream glow — bottle appears to rest on cream light */}
               <div
-                className="absolute inset-0 bg-radial from-[#E5DCCF]/80 to-transparent blur-2xl rounded-full pointer-events-none transition-transform duration-300 ease-out"
-                style={{ transform: lightTransform }}
+                className="absolute -inset-4 rounded-2xl pointer-events-none transition-transform duration-300 ease-out opacity-20"
+                style={{
+                  background: 'radial-gradient(ellipse 70% 60% at 50% 55%, #F4EBDD, transparent)',
+                  transform: lightTransform
+                }}
               />
 
-              {/* Product Bottle Container */}
+              {/* Product bottle on Cream surface — physical contrast */}
               <div
-                className="relative rounded-2xl overflow-hidden bg-[#EEE8DD] border border-[#D9D1C6] p-4 sm:p-6 shadow-[0_12px_36px_rgba(60,45,30,0.08)] transition-transform duration-300 group-hover:scale-[1.015] bg-matte-highlight"
+                className="relative rounded-xl overflow-hidden bg-[#F4EBDD] border border-[#EEE2D2] p-4 sm:p-5 shadow-[0_16px_48px_rgba(100,20,31,0.35)] transition-transform duration-300 group-hover:scale-[1.015]"
                 style={{ transform: bottleTransform }}
               >
                 <img
                   src="/images/products/row-1-column-1.png"
                   alt="ÉLAVA Signature Eau de Parfum Bottle"
-                  className="w-full h-auto object-contain drop-shadow-[0_14px_24px_rgba(60,45,30,0.12)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-auto object-contain drop-shadow-[0_10px_20px_rgba(100,20,31,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
             </div>

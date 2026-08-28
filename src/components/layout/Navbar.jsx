@@ -8,23 +8,18 @@ import { WHATSAPP_CONFIG } from '../../utils/whatsapp';
 import { getCartTotals } from '../../utils/cart';
 import { useAuth } from '../../context/AuthContext';
 
-function WhatsAppIcon({ className = "w-[19px] h-[19px]" }) {
+function WhatsAppIcon({ className = "w-[18px] h-[18px]" }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="#25D366"
-      aria-hidden="true"
-    >
+    <svg className={className} viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm-3.53 3.63c-.19 0-.42.07-.64.31-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 2 .86 2.41.69 2.84.65.43-.04 1.4-.57 1.6-1.13.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28s-1.4-.69-1.62-.77c-.22-.08-.38-.12-.54.12s-.62.77-.76.93c-.14.16-.28.18-.52.06s-1.01-.37-1.92-1.19c-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.48-.39-.41-.54-.42-.14-.01-.3-.01-.46-.01z" />
     </svg>
   );
 }
 
 /**
- * Navbar Component — Light Luxury Perfume Aesthetic:
- * Container: Warm Ivory #F6F2EA / Cream #EEE8DD, Text: Deep Espresso #201C19, Active/Accent: Deep Burgundy #721C24.
- * Logo: STRICTLY LOCKED (Original 2-part emblem).
+ * Navbar — CHERRY-FIRST (#8B1E2D background)
+ * Cream/Warm White text. LOCKED logo unchanged.
+ * Compact scale maintained.
  */
 export default function Navbar() {
   const { user } = useAuth();
@@ -35,9 +30,7 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 15);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -47,11 +40,9 @@ export default function Navbar() {
       const { itemCount } = getCartTotals();
       setCartCount(itemCount);
     };
-
     updateCount();
     window.addEventListener('cart-updated', updateCount);
     window.addEventListener('storage', updateCount);
-
     return () => {
       window.removeEventListener('cart-updated', updateCount);
       window.removeEventListener('storage', updateCount);
@@ -86,25 +77,24 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full px-2 sm:px-4 pt-2 pb-1 bg-transparent transition-all duration-300">
-      {/* Scroll Progress Bar at top */}
       <ScrollProgress />
 
-      {/* Boxed Warm Ivory Container */}
-      <div className={`max-w-7xl mx-auto bg-[#F6F2EA] border border-[#D9D1C6] rounded-xl sm:rounded-2xl transition-all duration-300 ${
-        scrolled ? 'shadow-[0_6px_24px_rgba(60,45,30,0.08)] border-[#D8D0C4]' : 'shadow-sm'
+      {/* CHERRY navbar container — primary brand color */}
+      <div className={`max-w-7xl mx-auto bg-[#8B1E2D] border border-[#741929] rounded-xl sm:rounded-2xl transition-all duration-300 ${
+        scrolled ? 'shadow-[0_4px_24px_rgba(100,20,31,0.35)] border-[#64141F]' : 'shadow-[0_2px_12px_rgba(100,20,31,0.20)]'
       }`}>
         <MainContainer>
-          <div className="h-[58px] sm:h-[64px] md:h-[72px] flex items-center justify-between">
-            
-            {/* MOBILE: Hamburger Button */}
-            <div className="flex items-center md:hidden w-12">
+          <div className="h-[54px] sm:h-[60px] md:h-[68px] flex items-center justify-between">
+
+            {/* MOBILE: Hamburger */}
+            <div className="flex items-center md:hidden w-10">
               <button
                 type="button"
                 onClick={() => {
                   setIsSearchOpen(false);
                   setIsMobileMenuOpen((prev) => !prev);
                 }}
-                className="p-2 -ml-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-1.5 -ml-1.5 text-[#FBF8F2]/80 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -116,7 +106,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* BRAND LOGO: LOCKED Original Signature 2-Part Boxed Logo */}
+            {/* BRAND LOGO: LOCKED 2-Part Boxed Logo */}
             <div className="flex-1 md:flex-initial flex justify-center md:justify-start">
               <Link
                 to="/"
@@ -136,8 +126,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* NAVIGATION LINKS — Deep Espresso #201C19 + Deep Burgundy #721C24 Active */}
-            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {/* NAV LINKS — Cream text on Cherry bg */}
+            <nav className="hidden md:flex items-center space-x-0.5 lg:space-x-1" aria-label="Main navigation">
               {navLinks.map((link) => {
                 const isActive = link.path === '/'
                   ? location.pathname === '/'
@@ -148,10 +138,10 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     className={
-                      `font-manrope text-[14px] lg:text-[15px] font-medium px-3 py-2 rounded-md transition-all duration-200 ${
+                      `font-manrope text-[12px] lg:text-[13px] font-medium px-3 py-1.5 rounded-md transition-all duration-200 ${
                         isActive
-                          ? 'text-[#721C24] font-semibold bg-[#EEE8DD] border border-[#721C24]/20'
-                          : 'text-[#201C19]/85 hover:text-[#721C24] hover:bg-[#EEE8DD]/70'
+                          ? 'text-[#FBF8F2] font-semibold bg-[#64141F]/60 border border-[#FBF8F2]/20'
+                          : 'text-[#FBF8F2]/75 hover:text-[#FBF8F2] hover:bg-[#64141F]/40'
                       }`
                     }
                   >
@@ -161,54 +151,49 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* ACTIONS */}
-            <div className="flex items-center justify-end space-x-1 sm:space-x-2 w-auto">
-              {/* Account Link */}
+            {/* ACTION ICONS — Cream on Cherry */}
+            <div className="flex items-center justify-end space-x-1 w-auto">
               <Link
                 to={user ? "/account" : "/login"}
-                className={`p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive ${
-                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#721C24]' : ''
+                className={`p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive ${
+                  location.pathname === '/login' || location.pathname === '/account' ? 'text-[#FBF8F2]' : ''
                 }`}
                 aria-label={user ? "View Account Profile" : "Login or Sign Up"}
               >
-                <User className="w-[19px] h-[19px] stroke-[1.5]" />
+                <User className="w-[17px] h-[17px] stroke-[1.5]" />
               </Link>
 
-              {/* Search Trigger */}
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen((prev) => !prev);
                 }}
-                className="p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none btn-interactive"
+                className="p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none btn-interactive"
                 aria-label="Search collection"
               >
-                <Search className="w-[19px] h-[19px] stroke-[1.5]" />
+                <Search className="w-[17px] h-[17px] stroke-[1.5]" />
               </button>
 
-              {/* Cart Drawer Trigger Button */}
               <button
                 type="button"
-                onClick={() => {
-                  window.dispatchEvent(new Event('open-cart-drawer'));
-                }}
-                className="p-2 text-[#201C19] hover:text-[#721C24] transition-colors duration-200 focus:outline-none relative btn-interactive"
+                onClick={() => window.dispatchEvent(new Event('open-cart-drawer'))}
+                className="p-2 text-[#FBF8F2]/75 hover:text-[#FBF8F2] transition-colors duration-200 focus:outline-none relative btn-interactive"
                 aria-label="View shopping cart"
                 id="navbar-cart-btn"
               >
-                <ShoppingBag className="w-[19px] h-[19px] stroke-[1.5]" />
+                <ShoppingBag className="w-[17px] h-[17px] stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-[#721C24] text-[#F6F2EA] text-[9.5px] font-sans font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none shadow-xs">
+                  <span className="absolute top-0.5 right-0.5 bg-[#F4EBDD] text-[#8B1E2D] text-[8.5px] font-sans font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              {/* Primary Action Button: SHOP NOW → (Deep Burgundy #721C24) */}
+              {/* CTA: Cream surface with Cherry text — strong contrast */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] text-[14px] font-manrope font-semibold transition-all duration-200 shadow-sm ml-1 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
@@ -217,36 +202,35 @@ export default function Navbar() {
 
           </div>
 
-          {/* SEARCH OVERLAY */}
           <NavbarSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </MainContainer>
       </div>
 
-      {/* COMPACT FLOATING MOBILE MENU PANEL — WARM IVORY #F6F2EA */}
+      {/* MOBILE DRAWER — Deep Cherry sidebar */}
       {isMobileMenuOpen && (
         <div className="md:hidden">
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-200"
+            className="fixed inset-0 bg-[#2A211F]/60 backdrop-blur-xs z-40 transition-opacity duration-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           <aside
-            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[340px] bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-5 text-[#201C19] transition-transform duration-200 ease-out"
+            className="fixed top-3 left-3 bottom-3 w-[78vw] max-w-[320px] bg-[#64141F] border border-[#8B1E2D] rounded-2xl shadow-2xl z-50 flex flex-col justify-between p-4 text-[#FBF8F2] transition-transform duration-200 ease-out"
             aria-label="Mobile Navigation Panel"
           >
             <div>
-              <div className="flex items-center justify-between pb-3.5 border-b border-[#D9D1C6] mb-3">
-                <span className="font-sans text-xs tracking-wider font-semibold text-[#625C55] uppercase">
+              <div className="flex items-center justify-between pb-3 border-b border-[#FBF8F2]/15 mb-2">
+                <span className="font-sans text-[10px] tracking-wider font-semibold text-[#F4EBDD]/60 uppercase">
                   ÉLAVA NAVIGATION
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1 text-[#625C55] hover:text-[#201C19] transition-colors btn-interactive"
+                  className="p-1 text-[#FBF8F2]/60 hover:text-[#FBF8F2] transition-colors btn-interactive"
                   aria-label="Close menu"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
@@ -261,10 +245,10 @@ export default function Navbar() {
                       key={link.path}
                       to={link.path}
                       className={
-                        `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#D9D1C6]/60 transition-colors ${
+                        `w-full text-left font-sans text-[11px] uppercase tracking-wider h-[42px] px-3 flex items-center border-b border-[#FBF8F2]/10 transition-colors ${
                           isActive
-                            ? 'text-[#721C24] font-bold bg-[#EEE8DD]'
-                            : 'text-[#201C19]/90 hover:bg-[#EEE8DD]/70 hover:text-[#721C24] font-medium'
+                            ? 'text-[#F4EBDD] font-bold bg-[#8B1E2D]/50'
+                            : 'text-[#FBF8F2]/75 hover:bg-[#8B1E2D]/30 hover:text-[#FBF8F2] font-medium'
                         }`
                       }
                     >
@@ -276,10 +260,10 @@ export default function Navbar() {
                 <NavLink
                   to={user ? "/account" : "/login"}
                   className={
-                    `w-full text-left font-sans text-xs uppercase tracking-wider h-[48px] px-5 flex items-center border-b border-[#D9D1C6]/60 transition-colors ${
+                    `w-full text-left font-sans text-[11px] uppercase tracking-wider h-[42px] px-3 flex items-center border-b border-[#FBF8F2]/10 transition-colors ${
                       location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/account'
-                        ? 'text-[#721C24] font-bold bg-[#EEE8DD]'
-                        : 'text-[#201C19]/90 hover:bg-[#EEE8DD]/70 hover:text-[#721C24] font-medium'
+                        ? 'text-[#F4EBDD] font-bold bg-[#8B1E2D]/50'
+                        : 'text-[#FBF8F2]/75 hover:bg-[#8B1E2D]/30 hover:text-[#FBF8F2] font-medium'
                     }`
                   }
                 >
@@ -288,16 +272,16 @@ export default function Navbar() {
               </nav>
             </div>
 
-            <div className="pt-3 border-t border-[#D9D1C6] space-y-2">
+            <div className="pt-3 border-t border-[#FBF8F2]/15 space-y-2">
               <button
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#EEE8DD] active:scale-[0.98] text-xs font-sans font-semibold uppercase tracking-wider text-[#201C19] hover:text-[#721C24] border border-[#D9D1C6] transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#8B1E2D]/40 active:scale-[0.98] text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#8B1E2D]/60 border border-[#FBF8F2]/10 transition-colors btn-interactive"
               >
-                <Search className="w-4 h-4 text-[#625C55] shrink-0" />
+                <Search className="w-3.5 h-3.5 text-[#F4EBDD]/70 shrink-0" />
                 <span>SEARCH COLLECTION</span>
               </button>
 
@@ -305,9 +289,9 @@ export default function Navbar() {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-left flex items-center gap-3 px-5 h-[46px] rounded-xl bg-[#EEE8DD] active:scale-[0.98] border border-[#D9D1C6] text-xs font-sans font-semibold uppercase tracking-wider text-[#201C19] hover:border-[#721C24]/50 transition-colors btn-interactive"
+                className="w-full text-left flex items-center gap-2.5 px-3 h-[40px] rounded-lg bg-[#8B1E2D]/40 active:scale-[0.98] border border-[#FBF8F2]/10 text-[11px] font-sans font-semibold uppercase tracking-wider text-[#FBF8F2] hover:bg-[#8B1E2D]/60 transition-colors btn-interactive"
               >
-                <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                 <span>WHATSAPP SUPPORT</span>
               </a>
             </div>

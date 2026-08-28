@@ -11,19 +11,19 @@ export default function BrandStory() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#EEE8DD] text-[#201C19] border-y border-[#D9D1C6] relative overflow-hidden">
-      {/* Subtle Champagne Ambient Editorial Lighting Zone */}
+    <section className="py-10 sm:py-14 bg-[#EEE2D2] text-[#2A211F] border-y border-[#D9C9B8] relative overflow-hidden">
+      {/* Subtle Ambient Editorial Lighting Zone */}
       <div className="absolute inset-0 bg-ambient-story pointer-events-none" />
 
       <MainContainer className="relative z-10">
         <div
           ref={ref}
-          className={`max-w-4xl mx-auto bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl p-6 sm:p-10 md:p-14 shadow-[0_12px_36px_rgba(60,45,30,0.06)] text-center relative overflow-hidden reveal-init ${
+          className={`max-w-4xl mx-auto bg-[#FBF8F2] border border-[#D9C9B8] rounded-2xl p-6 sm:p-10 md:p-12 shadow-[0_10px_32px_rgba(42,33,31,0.06)] text-center relative overflow-hidden reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
           
-          <span className="font-manrope text-[13px] font-semibold uppercase tracking-[0.09em] text-[#721C24] block mb-3">
+          <span className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#8B1E2D] block mb-2">
             Our Essence & Origin
           </span>
 
@@ -36,8 +36,8 @@ export default function BrandStory() {
               ÉLAVA Perfumes was founded with a single clear purpose: to craft artisanal Eau de Parfum signatures that embody quiet confidence, warmth, and enduring presence.
             </p>
 
-            {/* Selected Pull Quote with Bodoni Moda Editorial Typography */}
-            <blockquote className={`my-6 py-5 border-y border-[#721C24]/30 font-bodoni font-medium italic text-[22px] sm:text-[28px] md:text-[32px] text-[#201C19] leading-[1.2] tracking-[-0.015em] max-w-xl mx-auto reveal-init ${
+            {/* Selected Pull Quote */}
+            <blockquote className={`my-5 py-4 border-y border-[#8B1E2D]/30 font-bodoni font-medium italic text-[20px] sm:text-[25px] md:text-[28px] text-[#2A211F] leading-[1.2] tracking-[-0.015em] max-w-xl mx-auto reveal-init ${
               isVisible ? 'reveal-visible stagger-2' : ''
             }`}>
               "A fragrance designed not to announce your arrival, but to linger gracefully after you leave."

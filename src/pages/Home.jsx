@@ -14,11 +14,11 @@ import BrandStory from '../components/home/BrandStory';
 
 /**
  * ÉLAVA Homepage Container — Light Luxury Perfume Aesthetic
- * Base Palette: Warm Ivory (#F6F2EA), Secondary Cream (#EEE8DD), Deep Espresso (#201C19), Accent Burgundy (#721C24)
+ * Base Palette: Primary Cream #F4EBDD, Dark Espresso #2A211F, Cherry #8B1E2D accent
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#F6F2EA] text-[#201C19] min-h-screen">
+    <div className="w-full bg-[#F4EBDD] text-[#2A211F] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."

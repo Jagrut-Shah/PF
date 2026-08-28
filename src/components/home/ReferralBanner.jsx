@@ -6,9 +6,9 @@ import { Gift, Share2 } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * ReferralBanner Component — Light Luxury Brand Loyalty Experience:
- * Warm Champagne #E5DCCF section environment, Cream #EEE8DD inner container,
- * Deep Espresso #201C19 typography, and restrained Deep Burgundy #721C24 accents.
+ * ReferralBanner — DEEP CHERRY brand moment.
+ * #64141F section bg. Cream/Warm White typography. Cream step cards.
+ * Feels like luxury membership — NOT a discount banner.
  */
 export default function ReferralBanner() {
   const navigate = useNavigate();
@@ -24,97 +24,71 @@ export default function ReferralBanner() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-[#E5DCCF] text-[#201C19] border-t border-b border-[#D9D1C6] relative overflow-hidden">
-      {/* Subtle Champagne Ambient Light Zone */}
-      <div className="absolute inset-0 bg-ambient-referral pointer-events-none" />
+    <section
+      className="py-10 sm:py-14 text-[#FBF8F2] border-t border-b border-[#64141F] relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #64141F 0%, #741929 50%, #64141F 100%)' }}
+    >
+      {/* Subtle tonal depth — not a gradient, just depth */}
+      <div className="absolute inset-0 bg-ambient-referral pointer-events-none opacity-30" />
 
       <MainContainer className="relative z-10">
         <div
           ref={ref}
-          className={`bg-[#EEE8DD] border border-[#D9D1C6] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[0_12px_36px_rgba(60,45,30,0.06)] relative z-10 overflow-hidden reveal-init ${
-            isVisible ? 'reveal-visible' : ''
-          }`}
+          className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            
-            {/* Left Content Column */}
-            <div className="lg:col-span-8 space-y-6">
-              
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+            {/* Left Content */}
+            <div className="lg:col-span-8 space-y-5">
+
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F6F2EA] border border-[#D9D1C6] text-[#721C24] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] shadow-xs">
-                <Gift className="w-3.5 h-3.5 text-[#721C24]" />
-                <span>ÉLAVA Patron Rewards</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4EBDD]/15 border border-[#F4EBDD]/25">
+                <Gift className="w-3 h-3 text-[#F4EBDD]/80" />
+                <span className="font-manrope text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.09em] text-[#F4EBDD]/90">
+                  ÉLAVA Patron Rewards
+                </span>
               </div>
 
-              {/* Major Statement */}
-              <div className="space-y-3">
-                <h2 className="font-bodoni text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-[#201C19] leading-[1.02] tracking-[-0.02em]">
+              {/* Headline */}
+              <div className="space-y-2">
+                <h2 className="font-bodoni text-[28px] sm:text-[38px] lg:text-[44px] font-medium text-[#FBF8F2] leading-[1.02] tracking-[-0.02em]">
                   Share Élava.<br />
-                  <span className="text-[#201C19] font-medium">
-                    Earn ₹100 Cash.
-                  </span>
+                  <span className="text-[#F4EBDD]/85 font-medium">Earn ₹100 Cash.</span>
                 </h2>
-                <p className="font-manrope text-[15px] sm:text-[17px] text-[#625C55] max-w-xl leading-[1.6] font-normal">
-                  Your friends get <strong className="text-[#201C19] font-semibold">₹200 OFF</strong>. You get <strong className="text-[#201C19] font-semibold">₹100 CASH</strong> when their qualifying order is completed.
+                <p className="font-manrope text-[13px] sm:text-[15px] text-[#F4EBDD]/65 max-w-xl leading-[1.6] font-normal">
+                  Your friends get <strong className="text-[#FBF8F2] font-semibold">₹200 OFF</strong>. You get <strong className="text-[#FBF8F2] font-semibold">₹100 CASH</strong> when their qualifying order completes.
                 </p>
               </div>
 
-              {/* 3 Steps */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                
-                {/* Step 01 */}
-                <div
-                  className={`bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl p-4 space-y-1 shadow-xs transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
-                    isVisible ? 'reveal-visible stagger-1' : ''
-                  }`}
-                >
-                  <span className="text-[12px] font-bodoni font-medium text-[#721C24] block">
-                    01
-                  </span>
-                  <div className="font-manrope text-[15px] font-semibold text-[#201C19]">
-                    Share Your Link
-                  </div>
-                  <p className="text-[14px] font-manrope text-[#625C55] font-normal">Send code to your friends</p>
+              {/* Steps — Cream cards on Deep Cherry */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+                <div className={`bg-[#F4EBDD]/12 border border-[#F4EBDD]/20 rounded-xl p-4 space-y-1 hover:-translate-y-0.5 transition-transform duration-200 reveal-init ${isVisible ? 'reveal-visible stagger-1' : ''}`}>
+                  <span className="text-[11px] font-manrope font-bold text-[#E8C9C5] block tracking-wider uppercase">01</span>
+                  <div className="font-manrope text-[14px] font-semibold text-[#FBF8F2]">Share Your Link</div>
+                  <p className="text-[12px] font-manrope text-[#F4EBDD]/60 font-normal">Send code to your friends</p>
                 </div>
 
-                {/* Step 02 */}
-                <div
-                  className={`bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl p-4 space-y-1 shadow-xs transition-transform duration-200 hover:-translate-y-0.5 reveal-init ${
-                    isVisible ? 'reveal-visible stagger-2' : ''
-                  }`}
-                >
-                  <span className="text-[12px] font-bodoni font-medium text-[#721C24] block">
-                    02
-                  </span>
-                  <div className="font-manrope text-[15px] font-semibold text-[#201C19]">
-                    Friend Gets ₹200 Off
-                  </div>
-                  <p className="text-[14px] font-manrope text-[#625C55] font-normal">Applied on first purchase</p>
+                <div className={`bg-[#F4EBDD]/12 border border-[#F4EBDD]/20 rounded-xl p-4 space-y-1 hover:-translate-y-0.5 transition-transform duration-200 reveal-init ${isVisible ? 'reveal-visible stagger-2' : ''}`}>
+                  <span className="text-[11px] font-manrope font-bold text-[#E8C9C5] block tracking-wider uppercase">02</span>
+                  <div className="font-manrope text-[14px] font-semibold text-[#FBF8F2]">Friend Gets ₹200 Off</div>
+                  <p className="text-[12px] font-manrope text-[#F4EBDD]/60 font-normal">Applied on first purchase</p>
                 </div>
 
-                {/* Step 03 */}
-                <div
-                  className={`bg-[#F6F2EA] border border-[#721C24]/30 rounded-2xl p-4 space-y-1 shadow-xs transition-transform duration-200 hover:-translate-y-0.5 relative overflow-hidden reveal-init ${
-                    isVisible ? 'reveal-visible stagger-3' : ''
-                  }`}
-                >
-                  <span className="text-[12px] font-bodoni font-medium text-[#721C24] block">
-                    03 · HERO EARNING
-                  </span>
-                  <div className="font-manrope text-[16px] font-semibold text-[#201C19]">
-                    You Earn ₹100 Cash
-                  </div>
-                  <p className="text-[14px] font-manrope text-[#625C55] font-normal">Withdrawable to UPI/Bank</p>
+                <div className={`bg-[#FBF8F2]/15 border border-[#FBF8F2]/30 rounded-xl p-4 space-y-1 hover:-translate-y-0.5 transition-transform duration-200 relative overflow-hidden reveal-init ${isVisible ? 'reveal-visible stagger-3' : ''}`}>
+                  <span className="text-[11px] font-manrope font-bold text-[#F4EBDD] block tracking-wider uppercase">03 · YOU EARN</span>
+                  <div className="font-manrope text-[14px] font-semibold text-[#FBF8F2]">₹100 Cash</div>
+                  <p className="text-[12px] font-manrope text-[#F4EBDD]/60 font-normal">Withdrawable to UPI/Bank</p>
                 </div>
 
               </div>
 
-              {/* CTA Button */}
-              <div className="pt-2">
+              {/* CTA — Cream button on Deep Cherry section */}
+              <div>
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#721C24] hover:bg-[#5A161C] active:scale-[0.98] text-[#F6F2EA] px-8 py-4 rounded-xl font-manrope font-semibold text-[15px] sm:text-[16px] tracking-[0.01em] inline-flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer btn-interactive"
+                  className="w-full sm:w-auto bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] px-7 py-3 rounded-lg font-manrope font-bold text-[13px] sm:text-[14px] tracking-[0.01em] inline-flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer btn-interactive"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>
@@ -123,32 +97,29 @@ export default function ReferralBanner() {
 
             </div>
 
-            {/* Right Column */}
+            {/* Right — Summary card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm bg-[#F6F2EA] border border-[#D9D1C6] rounded-2xl p-6 shadow-[0_8px_24px_rgba(60,45,30,0.06)] space-y-4 text-center relative overflow-hidden text-[#201C19] transition-transform duration-300 hover:scale-[1.015]">
-                <div className="w-16 h-16 rounded-full bg-[#E5DCCF] border border-[#D9D1C6] flex items-center justify-center mx-auto text-[#721C24] shadow-xs">
-                  <Share2 className="w-7 h-7 text-[#721C24]" />
+              <div className="w-full max-w-xs bg-[#F4EBDD]/10 border border-[#F4EBDD]/20 rounded-2xl p-5 space-y-3 text-center relative overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+                <div className="w-12 h-12 rounded-full bg-[#F4EBDD]/15 border border-[#F4EBDD]/25 flex items-center justify-center mx-auto">
+                  <Share2 className="w-5 h-5 text-[#F4EBDD]/80" />
                 </div>
                 <div className="space-y-1">
-                  <div className="text-[12px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#625C55]">
+                  <div className="text-[10px] font-manrope font-semibold uppercase tracking-[0.09em] text-[#F4EBDD]/55">
                     Your Cash Reward
                   </div>
-                  <h3 className="font-bodoni text-[36px] font-medium text-[#201C19]">
-                    ₹100 Cash
-                  </h3>
-                  <p className="text-[14px] font-manrope text-[#625C55] leading-[1.5] px-2 font-normal">
+                  <h3 className="font-bodoni text-[30px] font-medium text-[#FBF8F2]">₹100 Cash</h3>
+                  <p className="text-[12px] font-manrope text-[#F4EBDD]/55 leading-[1.5] px-2 font-normal">
                     Direct payout to your UPI ID or Bank account upon qualifying friend purchase.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#D9D1C6] flex items-center justify-between text-[14px] font-manrope font-semibold text-[#625C55]">
+                <div className="pt-3 border-t border-[#FBF8F2]/15 flex items-center justify-between text-[12px] font-manrope font-semibold text-[#F4EBDD]/65">
                   <span>Friend: ₹200 OFF</span>
-                  <span className="text-[#721C24]">You: ₹100 CASH</span>
+                  <span className="text-[#FBF8F2]">You: ₹100 CASH</span>
                 </div>
               </div>
             </div>
 
           </div>
-
         </div>
       </MainContainer>
     </section>

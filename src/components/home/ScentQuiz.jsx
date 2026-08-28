@@ -84,21 +84,21 @@ export default function ScentQuiz() {
 
   const recommendedProducts = getRecommendations();
   const displayProducts = recommendedProducts.length > 0 ? recommendedProducts : products.slice(0, 3);
+  const currentQuestion = QUIZ_QUESTIONS[currentStep];
 
   return (
-    <section id="scent-finder" className="py-12 sm:py-16 bg-[#F6F2EA] text-[#201C19] border-t border-b border-[#D9D1C6] relative overflow-hidden">
-      {/* Subtle Champagne Ambient Light */}
-      <div className="absolute inset-0 bg-ambient-quiz pointer-events-none" />
-
-      <MainContainer className="relative z-10">
-        <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
+    <section id="scent-finder" className="py-10 sm:py-14 bg-[#F4EBDD] text-[#2A211F] border-b border-[#D9C9B8]" aria-labelledby="scent-finder-heading">
+      <MainContainer>
+        <div ref={ref} className={`max-w-3xl mx-auto reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
-            title="Find Your Signature Scent"
-            subtitle="Answer 3 quick questions to discover your ideal ÉLAVA fragrance signature."
+            id="scent-finder-heading"
+            title="Interactive Scent Finder"
+            subtitle="Answer 3 simple questions to discover your ideal fragrance signature."
             align="center"
+            eyebrow="Personalized Guidance"
           />
 
-          <div className="max-w-2xl mx-auto mt-8 bg-[#EEE8DD] border border-[#D9D1C6] rounded-2xl p-6 sm:p-8 shadow-[0_10px_32px_rgba(60,45,30,0.06)] relative overflow-hidden transition-all duration-300">
+          <div className="bg-[#EEE2D2] border border-[#D9C9B8] rounded-2xl p-5 sm:p-8 shadow-[0_10px_32px_rgba(60,45,30,0.06)] relative overflow-hidden transition-all duration-300">
             
             {!isCompleted ? (
               <div className="transition-opacity duration-300">
@@ -113,38 +113,38 @@ export default function ScentQuiz() {
                         key={idx}
                         className={`h-1.5 rounded-full transition-all duration-300 ${
                           idx === currentStep
-                            ? 'w-6 bg-[#721C24]'
+                            ? 'w-6 bg-[#8B1E2D]'
                             : idx < currentStep
                             ? 'w-3 bg-[#625C55]'
-                            : 'w-3 bg-[#D9D1C6]'
+                            : 'w-3 bg-[#D9C9B8]'
                         }`}
                       />
                     ))}
                   </div>
                 </div>
 
-                {/* Question Title — Bodoni Moda 500-600 */}
-                <h3 className="font-bodoni text-[22px] sm:text-[26px] md:text-[28px] font-medium text-[#201C19] mb-6 leading-tight tracking-[-0.015em]">
-                  {QUIZ_QUESTIONS[currentStep].title}
+                {/* Question Title */}
+                <h3 className="font-bodoni text-[22px] sm:text-[26px] md:text-[28px] font-medium text-[#2A211F] mb-6 leading-tight tracking-[-0.015em]">
+                  {currentQuestion.title}
                 </h3>
 
-                {/* Options Grid — Deep Burgundy selected, Warm Ivory unselected */}
-                <div className="grid grid-cols-1 gap-3">
-                  {QUIZ_QUESTIONS[currentStep].options.map((option) => {
-                    const isSelected = answers[QUIZ_QUESTIONS[currentStep].id] === option.value;
+                {/* Options Grid */}
+                <div className="space-y-3">
+                  {currentQuestion.options.map((opt) => {
+                    const isSelected = answers[currentQuestion.id] === opt.value;
                     return (
                       <button
-                        key={option.value}
+                        key={opt.value}
                         type="button"
-                        onClick={() => handleSelectOption(QUIZ_QUESTIONS[currentStep].id, option.value)}
-                        className={`w-full text-left p-4 rounded-xl font-manrope text-[15px] ${
+                        onClick={() => handleSelectOption(currentQuestion.id, opt.value)}
+                        className={`w-full text-left p-3.5 sm:p-4 rounded-xl border font-manrope text-[14px] font-semibold flex items-center justify-between transition-all cursor-pointer ${
                           isSelected
-                            ? 'font-semibold bg-[#721C24] border-[#721C24] text-[#F6F2EA] shadow-xs'
-                            : 'font-medium bg-[#F6F2EA] border-[#D9D1C6] text-[#201C19] hover:border-[#721C24]/40 hover:bg-[#E5DCCF]/60'
-                        } tracking-wide transition-all duration-200 flex items-center justify-between border active:scale-[0.98] cursor-pointer btn-interactive`}
+                            ? 'bg-[#8B1E2D] border-[#64141F] text-[#FBF8F2] shadow-sm'
+                            : 'bg-[#FBF8F2] border-[#D9C9B8] text-[#2A211F] hover:border-[#8B1E2D]/40 hover:bg-[#FBF8F2]'
+                        }`}
                       >
-                        <span>{option.label}</span>
-                        {isSelected && <Check className="w-4 h-4 text-[#F6F2EA]" />}
+                        <span>{opt.label}</span>
+                        {isSelected && <Check className="w-4 h-4 text-[#FBF8F2] shrink-0" />}
                       </button>
                     );
                   })}
