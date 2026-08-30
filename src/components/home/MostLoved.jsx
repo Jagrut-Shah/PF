@@ -8,14 +8,14 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
  * MostLoved Homepage Section — BLACK BACKGROUND #120E0D
- * Product visibility & comparison priority. Gold #C6A15B Bestseller tags & stars.
+ * Very Dark Cream #DAC29F heading + Gold #C6A15B exclusively for BESTSELLERS tag & stars.
  */
 export default function MostLoved() {
   const mostLovedProducts = products.filter((p) => p.isBestseller === true).slice(0, 4);
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#120E0D] text-[#F4EBDD] relative overflow-hidden border-b border-[#2A211F]" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 bg-[#120E0D] text-[#DAC29F] relative overflow-hidden border-b border-[#2A211F]" aria-labelledby="most-loved-heading">
       <MainContainer className="relative z-10">
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Header */}
@@ -23,23 +23,23 @@ export default function MostLoved() {
             <div>
               <h2
                 id="most-loved-heading"
-                className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#C6A15B] leading-[1.05] tracking-[-0.015em]"
+                className="font-bodoni text-[24px] sm:text-[30px] md:text-[36px] font-medium text-[#DAC29F] leading-[1.05] tracking-[-0.015em]"
               >
                 Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[15px] sm:text-[18px] md:text-[20px]">BESTSELLERS</span>
               </h2>
-              <p className="font-manrope text-[13px] sm:text-[14px] text-[#A89A8B] mt-1 font-normal leading-[1.4]">
+              <p className="font-manrope text-[13px] sm:text-[14px] text-[#DAC29F]/70 mt-1 font-normal leading-[1.4]">
                 Our most coveted fragrance signatures.
               </p>
             </div>
 
             <Link
               to="/category/bestsellers"
-              className="group inline-flex items-center gap-1.5 font-manrope text-[13px] font-semibold text-[#C6A15B] hover:text-[#DFBD75] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
+              className="group inline-flex items-center gap-1.5 font-manrope text-[13px] font-semibold text-[#DAC29F] hover:text-[#E5D7C3] transition-colors duration-200 self-start sm:self-end pb-0.5 btn-interactive"
               aria-label="View all bestsellers"
             >
               <span>View All Bestsellers</span>
               <ArrowRight
-                className="w-3.5 h-3.5 stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1 text-[#C6A15B]"
+                className="w-3.5 h-3.5 stroke-[2] transform transition-transform duration-200 group-hover:translate-x-1 text-[#DAC29F]"
                 aria-hidden="true"
               />
             </Link>
