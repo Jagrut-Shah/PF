@@ -4,7 +4,7 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Cream #F4EBDD Surface (NO WHITE)
+ * ReviewCard Component — Rich Warm Sand Cream #DAC29F Surface
  * Cherry top accent, Dark Espresso typography.
  */
 export default function ReviewCard({ review }) {
@@ -22,7 +22,7 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#F4EBDD] border border-[#E5DCCF] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm hover:shadow-md transition-all"
+      className="bg-[#DAC29F] border border-[#BD9F7B] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm hover:shadow-md transition-all"
       role="figure"
     >
       {/* Cherry top accent line */}
@@ -30,7 +30,7 @@ export default function ReviewCard({ review }) {
 
       {/* Star rating */}
       <div className="mb-3 flex items-center pt-1">
-        <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#D9C9B8" />
+        <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#BD9F7B" />
       </div>
 
       {/* Review Text */}
@@ -39,13 +39,13 @@ export default function ReviewCard({ review }) {
       </blockquote>
 
       {/* Customer Name & Product Link */}
-      <div className="pt-2.5 border-t border-[#E5DCCF] flex justify-between items-end gap-2 text-[13px]">
+      <div className="pt-2.5 border-t border-[#BD9F7B] flex justify-between items-end gap-2 text-[13px]">
         <div>
           <span className="font-manrope text-[#2A211F] font-semibold block text-[13px]">
             {customer}
           </span>
           {city && (
-            <span className="font-manrope text-[#625C55] font-normal text-[12px]">
+            <span className="font-manrope text-[#594B40] font-normal text-[12px]">
               {city}
             </span>
           )}

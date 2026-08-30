@@ -28,13 +28,13 @@ const DIFFERENTIATORS = [
 
 /**
  * WhyElava Component — CHERRY DOMINANT BACKGROUND #64141F:
- * Deep Cherry section, Cream #F4EBDD cards, Cherry #8B1E2D numerals.
+ * Deep Cherry section, Rich Warm Sand Cream #DAC29F cards, Cherry #8B1E2D numerals.
  */
 export default function WhyElava() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#64141F] text-[#F4EBDD] border-t border-b border-[#8B1E2D]">
+    <section className="py-8 sm:py-12 bg-[#64141F] text-[#DAC29F] border-t border-b border-[#8B1E2D]">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
@@ -47,7 +47,7 @@ export default function WhyElava() {
             {DIFFERENTIATORS.map((item, idx) => (
               <div
                 key={item.number}
-                className={`bg-[#F4EBDD] border border-[#E5DCCF] rounded-xl p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#FFF] hover:shadow-md group card-hover-interactive reveal-init ${
+                className={`bg-[#DAC29F] border border-[#BD9F7B] rounded-xl p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#8B1E2D] hover:shadow-md group card-hover-interactive reveal-init ${
                   isVisible ? `reveal-visible stagger-${idx + 1}` : ''
                 }`}
               >
@@ -58,7 +58,7 @@ export default function WhyElava() {
                   <h3 className="font-manrope text-[14px] font-semibold text-[#2A211F] mb-1.5 group-hover:text-[#8B1E2D] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-manrope text-[12px] text-[#625C55] leading-[1.6] font-normal">
+                  <p className="font-manrope text-[12px] text-[#594B40] leading-[1.6] font-normal">
                     {item.description}
                   </p>
                 </div>

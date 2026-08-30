@@ -190,10 +190,10 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* CTA: Cream surface with Cherry text — strong contrast */}
+              {/* CTA: Rich Warm Sand Cream surface with Cherry text */}
               <Link
                 to="/category/bestsellers"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#DAC29F] hover:bg-[#E5D7C3] active:scale-[0.98] text-[#8B1E2D] text-[12px] lg:text-[13px] font-manrope font-bold tracking-[0.01em] transition-all duration-200 shadow-sm ml-2 btn-interactive"
                 id="navbar-shop-now-btn"
               >
                 <span>Shop Now →</span>
