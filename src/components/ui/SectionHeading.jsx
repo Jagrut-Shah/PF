@@ -1,8 +1,8 @@
 import React from 'react';
 
 /**
- * SectionHeading — Bodoni Moda Title + Manrope Eyebrow & Subhead.
- * Supports light mode (default dark text) and dark mode (Cherry backgrounds with Cream text).
+ * SectionHeading — Bodoni Moda Title in Golden #C6A15B + Manrope Eyebrow & Subhead.
+ * Designed for Black + Gold + Cherry luxury palette.
  */
 export default function SectionHeading({
   title,
@@ -11,14 +11,14 @@ export default function SectionHeading({
   align = 'left',
   as: Component = 'h2',
   id,
-  isDark = true, // Default to true for Cherry backgrounds
+  isDark = true,
   className = ''
 }) {
   const alignmentClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
-  const eyebrowColor = isDark ? 'text-[#F4EBDD]/90' : 'text-[#8B1E2D]';
-  const titleColor = isDark ? 'text-[#F4EBDD]' : 'text-[#2A211F]';
-  const subtitleColor = isDark ? 'text-[#F4EBDD]/75' : 'text-[#A89A8B]';
+  const eyebrowColor = isDark ? 'text-[#C6A15B]/90' : 'text-[#8B1E2D]';
+  const titleColor = 'text-[#C6A15B]';
+  const subtitleColor = isDark ? 'text-[#F4EBDD]/80' : 'text-[#A89A8B]';
 
   return (
     <div className={`${alignmentClass} mb-5 sm:mb-7 ${className}`}>

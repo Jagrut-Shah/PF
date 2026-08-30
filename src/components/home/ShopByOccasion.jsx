@@ -40,13 +40,13 @@ const OCCASIONS_DATA = [
 
 /**
  * ShopByOccasion Component — Single 4-Column Row Layout
- * Rich Warm Sand Cream background #DAC29F for elegant, non-white contrast.
+ * BLACK BACKGROUND #120E0D — Gold #C6A15B titles & dark luxury cards.
  */
 export default function ShopByOccasion() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-5 sm:py-7 md:py-9 bg-[#DAC29F] text-[#2A211F] border-b border-[#BD9F7B] relative overflow-hidden" aria-label="Shop by occasion">
+    <section className="py-5 sm:py-7 md:py-9 bg-[#120E0D] text-[#F4EBDD] border-b border-[#2A211F] relative overflow-hidden" aria-label="Shop by occasion">
       {/* Subtle Ambient Light Zone behind occasion cards */}
       <div className="absolute inset-0 bg-ambient-occasion pointer-events-none" />
 
