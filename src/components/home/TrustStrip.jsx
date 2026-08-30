@@ -13,7 +13,7 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
 
 /**
  * TrustStrip Component:
- * Section: Cherry #8B1E2D, Panel: Cream #F4EBDD, Text: Dark Espresso #2A211F.
+ * Section: Cherry #8B1E2D, Inner Panel: Black #1A1412, Text: Cream #F4EBDD.
  */
 export default function TrustStrip() {
   const [ref, isVisible] = useScrollReveal();
@@ -23,11 +23,11 @@ export default function TrustStrip() {
       <MainContainer>
         <div
           ref={ref}
-          className={`bg-[#F4EBDD] border border-[#E5DCCF] rounded-xl p-3.5 sm:p-4 md:p-5 shadow-md text-[#2A211F] reveal-init ${
+          className={`bg-[#1A1412] border border-[#3D2E2A] rounded-xl p-3.5 sm:p-4 md:p-5 shadow-xl text-[#F4EBDD] reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 divide-y md:divide-y-0 md:divide-x divide-[#E5DCCF]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 divide-y md:divide-y-0 md:divide-x divide-[#3D2E2A]">
 
             {/* 1. Secure Payments */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
@@ -35,10 +35,10 @@ export default function TrustStrip() {
                 <ShieldCheck className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#F4EBDD]">
                   Secure Payments
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#D9C9B8]/80 truncate font-normal">
                   UPI, Cards & Net Banking
                 </p>
               </div>
@@ -50,10 +50,10 @@ export default function TrustStrip() {
                 <CreditCard className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#F4EBDD]">
                   COD Available
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#D9C9B8]/80 truncate font-normal">
                   Pay cash on delivery
                 </p>
               </div>
@@ -65,10 +65,10 @@ export default function TrustStrip() {
                 <Truck className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#F4EBDD]">
                   Tracked Delivery
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#D9C9B8]/80 truncate font-normal">
                   Dispatched across India
                 </p>
               </div>
@@ -80,10 +80,10 @@ export default function TrustStrip() {
                 <WhatsAppIcon className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#2A211F]">
+                <h4 className="font-manrope text-[13px] font-semibold tracking-wide text-[#F4EBDD]">
                   Customer Support
                 </h4>
-                <p className="font-manrope text-[11px] sm:text-[12px] text-[#625C55] truncate font-normal">
+                <p className="font-manrope text-[11px] sm:text-[12px] text-[#D9C9B8]/80 truncate font-normal">
                   Direct help via WhatsApp
                 </p>
               </div>

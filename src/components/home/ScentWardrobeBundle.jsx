@@ -29,8 +29,9 @@ const BUNDLE_PRESETS = [
 ];
 
 /**
- * ScentWardrobeBundle Component — CHERRY-FORWARD TREATMENT:
- * Deep Cherry #64141F background with Cream #F4EBDD cards (NO white background).
+ * ScentWardrobeBundle Component:
+ * Deep Cherry #64141F section background.
+ * Cards: Black #120E0D background, Golden #C6A15B titles, Cream #F4EBDD subtext & descriptions.
  */
 export default function ScentWardrobeBundle() {
   const [ref, isVisible] = useScrollReveal();
@@ -53,35 +54,37 @@ export default function ScentWardrobeBundle() {
             </p>
           </div>
 
-          {/* 3 Curated Bundle Preset Cards — Cream surface #F4EBDD on Deep Cherry */}
+          {/* 3 Curated Bundle Preset Cards — Black #120E0D surface with Golden #C6A15B Titles & Cream #F4EBDD Subtext */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {BUNDLE_PRESETS.map((preset, idx) => (
               <Link
                 key={preset.id}
                 to={`/wardrobe/${preset.id}`}
-                className={`p-5 lg:p-6 rounded-2xl border border-[#F4EBDD]/30 bg-[#F4EBDD] text-[#2A211F] hover:border-[#FFF] active:scale-[0.98] transition-all duration-300 cursor-pointer flex flex-col justify-between group shadow-md hover:shadow-xl hover:-translate-y-1 relative overflow-hidden card-hover-interactive reveal-init ${
+                className={`p-5 lg:p-6 rounded-2xl border border-[#3D2E2A] bg-[#120E0D] text-[#F4EBDD] hover:border-[#C6A15B]/70 active:scale-[0.98] transition-all duration-300 cursor-pointer flex flex-col justify-between group shadow-xl hover:-translate-y-1 relative overflow-hidden card-hover-interactive reveal-init ${
                   isVisible ? `reveal-visible stagger-${idx + 1}` : ''
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#8B1E2D] text-[#F4EBDD]">
+                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#8B1E2D] text-[#F4EBDD] border border-[#64141F]">
                       {preset.badge}
                     </span>
-                    <span className="text-[12px] font-manrope font-semibold text-[#A89A8B]">{preset.subtitle}</span>
+                    <span className="text-[12px] font-manrope font-semibold text-[#F4EBDD]/70">{preset.subtitle}</span>
                   </div>
-                  <h3 className="font-bodoni text-[18px] sm:text-[20px] font-medium text-[#2A211F] group-hover:text-[#8B1E2D] transition-colors leading-snug">
+                  {/* GOLDEN TITLE */}
+                  <h3 className="font-bodoni text-[20px] sm:text-[22px] font-medium text-[#C6A15B] group-hover:text-[#DFBD75] transition-colors leading-snug">
                     {preset.title}
                   </h3>
-                  <p className="font-manrope text-[13px] text-[#A89A8B] mt-1.5 leading-[1.5] font-normal">
+                  {/* CREAM SUBTEXT */}
+                  <p className="font-manrope text-[13px] text-[#F4EBDD]/80 mt-2 leading-[1.55] font-normal">
                     {preset.description}
                   </p>
                 </div>
 
-                {/* Action Link */}
-                <div className="mt-5 pt-3 border-t border-[#D9C9B8]/70 flex items-center justify-between text-[13px] font-manrope font-semibold tracking-[0.01em] text-[#2A211F] group-hover:text-[#8B1E2D] transition-colors">
+                {/* Action Link — Golden accent */}
+                <div className="mt-5 pt-3 border-t border-[#3D2E2A] flex items-center justify-between text-[13px] font-manrope font-semibold tracking-[0.01em] text-[#C6A15B] group-hover:text-[#F4EBDD] transition-colors">
                   <span>Explore Duo</span>
-                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform text-[#8B1E2D]" />
+                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform text-[#C6A15B] group-hover:text-[#F4EBDD]" />
                 </div>
               </Link>
             ))}
