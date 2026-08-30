@@ -4,8 +4,8 @@ import StarRating from '../ui/StarRating';
 import products from '../../data/products';
 
 /**
- * ReviewCard Component — Light Luxury Cream Surface
- * Manrope 400 Review Text + Manrope 600 Reviewer Name + Deep Espresso Typography
+ * ReviewCard Component — Cream #F4EBDD Surface (NO WHITE)
+ * Cherry top accent, Dark Espresso typography.
  */
 export default function ReviewCard({ review }) {
   if (!review) return null;
@@ -22,7 +22,7 @@ export default function ReviewCard({ review }) {
 
   return (
     <div
-      className="bg-[#FBF8F2] border border-[#D9C9B8] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-xs hover:border-[#8B1E2D]/30 hover:shadow-[0_6px_18px_rgba(139,30,45,0.08)] transition-all"
+      className="bg-[#F4EBDD] border border-[#E5DCCF] rounded-xl p-4 md:p-5 text-[#2A211F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-sm hover:shadow-md transition-all"
       role="figure"
     >
       {/* Cherry top accent line */}
@@ -30,22 +30,22 @@ export default function ReviewCard({ review }) {
 
       {/* Star rating */}
       <div className="mb-3 flex items-center pt-1">
-        <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#D8D0C4" />
+        <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#D9C9B8" />
       </div>
 
-      {/* Review Text — Manrope 400 */}
+      {/* Review Text */}
       <blockquote className="font-manrope text-[13px] sm:text-[14px] text-[#2A211F] leading-[1.6] mb-3 flex-1 relative z-10 min-w-0 break-words font-normal">
         "{text}"
       </blockquote>
 
-      {/* Customer Name & Product Link — Manrope 600 & 400 */}
-      <div className="pt-2.5 border-t border-[#D9C9B8] flex justify-between items-end gap-2 text-[13px]">
+      {/* Customer Name & Product Link */}
+      <div className="pt-2.5 border-t border-[#E5DCCF] flex justify-between items-end gap-2 text-[13px]">
         <div>
           <span className="font-manrope text-[#2A211F] font-semibold block text-[13px]">
             {customer}
           </span>
           {city && (
-            <span className="font-manrope text-[#A89A8B] font-normal text-[12px]">
+            <span className="font-manrope text-[#625C55] font-normal text-[12px]">
               {city}
             </span>
           )}

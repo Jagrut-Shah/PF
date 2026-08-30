@@ -1,6 +1,5 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
-import Hero from '../components/home/Hero';
 import ShopByOccasion from '../components/home/ShopByOccasion';
 import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
 import FindYourScent from '../components/home/FindYourScent';
@@ -14,22 +13,19 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * ÉLAVA Homepage Container — Cherry-First Luxury Fragrance Brand World
- * Primary Signature: Cherry #8B1E2D & Deep Cherry #64141F
- * Secondary Luxury Support: Cream #F4EBDD, Warm White #FBF8F2, Dark Espresso #2A211F
+ * ÉLAVA Homepage Container — CHERRY DOMINANT BRAND WORLD
+ * Main background: Cherry #8B1E2D & Deep Cherry #64141F
+ * Contrast cards: Cream #F4EBDD (No white backgrounds)
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#F4EBDD] text-[#2A211F] min-h-screen">
+    <div className="w-full bg-[#8B1E2D] text-[#F4EBDD] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."
         canonicalPath="/"
         ogType="website"
       />
-      
-      {/* 0. HERO CAMPAIGN — CHERRY BRAND DOMINANCE */}
-      <Hero />
 
       {/* 1. SHOP BY OCCASION */}
       <ShopByOccasion />

@@ -40,15 +40,15 @@ const OCCASIONS_DATA = [
 
 /**
  * ShopByOccasion Component — Single 4-Column Row Layout
- * Cream background #F4EBDD, controlled vertical scale.
+ * CHERRY BACKGROUND #8B1E2D — Dominant brand environment, Cream card titles.
  */
 export default function ShopByOccasion() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-4 sm:py-6 md:py-8 bg-[#F4EBDD] text-[#2A211F] border-b border-[#D9C9B8] relative overflow-hidden" aria-label="Shop by occasion">
-      {/* Subtle Ambient Light Zone behind occasion cards */}
-      <div className="absolute inset-0 bg-ambient-occasion pointer-events-none" />
+    <section className="py-5 sm:py-7 md:py-9 bg-[#8B1E2D] text-[#F4EBDD] border-b border-[#64141F] relative overflow-hidden" aria-label="Shop by occasion">
+      {/* Subtle Tonal Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#64141F]/40 to-transparent pointer-events-none" />
 
       <MainContainer className="relative z-10">
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>

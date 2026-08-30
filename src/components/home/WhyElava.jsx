@@ -27,27 +27,27 @@ const DIFFERENTIATORS = [
 ];
 
 /**
- * WhyElava Component — Light Luxury Perfume Aesthetic:
- * Slightly darker Cream / Stone #EEE8DD background, Warm Ivory #F6F2EA cards,
- * Deep Espresso #201C19 text, and Deep Burgundy #721C24 numerals.
+ * WhyElava Component — CHERRY DOMINANT BACKGROUND #64141F:
+ * Deep Cherry section, Cream #F4EBDD cards, Cherry #8B1E2D numerals.
  */
 export default function WhyElava() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#EEE2D2] text-[#2A211F] border-t border-b border-[#D9C9B8]">
+    <section className="py-8 sm:py-12 bg-[#64141F] text-[#F4EBDD] border-t border-b border-[#8B1E2D]">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
             title="Why Élava"
             subtitle="Genuine differentiators behind our fragrance craft."
+            isDark={true}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
             {DIFFERENTIATORS.map((item, idx) => (
               <div
                 key={item.number}
-                className={`bg-[#FBF8F2] border border-[#D9C9B8] rounded-xl p-5 flex flex-col justify-between shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-[#8B1E2D]/40 hover:shadow-[0_8px_24px_rgba(139,30,45,0.10)] group card-hover-interactive reveal-init ${
+                className={`bg-[#F4EBDD] border border-[#E5DCCF] rounded-xl p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#FFF] hover:shadow-md group card-hover-interactive reveal-init ${
                   isVisible ? `reveal-visible stagger-${idx + 1}` : ''
                 }`}
               >
@@ -58,7 +58,7 @@ export default function WhyElava() {
                   <h3 className="font-manrope text-[14px] font-semibold text-[#2A211F] mb-1.5 group-hover:text-[#8B1E2D] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-manrope text-[12px] text-[#A89A8B] leading-[1.6] font-normal">
+                  <p className="font-manrope text-[12px] text-[#625C55] leading-[1.6] font-normal">
                     {item.description}
                   </p>
                 </div>

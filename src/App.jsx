@@ -45,7 +45,8 @@ function ScrollToTop() {
 }
 
 /**
- * App Layout Container — Cherry #8B1E2D accent + Cream #F4EBDD base + Dark Espresso #2A211F text
+ * App Layout Container — CHERRY BRAND DOMINANT WORLD
+ * Background: Cherry #8B1E2D
  */
 export default function App() {
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F4EBDD] text-[#2A211F]">
+    <div className="flex flex-col min-h-screen bg-[#8B1E2D] text-[#F4EBDD]">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

@@ -30,42 +30,42 @@ const BUNDLE_PRESETS = [
 
 /**
  * ScentWardrobeBundle Component — CHERRY-FORWARD TREATMENT:
- * Deep Cherry #64141F background with Warm White/Cream cards.
+ * Deep Cherry #64141F background with Cream #F4EBDD cards (NO white background).
  */
 export default function ScentWardrobeBundle() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-10 sm:py-14 bg-[#64141F] text-[#FBF8F2] border-t border-b border-[#8B1E2D] relative overflow-hidden">
+    <section className="py-10 sm:py-14 bg-[#64141F] text-[#F4EBDD] border-t border-b border-[#8B1E2D] relative overflow-hidden">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E2D]/60 border border-[#F4EBDD]/20 text-[#F4EBDD] text-[11px] sm:text-[12px] font-manrope font-semibold tracking-[0.09em] uppercase mb-3 shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E2D]/80 border border-[#F4EBDD]/25 text-[#F4EBDD] text-[11px] sm:text-[12px] font-manrope font-semibold tracking-[0.09em] uppercase mb-3 shadow-xs">
               <Layers className="w-3.5 h-3.5 text-[#F4EBDD]" />
               <span>Fragrance Curation</span>
             </div>
-            <h2 className="font-bodoni text-[26px] sm:text-[34px] lg:text-[40px] font-medium text-[#FBF8F2] tracking-[-0.015em] leading-[1.05]">
+            <h2 className="font-bodoni text-[26px] sm:text-[34px] lg:text-[40px] font-medium text-[#F4EBDD] tracking-[-0.015em] leading-[1.05]">
               Build Your Scent Wardrobe
             </h2>
-            <p className="font-manrope text-[14px] sm:text-[16px] text-[#F4EBDD]/70 mt-2 font-normal leading-[1.4]">
+            <p className="font-manrope text-[14px] sm:text-[16px] text-[#F4EBDD]/80 mt-2 font-normal leading-[1.4]">
               Different moments deserve different fragrance signatures.
             </p>
           </div>
 
-          {/* 3 Curated Bundle Preset Cards — Warm White surface on Deep Cherry */}
+          {/* 3 Curated Bundle Preset Cards — Cream surface #F4EBDD on Deep Cherry */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {BUNDLE_PRESETS.map((preset, idx) => (
               <Link
                 key={preset.id}
                 to={`/wardrobe/${preset.id}`}
-                className={`p-5 lg:p-6 rounded-2xl border border-[#D9C9B8]/40 bg-[#FBF8F2] text-[#2A211F] hover:border-[#F4EBDD] active:scale-[0.98] transition-all duration-300 cursor-pointer flex flex-col justify-between group shadow-md hover:shadow-xl hover:-translate-y-1 relative overflow-hidden card-hover-interactive reveal-init ${
+                className={`p-5 lg:p-6 rounded-2xl border border-[#F4EBDD]/30 bg-[#F4EBDD] text-[#2A211F] hover:border-[#FFF] active:scale-[0.98] transition-all duration-300 cursor-pointer flex flex-col justify-between group shadow-md hover:shadow-xl hover:-translate-y-1 relative overflow-hidden card-hover-interactive reveal-init ${
                   isVisible ? `reveal-visible stagger-${idx + 1}` : ''
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#8B1E2D] text-[#FBF8F2]">
+                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#8B1E2D] text-[#F4EBDD]">
                       {preset.badge}
                     </span>
                     <span className="text-[12px] font-manrope font-semibold text-[#A89A8B]">{preset.subtitle}</span>
@@ -79,7 +79,7 @@ export default function ScentWardrobeBundle() {
                 </div>
 
                 {/* Action Link */}
-                <div className="mt-5 pt-3 border-t border-[#D9C9B8]/50 flex items-center justify-between text-[13px] font-manrope font-semibold tracking-[0.01em] text-[#2A211F] group-hover:text-[#8B1E2D] transition-colors">
+                <div className="mt-5 pt-3 border-t border-[#D9C9B8]/70 flex items-center justify-between text-[13px] font-manrope font-semibold tracking-[0.01em] text-[#2A211F] group-hover:text-[#8B1E2D] transition-colors">
                   <span>Explore Duo</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform text-[#8B1E2D]" />
                 </div>
