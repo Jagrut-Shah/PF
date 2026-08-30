@@ -1,11 +1,12 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
+import Hero from '../components/home/Hero';
 import ShopByOccasion from '../components/home/ShopByOccasion';
 import SignatureCtaBanner from '../components/home/SignatureCtaBanner';
-import MostLoved from '../components/home/MostLoved';
 import FindYourScent from '../components/home/FindYourScent';
-import TrustStrip from '../components/home/TrustStrip';
+import MostLoved from '../components/home/MostLoved';
 import ScentWardrobeBundle from '../components/home/ScentWardrobeBundle';
+import TrustStrip from '../components/home/TrustStrip';
 import ReferralBanner from '../components/home/ReferralBanner';
 import ScentQuiz from '../components/home/ScentQuiz';
 import WhyElava from '../components/home/WhyElava';
@@ -13,8 +14,9 @@ import WhatPeopleSay from '../components/home/WhatPeopleSay';
 import BrandStory from '../components/home/BrandStory';
 
 /**
- * ÉLAVA Homepage Container — Light Luxury Perfume Aesthetic
- * Base Palette: Primary Cream #F4EBDD, Dark Espresso #2A211F, Cherry #8B1E2D accent
+ * ÉLAVA Homepage Container — Cherry-First Luxury Fragrance Brand World
+ * Primary Signature: Cherry #8B1E2D & Deep Cherry #64141F
+ * Secondary Luxury Support: Cream #F4EBDD, Warm White #FBF8F2, Dark Espresso #2A211F
  */
 export default function Home() {
   return (
@@ -26,6 +28,9 @@ export default function Home() {
         ogType="website"
       />
       
+      {/* 0. HERO CAMPAIGN — CHERRY BRAND DOMINANCE */}
+      <Hero />
+
       {/* 1. SHOP BY OCCASION */}
       <ShopByOccasion />
 
