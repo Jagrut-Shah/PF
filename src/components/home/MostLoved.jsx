@@ -7,7 +7,7 @@ import products from '../../data/products';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * MostLoved Homepage Section — CREAM BACKGROUND #F4EBDD
+ * MostLoved Homepage Section — RICH WARM SAND CREAM BACKGROUND #DAC29F
  * Product visibility & comparison priority. Gold #C6A15B Bestseller tags & stars.
  */
 export default function MostLoved() {
@@ -15,7 +15,7 @@ export default function MostLoved() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#F4EBDD] text-[#2A211F] relative overflow-hidden border-b border-[#D9C9B8]" aria-labelledby="most-loved-heading">
+    <section className="py-8 sm:py-12 bg-[#DAC29F] text-[#2A211F] relative overflow-hidden border-b border-[#BD9F7B]" aria-labelledby="most-loved-heading">
       {/* Subtle Ambient Light Zone */}
       <div className="absolute inset-0 bg-ambient-bestsellers pointer-events-none" />
 
@@ -30,7 +30,7 @@ export default function MostLoved() {
               >
                 Most Loved · <span className="font-manrope font-semibold text-[#C6A15B] uppercase tracking-[0.09em] text-[15px] sm:text-[18px] md:text-[20px]">BESTSELLERS</span>
               </h2>
-              <p className="font-manrope text-[13px] sm:text-[14px] text-[#A89A8B] mt-1 font-normal leading-[1.4]">
+              <p className="font-manrope text-[13px] sm:text-[14px] text-[#7F6E5F] mt-1 font-normal leading-[1.4]">
                 Our most coveted fragrance signatures.
               </p>
             </div>

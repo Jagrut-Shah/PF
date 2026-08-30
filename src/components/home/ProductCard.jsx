@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import StarRating from '../ui/StarRating';
 
 /**
- * ProductCard — Rich Darker Cream #E5D7C3 image container (NO WHITE).
+ * ProductCard — Rich Warm Sand Cream #DAC29F image container (NO WHITE).
  * Gold #C6A15B Bestseller ribbon & star ratings.
  * Clear text readability on Cream background sections.
  */
@@ -17,8 +17,8 @@ export default function ProductCard({ product, className = '' }) {
       className={`group block w-full select-none focus:outline-none active:scale-[0.98] transition-transform duration-150 ${className}`}
       aria-label={`View ${product.name} perfume`}
     >
-      {/* Rich Darker Cream Image Container — NO WHITE */}
-      <div className="relative w-full overflow-hidden rounded-xl bg-[#E5D7C3] border border-[#CBB7A0] aspect-[4/3.8] md:aspect-[4/4.2] shadow-xs group-hover:shadow-[0_8px_24px_rgba(42,33,31,0.12)] transition-all duration-300 group-hover:border-[#8B1E2D]/40">
+      {/* Rich Warm Sand Cream Image Container — NO WHITE */}
+      <div className="relative w-full overflow-hidden rounded-xl bg-[#DAC29F] border border-[#BD9F7B] aspect-[4/3.8] md:aspect-[4/4.2] shadow-xs group-hover:shadow-[0_8px_24px_rgba(42,33,31,0.12)] transition-all duration-300 group-hover:border-[#8B1E2D]/40">
         {/* Gold Bestseller Diagonal Corner Ribbon — top-left inside image */}
         {product.isBestseller && (
           <div className="absolute top-0 left-0 overflow-hidden w-20 h-20 pointer-events-none z-10">
@@ -46,7 +46,7 @@ export default function ProductCard({ product, className = '' }) {
         </h3>
 
         {/* Scent Identity */}
-        <p className="font-manrope text-[12px] sm:text-[13px] leading-[1.45] min-w-0 break-words text-[#8C7B6B] font-normal">
+        <p className="font-manrope text-[12px] sm:text-[13px] leading-[1.45] min-w-0 break-words text-[#7F6E5F] font-normal">
           {product.isBestseller ? (
             <>
               <span className="font-manrope font-semibold text-[#C6A15B] tracking-wider text-[10px] uppercase">BESTSELLER</span>
@@ -58,8 +58,8 @@ export default function ProductCard({ product, className = '' }) {
         </p>
 
         {/* Ratings */}
-        <div className="flex items-center gap-1.5 text-[11px] sm:text-[12px] text-[#8C7B6B] font-manrope font-normal">
-          <StarRating rating={product.rating} size={11} starColor="#C6A15B" emptyColor="#CBB7A0" />
+        <div className="flex items-center gap-1.5 text-[11px] sm:text-[12px] text-[#7F6E5F] font-manrope font-normal">
+          <StarRating rating={product.rating} size={11} starColor="#C6A15B" emptyColor="#BD9F7B" />
           <span className="font-semibold text-[#2A211F]">{product.rating}</span>
           <span>·</span>
           <span>{product.reviewCount} reviews</span>
@@ -71,7 +71,7 @@ export default function ProductCard({ product, className = '' }) {
             ₹{product.price?.toLocaleString()}
           </span>
           <ArrowUpRight
-            className="w-3.5 h-3.5 text-[#8C7B6B] stroke-[1.75] transform transition-transform duration-250 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#8B1E2D]"
+            className="w-3.5 h-3.5 text-[#7F6E5F] stroke-[1.75] transform transition-transform duration-250 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#8B1E2D]"
             aria-hidden="true"
           />
         </div>

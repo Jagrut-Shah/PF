@@ -3,19 +3,20 @@
 
 :root {
   /* ============================================================
-     ÉLAVA — Cherry + Rich Darker Cream Luxury Fragrance Palette
+     ÉLAVA — Cherry + Rich Warm Golden Cream Luxury Palette
+     Deeper cream tones (#DAC29F / #D0B48F) so it NEVER washes out to white on laptop monitors
   ============================================================ */
 
-  /* Primary Environment — Deeper, richer warm cream (clearly non-white) */
-  --elava-cream: #E5D7C3;           /* Dominant rich warm cream */
-  --elava-cream-deep: #DFCFB9;      /* Mid-tone section surfaces */
-  --elava-warm-white: #EADBC8;      /* Warm card surfaces */
+  /* Primary Environment — Rich warm golden sand cream (unmistakably non-white) */
+  --elava-cream: #DAC29F;           /* Dominant rich warm sand cream */
+  --elava-cream-deep: #D0B48F;      /* Mid-tone section surfaces */
+  --elava-warm-white: #E4CCAA;      /* Warm card surfaces */
   --elava-blush: #E8C9C5;           /* Soft tonal variation */
 
   /* Typography */
   --elava-espresso: #2A211F;        /* Primary text — dark, warm */
-  --elava-taupe: #8C7B6B;           /* Secondary/muted text */
-  --elava-border: #CBB7A0;          /* Subtle warm neutral border */
+  --elava-taupe: #7F6E5F;           /* Secondary/muted text */
+  --elava-border: #BD9F7B;          /* Subtle warm neutral border */
 
   /* Signature Cherry */
   --elava-cherry: #8B1E2D;          /* Primary CTA, active states, key accents */
@@ -47,13 +48,13 @@
 }
 
 @theme {
-  --color-elava-cream: #E5D7C3;
-  --color-elava-cream-deep: #DFCFB9;
-  --color-elava-warm-white: #EADBC8;
+  --color-elava-cream: #DAC29F;
+  --color-elava-cream-deep: #D0B48F;
+  --color-elava-warm-white: #E4CCAA;
   --color-elava-blush: #E8C9C5;
   --color-elava-espresso: #2A211F;
-  --color-elava-taupe: #8C7B6B;
-  --color-elava-border: #CBB7A0;
+  --color-elava-taupe: #7F6E5F;
+  --color-elava-border: #BD9F7B;
   --color-elava-cherry: #8B1E2D;
   --color-elava-cherry-deep: #64141F;
   --color-elava-gold: #C6A15B;
@@ -69,7 +70,7 @@ html, body, #root, main {
   margin: 0;
   padding: 0;
   background-color: #8B1E2D;
-  color: #E5D7C3;
+  color: #DAC29F;
   font-family: var(--font-manrope);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -142,7 +143,7 @@ body {
   font-size: clamp(14px, 1.4vw, 17px);
   line-height: 1.45;
   letter-spacing: 0;
-  color: #8C7B6B;
+  color: #7F6E5F;
 }
 
 .elava-body {
@@ -151,7 +152,7 @@ body {
   font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.6;
   letter-spacing: 0;
-  color: #8C7B6B;
+  color: #7F6E5F;
 }
 
 .elava-product-name {
@@ -184,7 +185,7 @@ body {
    CHERRY ATMOSPHERIC AMBIENT LIGHT UTILITIES
 ============================================================ */
 .bg-ambient-hero {
-  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(139, 30, 45, 0.07), rgba(229, 215, 195, 0.3) 50%, transparent 75%);
+  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(139, 30, 45, 0.07), rgba(218, 194, 159, 0.3) 50%, transparent 75%);
 }
 
 .bg-ambient-bestsellers {
@@ -265,7 +266,7 @@ body {
 }
 
 .bg-elava-cream {
-  background-color: #E5D7C3 !important;
+  background-color: #DAC29F !important;
 }
 
 html {
@@ -273,8 +274,8 @@ html {
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #DFCFB9; }
-::-webkit-scrollbar-thumb { background: #CBB7A0; border-radius: 3px; }
+::-webkit-scrollbar-track { background: #D0B48F; }
+::-webkit-scrollbar-thumb { background: #BD9F7B; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #8B1E2D; }
 
 ::selection {
