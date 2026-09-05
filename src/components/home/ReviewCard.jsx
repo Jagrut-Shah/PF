@@ -25,8 +25,8 @@ export default function ReviewCard({ review }) {
       className="bg-[#120E0D] border border-[#3D2E2A] rounded-xl p-4 md:p-5 text-[#DAC29F] flex flex-col h-full relative overflow-hidden min-w-0 shadow-md hover:shadow-xl transition-all"
       role="figure"
     >
-      {/* Cherry top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#8B1E2D]" />
+      {/* Blue top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0000FF]" />
 
       {/* Star rating — Gold exclusively */}
       <div className="mb-3 flex items-center pt-1">

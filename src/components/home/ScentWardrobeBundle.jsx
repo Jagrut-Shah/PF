@@ -30,19 +30,19 @@ const BUNDLE_PRESETS = [
 
 /**
  * ScentWardrobeBundle Component:
- * Deep Cherry #64141F section background.
+ * Deep Blue #1D4ED8 section background.
  * Cards: Black #120E0D background, Golden #C6A15B titles, Cream #F4EBDD subtext & descriptions.
  */
 export default function ScentWardrobeBundle() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-10 sm:py-14 bg-[#64141F] text-[#F4EBDD] border-t border-b border-[#8B1E2D] relative overflow-hidden">
+    <section className="py-10 sm:py-14 bg-[#0000CD] text-[#F4EBDD] border-t border-b border-[#0000FF] relative overflow-hidden">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E2D]/80 border border-[#F4EBDD]/25 text-[#F4EBDD] text-[11px] sm:text-[12px] font-manrope font-semibold tracking-[0.09em] uppercase mb-3 shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0000FF]/80 border border-[#F4EBDD]/25 text-[#F4EBDD] text-[11px] sm:text-[12px] font-manrope font-semibold tracking-[0.09em] uppercase mb-3 shadow-xs">
               <Layers className="w-3.5 h-3.5 text-[#F4EBDD]" />
               <span>Fragrance Curation</span>
             </div>
@@ -66,7 +66,7 @@ export default function ScentWardrobeBundle() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#8B1E2D] text-[#F4EBDD] border border-[#64141F]">
+                    <span className="text-[10px] font-manrope font-bold uppercase tracking-[0.09em] px-2.5 py-1 rounded bg-[#0000FF] text-[#F4EBDD] border border-[#0000CD]">
                       {preset.badge}
                     </span>
                     <span className="text-[12px] font-manrope font-semibold text-[#F4EBDD]/70">{preset.subtitle}</span>

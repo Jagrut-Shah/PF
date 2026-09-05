@@ -4,8 +4,8 @@ import MainContainer from '../ui/MainContainer';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 /**
- * SignatureCtaBanner Component — CHERRY & VERY DARK CREAM MOMENT:
- * Inner Banner: Deep Cherry #64141F, CTA: Very Dark Cream #DAC29F with Cherry text.
+ * SignatureCtaBanner Component — BLUE & VERY DARK CREAM MOMENT:
+ * Inner Banner: Deep Blue #0000CD, CTA: Very Dark Cream #DAC29F with Blue text.
  * Section background: Black #120E0D.
  */
 export default function SignatureCtaBanner() {
@@ -24,12 +24,12 @@ export default function SignatureCtaBanner() {
       <MainContainer>
         <div
           ref={ref}
-          className={`max-w-5xl mx-auto bg-[#64141F] border border-[#DAC29F]/25 rounded-xl px-4 py-3 sm:px-6 sm:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md reveal-init ${
+          className={`max-w-5xl mx-auto bg-[#0000CD] border border-[#DAC29F]/25 rounded-xl px-4 py-3 sm:px-6 sm:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md reveal-init ${
             isVisible ? 'reveal-visible' : ''
           }`}
         >
           <div className="flex items-center gap-3 text-center sm:text-left">
-            <div className="w-8 h-8 rounded-full bg-[#8B1E2D] border border-[#DAC29F]/30 flex items-center justify-center shrink-0 hidden sm:flex shadow-xs">
+            <div className="w-8 h-8 rounded-full bg-[#0000FF] border border-[#DAC29F]/30 flex items-center justify-center shrink-0 hidden sm:flex shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#DAC29F]" />
             </div>
             <div>
@@ -42,7 +42,7 @@ export default function SignatureCtaBanner() {
           <a
             href="#scent-finder"
             onClick={scrollToFinder}
-            className="inline-flex items-center justify-center gap-1.5 bg-[#DAC29F] hover:bg-[#E5D7C3] active:scale-[0.98] text-[#8B1E2D] px-5 py-2 sm:py-2.5 rounded-lg font-manrope text-[14px] font-bold transition-all duration-200 shrink-0 shadow-sm w-full sm:w-auto text-center btn-interactive"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#DAC29F] hover:bg-[#E5D7C3] active:scale-[0.98] text-[#0000FF] px-5 py-2 sm:py-2.5 rounded-lg font-manrope text-[14px] font-bold transition-all duration-200 shrink-0 shadow-sm w-full sm:w-auto text-center btn-interactive"
           >
             <span>Find Your Signature Scent →</span>
           </a>

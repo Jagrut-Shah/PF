@@ -34,7 +34,7 @@ export default function WhyElava() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#64141F] text-[#DAC29F] border-t border-b border-[#8B1E2D]">
+    <section className="py-8 sm:py-12 bg-[#0000CD] text-[#DAC29F] border-t border-b border-[#0000FF]">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading

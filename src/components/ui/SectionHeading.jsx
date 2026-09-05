@@ -16,7 +16,7 @@ export default function SectionHeading({
 }) {
   const alignmentClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
-  const eyebrowColor = isDark ? 'text-[#DAC29F]/90' : 'text-[#8B1E2D]';
+  const eyebrowColor = isDark ? 'text-[#DAC29F]/90' : 'text-[#0000FF]';
   const titleColor = 'text-[#DAC29F]';
   const subtitleColor = isDark ? 'text-[#DAC29F]/80' : 'text-[#A89A8B]';
 

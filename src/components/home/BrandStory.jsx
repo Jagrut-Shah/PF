@@ -10,7 +10,7 @@ export default function BrandStory() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-10 sm:py-14 bg-[#64141F] text-[#DAC29F] border-y border-[#8B1E2D] relative overflow-hidden">
+    <section className="py-10 sm:py-14 bg-[#0000CD] text-[#DAC29F] border-y border-[#0000FF] relative overflow-hidden">
       <MainContainer className="relative z-10">
         <div
           ref={ref}
@@ -19,7 +19,7 @@ export default function BrandStory() {
           }`}
         >
           
-          <span className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#8B1E2D] block mb-2">
+          <span className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#0000FF] block mb-2">
             Our Essence & Origin
           </span>
 

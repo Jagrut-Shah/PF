@@ -4,8 +4,8 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import MainContainer from '../ui/MainContainer';
 
 /**
- * Hero — CHERRY-FIRST
- * Deep Cherry → Cherry gradient background.
+ * Hero — BRIGHT PREMIUM BLUE IDENTITY
+ * Deep Blue → Primary Blue gradient background.
  * Cream/Warm White typography for contrast.
  * Product bottle on a Cream surface — physical, present, premium.
  * Controlled scale: 75-85vh feel, no oversized headings.
@@ -37,11 +37,11 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden border-b border-[#64141F]"
-      style={{ background: 'linear-gradient(135deg, #64141F 0%, #8B1E2D 45%, #741929 100%)' }}
+      className="relative w-full overflow-hidden border-b border-[#0000CD]"
+      style={{ background: 'linear-gradient(135deg, #0000CD 0%, #0000FF 45%, #0000B8 100%)' }}
     >
       {/* Subtle tonal texture overlay — depth without pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#64141F]/60 via-transparent to-[#8B1E2D]/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0000CD]/60 via-transparent to-[#0000FF]/30 pointer-events-none" />
 
       {/* Very soft cream atmospheric bloom — right side behind bottle */}
       <div
@@ -58,7 +58,7 @@ export default function Hero() {
           {/* LEFT — Content */}
           <div className="lg:col-span-7">
 
-            {/* Eyebrow badge — Cream on Cherry */}
+            {/* Eyebrow badge — Cream on Blue */}
             <div className="animate-hero-eyebrow inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4EBDD]/15 border border-[#F4EBDD]/25 mb-4">
               <Sparkles className="w-3 h-3 text-[#F4EBDD]/80" />
               <span className="font-manrope text-[11px] sm:text-[12px] font-semibold tracking-[0.09em] uppercase text-[#F4EBDD]/90">
@@ -66,7 +66,7 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Hero Headline — Warm White on Cherry, controlled scale */}
+            {/* Hero Headline — Warm White on Blue, controlled scale */}
             <h1 className="animate-hero-headline font-bodoni text-[30px] sm:text-[38px] md:text-[46px] lg:text-[52px] font-medium tracking-[-0.02em] text-[#FBF8F2] leading-[1.0] mb-4">
               Scents that become{' '}
               <span className="italic text-[#F4EBDD]/80 font-medium">part of you.</span>
@@ -79,10 +79,10 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="animate-hero-cta flex flex-wrap items-center gap-3">
-              {/* Primary: Cream on Cherry — strong contrast */}
+              {/* Primary: Cream on Blue — strong contrast */}
               <Link
                 to="/category/bestsellers"
-                className="group inline-flex items-center gap-2 bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#8B1E2D] px-6 py-2.5 rounded-lg font-manrope text-[13px] sm:text-[14px] font-bold tracking-[0.01em] transition-all duration-200 shadow-md hover:shadow-lg btn-interactive"
+                className="group inline-flex items-center gap-2 bg-[#F4EBDD] hover:bg-[#FBF8F2] active:scale-[0.98] text-[#0000FF] px-6 py-2.5 rounded-lg font-manrope text-[13px] sm:text-[14px] font-bold tracking-[0.01em] transition-all duration-200 shadow-md hover:shadow-lg btn-interactive"
               >
                 <span>Discover Your Signature</span>
                 <ArrowRight className="w-3.5 h-3.5 transform transition-transform duration-200 group-hover:translate-x-1.5" />
@@ -121,13 +121,13 @@ export default function Hero() {
 
               {/* Product bottle on Cream surface — physical contrast */}
               <div
-                className="relative rounded-xl overflow-hidden bg-[#F4EBDD] border border-[#EEE2D2] p-4 sm:p-5 shadow-[0_16px_48px_rgba(100,20,31,0.35)] transition-transform duration-300 group-hover:scale-[1.015]"
+                className="relative rounded-xl overflow-hidden bg-[#F4EBDD] border border-[#EEE2D2] p-4 sm:p-5 shadow-[0_16px_48px_rgba(0,0,255,0.30)] transition-transform duration-300 group-hover:scale-[1.015]"
                 style={{ transform: bottleTransform }}
               >
                 <img
                   src="/images/products/row-1-column-1.png"
                   alt="ÉLAVA Signature Eau de Parfum Bottle"
-                  className="w-full h-auto object-contain drop-shadow-[0_10px_20px_rgba(100,20,31,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,255,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
             </div>

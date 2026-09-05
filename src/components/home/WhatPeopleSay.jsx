@@ -17,7 +17,7 @@ export default function WhatPeopleSay() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-7 sm:py-10 bg-[#8B1E2D] text-[#DAC29F] border-b border-[#64141F]" aria-labelledby="what-people-say-heading">
+    <section className="py-7 sm:py-10 bg-[#0000FF] text-[#DAC29F] border-b border-[#0000CD]" aria-labelledby="what-people-say-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
 
@@ -61,7 +61,7 @@ export default function WhatPeopleSay() {
           {/* Rating Summary row below cards */}
           <div className="flex flex-col gap-3 pt-3 md:flex-row md:items-center md:justify-between border-t border-[#DAC29F]/20 mt-2">
             <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
-              <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#64141F" />
+              <StarRating rating={rating} size={15} starColor="#C6A15B" emptyColor="#0000CD" />
               <div className="flex flex-wrap items-center gap-1.5 font-sans">
                 <span className="text-xs sm:text-sm font-semibold text-[#DAC29F]">
                   {rating} out of 5

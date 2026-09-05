@@ -33,13 +33,13 @@ const SCENT_CATEGORIES = [
 
 /**
  * FindYourScent Homepage Section — FOR HIM, FOR HER, UNISEX
- * CHERRY DOMINANT BACKGROUND #64141F.
+ * BLUE DOMINANT BACKGROUND #1D4ED8.
  */
 export default function FindYourScent() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#64141F] text-[#F4EBDD] border-b border-[#8B1E2D]" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 bg-[#0000CD] text-[#F4EBDD] border-b border-[#0000FF]" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Heading & Subtitle */}
