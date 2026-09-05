@@ -25,8 +25,8 @@ export default function ReferralBanner() {
 
   return (
     <section
-      className="py-10 sm:py-14 text-[#DAC29F] border-t border-b border-[#0000CD] relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #0000CD 0%, #0000B8 50%, #0000CD 100%)' }}
+      className="py-10 sm:py-14 text-[#DAC29F] border-t border-b border-[#06215A] relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #06215A 0%, #08286C 50%, #06215A 100%)' }}
     >
       <div className="absolute inset-0 bg-ambient-referral pointer-events-none opacity-30" />
 
@@ -87,7 +87,7 @@ export default function ReferralBanner() {
                 <button
                   type="button"
                   onClick={handleStartEarning}
-                  className="w-full sm:w-auto bg-[#DAC29F] hover:bg-[#E5D7C3] active:scale-[0.98] text-[#0000FF] px-7 py-3 rounded-lg font-manrope font-bold text-[13px] sm:text-[14px] tracking-[0.01em] inline-flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer btn-interactive"
+                  className="w-full sm:w-auto bg-[#DAC29F] hover:bg-[#E5D7C3] active:scale-[0.98] text-[#0A3282] px-7 py-3 rounded-lg font-manrope font-bold text-[13px] sm:text-[14px] tracking-[0.01em] inline-flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer btn-interactive"
                   id="start-earning-homepage-btn"
                 >
                   <span>Start Earning →</span>

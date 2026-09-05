@@ -86,7 +86,7 @@ export default function ScentQuiz() {
   const currentQuestion = QUIZ_QUESTIONS[currentStep];
 
   return (
-    <section id="scent-finder" className="py-10 sm:py-14 bg-[#0000FF] text-[#DAC29F] border-b border-[#0000CD]" aria-labelledby="scent-finder-heading">
+    <section id="scent-finder" className="py-10 sm:py-14 bg-[#0A3282] text-[#DAC29F] border-b border-[#06215A]" aria-labelledby="scent-finder-heading">
       <MainContainer>
         <div ref={ref} className={`max-w-3xl mx-auto reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           <SectionHeading
@@ -98,7 +98,7 @@ export default function ScentQuiz() {
             isDark={true}
           />
 
-          <div className="bg-[#0000CD] border border-[#DAC29F]/30 rounded-2xl p-5 sm:p-8 shadow-md relative overflow-hidden transition-all duration-300">
+          <div className="bg-[#06215A] border border-[#DAC29F]/30 rounded-2xl p-5 sm:p-8 shadow-md relative overflow-hidden transition-all duration-300">
 
             {!isCompleted ? (
               <div className="transition-opacity duration-300">
@@ -116,7 +116,7 @@ export default function ScentQuiz() {
                             ? 'w-6 bg-[#DAC29F]'
                             : idx < currentStep
                             ? 'w-3 bg-[#DAC29F]/70'
-                            : 'w-3 bg-[#0000FF]'
+                            : 'w-3 bg-[#0A3282]'
                         }`}
                       />
                     ))}
@@ -139,7 +139,7 @@ export default function ScentQuiz() {
                         onClick={() => handleSelectOption(currentQuestion.id, opt.value)}
                         className={`w-full text-left p-3.5 sm:p-4 rounded-xl border font-manrope text-[14px] font-semibold flex items-center justify-between transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-[#0000FF] border-[#DAC29F] text-[#DAC29F] shadow-sm'
+                            ? 'bg-[#0A3282] border-[#DAC29F] text-[#DAC29F] shadow-sm'
                             : 'bg-[#DAC29F] border-[#BD9F7B] text-[#2A211F] hover:bg-[#E5D7C3]'
                         }`}
                       >
@@ -185,7 +185,7 @@ export default function ScentQuiz() {
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="text-xs font-manrope font-semibold text-[#DAC29F] hover:text-[#FFF] flex items-center gap-1 border border-[#DAC29F]/30 px-3 py-1.5 rounded-lg bg-[#0000FF] btn-interactive"
+                    className="text-xs font-manrope font-semibold text-[#DAC29F] hover:text-[#FFF] flex items-center gap-1 border border-[#DAC29F]/30 px-3 py-1.5 rounded-lg bg-[#0A3282] btn-interactive"
                   >
                     <RotateCcw className="w-3 h-3" />
                     <span>Retake</span>
@@ -201,7 +201,7 @@ export default function ScentQuiz() {
                       className="w-24 h-24 object-contain rounded-lg bg-[#D0B48F] shrink-0 p-1"
                     />
                     <div className="flex-1 text-center sm:text-left min-w-0">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#0000FF] text-[#DAC29F] border border-[#0000CD] text-[11px] font-manrope font-semibold uppercase tracking-wider mb-1">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#0A3282] text-[#DAC29F] border border-[#06215A] text-[11px] font-manrope font-semibold uppercase tracking-wider mb-1">
                         <Sparkles className="w-3 h-3 text-[#DAC29F]" />
                         TOP MATCH · ÉLAVA SIGNATURE
                       </span>
@@ -218,7 +218,7 @@ export default function ScentQuiz() {
 
                     <Link
                       to={`/product/${displayProducts[0].slug}`}
-                      className="w-full sm:w-auto bg-[#0000FF] hover:bg-[#0000CD] active:scale-[0.98] text-[#DAC29F] py-3 px-6 rounded-xl font-manrope text-[14px] font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
+                      className="w-full sm:w-auto bg-[#0A3282] hover:bg-[#06215A] active:scale-[0.98] text-[#DAC29F] py-3 px-6 rounded-xl font-manrope text-[14px] font-semibold tracking-wider inline-flex items-center justify-center gap-2 transition-colors shrink-0 shadow-xs btn-interactive"
                     >
                       <span>View Your Match →</span>
                     </Link>

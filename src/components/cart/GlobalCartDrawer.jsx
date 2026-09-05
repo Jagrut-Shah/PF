@@ -87,8 +87,8 @@ export default function GlobalCartDrawer() {
     >
       <div className="bg-[#FBF8F2] border border-[#D9C9B8] sm:rounded-2xl rounded-t-2xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col text-[#2A211F] overflow-hidden">
         
-        {/* Header — Blue #0000FF */}
-        <div className="p-4 border-b border-[#0000CD] flex items-center justify-between bg-[#0000FF] text-[#FBF8F2]">
+        {/* Header — Blue #0A3282 */}
+        <div className="p-4 border-b border-[#06215A] flex items-center justify-between bg-[#0A3282] text-[#FBF8F2]">
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-4 h-4 text-[#F4EBDD]" />
             <h3 className="font-bodoni text-[17px] font-medium text-[#FBF8F2] tracking-[-0.015em]">
@@ -132,17 +132,17 @@ export default function GlobalCartDrawer() {
                           {isDuo ? item.name : item.name?.replace(/^ÉLAVA\s+/i, '')}
                         </div>
                         {isDuo && (
-                          <span className="bg-[#E5DCCF] text-[#0000FF] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#0A3282] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             DUO BUNDLE
                           </span>
                         )}
                         {isSample && (
-                          <span className="bg-[#E5DCCF] text-[#0000FF] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#0A3282] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE SET
                           </span>
                         )}
                         {isSingleSample && (
-                          <span className="bg-[#E5DCCF] text-[#0000FF] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
+                          <span className="bg-[#E5DCCF] text-[#0A3282] border border-[#D9D1C6] text-[10px] font-manrope font-semibold uppercase px-2 py-0.5 rounded shrink-0">
                             SAMPLE BOTTLE
                           </span>
                         )}
@@ -199,7 +199,7 @@ export default function GlobalCartDrawer() {
                 <span className="font-semibold text-[#201C19]">₹{subtotalVal.toLocaleString()}</span>
               </div>
               {discountVal > 0 && (
-                <div className="flex justify-between text-[#0000FF]">
+                <div className="flex justify-between text-[#0A3282]">
                   <span>Discount {cartTotals.referralCode ? `(${cartTotals.referralCode})` : ''}</span>
                   <span className="font-semibold">-₹{discountVal.toLocaleString()}</span>
                 </div>
@@ -213,7 +213,7 @@ export default function GlobalCartDrawer() {
             <button
               type="button"
               onClick={handleCheckoutClick}
-              className="w-full bg-[#0000FF] hover:bg-[#0000CD] active:scale-[0.98] text-[#F6F2EA] py-3.5 px-4 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer btn-interactive"
+              className="w-full bg-[#0A3282] hover:bg-[#06215A] active:scale-[0.98] text-[#F6F2EA] py-3.5 px-4 rounded-xl font-manrope font-semibold text-[14px] flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer btn-interactive"
               id="global-cart-checkout-btn"
             >
               <CreditCard className="w-4 h-4" />

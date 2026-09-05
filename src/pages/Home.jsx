@@ -14,12 +14,12 @@ import BrandStory from '../components/home/BrandStory';
 
 /**
  * ÉLAVA Homepage Container — BRIGHT PREMIUM BLUE BRAND WORLD
- * Main background: Standard Blue #0000FF & Deep Blue #0000CD
+ * Main background: Deep Royal Blue #0A3282 & Deep Royal Navy #06215A
  * Contrast cards: Cream #F4EBDD (No white backgrounds)
  */
 export default function Home() {
   return (
-    <div className="w-full bg-[#0000FF] text-[#F4EBDD] min-h-screen">
+    <div className="w-full bg-[#0A3282] text-[#F4EBDD] min-h-screen">
       <SEO
         title="ÉLAVA — Premium Fragrances Crafted for Every Moment"
         description="Discover ÉLAVA luxury artisanal perfumes crafted with exquisite notes. Explore bespoke 60 ML Eau de Parfum signatures for men, women, and unisex expression."

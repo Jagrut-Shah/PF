@@ -17,14 +17,14 @@
   --elava-taupe: #A89A8B;           /* Muted text */
   --elava-border: #3D2E2A;          /* Dark warm neutral border */
 
-  /* Signature Blue Visual Identity (Transformed to Standard Blue #0000FF) */
-  --elava-cherry: #0000FF;          /* Primary brand standard blue */
-  --elava-cherry-deep: #0000CD;     /* Deep blue background */
-  --elava-cherry-hover: #0000D9;    /* Blue hover state */
-  --elava-blue: #0000FF;            /* Primary brand standard blue #0000FF */
-  --elava-blue-deep: #0000CD;       /* Deep blue */
-  --elava-blue-light: #3333FF;      /* Light blue */
-  --elava-blue-soft: #E6E6FF;       /* Very light blue */
+  /* Signature Blue Visual Identity (Deep Royal Blue #0A3282) */
+  --elava-cherry: #0A3282;          /* Primary brand deep royal blue */
+  --elava-cherry-deep: #06215A;     /* Deep royal navy background */
+  --elava-cherry-hover: #08286C;    /* Blue hover state */
+  --elava-blue: #0A3282;            /* Primary brand deep royal blue #0A3282 */
+  --elava-blue-deep: #06215A;       /* Deep royal navy #06215A */
+  --elava-blue-light: #164DB8;      /* Light royal blue */
+  --elava-blue-soft: #E8EEF9;       /* Soft blue tint */
 
   /* Gold Luxury Accent & Dominant Titles */
   --elava-gold: #C6A15B;            /* Gold for titles, bestsellers, stars */
@@ -55,15 +55,15 @@
   --color-elava-cream: #120E0D;
   --color-elava-cream-deep: #1A1412;
   --color-elava-warm-white: #241C19;
-  --color-elava-blush: #0000CD;
+  --color-elava-blush: #06215A;
   --color-elava-espresso: #F4EBDD;
   --color-elava-taupe: #A89A8B;
   --color-elava-border: #3D2E2A;
-  --color-elava-cherry: #0000FF;
-  --color-elava-cherry-deep: #0000CD;
-  --color-elava-blue: #0000FF;
-  --color-elava-blue-deep: #0000CD;
-  --color-elava-blue-light: #3333FF;
+  --color-elava-cherry: #0A3282;
+  --color-elava-cherry-deep: #06215A;
+  --color-elava-blue: #0A3282;
+  --color-elava-blue-deep: #06215A;
+  --color-elava-blue-light: #164DB8;
   --color-elava-gold: #C6A15B;
 
   --font-bodoni: "Bodoni Moda", serif;
@@ -182,14 +182,14 @@ body {
   font-size: 11px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #0000FF;
+  color: #0A3282;
 }
 
 /* ============================================================
    AMBIENT ILLUMINATION
 ============================================================ */
 .bg-ambient-hero {
-  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(0, 0, 255, 0.15), transparent 75%);
+  background: radial-gradient(ellipse 70% 55% at 72% 50%, rgba(10, 50, 130, 0.18), transparent 75%);
 }
 
 .bg-ambient-bestsellers {
@@ -197,11 +197,11 @@ body {
 }
 
 .bg-ambient-occasion {
-  background: radial-gradient(ellipse 75% 50% at 50% 50%, rgba(0, 0, 255, 0.08), transparent 70%);
+  background: radial-gradient(ellipse 75% 50% at 50% 50%, rgba(10, 50, 130, 0.10), transparent 70%);
 }
 
 .bg-ambient-referral {
-  background: radial-gradient(circle at 75% 30%, rgba(0, 0, 255, 0.20), transparent 70%);
+  background: radial-gradient(circle at 75% 30%, rgba(10, 50, 130, 0.22), transparent 70%);
 }
 
 /* ============================================================

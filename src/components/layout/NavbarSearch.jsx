@@ -64,7 +64,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
   };
 
   return (
-    <div className="absolute top-full left-0 w-full bg-[#0000CD] border-t border-[#0000FF]/40 shadow-[0_8px_32px_rgba(0,0,255,0.35)] z-50 text-[#FBF8F2]">
+    <div className="absolute top-full left-0 w-full bg-[#06215A] border-t border-[#0A3282]/40 shadow-[0_8px_32px_rgba(10,50,130,0.35)] z-50 text-[#FBF8F2]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4">
 
         {/* Search Input */}
@@ -108,7 +108,7 @@ export default function NavbarSearch({ isOpen, onClose }) {
                     key={tag}
                     type="button"
                     onClick={() => setQuery(tag)}
-                    className="px-3 py-1 bg-[#F4EBDD]/10 hover:bg-[#F4EBDD] hover:text-[#0000FF] text-[#FBF8F2]/80 border border-[#F4EBDD]/20 rounded text-[10px] font-bold tracking-[0.14em] uppercase transition-colors cursor-pointer"
+                    className="px-3 py-1 bg-[#F4EBDD]/10 hover:bg-[#F4EBDD] hover:text-[#0A3282] text-[#FBF8F2]/80 border border-[#F4EBDD]/20 rounded text-[10px] font-bold tracking-[0.14em] uppercase transition-colors cursor-pointer"
                   >
                     {tag}
                   </button>

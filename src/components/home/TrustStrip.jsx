@@ -19,7 +19,7 @@ export default function TrustStrip() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-5 bg-[#0000FF] text-[#F4EBDD]">
+    <section className="py-5 bg-[#0A3282] text-[#F4EBDD]">
       <MainContainer>
         <div
           ref={ref}
@@ -31,7 +31,7 @@ export default function TrustStrip() {
 
             {/* 1. Secure Payments */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-2 first:pt-0 first:pl-0">
-              <div className="w-8 h-8 rounded-lg bg-[#0000FF] border border-[#0000CD] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#0A3282] border border-[#06215A] flex items-center justify-center shrink-0 shadow-xs">
                 <ShieldCheck className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
@@ -46,7 +46,7 @@ export default function TrustStrip() {
 
             {/* 2. COD Available */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4 first:pt-0">
-              <div className="w-8 h-8 rounded-lg bg-[#0000FF] border border-[#0000CD] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#0A3282] border border-[#06215A] flex items-center justify-center shrink-0 shadow-xs">
                 <CreditCard className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
@@ -61,7 +61,7 @@ export default function TrustStrip() {
 
             {/* 3. Tracked Delivery */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
-              <div className="w-8 h-8 rounded-lg bg-[#0000FF] border border-[#0000CD] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#0A3282] border border-[#06215A] flex items-center justify-center shrink-0 shadow-xs">
                 <Truck className="w-4 h-4 text-[#F4EBDD]" />
               </div>
               <div className="min-w-0">
@@ -76,7 +76,7 @@ export default function TrustStrip() {
 
             {/* 4. Customer Support */}
             <div className="flex items-center gap-2.5 pt-2 md:pt-0 md:pl-4">
-              <div className="w-8 h-8 rounded-lg bg-[#0000FF] border border-[#0000CD] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#0A3282] border border-[#06215A] flex items-center justify-center shrink-0 shadow-xs">
                 <WhatsAppIcon className="w-4 h-4" />
               </div>
               <div className="min-w-0">

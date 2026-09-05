@@ -40,8 +40,8 @@ export default function GiftSection() {
             <div className="lg:col-span-7 space-y-6">
               
               {/* Header Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEE8DD] border border-[#D9D1C6] text-[#0000FF] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em]">
-                <Gift className="w-3.5 h-3.5 text-[#0000FF]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEE8DD] border border-[#D9D1C6] text-[#0A3282] text-[12px] font-manrope font-semibold uppercase tracking-[0.09em]">
+                <Gift className="w-3.5 h-3.5 text-[#0A3282]" />
                 <span>CURATED GIFTING</span>
               </div>
 
@@ -58,7 +58,7 @@ export default function GiftSection() {
               {/* Discovery Group 1: WHO ARE YOU GIFTING? */}
               <div className="space-y-2">
                 <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#625C55] flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#0000FF]" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#0A3282]" />
                   <span>WHO ARE YOU GIFTING?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -69,8 +69,8 @@ export default function GiftSection() {
                       onClick={() => setSelectedRecipient(item.label)}
                       className={`px-4 py-2 rounded-xl text-[14px] font-manrope font-semibold transition-all cursor-pointer ${
                         selectedRecipient === item.label
-                          ? 'bg-[#0000FF] text-[#F6F2EA] border border-[#0000FF] shadow-xs'
-                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#0000FF]/40'
+                          ? 'bg-[#0A3282] text-[#F6F2EA] border border-[#0A3282] shadow-xs'
+                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#0A3282]/40'
                       }`}
                     >
                       {item.label}
@@ -82,7 +82,7 @@ export default function GiftSection() {
               {/* Discovery Group 2: WHAT'S THE OCCASION? */}
               <div className="space-y-2">
                 <div className="font-manrope text-[12px] font-semibold uppercase tracking-[0.09em] text-[#625C55] flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#0000FF]" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#0A3282]" />
                   <span>WHAT'S THE OCCASION?</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -93,8 +93,8 @@ export default function GiftSection() {
                       onClick={() => setSelectedOccasion(item.label)}
                       className={`px-4 py-2 rounded-xl text-[14px] font-manrope font-semibold transition-all cursor-pointer ${
                         selectedOccasion === item.label
-                          ? 'bg-[#0000FF] text-[#F6F2EA] border border-[#0000FF] shadow-xs'
-                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#0000FF]/40'
+                          ? 'bg-[#0A3282] text-[#F6F2EA] border border-[#0A3282] shadow-xs'
+                          : 'bg-[#EEE8DD] text-[#201C19] border border-[#D9D1C6] hover:border-[#0A3282]/40'
                       }`}
                     >
                       {item.label}
@@ -108,7 +108,7 @@ export default function GiftSection() {
                 <button
                   type="button"
                   onClick={handleExploreGifts}
-                  className="bg-[#0000FF] hover:bg-[#0000CD] text-[#F6F2EA] border border-[#0000FF] px-7 py-3.5 rounded-xl font-manrope font-semibold text-[14px] sm:text-[15px] inline-flex items-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.99] cursor-pointer"
+                  className="bg-[#0A3282] hover:bg-[#06215A] text-[#F6F2EA] border border-[#0A3282] px-7 py-3.5 rounded-xl font-manrope font-semibold text-[14px] sm:text-[15px] inline-flex items-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.99] cursor-pointer"
                   id="explore-gifts-btn"
                 >
                   <span>Explore Gifts</span>

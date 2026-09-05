@@ -12,7 +12,7 @@ export default function DiscoverySet() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-7 sm:py-9 bg-[#0000FF] text-[#DAC29F]">
+    <section className="py-7 sm:py-9 bg-[#0A3282] text-[#DAC29F]">
       <MainContainer>
         <div
           ref={ref}
@@ -32,7 +32,7 @@ export default function DiscoverySet() {
                   className="w-full h-full object-contain p-2 transform transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
-                <div className="absolute top-2.5 left-2.5 bg-[#0000FF] text-[#DAC29F] text-[10px] font-manrope font-semibold tracking-[0.09em] uppercase px-2.5 py-1 rounded shadow-xs">
+                <div className="absolute top-2.5 left-2.5 bg-[#0A3282] text-[#DAC29F] text-[10px] font-manrope font-semibold tracking-[0.09em] uppercase px-2.5 py-1 rounded shadow-xs">
                   TRY BEFORE YOU BUY
                 </div>
               </div>
@@ -69,7 +69,7 @@ export default function DiscoverySet() {
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <RouterLink
                   to="/discovery-set"
-                  className="inline-flex items-center gap-2 bg-[#DAC29F] hover:bg-[#E5D7C3] text-[#0000FF] px-5 py-2.5 rounded-lg font-manrope text-[13px] font-bold tracking-[0.01em] transition-all duration-200 shadow-xs btn-interactive"
+                  className="inline-flex items-center gap-2 bg-[#DAC29F] hover:bg-[#E5D7C3] text-[#0A3282] px-5 py-2.5 rounded-lg font-manrope text-[13px] font-bold tracking-[0.01em] transition-all duration-200 shadow-xs btn-interactive"
                 >
                   <span>Explore Discovery Set</span>
                   <ArrowRight className="w-3.5 h-3.5" />

@@ -39,7 +39,7 @@ export default function FindYourScent() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 bg-[#0000CD] text-[#F4EBDD] border-b border-[#0000FF]" aria-labelledby="find-your-scent-heading">
+    <section className="py-8 sm:py-12 bg-[#06215A] text-[#F4EBDD] border-b border-[#0A3282]" aria-labelledby="find-your-scent-heading">
       <MainContainer>
         <div ref={ref} className={`reveal-init ${isVisible ? 'reveal-visible' : ''}`}>
           {/* Section Heading & Subtitle */}

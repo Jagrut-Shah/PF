@@ -26,7 +26,7 @@ export default function ReviewCard({ review }) {
       role="figure"
     >
       {/* Blue top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0000FF]" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#0A3282]" />
 
       {/* Star rating — Gold exclusively */}
       <div className="mb-3 flex items-center pt-1">
